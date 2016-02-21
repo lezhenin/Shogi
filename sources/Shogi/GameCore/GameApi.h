@@ -2,11 +2,14 @@
 #define GAMECORE_H
 
 
-class GameCore
+class GameAPI
 {
 
 public:
-    GameCore();
+   virtual GameAPI();
+   virtual void pickPiece();
+   virtual void movePiece();
+   virtual void getBoard();
 };
 
 #endif // GAMECORE_H

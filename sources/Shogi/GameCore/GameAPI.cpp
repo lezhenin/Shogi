@@ -1,6 +1,6 @@
-#include "gamecore.h"
+#include "GameAPI.h"
 
 
-GameCore::GameCore()
+GameAPI::GameAPI()
 {
 }
