@@ -6,10 +6,12 @@ class GameAPI
 {
 
 public:
-   virtual GameAPI();
-   virtual void pickPiece();
-   virtual void movePiece();
-   virtual void getBoard();
+
+   virtual void initGame()=0;
+   virtual void pickPiece()=0;
+   virtual void movePiece()=0;
+   virtual void getBoard()=0;
+   virtual bool isFinish()=0;
 };
 
 #endif // GAMECORE_H
