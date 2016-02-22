@@ -10,3 +10,4 @@
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
+![Диаграмма компонентов](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/ComponentDiagram1.png)
