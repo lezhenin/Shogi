@@ -117,17 +117,17 @@
 
  * позиция на доске;
  * фигуры «в руке»;
- * 
 
 
 #####Вечный шах
 В сёги нельзя форсировать ничью вечным шахом, как в шахматах. Если в результате серии шахов одного из соперников, позиция была повторена троекратно, то шахующий обязан изменить свой ход, иначе ему будет засчитано поражение.
 
 ## Минимально работоспособный продукт (Minimum viable product)
+ Консольное приложение, позволяющие вести игру в Сёги двум игрокам.
 
 ## Диаграмма прецедентов использования
-![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram1.png)
+![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram1.1.png)
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
-![Диаграмма компонентов](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/ComponentDiagram1.png)
+![Диаграмма компонентов](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/ComponentDiagram1.1.png)
