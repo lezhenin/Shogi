@@ -1,21 +1,18 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-03-06T17:55:48
+# Project created by QtCreator 2016-03-06T17:53:26
 #
 #-------------------------------------------------
 
 QT       -= core gui
 
-TARGET = ShogiCore
+TARGET = ShogiAI
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES +=  ShogiAPI.cpp \
-    Position.cpp
+SOURCES += shogiai.cpp
 
-HEADERS +=  ShogiAPI.h \
-    Position.h \
-    constants.h
+HEADERS += shogiai.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
