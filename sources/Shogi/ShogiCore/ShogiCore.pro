@@ -13,14 +13,16 @@ CONFIG += staticlib
 SOURCES +=  ShogiAPI.cpp \
     Position.cpp \
     Piece.cpp \
-    Square.cpp
+    Square.cpp \
+    Board.cpp
 
 HEADERS +=  ShogiAPI.h \
     Position.h \
     constants.h \
     Piece.h \
     Square.h \
-    enumirations.h
+    enumirations.h \
+    Board.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

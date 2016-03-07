@@ -9,9 +9,10 @@ class Piece
 {
 public:
 
-    Piece(PieceType pt, Square *sq);
+    Piece(PieceType pt, Player pl, Square *sq);
 
     inline PieceType getType() const;
+    inline Player getPlayer() const;
     inline Square *getSquare() const;
 
     inline bool wasPromoted() const;
@@ -21,13 +22,16 @@ public:
     void unPromote();
 
     void setSquare(Square *sq);
+    void setPlayer(Player pl);
 
     ~Piece();
 
 private:
 
     PieceType ptype;
+    Player player;
     Square *sq;
+
     bool promoted;
     bool bePromoted;
 };

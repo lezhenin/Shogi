@@ -1,9 +1,9 @@
 #include "Piece.h"
 #include "enumirations.h"
 
-Piece::Piece(PieceType pt, Square *sq): ptype(pt), sq(sq)
+Piece::Piece(PieceType pt, Player pl, Square *sq): ptype(pt), player(pl), sq(sq)
 {
-    if (this->ptype >= Rock)
+    if (this->ptype >= Rook)
     {
         this->bePromoted = true;
     }
@@ -11,7 +11,7 @@ Piece::Piece(PieceType pt, Square *sq): ptype(pt), sq(sq)
     {
         this->bePromoted = false;
     }
-    if (this->ptype >= PromotedRock)
+    if (this->ptype >= PromotedRook)
     {
         this->promoted=true;
     }
@@ -32,6 +32,11 @@ Square *Piece::getSquare() const
     return this->sq;
 }
 
+Player Piece::getPlayer() const
+{
+    return this->player;
+}
+
 bool Piece::wasPromoted() const
 {
     return this->promoted;
@@ -45,18 +50,28 @@ bool Piece::canBePromoted() const
 void Piece::promote()
 {
     if(this->bePromoted && !this->promoted)
+    {
         this->ptype=PieceType((int)(this->ptype)+PROMOTION_STEP);
+    }
 }
 
 void Piece::unPromote()
 {
     if(this->bePromoted && this->promoted)
+    {
+
         this->ptype=PieceType((int)(this->ptype)-PROMOTION_STEP);
+    }
 }
 
 void Piece::setSquare(Square *sq)
 {
     this->sq=sq;
+}
+
+void Piece::setPlayer(Player pl)
+{
+    this->player=pl;
 }
 
 Piece::~Piece()

@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "constants.h"
 
-Position::Position(const unsigned int v, const unsigned int h)
+Position::Position(const int h, const int v)
 {
     if(v <= BOARD_WIDTH && h <= BOARD_HEIGHT)
     {
@@ -12,12 +12,12 @@ Position::Position(const unsigned int v, const unsigned int h)
     this->horizontal = h;
 }
 
-unsigned int Position::getVertical() const
+int Position::getVertical() const
 {
     return this->vertical;
 }
 
-unsigned int Position::getHorizontal() const
+int Position::getHorizontal() const
 {
     return this->horizontal;
 }

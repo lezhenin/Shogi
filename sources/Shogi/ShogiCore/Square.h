@@ -9,7 +9,7 @@ class Square
 {
 public:
 
-    Square(Position pos, Piece *piece);
+    Square(Position pos, Piece *piece = 0);
 
     inline Position getPosition() const;
     inline Piece *getPiece() const;

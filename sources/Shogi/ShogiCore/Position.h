@@ -14,10 +14,10 @@ class Position
 {
 public:
 
-    Position(const unsigned int v, const unsigned int h);
+    Position(const int h, const int v);
 
-    inline unsigned int getVertical() const;
-    inline unsigned int getHorizontal() const;
+    inline int getVertical() const;
+    inline int getHorizontal() const;
 
     inline bool operator == (const Position& pos);
 
@@ -27,8 +27,8 @@ public:
 
 private:
 
-    unsigned int vertical;
-    unsigned int horizontal;
+    int vertical;
+    int horizontal;
 };
 
 #endif // POSITION_H
