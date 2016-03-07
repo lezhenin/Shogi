@@ -20,3 +20,21 @@ Board::Board(int w, int h)
     }
 }
 
+Board::~Board()
+{
+    for(int i=1; i<=this->height; i++)
+    {
+        for(int j=1; j<=this->width; j++)
+        {
+            delete squares[i][j];
+        }
+    }
+
+    for(int i=0; i<this->height; i++)
+    {
+        delete [] this->squares[i];
+    }
+
+    delete [] this->squares;
+}
+
