@@ -2,6 +2,7 @@
 #define GAMECORE_H
 #include "Position.h"
 
+
 /// Игровой интерфес
 class GameAPI
 {

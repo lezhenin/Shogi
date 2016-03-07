@@ -1,20 +1,32 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+/**Объект класса хранит пару целых чисел соотносящихся с клеткой на доске.
+Значению переменной vertical соответсвует порядковый номер вертикали,
+с учетом того, что отсчет идет от правого края доски. Аналогично значение
+переменной horizontal соответствует порядковому номеру горизонтали при
+отсчете от верхнего края доски. Класс поддерживает операции присвоения "="
+и сравнения "==" и обладает двумя методам getVertical() и getHorizontal(),
+позволяющими получить текущии значения соответсветнных переменных.
+-----------Жду конструктивную критику по поводу комментария------------*/
+
 class Position
 {
 public:
 
-    Position( unsigned int v, unsigned int h);
+    Position(const unsigned int v, const unsigned int h);
 
-    unsigned int getVertical() {return this->vertical;}
-    unsigned int getHorizontal() {return this->horizontal;}
+    inline unsigned int getVertical() const;
+    inline unsigned int getHorizontal() const;
 
-    bool operator == (Position& pos) { return (this->horizontal == pos.horizontal && this->vertical == pos.vertical); }
+    inline bool operator == (const Position& pos);
 
-    Position& operator = (Position& pos);
+    Position& operator = (const Position& pos);
+
+    ~Position();
 
 private:
+
     unsigned int vertical;
     unsigned int horizontal;
 };

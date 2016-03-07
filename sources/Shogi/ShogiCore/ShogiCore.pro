@@ -11,11 +11,16 @@ TEMPLATE = lib
 CONFIG += staticlib
 
 SOURCES +=  ShogiAPI.cpp \
-    Position.cpp
+    Position.cpp \
+    Piece.cpp \
+    Square.cpp
 
 HEADERS +=  ShogiAPI.h \
     Position.h \
-    constants.h
+    constants.h \
+    Piece.h \
+    Square.h \
+    enumirations.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
