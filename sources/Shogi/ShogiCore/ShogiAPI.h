@@ -1,12 +1,13 @@
 #ifndef GAMECORE_H
 #define GAMECORE_H
+#include "ShogiGameLogic.h"
 #include "Board.h"
 #include "enumirations.h"
 #include "Position.h"
 
 
 /// Игровой интерфес
-class GameAPI
+class ShogiAPI
 {
 
 public:
