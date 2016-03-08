@@ -14,11 +14,7 @@ SOURCES +=  ShogiAPI.cpp \
     Position.cpp \
     Piece.cpp \
     Square.cpp \
-    Board.cpp \
-    Command.cpp \
-    Shogi.cpp \
-    ShogiGameLogic.cpp \
-    InitCommand.cpp
+    Board.cpp
 
 HEADERS +=  ShogiAPI.h \
     Position.h \
@@ -26,11 +22,7 @@ HEADERS +=  ShogiAPI.h \
     Piece.h \
     Square.h \
     enumirations.h \
-    Board.h \
-    Command.h \
-    Shogi.h \
-    ShogiGameLogic.h \
-    InitCommand.h
+    Board.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
