@@ -11,8 +11,8 @@ public:
 
     Square(Position pos, Piece *piece = 0);
 
-    inline Position getPosition() const;
-    inline Piece *getPiece() const;
+    Position getPosition() const;
+    Piece *getPiece() const;
 
     void setPiece (Piece *p);
 

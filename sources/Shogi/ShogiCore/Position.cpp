@@ -8,8 +8,9 @@ Position::Position(const int h, const int v)
     if(v <= BOARD_WIDTH && h <= BOARD_HEIGHT)
     {
         this->vertical = v;
+        this->horizontal = h;
     }
-    this->horizontal = h;
+
 }
 
 int Position::getVertical() const

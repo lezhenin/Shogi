@@ -6,7 +6,7 @@
 
 
 /// Игровой интерфес
-class GameAPI
+class ShogiAPI
 {
 
 public:
@@ -16,7 +16,7 @@ public:
    virtual void movePiece(Position& position)=0;
    virtual void promotePiece(Position& position)=0;
    virtual void dropPiece(PieceType pt)=0;
-   virtual Board getBoard()=0;
+   virtual Board *getBoard()=0;
    virtual void getGameStatus()=0;
 };
 

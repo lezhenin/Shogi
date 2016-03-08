@@ -9,11 +9,11 @@ class Piece
 {
 public:
 
-    Piece(PieceType pt, Player pl, Square *sq);
+    Piece(PieceType pt, Player pl, Square *sq=0);
 
-    inline PieceType getType() const;
-    inline Player getPlayer() const;
-    inline Square *getSquare() const;
+    PieceType getType() const;
+    Player getPlayer() const;
+    Square *getSquare() const;
 
     inline bool wasPromoted() const;
     inline bool canBePromoted() const;

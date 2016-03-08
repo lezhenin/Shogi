@@ -16,8 +16,8 @@ public:
 
     Position(const int h, const int v);
 
-    inline int getVertical() const;
-    inline int getHorizontal() const;
+    int getVertical() const;
+    int getHorizontal() const;
 
     inline bool operator == (const Position& pos);
 

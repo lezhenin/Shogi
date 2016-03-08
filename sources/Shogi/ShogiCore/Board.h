@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "Square.h"
-#include "vector"
+#include <vector>
 
 typedef std::vector<Piece> Pieces;
 
@@ -10,6 +10,12 @@ class Board
 public:
 
     Board(int w, int h);
+
+    void setPiece(Piece *piece, const Position &pos);
+    void removePiece(const Position &pos);
+    Square *getSquare(const Position &pos);
+
+
     ~Board();
 private:
 

@@ -14,7 +14,8 @@ SOURCES +=  ShogiAPI.cpp \
     Position.cpp \
     Piece.cpp \
     Square.cpp \
-    Board.cpp
+    Board.cpp \
+    Shogi.cpp
 
 HEADERS +=  ShogiAPI.h \
     Position.h \
@@ -22,7 +23,8 @@ HEADERS +=  ShogiAPI.h \
     Piece.h \
     Square.h \
     enumirations.h \
-    Board.h
+    Board.h \
+    Shogi.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
