@@ -43,6 +43,21 @@ inline Square *Board::getSquare(const Position& pos)
     return squares[pos.getHorizontal()-1][pos.getVertical()-1];
 }
 
+Pieces &Board::getPiecesOnBoard()
+{
+    return this->onBoard;
+}
+
+Pieces &Board::getSenteCapturedPieces()
+{
+    return this->SenteCaptured;
+}
+
+Pieces &Board::getGoteCapturedPieces()
+{
+    return this->GoteCaptured;
+}
+
 Board::~Board()
 {
     for(int i=0; i < this->height; i++)

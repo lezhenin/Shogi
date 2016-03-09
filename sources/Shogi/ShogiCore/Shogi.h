@@ -14,14 +14,14 @@ public:
     void promotePiece(Position& position);
     void dropPiece(PieceType pt);
 
-    Board *getBoard();
+    Board &getBoard();
     void getGameStatus();
 
     ~Shogi();
 
 private:
 
-    Board *board;
+    Board board{BOARD_HEIGHT,BOARD_WIDTH};
 };
 
 #endif // SHOGI_H
