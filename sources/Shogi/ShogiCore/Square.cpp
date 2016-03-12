@@ -2,7 +2,7 @@
 
 Square::Square(Position pos, Piece *piece): pos(pos), piece(piece){}
 
-Position Square::getPosition() const
+Position &Square::getPosition()
 {
     return this->pos;
 }

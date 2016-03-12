@@ -5,6 +5,16 @@ Board::Board(int w, int h)
     this->width=w;
     this->height=h;
 
+    if(w<=0)
+    {
+        this->width=1;
+    }
+
+    if(h<=0)
+    {
+        this->height=1;
+    }
+
     this->squares = new Square **[this->height];
     for(int i=0; i<this->height; i++)
     {
@@ -41,6 +51,14 @@ void Board::removePiece(const Position &pos)
 inline Square *Board::getSquare(const Position& pos)
 {
     return squares[pos.getHorizontal()-1][pos.getVertical()-1];
+}
+
+Piece *Board::getPiece(const Position &pos)
+{
+   // if (this->getSquare(pos)->getPiece()!= nullptr)
+
+
+    return this->getSquare(pos)->getPiece();
 }
 
 Pieces &Board::getPiecesOnBoard()

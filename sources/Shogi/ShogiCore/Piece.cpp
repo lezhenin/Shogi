@@ -37,6 +37,14 @@ Player Piece::getPlayer() const
     return this->player;
 }
 
+Position &Piece::getPosition() const
+{
+    if(this->getSquare()!=nullptr)
+    {
+        return this->getSquare()->getPosition();
+    }
+}
+
 bool Piece::wasPromoted() const
 {
     return this->promoted;

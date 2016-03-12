@@ -11,12 +11,19 @@ class ShogiAPI
 
 public:
 
+   ///Метод инициализирующий игру
    virtual void initGame()=0;
-   virtual void pickPiece(Position& position)=0;
-   virtual void movePiece(Position& position)=0;
-   virtual void promotePiece(Position& position)=0;
-   virtual void dropPiece(PieceType pt)=0;
+   ///Метод, позволяющий выбрать фигуры на доске
+   virtual void pickPiece(const Position& position)=0;
+   ///Метод, позволяющий переместить фигуру на доске
+   virtual void movePiece(const Position& position)=0;
+   ///Метод, позволяющий превернуть фигуру на доске
+   virtual void promotePiece(const Position& position)=0;
+   ///Метод, позволяющий поставить фигуру из захваченных на доску
+   virtual void dropPiece(const PieceType pt, const Position& position)=0;
+   ///Метод, позволяющий указатель на игровую модель доски
    virtual Board &getBoard()=0;
+   ///Метод, позволяющий получить состояние текущей игоровой ситуации
    virtual void getGameStatus()=0;
 };
 

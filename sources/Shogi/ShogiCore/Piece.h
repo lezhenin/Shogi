@@ -4,16 +4,16 @@
 #include "Square.h"
 
 class Square;
-
+/// Модель фигуры
 class Piece
 {
 public:
 
-    Piece(PieceType pt, Player pl, Square *sq=0);
+    Piece(PieceType pt, Player pl, Square *sq=nullptr);
 
     PieceType getType() const;
     Player getPlayer() const;
-    Square *getSquare() const;
+    Position &getPosition() const;
 
     inline bool wasPromoted() const;
     inline bool canBePromoted() const;
@@ -34,6 +34,8 @@ private:
 
     bool promoted;
     bool bePromoted;
+
+    Square *getSquare() const;
 };
 
 #endif // PIECE_H

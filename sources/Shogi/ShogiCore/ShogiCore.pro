@@ -15,7 +15,8 @@ SOURCES +=  ShogiAPI.cpp \
     Piece.cpp \
     Square.cpp \
     Board.cpp \
-    Shogi.cpp
+    Shogi.cpp \
+    SquareIsEmptyException.cpp
 
 HEADERS +=  ShogiAPI.h \
     Position.h \
@@ -24,7 +25,8 @@ HEADERS +=  ShogiAPI.h \
     Square.h \
     enumirations.h \
     Board.h \
-    Shogi.h
+    Shogi.h \
+    SquareIsEmptyException.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

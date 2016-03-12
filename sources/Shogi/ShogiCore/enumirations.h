@@ -2,11 +2,12 @@
 #define ENUMIRATIONS
 #include "constants.h"
 
+/// Типы фигур шоги
 enum PieceType{
     King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
     PromotedRook=Rook+PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral,  PromotedKnight, PromotedLance, PromotedPawn,
 };
-
+///
 enum Player{
     Sente=0, Gote
 };

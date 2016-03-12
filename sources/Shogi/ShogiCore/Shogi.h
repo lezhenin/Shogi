@@ -9,10 +9,10 @@ public:
     Shogi();
 
     void initGame();
-    void pickPiece(Position& position);
-    void movePiece(Position& position);
-    void promotePiece(Position& position);
-    void dropPiece(PieceType pt);
+    void pickPiece(const Position& position);
+    void movePiece(const Position& position);
+    void promotePiece(const Position& position);
+    void dropPiece(const PieceType pt, const Position& position);
 
     Board &getBoard();
     void getGameStatus();
@@ -20,7 +20,7 @@ public:
     ~Shogi();
 
 private:
-
+    Piece* pickedPiece = nullptr;
     Board board{BOARD_HEIGHT,BOARD_WIDTH};
 };
 

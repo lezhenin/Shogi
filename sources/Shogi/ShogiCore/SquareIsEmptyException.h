@@ -3,7 +3,7 @@
 #include <exception>
 #include <string>
 
-
+///Класс исключения, выбрасываемоего при попытки обратится к несуществующей фигуре на клетке доски
 class SquareIsEmptyException : public std::exception
 {
 public:
