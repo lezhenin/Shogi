@@ -65,6 +65,9 @@ void Shogi::getGameStatus()
 
 Shogi::~Shogi()
 {
-
+        for(Pieces::iterator it=this->board.getPiecesOnBoard().begin(); it<this->board.getPiecesOnBoard().end(); it++)
+        {
+            delete *it;
+        }
 }
 

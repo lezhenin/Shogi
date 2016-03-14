@@ -26,7 +26,8 @@ HEADERS +=  ShogiAPI.h \
     enumirations.h \
     Board.h \
     Shogi.h \
-    SquareIsEmptyException.h
+    SquareIsEmptyException.h \
+    BoardInterface.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
