@@ -1,6 +1,6 @@
 #include <QString>
 #include <QtTest>
-#include "Shogi.h"
+#include "../ShogiCore/Shogi.h"
 #include <iostream>
 
 class ShogiCoreTest : public QObject
