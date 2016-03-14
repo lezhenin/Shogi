@@ -194,3 +194,5 @@ Makefile*
 out
 gen
 
+# Doxygen HTML
+/report/html*
