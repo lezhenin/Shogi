@@ -186,6 +186,7 @@ Makefile*
 #QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+
 ### Example user template template
 ### Example user template
 
