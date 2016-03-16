@@ -19,6 +19,8 @@ public:
     Player getPlayer() const;
     ///Метод, позволяющий получить позицию фигуры
     Position &getPosition() const;
+    ///Метод, позволяющий получить указатель на клетку, на которой наодится фигура
+    Square *getSquare() const;
 
     ///Метод, позволяющий узнать была ли перевернута фигура
     inline bool wasPromoted() const;
@@ -47,7 +49,6 @@ private:
     bool promoted;
     bool bePromoted;
 
-    Square *getSquare() const;
 };
 
 #endif // PIECE_H

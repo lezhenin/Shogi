@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "BoardInterface.h"
-typedef std::vector<Piece*> Pieces;
+typedef std::list<Piece*> Pieces;
 
 /// Игровая модель доски с фигурами
 class Board: public BoardInterface

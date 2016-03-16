@@ -43,6 +43,7 @@ void Board::removePiece(const Position &pos)
     Square *sq = this->getSquare(pos);
     if(sq->getPiece()!=0)
     {
+        onBoard.remove(sq->getPiece());
         sq->getPiece()->setSquare(0);
     }
     sq->setPiece(0);

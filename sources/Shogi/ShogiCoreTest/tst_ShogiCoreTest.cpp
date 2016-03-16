@@ -1,6 +1,7 @@
 #include <QString>
 #include <QtTest>
 #include "../ShogiCore/Shogi.h"
+#include "../ShogiCore/Model/BoardMemento.h"
 #include <iostream>
 
 class ShogiCoreTest : public QObject
@@ -15,6 +16,7 @@ private Q_SLOTS:
     void pickAndMoveTest();
     void promoteTest();
     void dropTest();
+    void mementoTest();
 private:
     Shogi game;
     void printBoard();
@@ -39,6 +41,7 @@ void ShogiCoreTest::printBoard()
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl;
 }
 
 void ShogiCoreTest::gameInitTest()
@@ -70,8 +73,19 @@ void ShogiCoreTest::dropTest()
     printBoard();
 }
 
+void ShogiCoreTest::mementoTest()
+{
+    BoardMemento bm(game.getBoard());
+    game.getBoard().removePiece(Position(2,2));
+    printBoard();
+    bm.restore();
+    printBoard();
+    std::cout << sizeof(bm) << std::endl;
+
+}
 
 
 QTEST_APPLESS_MAIN(ShogiCoreTest)
 
 #include "tst_ShogiCoreTest.moc"
+

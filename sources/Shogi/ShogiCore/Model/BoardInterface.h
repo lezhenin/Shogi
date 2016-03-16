@@ -3,9 +3,10 @@
 #include "SquareIsEmptyException.h"
 #include "Square.h"
 #include <vector>
+#include <list>
 
 //todo make alias declaration
-typedef std::vector<Piece*> Pieces; \
+typedef std::list<Piece*> Pieces; \
 
 ///Интерфес игровой модели доски
 class BoardInterface
