@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
-#include "enumirations.h"
 #include "Square.h"
+#include "../enumirations.h"
 
 class Square;
 

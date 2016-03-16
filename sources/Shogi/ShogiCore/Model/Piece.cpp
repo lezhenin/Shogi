@@ -1,8 +1,9 @@
 #include "Piece.h"
-#include "enumirations.h"
+
 
 Piece::Piece(PieceType pt, Player pl, Square *sq): ptype(pt), player(pl), sq(sq)
 {
+    //todo simplify construction
     if (this->ptype >= Rook)
     {
         this->bePromoted = true;
@@ -39,10 +40,7 @@ Player Piece::getPlayer() const
 
 Position &Piece::getPosition() const
 {
-    if(this->getSquare()!=nullptr)
-    {
-        return this->getSquare()->getPosition();
-    }
+    return this->getSquare()->getPosition();
 }
 
 bool Piece::wasPromoted() const

@@ -11,23 +11,22 @@ TEMPLATE = lib
 CONFIG += staticlib
 
 SOURCES +=  ShogiAPI.cpp \
-    Position.cpp \
-    Piece.cpp \
-    Square.cpp \
-    Board.cpp \
     Shogi.cpp \
-    SquareIsEmptyException.cpp
+    Model/Board.cpp \
+    Model/Piece.cpp \
+    Model/Position.cpp \
+    Model/Square.cpp \
+    Model/SquareIsEmptyException.cpp
 
 HEADERS +=  ShogiAPI.h \
-    Position.h \
     constants.h \
-    Piece.h \
-    Square.h \
     enumirations.h \
-    Board.h \
-    Shogi.h \
-    SquareIsEmptyException.h \
-    BoardInterface.h
+    Model/Board.h \
+    Model/BoardInterface.h \
+    Model/Piece.h \
+    Model/Position.h \
+    Model/Square.h \
+    Model/SquareIsEmptyException.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

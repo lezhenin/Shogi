@@ -55,9 +55,6 @@ inline Square *Board::getSquare(const Position& pos)
 
 Piece *Board::getPiece(const Position &pos)
 {
-   // if (this->getSquare(pos)->getPiece()!= nullptr)
-
-
     return this->getSquare(pos)->getPiece();
 }
 

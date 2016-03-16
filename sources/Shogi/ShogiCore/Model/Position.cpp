@@ -1,11 +1,8 @@
 #include "Position.h"
-#include <cstdlib>
-#include <stdexcept>
-#include "constants.h"
 
 Position::Position(const int h, const int v)
 {
-    if(v <= BOARD_WIDTH && h <= BOARD_HEIGHT)
+    if(v > 0 && h > 0)
     {
         this->vertical = v;
         this->horizontal = h;

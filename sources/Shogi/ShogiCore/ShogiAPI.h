@@ -1,8 +1,8 @@
 #ifndef GAMECORE_H
 #define GAMECORE_H
-#include "Board.h"
 #include "enumirations.h"
-#include "Position.h"
+#include "Model/Position.h"
+#include "Model/Board.h"
 
 
 /// Игровой интерфес

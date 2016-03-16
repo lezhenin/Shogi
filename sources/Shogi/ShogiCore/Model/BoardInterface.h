@@ -4,7 +4,8 @@
 #include "Square.h"
 #include <vector>
 
-typedef std::vector<Piece*> Pieces;
+//todo make alias declaration
+typedef std::vector<Piece*> Pieces; \
 
 ///Интерфес игровой модели доски
 class BoardInterface
