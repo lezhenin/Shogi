@@ -59,17 +59,17 @@ Piece *Board::getPiece(const Position &pos)
     return this->getSquare(pos)->getPiece();
 }
 
-Pieces &Board::getPiecesOnBoard()
+ListOfPieces &Board::getPiecesOnBoard()
 {
     return this->onBoard;
 }
 
-Pieces &Board::getSenteCapturedPieces()
+ListOfPieces &Board::getSenteCapturedPieces()
 {
     return this->SenteCaptured;
 }
 
-Pieces &Board::getGoteCapturedPieces()
+ListOfPieces &Board::getGoteCapturedPieces()
 {
     return this->GoteCaptured;
 }

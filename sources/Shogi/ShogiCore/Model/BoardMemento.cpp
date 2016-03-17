@@ -1,16 +1,16 @@
 #include "BoardMemento.h"
 
-BoardMemento::BoardMemento(BoardInterface &board): board(board)
+BoardMemento::BoardMemento(AbstractBoard &board): board(board)
 {
-    for(Pieces::iterator it = board.getSenteCapturedPieces().begin(); it != board.getSenteCapturedPieces().end(); ++it)
+    for(ListOfPieces::iterator it = board.getSenteCapturedPieces().begin(); it != board.getSenteCapturedPieces().end(); ++it)
     {
         this->senteCaptured.push_back(*it);
     }
-    for(Pieces::iterator it = board.getGoteCapturedPieces().begin(); it != board.getGoteCapturedPieces().end(); ++it)
+    for(ListOfPieces::iterator it = board.getGoteCapturedPieces().begin(); it != board.getGoteCapturedPieces().end(); ++it)
     {
         this->goteCaptured.push_back(*it);
     }
-    for(Pieces::iterator it = board.getPiecesOnBoard().begin(); it != board.getPiecesOnBoard().end(); ++it)
+    for(ListOfPieces::iterator it = board.getPiecesOnBoard().begin(); it != board.getPiecesOnBoard().end(); ++it)
     {
         Pair p;
         p.piece=*it;
@@ -21,7 +21,7 @@ BoardMemento::BoardMemento(BoardInterface &board): board(board)
 
 void BoardMemento::restore()
 {
-    for(Pieces::iterator it = board.getPiecesOnBoard().begin(); it != board.getPiecesOnBoard().end(); ++it)
+    for(ListOfPieces::iterator it = board.getPiecesOnBoard().begin(); it != board.getPiecesOnBoard().end(); ++it)
     {
         board.removePiece((*it)->getPosition());
     }
@@ -30,11 +30,11 @@ void BoardMemento::restore()
         board.setPiece(it->piece,it->square->getPosition());
         board.getPiecesOnBoard().push_back(it->piece);
     }
-    for(Pieces::iterator it = this->senteCaptured.begin(); it != this->senteCaptured.end(); ++it)
+    for(ListOfPieces::iterator it = this->senteCaptured.begin(); it != this->senteCaptured.end(); ++it)
     {
         board.getSenteCapturedPieces().push_back(*it);
     }
-    for(Pieces::iterator it = this->goteCaptured.begin(); it != this->goteCaptured.end(); ++it)
+    for(ListOfPieces::iterator it = this->goteCaptured.begin(); it != this->goteCaptured.end(); ++it)
     {
         board.getGoteCapturedPieces().push_back(*it);
     }

@@ -1,8 +1,8 @@
 #ifndef SHOGI_H
 #define SHOGI_H
-#include "ShogiAPI.h"
+#include "ShogiGameAPI.h"
 
-class Shogi: ShogiAPI
+class Shogi: ShogiGameAPI
 {
 public:
 

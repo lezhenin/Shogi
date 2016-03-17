@@ -5,11 +5,11 @@ set(SOURCE_FILES
     enumirations.h
     Shogi.cpp
     Shogi.h
-    ShogiAPI.h
+        ShogiGameAPI.h
 
     Model/Board.cpp
     Model/Board.h
-    Model/BoardInterface.h
+        Model/AbstractBoard.h
     Model/Piece.cpp
     Model/Piece.h
     Model/Position.cpp

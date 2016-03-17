@@ -1,10 +1,10 @@
 #ifndef BOARD_H
 #define BOARD_H
-#include "BoardInterface.h"
-typedef std::list<Piece*> Pieces;
+#include "AbstractBoard.h"
+typedef std::list<Piece*> ListOfPieces;
 
 /// Игровая модель доски с фигурами
-class Board: public BoardInterface
+class Board: public AbstractBoard
 {
 public:
 
@@ -15,17 +15,17 @@ public:
 
     Piece *getPiece(const Position &pos);
 
-    Pieces &getPiecesOnBoard();
-    Pieces &getSenteCapturedPieces();
-    Pieces &getGoteCapturedPieces();
+    ListOfPieces &getPiecesOnBoard();
+    ListOfPieces &getSenteCapturedPieces();
+    ListOfPieces &getGoteCapturedPieces();
 
     ~Board();
 private:
 
     Square ***squares;
-    Pieces onBoard;
-    Pieces SenteCaptured;
-    Pieces GoteCaptured;
+    ListOfPieces onBoard;
+    ListOfPieces SenteCaptured;
+    ListOfPieces GoteCaptured;
 
     int width;
     int height;

@@ -6,7 +6,7 @@
 
 
 /// Игровой интерфес
-class ShogiAPI
+class ShogiGameAPI
 {
 
 public:

@@ -41,8 +41,8 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
     Piece  *p = new Piece(pt,Sente);
     this->getBoard().getSenteCapturedPieces().push_back(p);
 
-    Pieces * cap = &this->getBoard().getSenteCapturedPieces();
-    for(Pieces::iterator it = cap->begin(); it != cap->end(); it++)
+    ListOfPieces * cap = &this->getBoard().getSenteCapturedPieces();
+    for(ListOfPieces::iterator it = cap->begin(); it != cap->end(); it++)
     {
         if((*it)==p)
         {
@@ -65,7 +65,7 @@ void Shogi::getGameStatus()
 
 Shogi::~Shogi()
 {
-        for(Pieces::iterator it=this->board.getPiecesOnBoard().begin(); it != this->board.getPiecesOnBoard().end(); ++it)
+        for(ListOfPieces::iterator it=this->board.getPiecesOnBoard().begin(); it != this->board.getPiecesOnBoard().end(); ++it)
         {
             delete *it;
         }

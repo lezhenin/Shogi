@@ -1,7 +1,7 @@
 #ifndef SHOGI_BOARDMEMENTO_H
 #define SHOGI_BOARDMEMENTO_H
 
-#include "BoardInterface.h"
+#include "AbstractBoard.h"
 
 struct Pair
 {
@@ -13,17 +13,17 @@ class BoardMemento
 {
 
 public:
-    explicit BoardMemento(BoardInterface &board);
+    explicit BoardMemento(AbstractBoard &board);
 
     virtual ~BoardMemento();
 
     void restore();
 
 private:
-    BoardInterface& board;
+    AbstractBoard & board;
     std::vector<Pair> pairs;
-    Pieces senteCaptured;
-    Pieces goteCaptured;
+    ListOfPieces senteCaptured;
+    ListOfPieces goteCaptured;
 };
 
 

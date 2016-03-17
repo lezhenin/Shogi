@@ -2,14 +2,13 @@
 #define BOARDINTERFACE_H
 #include "SquareIsEmptyException.h"
 #include "Square.h"
-#include <vector>
 #include <list>
 
 //todo make alias declaration
-typedef std::list<Piece*> Pieces; \
+typedef std::list<Piece*> ListOfPieces; \
 
 ///Интерфес игровой модели доски
-class BoardInterface
+class AbstractBoard
 {
 public:
 
@@ -22,11 +21,13 @@ public:
     virtual Piece *getPiece(const Position &pos)=0;
 
     ///Метод, позволяющий получить указатели на все фигуры на доске
-    virtual Pieces &getPiecesOnBoard()=0;
+    virtual ListOfPieces &getPiecesOnBoard()=0;
     ///Метод, позволяющий получить указатели на все фигуры, захваченные сторооной Sente
-    virtual Pieces &getSenteCapturedPieces()=0;
+    virtual ListOfPieces &getSenteCapturedPieces()=0;
     ///Метод, позволяющий получить указатели на все фигуры, захваченные сторооной Gote
-    virtual Pieces &getGoteCapturedPieces()=0;
+    virtual ListOfPieces &getGoteCapturedPieces()=0;
+
+    virtual ~AbstractBoard() { }
 };
 
 #endif // BOARDINTERFACE_H
