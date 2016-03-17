@@ -2,6 +2,7 @@
 #define SHOGI_BOARDMEMENTO_H
 
 #include "AbstractBoard.h"
+#include <vector>
 
 struct Pair
 {

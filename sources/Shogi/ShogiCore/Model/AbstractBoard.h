@@ -5,7 +5,7 @@
 #include <list>
 
 //todo make alias declaration
-typedef std::list<Piece*> ListOfPieces; \
+typedef std::list<Piece*> ListOfPieces;
 
 ///Интерфес игровой модели доски
 class AbstractBoard
