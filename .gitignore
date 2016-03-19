@@ -176,6 +176,7 @@ sympy-plots-for-*.tex/
 moc_*.cpp
 qrc_*.cpp
 ui_*.h
+/report/doxygen/html
 Makefile*
 *-build-*
 
