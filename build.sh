@@ -6,7 +6,7 @@ build_release_version() {
 	cd build
 	mkdir release
 	cmake --version
-    cmake –G "Unix Makefiles" ../../../Shogi
+    cmake –G "Unix Makefiles" ../../../ws
 
 	if [ -e "Makefile" ]; then
 		cmake --build ../build --target Release --
@@ -27,7 +27,7 @@ build_debug_version() {
 	mkdir debug
 	cd debug
 	cmake --version
-	cmake –G "Unix Makefiles" ../../../Shogi
+	cmake –G "Unix Makefiles" ../../../ws
 	if [ -e "Makefile" ]; then
 		cmake --build ../build --clean-first --
 
