@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 2.8.12.2)
 project(Shogi)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_subdirectory(sources/Shogi/ShogiCore)
-add_subdirectory(sources/Shogi/ShogiAI)
-add_subdirectory(sources/Shogi/ShogiCoreTest)
+add_subdirectory(sources/ShogiCore)
+add_subdirectory(sources/ShogiAI)
+add_subdirectory(sources/ShogiCoreTest)
 
 
 enable_testing()
