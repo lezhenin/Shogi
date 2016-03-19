@@ -5,7 +5,7 @@ build_release_version() {
 	mkdir build 
 	cd build
 	mkdir release
-	cmake -- version
+	cmake --version
     cmake –G "Unix Makefiles" ../../../Shogi
 
 	if [ -e "Makefile" ]; then
@@ -26,7 +26,7 @@ build_debug_version() {
 	cd ../build
 	mkdir debug
 	cd debug
-	cmake -- version
+	cmake --version
 	cmake –G "Unix Makefiles" ../../../Shogi
 	if [ -e "Makefile" ]; then
 		cmake --build ../build --clean-first --
