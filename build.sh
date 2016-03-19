@@ -7,7 +7,7 @@ build_release_version() {
 	mkdir release
 	cd release
 	cmake --version
-    cmake –G "Unix Makefiles" ../../../Shogi/workspace
+    cmake –G "Unix Makefiles" ../../../workspace
 
 	if [ -e "Makefile" ]; then
 		cmake --build ../../release --target APP --
@@ -17,7 +17,7 @@ build_release_version() {
 		echo "Makefile does not exist"
 		echo "Build release version failure!"
 		exit 1
-	fi	
+	fi
 	ls
 }
 
@@ -29,7 +29,7 @@ build_debug_version() {
 	mkdir debug
 	cd debug
 	cmake --version
-	cmake –G "Unix Makefiles" ../../../Shogi/workspace
+	cmake –G "Unix Makefiles" ../../../workspace
 	if [ -e "Makefile" ]; then
 		cmake --build ../build --clean-first --
 
