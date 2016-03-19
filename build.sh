@@ -43,7 +43,7 @@ build_debug_version() {
 		gcovr -r . --xml --exclude='tst*' -o ../report/gcovr_result
 		
 		valgrind --version
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_testcore.%p.result /opt/tomcat/.jenkins/jobs/FootballEditor16/workspace/sources/ShogiCoreTest/tst_ShogiCoreTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_testcore.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/sources/ShogiCoreTest/tst_ShogiCoreTest || true
 
         cd ../report/doxygen
 		if [ -e "doxygenconfig.ini" ]; then
