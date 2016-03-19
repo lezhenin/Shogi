@@ -9,7 +9,7 @@ build_release_version() {
     cmake –G "Unix Makefiles" ../../../Shogi/workspace
 
 	if [ -e "Makefile" ]; then
-		cmake --build ../build --target Release --
+		cmake --build ../build --target APP --
 		cd ../..
 	else
 	    cd ../..
