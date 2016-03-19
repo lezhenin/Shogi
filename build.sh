@@ -10,7 +10,7 @@ build_release_version() {
     cmake –G "Unix Makefiles" ../../../workspace
 
 	if [ -e "Makefile" ]; then
-		cmake --build ../../release --target APP --
+		cmake --build ../release --target APP --
 		cd ../..
 	else
 	    cd ../..
