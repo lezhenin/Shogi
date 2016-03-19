@@ -31,7 +31,7 @@ build_debug_version() {
 	cmake --version
 	cmake –G "Unix Makefiles" ../../../workspace
 	if [ -e "Makefile" ]; then
-		cmake --build ../build --clean-first --
+		cmake --build ../debug --clean-first --
 
 		cd ../../sources
 		ShogiCoreTest/tst_ShogiCoreTest -xml -o test_results || true
