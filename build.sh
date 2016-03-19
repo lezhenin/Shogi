@@ -87,6 +87,7 @@ make_report() {
 }
 
 zip_files() {
+    ls
 	if [ -z ${JOB_NAME} ] || [ -z ${BUILD_NUMBER}]; then
 		echo "Vars JOB_NAME/BUILD_NUMBER are unset"
 		echo "Zip failure!"
@@ -96,8 +97,8 @@ zip_files() {
 	TITLE="${JOB_NAME}_v${BUILD_NUMBER}"
 	mkdir "$TITLE"
 
-	if [ -e "build/sources/ShogiConsoleAPP/APP" ]; then
-		cp build/sources/ShogiConsoleAPP/APP $TITLE/Shogi_v${BUILD_NUMBER}
+	if [ -e "build/release/sources/ShogiConsoleAPP/APP" ]; then
+		cp build/release/sources/ShogiConsoleAPP/APP $TITLE/Shogi_v${BUILD_NUMBER}
 		if [ -e "report/doxygen/latex/refman.pdf" ]; then
 			cp report/doxygen/latex/refman.pdf $TITLE/Shogi_v${BUILD_NUMBER}.pdf
 		fi
