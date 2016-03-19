@@ -5,11 +5,12 @@ build_release_version() {
 	mkdir build 
 	cd build
 	mkdir release
+	cd release
 	cmake --version
     cmake –G "Unix Makefiles" ../../../Shogi/workspace
 
 	if [ -e "Makefile" ]; then
-		cmake --build ../build --target APP --
+		cmake --build ../../release --target APP --
 		cd ../..
 	else
 	    cd ../..
@@ -17,6 +18,7 @@ build_release_version() {
 		echo "Build release version failure!"
 		exit 1
 	fi	
+	ls
 }
 
 build_debug_version() {
@@ -43,7 +45,7 @@ build_debug_version() {
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_testcore.%p.result /opt/tomcat/.jenkins/jobs/FootballEditor16/workspace/sources/ShogiCoreTest/tst_ShogiCoreTest || true
 
-        cd ../report
+        cd ../report/doxygen
 		if [ -e "doxygenconfig.ini" ]; then
 			doxygen --version
 			doxygen doxygenconfig.ini
@@ -52,7 +54,7 @@ build_debug_version() {
 			echo "doxygen.ini does not exist"
 		fi
 
-		cd ..
+		cd ../..
 	else
 	    cd ..
 		echo "Makefile does not exist"
@@ -62,7 +64,16 @@ build_debug_version() {
 }
 
 make_report() {
-	cd report/doxygen/latex
+	cd report/doxygen/
+	ls
+	if [ -e "doxygenconfig.ini" ]; then
+			doxygen --version
+			doxygen doxygenconfig.ini
+		else
+			echo "Doxygen failed"
+			echo "doxygen.ini does not exist"
+	fi
+	cd latex
 	if [ -e "Makefile" ]; then
 		make --version
 		make
