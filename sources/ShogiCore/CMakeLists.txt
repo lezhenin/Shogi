@@ -5,11 +5,11 @@ set(SOURCE_FILES
     enumirations.h
     Shogi.cpp
     Shogi.h
-        ShogiGameAPI.h
+    ShogiGameAPI.h
 
     Model/Board.cpp
     Model/Board.h
-        Model/AbstractBoard.h
+    Model/AbstractBoard.h
     Model/Piece.cpp
     Model/Piece.h
     Model/Position.cpp
@@ -19,7 +19,9 @@ set(SOURCE_FILES
     Model/SquareIsEmptyException.cpp
     Model/SquareIsEmptyException.h
 
-        Save.cpp Save.h Model/BoardMemento.cpp Model/BoardMemento.h)
+    #Save.cpp Save.h
+    Model/BoardMemento.cpp
+    Model/BoardMemento.h)
 
 add_library (ShogiCore STATIC ${SOURCE_FILES})
 
