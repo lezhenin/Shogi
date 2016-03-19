@@ -34,7 +34,7 @@ build_debug_version() {
 		cmake --build ../debug --clean-first --
 
 		cd ../../sources
-		ShogiCoreTest/tst_ShogiCoreTest -xml -o test_results || true
+		../build/debug/sources/ShogiCoreTest/func_test -xml -o test_results || true
 
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
@@ -43,7 +43,7 @@ build_debug_version() {
 		gcovr -r . --xml --exclude='tst*' -o ../report/gcovr_result
 		
 		valgrind --version
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_testcore.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/sources/ShogiCoreTest/tst_ShogiCoreTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
 
         cd ../report/doxygen
 		if [ -e "doxygenconfig.ini" ]; then
