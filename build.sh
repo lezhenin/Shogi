@@ -34,7 +34,7 @@ build_debug_version() {
 		cmake --build ../debug --clean-first --
 
 		cd ../../sources
-		../build/debug/sources/ShogiCoreTest/func_test -xml -o ../report/test_results || true
+		../build/debug/sources/ShogiCoreTest/func_test -xml -o ../report/func_test_results || true
 
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
