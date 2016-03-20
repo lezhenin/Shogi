@@ -3,7 +3,10 @@
 
 
 #include <exception>
-
+/**
+ * @brief Класс исключения, выбрасываемоего при
+ * попытке передать позицию несоответсвующую доске.
+ */
 class BadPositionException: public std::exception
 {
 

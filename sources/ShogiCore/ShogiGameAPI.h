@@ -4,26 +4,54 @@
 #include "Model/Board.h"
 
 
-/// Игровой интерфес
+/**
+ * @brief Игоровой интерфей.
+ */
 class ShogiGameAPI
 {
 
 public:
 
-   ///Метод инициализирующий игру
-   virtual void initGame()=0;
-   ///Метод, позволяющий выбрать фигуры на доске
-   virtual void pickPiece(const Position& position)=0;
-   ///Метод, позволяющий переместить фигуру на доске
-   virtual void movePiece(const Position& position)=0;
-   ///Метод, позволяющий превернуть фигуру на доске
-   virtual void promotePiece(const Position& position)=0;
-   ///Метод, позволяющий поставить фигуру из захваченных на доску
-   virtual void dropPiece(const PieceType pt, const Position& position)=0;
-   ///Метод, позволяющий указатель на игровую модель доски
-   virtual Board &getBoard()=0;
-   ///Метод, позволяющий получить состояние текущей игоровой ситуации
-   virtual void getGameStatus()=0;
+    /**
+     * @brief Инициализировать игру.
+     * Устанавливает фигуры на доске.
+     */
+    virtual void initGame()=0;
+    /**
+     * @brief Выбрать фигуру.
+     * Созраняет фигуру для дальнейших действий.
+     * @param[in] position Позиция фигуры.
+     */
+    virtual void pickPiece(const Position& position)=0;
+    /**
+     * @brief Переместить фигуру.
+     * Перемещает раннее выбранную фигуру.
+     * @param[in] position Позиция куда необходимо перместить фигур.
+     */
+    virtual void movePiece(const Position& position)=0;
+    /**
+     * @brief Перевернуть фигуру.
+     * Переворачивает фигуру.
+     * @param[in] position Позиция фигуры, которую необходимо превернуть.
+    */
+    virtual void promotePiece(const Position& position)=0;
+    /**
+     * @brief Устанвоить фигуру.
+     * Устанавливает фигуру из захваченных одной из сторон.
+     * @param[in] pt       Тип устанавливаемой фигуры.
+     * @param[in] position Позиция фигуры, куда нужно установить фиугру.
+    */
+    virtual void dropPiece(const PieceType pt, const Position& position)=0;
+    /**
+     * @brief Получть доску.
+     * @return Указатель на доску с фигурами.
+     */
+    virtual Board &getBoard()=0;
+    /**
+     * @brief Получть статус игры.
+     * @return /todo status
+     */
+    virtual void getGameStatus()=0;
 };
 
 #endif // GAMECORE_H

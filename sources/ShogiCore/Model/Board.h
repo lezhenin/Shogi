@@ -2,8 +2,8 @@
 #define BOARD_H
 #include "AbstractBoard.h"
 
-/* *
- * /brief Модель доски
+/**
+ * @brief Модель доски
  * */
 class Board: public AbstractBoard
 {

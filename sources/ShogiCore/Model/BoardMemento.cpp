@@ -1,6 +1,6 @@
 #include "BoardMemento.h"
 
-BoardMemento::BoardMemento(AbstractBoard *board): board(board)
+BoardMemento::BoardMemento(Board *board): board(board)
 {
     for(ListOfPieces::iterator it = board->getSenteCapturedPieces().begin(); it != board->getSenteCapturedPieces().end(); ++it)
     {
