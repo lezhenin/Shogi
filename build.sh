@@ -39,9 +39,13 @@ build_debug_version() {
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
 
+        cd ../build/debug/sources/ShogiCoreTest/CMakeFiles/func_test.dir
+        ls
 		gcovr --version
-		gcovr -r ../build/debug/sources/ShogiCoreTest/CMakeFiles/func_test.dir --xml --exclude='tst*' -o ../report/gcovr_result
-		
+		gcovr -r  --xml --exclude='tst*' -o ../../../../../../report/gcovr_result
+
+		cd ../../../../../../sources
+		ls
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
 
