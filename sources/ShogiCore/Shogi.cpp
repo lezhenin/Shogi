@@ -1,9 +1,6 @@
 #include "Shogi.h"
+#include <algorithm>
 
-Shogi::Shogi()
-{
-
-}
 
 void Shogi::initGame()
 {
@@ -65,9 +62,9 @@ void Shogi::getGameStatus()
 
 Shogi::~Shogi()
 {
-        for(ListOfPieces::iterator it=this->board.getPiecesOnBoard().begin(); it != this->board.getPiecesOnBoard().end(); ++it)
-        {
-            delete *it;
-        }
+    for(ListOfPieces::iterator it=this->board.getPiecesOnBoard().begin(); it != this->board.getPiecesOnBoard().end(); ++it)
+    {
+        delete *it;
+    }
 }
 

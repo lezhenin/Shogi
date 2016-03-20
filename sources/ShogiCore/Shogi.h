@@ -6,7 +6,7 @@ class Shogi: ShogiGameAPI
 {
 public:
 
-    Shogi();
+    Shogi(){};
 
     void initGame();
     void pickPiece(const Position& position);
@@ -21,7 +21,7 @@ public:
 
 private:
     Piece* pickedPiece = nullptr;
-    Board board{BOARD_HEIGHT,BOARD_WIDTH};
+    Board board{Board::BOARD_HEIGHT,Board::BOARD_WIDTH};
 };
 
 #endif // SHOGI_H

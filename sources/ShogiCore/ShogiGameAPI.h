@@ -1,6 +1,5 @@
 #ifndef GAMECORE_H
 #define GAMECORE_H
-#include "enumirations.h"
 #include "Model/Position.h"
 #include "Model/Board.h"
 

@@ -1,9 +1,19 @@
 #ifndef PIECE_H
 #define PIECE_H
 #include "Square.h"
-#include "../enumirations.h"
 
 class Square;
+
+const int PROMOTION_STEP = 10;
+
+enum Player{
+    Sente=0, Gote
+};
+
+enum PieceType{
+    King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
+    PromotedRook=Rook+PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral,  PromotedKnight, PromotedLance, PromotedPawn,
+};
 
 ///Модель фигуры
 class Piece
@@ -40,6 +50,7 @@ public:
     ///Деструктор
     ~Piece();
 
+
 private:
 
     PieceType ptype;
@@ -50,5 +61,9 @@ private:
     bool bePromoted;
 
 };
+
+
+
+
 
 #endif // PIECE_H

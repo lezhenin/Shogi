@@ -8,7 +8,7 @@ class Board: public AbstractBoard
 {
 public:
 
-    Board(int w = BOARD_WIDTH, int h = BOARD_WIDTH);
+    Board(int w = BOARD_WIDTH, int h = BOARD_HEIGHT);
 
     void setPiece(Piece *piece, const Position &pos);
     void removePiece(const Position &pos);
@@ -20,6 +20,10 @@ public:
     ListOfPieces &getGoteCapturedPieces();
 
     ~Board();
+
+    static const int BOARD_WIDTH = 9;
+    static const int BOARD_HEIGHT = 9;
+
 private:
 
     Square ***squares;

@@ -20,7 +20,7 @@ public:
     Position& operator = (const Position& pos);
 
     ///Деструктор
-    ~Position();
+    ~Position(){};
 
 private:
 

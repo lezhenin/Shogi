@@ -7,7 +7,7 @@ Position::Position(const int h, const int v)
         this->vertical = v;
         this->horizontal = h;
     }
-
+    // todo make exceptions
 }
 
 int Position::getVertical() const
@@ -34,10 +34,5 @@ Position &Position::operator =(const Position &pos)
     this->horizontal = pos.horizontal;
     this->vertical = pos.vertical;
     return *this;
-}
-
-Position::~Position()
-{
-
 }
 
