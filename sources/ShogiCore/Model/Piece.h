@@ -9,7 +9,10 @@ const int PROMOTION_STEP = 10;
 enum Player{
     Sente=0, Gote
 };
-
+/**
+ * /enum PieceType
+ * Содержит типы сущестсвующих фигур, включая перевернутые фигуры.
+ */
 enum PieceType{
     King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
     PromotedRook=Rook+PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral,  PromotedKnight, PromotedLance, PromotedPawn,

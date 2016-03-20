@@ -1,9 +1,10 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "AbstractBoard.h"
-typedef std::list<Piece*> ListOfPieces;
 
-/// Игровая модель доски с фигурами
+/* *
+ * /brief Модель доски
+ * */
 class Board: public AbstractBoard
 {
 public:

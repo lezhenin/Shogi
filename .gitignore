@@ -1,3 +1,5 @@
+/report/doxygen/html
+/report/doxygen/latex
 ### C++ template
 # Compiled Object files
 *.slo

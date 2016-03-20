@@ -4,27 +4,46 @@
 #include "Square.h"
 #include <list>
 
-//todo make alias declaration
-typedef std::list<Piece*> ListOfPieces;
+using ListOfPieces = std::list<Piece*>;
 
-/**Интерфес игровой модели доски*/
+/**
+ * /brief Интерфес игровой модели доски
+ */
 class AbstractBoard
 {
 public:
 
-    /**Метод, позволяющий установить фигуру на доску*/
+    /**
+     * Устанавливает фигуру на конкрктную клетку доски.
+     * @param[in] piece Фигура, которая будет установлена.
+     * @param[in] pos   Позиция куда будет установлена фигура
+     */
     virtual void setPiece(Piece *piece, const Position &pos)=0;
-    /// Метод, позволяющий удалить фигуру с доски
+    /**
+     * Убирает фигуру с клетки доски.
+     * @param[in] pos Позиция откуда будет убрана фигура.
+     */
     virtual void removePiece(const Position &pos)=0;
-
-    ///Метод, позволяющий получить указатель на фигуру по позиции на доске
+    /**
+     * Возвращает фигуру, установленную на клетку доски.
+     * @param[in] pos   Позиция где находится фигура.
+     * @return Указатель на фигуру.
+     */
     virtual Piece *getPiece(const Position &pos)=0;
-
-    ///Метод, позволяющий получить указатели на все фигуры на доске
+    /**
+    * Возвращает список всех фигур, находящихся на доске
+    * @return Ссылка на список фигур.
+    */
     virtual ListOfPieces &getPiecesOnBoard()=0;
-    ///Метод, позволяющий получить указатели на все фигуры, захваченные сторооной Sente
+    /*
+    * Возвращает список всех фигур, захваченных сторооной Sente
+    * @return Ссылка на список фигур.
+    */
     virtual ListOfPieces &getSenteCapturedPieces()=0;
-    ///Метод, позволяющий получить указатели на все фигуры, захваченные сторооной Gote
+    /**
+    * Возвращает список всех фигур, захваченных сторооной Gote
+    * @return Ссылка на список фигур.
+    */
     virtual ListOfPieces &getGoteCapturedPieces()=0;
 
     virtual ~AbstractBoard() { }
