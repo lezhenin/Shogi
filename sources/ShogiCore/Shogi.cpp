@@ -9,7 +9,6 @@ void Shogi::initGame()
 {
     Piece *p = new Piece(Rook,Sente,0);
     this->board.setPiece(p,Position(5,3));
-    this->board.getPiecesOnBoard().push_back(p);
 }
 
 void Shogi::pickPiece(const Position &position)
@@ -29,6 +28,7 @@ void Shogi::movePiece(const Position &position)
         this->board.setPiece(pickedPiece,position);
 
     }
+    pickedPiece = nullptr;
 }
 
 void Shogi::promotePiece(const Position &position)
@@ -42,14 +42,14 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
     this->getBoard().getSenteCapturedPieces().push_back(p);
 
     ListOfPieces * cap = &this->getBoard().getSenteCapturedPieces();
-    for(ListOfPieces::iterator it = cap->begin(); it != cap->end(); it++)
+    for(ListOfPieces::iterator it = cap->begin(); it != cap->end(); ++it)
     {
         if((*it)==p)
         {
             this->board.setPiece((*it),position);
-            this->board.getPiecesOnBoard().push_back((*it));
         }
     }
+    cap->remove(p);
 
 }
 

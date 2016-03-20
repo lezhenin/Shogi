@@ -42,19 +42,19 @@ void ShogiCoreTest::printBoard()
         std::cout << std::endl;
     }
     std::cout << std::endl;
+    std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
 }
 
 void ShogiCoreTest::gameInitTest()
 {
     game.initGame();
-    std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
     QCOMPARE(game.getBoard().getPiece(Position(5,3))->getType(),Rook);
     printBoard();
 }
 
 void ShogiCoreTest::pickAndMoveTest()
 {
-
+    std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
     game.pickPiece(Position(5,3));
     game.movePiece(Position(3,8));
     printBoard();
@@ -71,6 +71,7 @@ void ShogiCoreTest::dropTest()
 {
     game.dropPiece(King,Position(2,2));
     printBoard();
+    std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
 }
 
 void ShogiCoreTest::mementoTest()
