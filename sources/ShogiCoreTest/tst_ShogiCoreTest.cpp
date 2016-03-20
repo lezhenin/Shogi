@@ -81,7 +81,6 @@ void ShogiCoreTest::mementoTest()
     printBoard();
     bm.restore();
     printBoard();
-    std::cout << sizeof(bm) << std::endl;
 
 }
 
