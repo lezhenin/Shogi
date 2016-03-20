@@ -1,8 +1,6 @@
 #ShogiCore
 
 set(SOURCE_FILES
-    constants.h
-    enumirations.h
     Shogi.cpp
     Shogi.h
     ShogiGameAPI.h
