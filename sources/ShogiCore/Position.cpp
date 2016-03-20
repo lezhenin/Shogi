@@ -1,4 +1,5 @@
 #include "Position.h"
+#include "BadPositionException.h"
 
 Position::Position(const int h, const int v)
 {
@@ -7,7 +8,7 @@ Position::Position(const int h, const int v)
         this->vertical = v;
         this->horizontal = h;
     }
-    // todo make exceptions
+    else throw BadPositionException();
 }
 
 int Position::getVertical() const

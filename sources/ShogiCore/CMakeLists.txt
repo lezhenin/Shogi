@@ -4,20 +4,20 @@ set(SOURCE_FILES
     Shogi.cpp
     Shogi.h
     ShogiGameAPI.h
+    Position.cpp
+    Position.h
+    BadPositionException.cpp
+    BadPositionException.h
 
     Model/Board.cpp
     Model/Board.h
     Model/AbstractBoard.h
     Model/Piece.cpp
     Model/Piece.h
-    Model/Position.cpp
-    Model/Position.h
     Model/Square.cpp
     Model/Square.h
     Model/SquareIsEmptyException.cpp
     Model/SquareIsEmptyException.h
-
-    #Save.cpp Save.h
     Model/BoardMemento.cpp
     Model/BoardMemento.h)
 

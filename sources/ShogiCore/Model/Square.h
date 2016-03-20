@@ -1,6 +1,6 @@
 #ifndef SQUARE_H
 #define SQUARE_H
-#include "Position.h"
+#include "../Position.h"
 #include "Piece.h"
 
 class Piece;
