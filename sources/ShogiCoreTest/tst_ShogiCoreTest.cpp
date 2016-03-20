@@ -57,6 +57,8 @@ void ShogiCoreTest::pickAndMoveTest()
     std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
     game.pickPiece(Position(5,3));
     game.movePiece(Position(3,8));
+    QVERIFY(game.getBoard().getPiece(Position(5,3)) == nullptr);
+    QVERIFY(game.getBoard().getPiece(Position(3,8)) != nullptr);
     printBoard();
 }
 
@@ -70,18 +72,18 @@ void ShogiCoreTest::promoteTest()
 void ShogiCoreTest::dropTest()
 {
     game.dropPiece(King,Position(2,2));
+    QVERIFY(game.getBoard().getPiece(Position(2,2)) != nullptr);
     printBoard();
     std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
 }
 
 void ShogiCoreTest::mementoTest()
 {
-    BoardMemento bm(game.getBoard());
+    BoardMemento bm(&game.getBoard());
     game.getBoard().removePiece(Position(2,2));
     printBoard();
     bm.restore();
     printBoard();
-
 }
 
 

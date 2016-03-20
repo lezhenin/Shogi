@@ -14,14 +14,14 @@ class BoardMemento
 {
 
 public:
-    explicit BoardMemento(AbstractBoard &board);
+    explicit BoardMemento(AbstractBoard *board);
 
     virtual ~BoardMemento();
 
     void restore();
 
 private:
-    AbstractBoard & board;
+    AbstractBoard * board;
     std::vector<Pair> pairs;
     ListOfPieces senteCaptured;
     ListOfPieces goteCaptured;
