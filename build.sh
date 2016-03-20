@@ -40,7 +40,7 @@ build_debug_version() {
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
 
 		gcovr --version
-		gcovr -r . --xml --exclude='tst*' -o ../report/gcovr_result
+		gcovr -r ../build/debug/sources/ShogiCoreTest --xml --exclude='tst*' -o ../report/gcovr_result
 		
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
