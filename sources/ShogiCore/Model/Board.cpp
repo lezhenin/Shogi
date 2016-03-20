@@ -92,9 +92,9 @@ Board::~Board()
 
     delete [] this->squares;
 
-    for(ListOfPieces::iterator it = onBoard.begin(); it!= onBoard.end(); ++it)
-    {
-        delete (*it);
-    }
+   // for(ListOfPieces::iterator it = onBoard.begin(); it!= onBoard.end(); ++it)
+   // {
+    //    delete (*it);
+   // }
 }
 
