@@ -7,12 +7,12 @@
 //todo make alias declaration
 typedef std::list<Piece*> ListOfPieces;
 
-///Интерфес игровой модели доски
+/**Интерфес игровой модели доски*/
 class AbstractBoard
 {
 public:
 
-    ///Метод, позволяющий установить фигуру на доску
+    /**Метод, позволяющий установить фигуру на доску*/
     virtual void setPiece(Piece *piece, const Position &pos)=0;
     /// Метод, позволяющий удалить фигуру с доски
     virtual void removePiece(const Position &pos)=0;
