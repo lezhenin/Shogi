@@ -5,7 +5,7 @@
 
 
 /**
- * @brief Игоровой интерфей.
+ * @brief Игровой интерфейс.
  */
 class ShogiGameAPI
 {
