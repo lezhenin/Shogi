@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <memory>
-#include "GameSituations/GameSituation.h"
-#include "Position.h"
+#include "GameLogic/GameSituations/GameSituation.h"
+#include "Model/Position.h"
 #include "Model/Board.h"
 
 using ListOfGameSituations = std::vector<std::shared_ptr<GameSituation>>;

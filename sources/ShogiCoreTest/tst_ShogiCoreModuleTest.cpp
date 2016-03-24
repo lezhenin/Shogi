@@ -2,6 +2,7 @@
 #include <QtTest>
 #include "../ShogiCore/Model/BoardMemento.h"
 #include "../ShogiCore/Shogi.h"
+#include "../ShogiCore/GameLogic/ShogiGameLogic.h"
 
 class ShogiCoreModuleTest : public QObject
 {
@@ -12,6 +13,7 @@ public:
 
 private Q_SLOTS:
     void mementoTest();
+    void gameLogicTest();
 
 
 private:
@@ -38,9 +40,10 @@ void ShogiCoreModuleTest::mementoTest() {
     QVERIFY(game.getBoard().getPiece(Position(4, 5)) == p2);
 }
 
-
-
-
+void ShogiCoreModuleTest::gameLogicTest()
+{
+    ShogiGameLogic g;
+}
 
 
 QTEST_APPLESS_MAIN(ShogiCoreModuleTest)

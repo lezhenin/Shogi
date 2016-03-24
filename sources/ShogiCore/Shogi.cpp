@@ -1,7 +1,7 @@
 #include "Shogi.h"
-#include "GameSituations/Shah.h"
-#include "GameSituations/Mate.h"
-#include "GameSituations/PromotionIsAvailable.h"
+#include "GameLogic/GameSituations/Shah.h"
+#include "GameLogic/GameSituations/Mate.h"
+#include "GameLogic/GameSituations/PromotionIsAvailable.h"
 #include <algorithm>
 
 
