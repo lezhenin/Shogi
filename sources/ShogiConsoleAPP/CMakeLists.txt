@@ -4,3 +4,4 @@ set(SOURCE_FILES
         )
 add_executable(APP main.cpp)
 target_link_libraries(APP ShogiCore)
+target_link_libraries(APP ShogiAI)

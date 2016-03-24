@@ -4,12 +4,12 @@
 #include "../ShogiCore/Model/BoardMemento.h"
 #include <iostream>
 
-class ShogiCoreTest : public QObject
+class ShogiCoreFuncTest : public QObject
 {
     Q_OBJECT
 
 public:
-    ShogiCoreTest();
+    ShogiCoreFuncTest();
 
 private Q_SLOTS:
     void gameInitTest();
@@ -22,12 +22,12 @@ private:
     void printBoard();
 };
 
-ShogiCoreTest::ShogiCoreTest()
+ShogiCoreFuncTest::ShogiCoreFuncTest()
 {
 
 }
 
-void ShogiCoreTest::printBoard()
+void ShogiCoreFuncTest::printBoard()
 {
 
     for(int i=1; i<=9; i++)
@@ -45,14 +45,14 @@ void ShogiCoreTest::printBoard()
     std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
 }
 
-void ShogiCoreTest::gameInitTest()
+void ShogiCoreFuncTest::gameInitTest()
 {
     game.initGame();
     QCOMPARE(game.getBoard().getPiece(Position(5,3))->getType(),Rook);
     printBoard();
 }
 
-void ShogiCoreTest::pickAndMoveTest()
+void ShogiCoreFuncTest::pickAndMoveTest()
 {
     std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
     game.pickPiece(Position(5,3));
@@ -62,14 +62,14 @@ void ShogiCoreTest::pickAndMoveTest()
     printBoard();
 }
 
-void ShogiCoreTest::promoteTest()
+void ShogiCoreFuncTest::promoteTest()
 {   PieceType pt = game.getBoard().getPiece(Position(3,8))->getType();
     game.promotePiece(Position(3,8));
     QVERIFY(game.getBoard().getPiece(Position(3,8))->getType()!=pt);
 
 }
 
-void ShogiCoreTest::dropTest()
+void ShogiCoreFuncTest::dropTest()
 {
     game.dropPiece(King,Position(2,2));
     QVERIFY(game.getBoard().getPiece(Position(2,2)) != nullptr);
@@ -77,7 +77,8 @@ void ShogiCoreTest::dropTest()
     std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
 }
 
-void ShogiCoreTest::mementoTest()
+
+void ShogiCoreFuncTest::mementoTest()
 {
     BoardMemento bm(&game.getBoard());
     game.getBoard().removePiece(Position(2,2));
@@ -87,7 +88,7 @@ void ShogiCoreTest::mementoTest()
 }
 
 
-QTEST_APPLESS_MAIN(ShogiCoreTest)
+QTEST_APPLESS_MAIN(ShogiCoreFuncTest)
 
-#include "tst_ShogiCoreTest.moc"
+#include "tst_ShogiCoreFuncTest.moc"
 

@@ -35,6 +35,7 @@ build_debug_version() {
 
 		cd ../../sources
 		../build/debug/sources/ShogiCoreTest/func_test -xml -o ../report/func_test_results || true
+		../build/debug/sources/ShogiCoreTest/module_test -xml -o ../report/module_test_results || true
 
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
@@ -48,6 +49,7 @@ build_debug_version() {
 		ls
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_module_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/module_test || true
 
         cd ../report/doxygen
 		if [ -e "doxygenconfig.ini" ]; then
