@@ -4,30 +4,35 @@
 #include "Piece.h"
 
 class Piece;
+
 /**
- * Игровая модель клетки доски
+ * @brief Игровая модель клетки доски
  */
 class Square
 {
 public:
     /**
      * @brief Конструктор
+     *
      * @param[in] pos   Позиция клетки на доскею.
      * @param[in] piece Фигура, которая находится на это клетке.
      */
     Square(Position pos, Piece *piece = nullptr);
     /**
      * @brief Получить позицию клетки на доске.
+     *
      * @return Позиция клетки
      */
     Position &getPosition();
     /**
      * @brief Получить фигуру.
+     *
      * @return Фигура, которая находится на данной клетке.
      */
     Piece *getPiece() const;
     /**
      * @brief Установить фигуру.
+     *
      * Устанавливает фигуру на данную клетку
      */
     void setPiece (Piece *p);

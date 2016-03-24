@@ -2,7 +2,9 @@
 #define SHOGI_SHAH_H
 
 #include "GameSituation.h"
-
+/**
+ * @brief Игровая ситуация "Шах"
+ */
 class Shah : public GameSituation
 {
 public:

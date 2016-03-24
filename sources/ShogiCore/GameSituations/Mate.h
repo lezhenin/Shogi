@@ -2,7 +2,9 @@
 #define SHOGI_MATE_H
 
 #include "GameSituation.h"
-
+/**
+ * @brief Игровая ситуация "Мат"
+ */
 class Mate : public GameSituation
 {
 

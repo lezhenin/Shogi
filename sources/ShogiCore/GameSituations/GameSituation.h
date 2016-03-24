@@ -2,12 +2,24 @@
 #define SHOGI_GAMESITUATION_H
 #include <string>
 
-
+/**
+ * @Brief Класс, представляющий собобой модель игровой ситуации
+ */
 class GameSituation
 {
 public:
-
+    /**
+     * @brief Получить сообщение.
+     *
+     * @return Сообщение о текущей игровой ситуации.
+     */
     virtual std::string getMessage()=0;
+    /**
+     * @brief Узнать завершилась ли игра.
+     *
+     * @return true если игра завершилась.
+     * false если игра продолжается.
+     */
     bool isEndOfGame() { return  endOfGame;}
 
 protected:
