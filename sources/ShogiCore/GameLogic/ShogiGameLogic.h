@@ -2,13 +2,20 @@
 #define SHOGI_SHOGIGAMELOGIC_H
 #include <map>
 #include <vector>
+#include <list>
 #include "../Model/Piece.h"
 #include "Direction.h"
+#include "../Model/AbstractBoard.h"
 
 class ShogiGameLogic {
 public:
 
+    explicit ShogiGameLogic(AbstractBoard &board) : board(board) { }
+
+    bool checkMove(Piece *piece, Position pos) const;
+
 private:
+ AbstractBoard &board;
  std::map<PieceType,std::vector<Direction>> directions =
          {
                  {King,{Direction{0,1,1}, Direction{1,1,1}, Direction{1,0,1}, Direction{1,-1,1}, Direction{0,-1,1}, Direction{-1,-1,1}, Direction{-1,0,1}, Direction{-1,1,1}}},

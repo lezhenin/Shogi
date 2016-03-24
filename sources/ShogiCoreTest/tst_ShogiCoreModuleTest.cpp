@@ -1,5 +1,6 @@
 #include <QString>
 #include <QtTest>
+#include <iostream>
 #include "../ShogiCore/Model/BoardMemento.h"
 #include "../ShogiCore/Shogi.h"
 #include "../ShogiCore/GameLogic/ShogiGameLogic.h"
@@ -38,11 +39,20 @@ void ShogiCoreModuleTest::mementoTest() {
     bm.restore();
     QVERIFY(game.getBoard().getPiece(Position(2, 2)) == p1);
     QVERIFY(game.getBoard().getPiece(Position(4, 5)) == p2);
+
 }
 
 void ShogiCoreModuleTest::gameLogicTest()
 {
-    ShogiGameLogic g;
+    Board board;
+    Piece *p1 = new Piece(Rook, Sente);
+    Piece *p2 = new Piece(King, Sente);
+    ShogiGameLogic g(board);
+    board.setPiece(p1, Position(2,2));
+    board.setPiece(p2, Position(5,5));
+    QVERIFY(g.checkMove(p1,Position(2,4)));
+    QVERIFY(g.checkMove(p2,Position(5,6)));
+
 }
 
 

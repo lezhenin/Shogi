@@ -7,7 +7,7 @@ class Direction {
 
 public:
 
-    Direction(int x, int y, int limit = 0) : x(x),y(y),limit(limit){};
+    Direction(int x, int y, int limit = -1) : x(x),y(y),limit(limit){};
     int getX() const { return x;}
     int getY() const { return y;}
     int getLimit() const {return limit;}
