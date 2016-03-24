@@ -2,10 +2,12 @@
 #define GAMECORE_H
 
 #include <vector>
+#include <memory>
 #include "GameSituations/GameSituation.h"
 #include "Position.h"
 #include "Model/Board.h"
 
+using ListOfGameSituations = std::vector<std::shared_ptr<GameSituation>>;
 
 /**
  * @brief Игровой интерфейс.
@@ -54,7 +56,7 @@ public:
      * @brief Получть статус игры.
      * @return /todo status
      */
-    virtual std::vector<GameSituation> getGameSituation()=0;
+    virtual ListOfGameSituations getGameSituation()=0;
 };
 
 #endif // GAMECORE_H

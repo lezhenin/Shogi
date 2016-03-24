@@ -16,7 +16,8 @@ private Q_SLOTS:
     void pickAndMoveTest();
     void promoteTest();
     void dropTest();
-    void mementoTest();
+    void getGameSitutatuinTest();
+
 private:
     Shogi game;
     void printBoard();
@@ -77,14 +78,14 @@ void ShogiCoreFuncTest::dropTest()
     std::cout << "Pieces on board: " << game.getBoard().getPiecesOnBoard().size() << std::endl;
 }
 
-
-void ShogiCoreFuncTest::mementoTest()
+void ShogiCoreFuncTest::getGameSitutatuinTest()
 {
-    BoardMemento bm(&game.getBoard());
-    game.getBoard().removePiece(Position(2,2));
-    printBoard();
-    bm.restore();
-    printBoard();
+    ListOfGameSituations l = game.getGameSituation();
+    for (std::shared_ptr<GameSituation> sp : l)
+    {
+        QVERIFY(sp->getMessage() == "Shah!" || sp->getMessage() == "Mate! Game is over" || sp->getMessage() == "You can promote piece.");
+    }
+
 }
 
 

@@ -1,5 +1,9 @@
 #include "Shogi.h"
+#include "GameSituations/Shah.h"
+#include "GameSituations/Mate.h"
+#include "GameSituations/PromotionIsAvailable.h"
 #include <algorithm>
+
 
 
 void Shogi::initGame()
@@ -55,8 +59,16 @@ Board &Shogi::getBoard()
     return this->board;
 }
 
-std::vector<GameSituation> Shogi::getGameSituation()
+ListOfGameSituations Shogi::getGameSituation()
 {
+    ListOfGameSituations list;
+    std::shared_ptr<GameSituation> p1(new Shah());
+    std::shared_ptr<GameSituation> p2(new Mate());
+    std::shared_ptr<GameSituation> p3(new PromotionIsAvailable());
+    list.push_back(p1);
+    list.push_back(p2);
+    list.push_back(p3);
+    return list;
 
 }
 

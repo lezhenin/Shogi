@@ -6,10 +6,8 @@
 class Shah : public GameSituation
 {
 public:
-    virtual std::string getMessage() override;
-
     Shah(): GameSituation(){};
-
+    std::string getMessage();
 };
 
 

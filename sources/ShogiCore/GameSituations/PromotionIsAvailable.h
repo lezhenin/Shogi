@@ -3,14 +3,13 @@
 #define SHOGI_PROMOTIONISAVAIBLE_H
 #include "GameSituation.h"
 
-class PromotionIsAvailable : GameSituation
+class PromotionIsAvailable : public GameSituation
 {
 
 public:
-private:
-    virtual std::string getMessage() override;
+    PromotionIsAvailable():GameSituation() { }
+    std::string getMessage();
 
-    PromotionIsAvailable() : GameSituation() { }
 };
 
 

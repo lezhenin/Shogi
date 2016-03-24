@@ -7,9 +7,8 @@ class Mate : public GameSituation
 {
 
 public:
-    virtual std::string getMessage() override;
-
     Mate() : GameSituation() { endOfGame = true;}
+    std::string getMessage();
 };
 
 
