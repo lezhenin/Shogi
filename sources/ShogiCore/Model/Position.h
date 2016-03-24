@@ -36,13 +36,14 @@ public:
      */
     bool operator == (const Position& pos);
 
+    bool operator != (const Position& pos);
+
     /**
      * @brief Присвоить значение
      *
      * Присваивает занчения данных одного объекта другому.
      */
     Position& operator = (const Position& pos);
-
     /**
      * @brief Деструтор
      */

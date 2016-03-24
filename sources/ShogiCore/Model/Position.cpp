@@ -37,3 +37,14 @@ Position &Position::operator =(const Position &pos)
     return *this;
 }
 
+bool Position::operator!=(const Position &pos) {
+    return !operator==(pos);
+}
+
+
+
+
+
+
+
+
