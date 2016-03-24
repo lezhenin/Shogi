@@ -1,5 +1,8 @@
 #ifndef GAMECORE_H
 #define GAMECORE_H
+
+#include <vector>
+#include "GameSituations/GameSituation.h"
 #include "Position.h"
 #include "Model/Board.h"
 
@@ -51,7 +54,7 @@ public:
      * @brief Получть статус игры.
      * @return /todo status
      */
-    virtual void getGameStatus()=0;
+    virtual std::vector<GameSituation> getGameSituation()=0;
 };
 
 #endif // GAMECORE_H

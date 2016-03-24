@@ -55,7 +55,7 @@ Board &Shogi::getBoard()
     return this->board;
 }
 
-void Shogi::getGameStatus()
+std::vector<GameSituation> Shogi::getGameSituation()
 {
 
 }

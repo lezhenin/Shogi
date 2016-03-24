@@ -15,7 +15,7 @@ public:
     void dropPiece(const PieceType pt, const Position& position);
 
     Board &getBoard();
-    void getGameStatus();
+    std::vector<GameSituation> getGameSituation();
 
     ~Shogi();
 
