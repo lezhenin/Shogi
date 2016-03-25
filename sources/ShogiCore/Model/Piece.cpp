@@ -85,4 +85,10 @@ Piece::~Piece()
 
 }
 
+bool Piece::equals(Piece *piece) {
+    return (player == piece->player && ptype == piece->ptype);
+}
+
+
+
 

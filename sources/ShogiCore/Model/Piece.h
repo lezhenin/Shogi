@@ -97,6 +97,7 @@ public:
      *  Устанавливает игрока, которому принадлежит фигура.
      */
     void setPlayer(Player pl);
+    bool equals(Piece* piece);
     /**
      * @brief Деструктор
      */
