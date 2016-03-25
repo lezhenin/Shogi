@@ -1,22 +1,24 @@
 #ifndef SHOGI_SHOGIGAMELOGIC_H
 #define SHOGI_SHOGIGAMELOGIC_H
-#include <map>
-#include <vector>
-#include <list>
-#include "../Model/Piece.h"
-#include "Direction.h"
-#include "../Model/AbstractBoard.h"
+#include "AbstractShogiGameLogic.h"
 
-class ShogiGameLogic {
+using TableOfDirections = std::map<PieceType,std::vector<Direction>>;
+
+class ShogiGameLogic: public AbstractShogiGameLogic {
 public:
 
     explicit ShogiGameLogic(AbstractBoard &board) : board(board) { }
 
     bool checkMove(Piece *piece, Position pos) const;
+    bool checkShah(Player player);
+    bool checkMate();
 
 private:
- AbstractBoard &board;
- std::map<PieceType,std::vector<Direction>> directions =
+
+    std::vector<Position> getAllPosition(Piece *piece) const;
+
+    AbstractBoard &board;
+    TableOfDirections table =
          {
                  {King,{Direction{0,1,1}, Direction{1,1,1}, Direction{1,0,1}, Direction{1,-1,1}, Direction{0,-1,1}, Direction{-1,-1,1}, Direction{-1,0,1}, Direction{-1,1,1}}},
                  {Rook,{Direction{0,1}, Direction{1,0}, Direction{0,-1}, Direction{-1,0}}},

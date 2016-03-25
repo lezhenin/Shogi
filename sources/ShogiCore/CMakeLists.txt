@@ -18,6 +18,7 @@ set(SOURCE_FILES
         GameLogic/GameSituations/Mate.h
         GameLogic/GameSituations/PromotionIsAvailable.cpp
         GameLogic/GameSituations/PromotionIsAvailable.h
+        GameLogic/AbstractShogiGameLogic.h
         Model/Board.cpp
         Model/Board.h
         Model/AbstractBoard.h
