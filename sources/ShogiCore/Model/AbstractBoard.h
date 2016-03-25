@@ -61,6 +61,9 @@ public:
      * @brief Деструктор
      */
     virtual ~AbstractBoard() { }
+
+    static const int BOARD_WIDTH = 9;
+    static const int BOARD_HEIGHT = 9;
 };
 
 #endif // BOARDINTERFACE_H

@@ -22,9 +22,6 @@ public:
 
     ~Board();
 
-    static const int BOARD_WIDTH = 9;
-    static const int BOARD_HEIGHT = 9;
-
 private:
 
     Square ***squares;
