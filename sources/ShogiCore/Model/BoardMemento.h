@@ -1,9 +1,11 @@
 #ifndef SHOGI_BOARDMEMENTO_H
 #define SHOGI_BOARDMEMENTO_H
 
-#include "AbstractBoard.h"
 #include "Board.h"
 #include <vector>
+
+class Board;
+
 /**
  * @brief Структура содержащая фигуру и клетку
  *
@@ -21,7 +23,7 @@ struct Pair
  * Класс сохраняющий внутреннее состояние объекта класса
  * Board и способный восстановить его при необходимости.
  */
-class BoardMemento
+class BoardMemento : public AbstractBoardMemento
 {
 
 public:
@@ -33,15 +35,18 @@ public:
      */
     explicit BoardMemento(Board *board);
     /**
-     * @brief Восстановить состояние доски.
-     *
-     * Восстанавливает сохраненное сотстояние доски.
-     */
-    void restore();
-    /**
      * @brief Деструктор
      */
     virtual ~BoardMemento();
+
+private:
+    friend class Board;
+    /**
+     * @brief Восстановить состояние доски.
+     *
+    * Восстанавливает сохраненное сотстояние доски.
+    */
+    void restore();
 
 
 

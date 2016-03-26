@@ -1,5 +1,6 @@
 #include "Board.h"
 
+
 Board::Board(int w, int h)
 {
     this->width=w;
@@ -77,24 +78,33 @@ ListOfPieces &Board::getGoteCapturedPieces()
 
 Board::~Board()
 {
-    for(int i=0; i < this->height; i++)
-    {
-        for(int j=0; j < this->width; j++)
-        {
+    for (int i = 0; i < this->height; i++) {
+        for (int j = 0; j < this->width; j++) {
             delete squares[i][j];
         }
     }
 
-    for(int i=0; i<this->height; i++)
-    {
-        delete [] this->squares[i];
+    for (int i = 0; i < this->height; i++) {
+        delete[] this->squares[i];
     }
 
-    delete [] this->squares;
+    delete[] this->squares;
 
-//    for(ListOfPieces::iterator it = onBoard.begin(); it != onBoard.end(); ++it)
-//    {
-//        delete (*it);
-//    }
 }
+AbstractBoardMemento* Board::getMemento()
+{
+    return new BoardMemento(this);
+}
+
+void Board::setMemento(AbstractBoardMemento *memento)
+{
+    BoardMemento *bm = static_cast<BoardMemento*>(memento);
+    bm->restore();
+    delete bm;
+}
+
+
+
+
+
 

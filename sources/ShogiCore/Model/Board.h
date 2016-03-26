@@ -1,7 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
-#include "AbstractBoard.h"
 
+#include "AbstractBoard.h"
+#include "BoardMemento.h"
 /**
  * @brief Модель доски
  * */
@@ -15,6 +16,10 @@ public:
     void removePiece(const Position &pos);
 
     Piece *getPiece(const Position &pos);
+
+    AbstractBoardMemento *getMemento();
+    void setMemento(AbstractBoardMemento *memento);
+
 
     ListOfPieces &getPiecesOnBoard();
     ListOfPieces &getSenteCapturedPieces();

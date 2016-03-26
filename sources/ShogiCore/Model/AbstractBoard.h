@@ -1,7 +1,7 @@
 #ifndef BOARDINTERFACE_H
 #define BOARDINTERFACE_H
-#include "SquareIsEmptyException.h"
 #include "Square.h"
+#include "AbstractBoardMemento.h"
 #include <list>
 
 using ListOfPieces = std::list<Piece*>;
@@ -42,6 +42,10 @@ public:
      * Возвращает список всех фигур, находящихся на доске
      * @return Ссылка на список фигур.
      */
+    virtual AbstractBoardMemento *getMemento() = 0;
+
+    virtual void setMemento(AbstractBoardMemento *memento)=0;
+
     virtual ListOfPieces &getPiecesOnBoard()=0;
     /*
      * @brief Получить список фигур Sente
