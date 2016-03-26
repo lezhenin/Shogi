@@ -11,9 +11,9 @@ class AbstractShogiGameLogic
 public:
     virtual bool checkMove(Piece *piece, Position pos) const = 0;
 
-    virtual bool checkShah(Player player) = 0;
+    virtual bool checkShah(Player player) const = 0;
 
-    virtual bool checkMate() = 0;
+    virtual bool checkMate(Player player) const = 0;
 
 };
 
