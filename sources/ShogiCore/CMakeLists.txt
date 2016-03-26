@@ -29,7 +29,8 @@ set(SOURCE_FILES
         Model/SquareIsEmptyException.cpp
         Model/SquareIsEmptyException.h
         Model/BoardMemento.cpp
-        Model/BoardMemento.h )
+        Model/BoardMemento.h
+        Model/AbstractBoardMemento.h)
 
 add_library (ShogiCore STATIC ${SOURCE_FILES})
 
