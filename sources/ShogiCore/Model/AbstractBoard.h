@@ -47,7 +47,7 @@ public:
     virtual void setMemento(AbstractBoardMemento *memento)=0;
 
     virtual ListOfPieces &getPiecesOnBoard()=0;
-    /*
+    /**
      * @brief Получить список фигур Sente
      *
      * Возвращает список всех фигур, захваченных сторооной Sente
