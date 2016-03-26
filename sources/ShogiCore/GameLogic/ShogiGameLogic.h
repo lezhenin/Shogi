@@ -12,6 +12,9 @@ public:
     bool checkMove(Piece *piece, Position pos) const;
     bool checkShah(Player player) const;
     bool checkMate(Player player) const;
+    bool checkPromotion(Piece *piece) const;
+    bool checkDrop(Piece *piece, Position pos);
+
 
 private:
     Player transformPlayer(Player pl) const;

@@ -63,12 +63,19 @@ void ShogiCoreModuleTest::gameLogicTest()
     board.setPiece(p2,Position(9,9));
     board.removePiece(Position(3,1));
     board.setPiece(p4,Position(8,8));
+    board.removePiece(Position(2,2));
+    QVERIFY(!g.checkDrop(p1,Position(8,3)));
+    QVERIFY(g.checkDrop(p1,Position(6,3)));
+    board.setPiece(p1, Position(9,2));
     QVERIFY(!g.checkMate(Gote));
+    Piece *p5 = new Piece(Rook, Sente);
+    board.setPiece(p5,Position(8,3));
+    QVERIFY(g.checkMate(Gote));
     delete p1;
     delete p2;
     delete p3;
     delete p4;
-
+    delete p5;
 }
 
 QTEST_APPLESS_MAIN(ShogiCoreModuleTest)

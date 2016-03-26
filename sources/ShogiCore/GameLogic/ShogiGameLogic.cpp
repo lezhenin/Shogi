@@ -1,7 +1,7 @@
 #include "ShogiGameLogic.h"
 #include <algorithm>
-#include <functional>
-//todo optimize algorithm
+
+//todo optimize algorithms
 bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
 {
     std::vector<Direction> dirs = table.at(piece->getType());
@@ -39,8 +39,8 @@ std::vector<Position> ShogiGameLogic::getAllPosition(Piece *piece) const
     std::vector<Position> positions;
     for(std::vector<Direction>::iterator it = dirs.begin(); it != dirs.end(); ++it)
     {
-        for(int i = 1; i!=it->getLimit()+1 && source.getVertical() + i * it->getX() <= AbstractBoard::BOARD_WIDTH
-                       && source.getHorizontal() + i * it->getY() <= AbstractBoard::BOARD_HEIGHT; ++i)
+        for(int i = 1; i!=it->getLimit()+1 && source.getVertical() + i * it->getX() <= AbstractBoard::BOARD_WIDTH && source.getVertical() + i * it->getX() >= 1
+                       && source.getHorizontal() + i * it->getY() <= AbstractBoard::BOARD_HEIGHT && source.getHorizontal() + i * it->getY() >= 1; ++i)
         {
             Position tmp = Position(source.getHorizontal() + it->getY()*i, source.getVertical() + it->getX()*i);
             if(board.getPiece(tmp) == nullptr || board.getPiece(tmp)->getPlayer() != piece->getPlayer())
@@ -119,6 +119,54 @@ bool ShogiGameLogic::checkMate(Player player) const {
 Player ShogiGameLogic::transformPlayer(Player pl) const {
      return (Player)((int)(pl+1)%2);
 }
+
+bool ShogiGameLogic::checkPromotion(Piece *piece) const {
+    if(piece->getPlayer()==Sente)
+    {
+        return piece->canBePromoted() && piece->getPosition().getHorizontal()<=3;
+    }
+    else
+    {
+        return piece->canBePromoted() && piece->getPosition().getHorizontal()>=7;
+    }
+}
+
+bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
+{
+    if (board.getPiece(pos) != nullptr) return false;
+    if (piece->getType() == Pawn)
+    {
+        for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)
+        {
+            if (board.getPiece(Position(i,pos.getVertical()))->equals(piece))
+            {
+                return false;
+            }
+        }
+    }
+    AbstractBoardMemento *abm = board.getMemento();
+    board.setPiece(piece,pos);
+    std::vector<Position> vec = getAllPosition(piece);
+
+    if(vec.empty())
+    {
+        board.setMemento(abm);
+        return false;
+    }
+
+    Player player = transformPlayer(piece->getPlayer());
+    if (checkMate(player))
+    {
+        board.setMemento(abm);
+        return false;
+    }
+    board.setMemento(abm);
+    return true;
+}
+
+
+
+
 
 
 

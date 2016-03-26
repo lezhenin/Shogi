@@ -15,6 +15,10 @@ public:
 
     virtual bool checkMate(Player player) const = 0;
 
+    virtual bool checkPromotion(Piece *piece) const = 0;
+
+    virtual bool checkDrop(Piece *piece, Position pos) = 0;
+
 };
 
 
