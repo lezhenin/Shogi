@@ -127,6 +127,7 @@
 
 ## Диаграмма прецедентов использования
 ![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram1.1.png)
+![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram2.png)
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
