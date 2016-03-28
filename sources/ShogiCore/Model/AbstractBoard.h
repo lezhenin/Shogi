@@ -49,7 +49,11 @@ public:
      * Восстанавливает ранее сохраненное состояние доски.
      * @param memento Указатель на класс AbstractBoardMemento
      */
-    virtual void setMemento(AbstractBoardMemento *memento){memento->restore(); delete memento;}
+    virtual void setMemento(AbstractBoardMemento *memento)
+    {
+        memento->restore();
+        delete memento;
+    }
     /**
      * @brief Получить список фигур на доске
      *
@@ -79,5 +83,7 @@ public:
     static const int BOARD_WIDTH = 9;
     static const int BOARD_HEIGHT = 9;
 };
+
+
 
 #endif // BOARDINTERFACE_H
