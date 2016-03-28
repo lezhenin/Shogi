@@ -41,7 +41,6 @@ void ShogiCoreModuleTest::mementoTest() {
     delete p1;
     delete p2;
     delete board;
-    delete bm;
 
 }
 
