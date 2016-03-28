@@ -96,13 +96,6 @@ AbstractBoardMemento* Board::getMemento()
     return new BoardMemento(this);
 }
 
-void Board::setMemento(AbstractBoardMemento *memento)
-{
-    BoardMemento *bm = static_cast<BoardMemento*>(memento);
-    bm->restore();
-    delete bm;
-}
-
 
 
 

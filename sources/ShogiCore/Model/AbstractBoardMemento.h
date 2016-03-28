@@ -2,7 +2,10 @@
 #define SHOGI_ABSTRACTBOARDMEMENTO_H
 
 #include "AbstractBoard.h"
-
+/**
+ * Класс сохраняющий внутреннее состояние объекта класса
+ * Board и способный восстановить его при необходимости.
+ */
 class AbstractBoardMemento
 {
 public:

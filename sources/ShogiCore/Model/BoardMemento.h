@@ -20,8 +20,6 @@ struct Pair
 /**
  * @brief Реализция паттерна Мементо для модели доски.
  *
- * Класс сохраняющий внутреннее состояние объекта класса
- * Board и способный восстановить его при необходимости.
  */
 class BoardMemento : public AbstractBoardMemento
 {
@@ -34,18 +32,9 @@ public:
      * @param[in] board Указатель на доску
      */
     explicit BoardMemento(Board *board);
-    /**
-     * @brief Деструктор
-     */
-    virtual ~BoardMemento();
 
 private:
     friend class Board;
-    /**
-     * @brief Восстановить состояние доски.
-     *
-    * Восстанавливает сохраненное сотстояние доски.
-    */
     void restore();
 
 

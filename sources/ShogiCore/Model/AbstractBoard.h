@@ -37,15 +37,25 @@ public:
      */
     virtual Piece *getPiece(const Position &pos)=0;
     /**
+     * @brief Получить мементо.
+     *
+     * @return Указатель на класс AbstractBoardMemento,
+     * в котором сохранено текущее состояние доски.
+     */
+    virtual AbstractBoardMemento *getMemento() = 0;
+    /**
+     * @brief Устновить мементо.
+     *
+     * Восстанавливает ранее сохраненное состояние доски.
+     * @param memento Указатель на класс AbstractBoardMemento
+     */
+    virtual void setMemento(AbstractBoardMemento *memento){memento->restore(); delete memento;}
+    /**
      * @brief Получить список фигур на доске
      *
      * Возвращает список всех фигур, находящихся на доске
      * @return Ссылка на список фигур.
      */
-    virtual AbstractBoardMemento *getMemento() = 0;
-
-    virtual void setMemento(AbstractBoardMemento *memento)=0;
-
     virtual ListOfPieces &getPiecesOnBoard()=0;
     /**
      * @brief Получить список фигур Sente

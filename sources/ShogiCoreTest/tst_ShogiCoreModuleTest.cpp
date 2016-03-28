@@ -27,19 +27,21 @@ ShogiCoreModuleTest::ShogiCoreModuleTest()
 void ShogiCoreModuleTest::mementoTest() {
     Piece *p1 = new Piece(Rook, Sente);
     Piece *p2 = new Piece(King, Gote);
-    Board board;
-    board.setPiece(p1, Position(2, 2));
-    board.setPiece(p2, Position(4, 5));
-    AbstractBoardMemento *bm = board.getMemento();
-    board.removePiece(Position(2, 2));
-    board.removePiece(Position(4, 5));
-    QVERIFY(board.getPiece(Position(2, 2)) == nullptr);
-    QVERIFY(board.getPiece(Position(4, 5)) == nullptr);
-    board.setMemento(bm);
-    QVERIFY(board.getPiece(Position(2, 2)) == p1);
-    QVERIFY(board.getPiece(Position(4, 5)) == p2);
+    AbstractBoard *board = new Board();
+    board->setPiece(p1, Position(2, 2));
+    board->setPiece(p2, Position(4, 5));
+    AbstractBoardMemento *bm = board->getMemento();
+    board->removePiece(Position(2, 2));
+    board->removePiece(Position(4, 5));
+    QVERIFY(board->getPiece(Position(2, 2)) == nullptr);
+    QVERIFY(board->getPiece(Position(4, 5)) == nullptr);
+    board->setMemento(bm);
+    QVERIFY(board->getPiece(Position(2, 2)) == p1);
+    QVERIFY(board->getPiece(Position(4, 5)) == p2);
     delete p1;
     delete p2;
+    delete board;
+    delete bm;
 
 }
 

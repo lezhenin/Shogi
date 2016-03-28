@@ -18,7 +18,6 @@ public:
     Piece *getPiece(const Position &pos);
 
     AbstractBoardMemento *getMemento();
-    void setMemento(AbstractBoardMemento *memento);
 
 
     ListOfPieces &getPiecesOnBoard();

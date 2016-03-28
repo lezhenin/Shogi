@@ -44,7 +44,4 @@ void BoardMemento::restore()
     }
 }
 
-BoardMemento::~BoardMemento() {
-
-}
 
