@@ -4,7 +4,7 @@
 //todo optimize algorithms
 bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
 {
-    std::vector<Direction> dirs = table.at(piece->getType());
+    std::vector<Direction> dirs = table.getDirections(piece->getType());
     Position source = piece->getPosition();
     Direction *dir = nullptr;
 
@@ -34,7 +34,7 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
 
 std::vector<Position> ShogiGameLogic::getAllPosition(Piece *piece) const
 {
-    std::vector<Direction> dirs = table.at(piece->getType());
+    std::vector<Direction> dirs = table.getDirections(piece->getType());
     Position source = piece->getPosition();
     std::vector<Position> positions;
     for(std::vector<Direction>::iterator it = dirs.begin(); it != dirs.end(); ++it)

@@ -19,6 +19,7 @@ set(SOURCE_FILES
         GameLogic/GameSituations/PromotionIsAvailable.cpp
         GameLogic/GameSituations/PromotionIsAvailable.h
         GameLogic/AbstractShogiGameLogic.h
+        GameLogic/TableOfDirections.h
         Model/Board.cpp
         Model/Board.h
         Model/AbstractBoard.h
@@ -30,7 +31,7 @@ set(SOURCE_FILES
         Model/SquareIsEmptyException.h
         Model/BoardMemento.cpp
         Model/BoardMemento.h
-        Model/AbstractBoardMemento.h)
+        Model/AbstractBoardMemento.h )
 
 add_library (ShogiCore STATIC ${SOURCE_FILES})
 
