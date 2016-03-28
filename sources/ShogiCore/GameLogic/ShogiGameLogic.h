@@ -4,6 +4,9 @@
 
 using TableOfDirections = std::map<PieceType,std::vector<Direction>>;
 
+/*
+ * @brief Реализация AbstractShogiGameLogic.
+ */
 class ShogiGameLogic: public AbstractShogiGameLogic {
 public:
 
