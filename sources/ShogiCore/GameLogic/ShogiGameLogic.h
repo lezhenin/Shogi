@@ -10,7 +10,7 @@ using TableOfDirections = std::map<PieceType,std::vector<Direction>>;
 class ShogiGameLogic: public AbstractShogiGameLogic {
 public:
 
-    explicit ShogiGameLogic(AbstractBoard &board) : board(board) { }
+    explicit ShogiGameLogic(AbstractBoard &board) : AbstractShogiGameLogic(board) { }
 
     bool checkMove(Piece *piece, Position pos) const;
     bool checkShah(Player player) const;
@@ -24,7 +24,6 @@ private:
     bool isUnderAttack(Player player, Position pos) const;
     std::vector<Position> getAllPosition(Piece *piece) const;
 
-    AbstractBoard &board;
     TableOfDirections table =
          {
                  {King,{Direction{0,1,1}, Direction{1,1,1}, Direction{1,0,1}, Direction{1,-1,1}, Direction{0,-1,1}, Direction{-1,-1,1}, Direction{-1,0,1}, Direction{-1,1,1}}},

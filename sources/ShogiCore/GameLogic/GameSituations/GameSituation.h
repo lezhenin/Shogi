@@ -17,7 +17,7 @@ public:
     /**
      * @brief Узнать завершилась ли игра.
      *
-     * @return true если игра завершилась.
+     * @return true если игра завершилась,
      * false если игра продолжается.
      */
     bool isEndOfGame() { return  endOfGame;}

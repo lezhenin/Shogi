@@ -7,11 +7,16 @@
 #include "../Model/AbstractBoard.h"
 
 /**
- * @brief Интерфес класса, содержащего игровую логику и правила игры.
+ * @brief Абстрактный класс, содержащего игровую логику и правила игры.
  */
 class AbstractShogiGameLogic
 {
 public:
+    /**
+     * @param board Доска, на которой выполняется проверка ходов и
+     * игоровой ситуации.
+     */
+    explicit AbstractShogiGameLogic(AbstractBoard &board) : board(board) { }
     /*
      * @brief Проверить возможность хода.
      *
@@ -49,6 +54,10 @@ public:
      * @return true если постановка возможена, false если постановка не возможена.
      */
     virtual bool checkDrop(Piece *piece, Position pos) = 0;
+
+protected:
+
+    AbstractBoard& board;
 
 };
 
