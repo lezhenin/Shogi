@@ -31,7 +31,7 @@ set(SOURCE_FILES
         Model/SquareIsEmptyException.h
         Model/BoardMemento.cpp
         Model/BoardMemento.h
-        Model/AbstractBoardMemento.h )
+        Model/AbstractBoardMemento.h GameLogic/Exceptions/GameLogicException.h GameLogic/Exceptions/KingNotFoundException.h)
 
 add_library (ShogiCore STATIC ${SOURCE_FILES})
 
