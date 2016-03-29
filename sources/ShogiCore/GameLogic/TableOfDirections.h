@@ -5,11 +5,13 @@
 #include <map>
 #include "Direction.h"
 #include "../Model/Piece.h"
-
+/**
+ * Класс содержащий таблицу фигур и их возможных направлений ходов.
+ */
 class TableOfDirections
 {
 public:
-    std::vector<Direction> getDirections(PieceType pieceType,Player player = Sente) const{ return dirs.at(pieceType);}
+    std::vector<Direction> getDirections(PieceType pieceType) const{ return dirs.at(pieceType);}
 
 private:
     std::map<PieceType,std::vector<Direction>> dirs= {

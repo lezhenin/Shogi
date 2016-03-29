@@ -21,7 +21,7 @@ public:
 private:
     Player transformPlayer(Player pl) const;
     bool isUnderAttack(Player player, Position pos) const;
-    std::vector<Position> getAllPosition(Piece *piece) const;
+    std::vector<Position> getAllPositionToMove(Piece *piece) const;
 
     TableOfDirections table;
 

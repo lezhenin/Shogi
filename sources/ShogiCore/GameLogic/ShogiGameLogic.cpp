@@ -1,4 +1,5 @@
 #include "ShogiGameLogic.h"
+#include "Exceptions/KingNotFoundException.h"
 #include <algorithm>
 
 //todo optimize algorithms
@@ -8,7 +9,7 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
     Position source = piece->getPosition();
     Direction *dir = nullptr;
 
-    for(std::vector<Direction>::iterator it=dirs.begin(); it != dirs.end(); ++it)
+    for(std::vector<Direction>::iterator it=dirs.begin(); it != dirs.end() && dir == nullptr; ++it)
     {
         if ((it->getX() * (dest.getHorizontal() - source.getHorizontal())
             - it->getY() * ((piece->getPlayer()==Sente) ? 1 : -1) * (dest.getVertical() - source.getVertical())) == 0
@@ -16,7 +17,6 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
                > (pow(dest.getHorizontal() - source.getHorizontal() - it->getY() * ((piece->getPlayer()==Sente) ? 1 : -1),2) + pow(dest.getVertical() - source.getVertical() - it->getX(),2)))
         {
             dir = &(*it);
-            break;
         }
     }
 
@@ -32,7 +32,7 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
 
 }
 
-std::vector<Position> ShogiGameLogic::getAllPosition(Piece *piece) const
+std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
 {
     std::vector<Direction> dirs = table.getDirections(piece->getType());
     Position source = piece->getPosition();
@@ -73,7 +73,7 @@ bool ShogiGameLogic::checkShah(Player player) const
         }
 
     }
-    //todo throw exception if king == nullptr
+    if (king == nullptr) throw KingNotFoundException();
     player = transformPlayer(player);
     return isUnderAttack(player,king->getPosition());
 }
@@ -86,7 +86,8 @@ bool ShogiGameLogic::checkMate(Player player) const {
             king = *it;
         }
     }
-    std::vector<Position> positions = getAllPosition(king);
+    if (king == nullptr) throw KingNotFoundException();
+    std::vector<Position> positions = getAllPositionToMove(king);
     positions.push_back(king->getPosition());
 
     player = transformPlayer(player);
@@ -135,6 +136,7 @@ bool ShogiGameLogic::checkPromotion(Piece *piece) const {
 bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
 {
     if (board.getPiece(pos) != nullptr) return false;
+
     if (piece->getType() == Pawn)
     {
         for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)

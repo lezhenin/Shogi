@@ -56,7 +56,10 @@ public:
     virtual bool checkDrop(Piece *piece, Position pos) = 0;
 
 protected:
-
+    /**
+     * @brief Доска, на которой выполняется проверка ходов и
+     * игоровой ситуации.
+     */
     AbstractBoard& board;
 
 };

@@ -12,7 +12,6 @@ using ListOfPieces = std::list<Piece*>;
 class AbstractBoard
 {
 public:
-
     /**
      * @brief Установить фигуру
      *
