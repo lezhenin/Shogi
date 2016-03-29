@@ -43,7 +43,7 @@ build_debug_version() {
         cd ../build/debug/sources/ShogiCore/CMakeFiles/ShogiCore.dir
         ls
 		gcovr --version
-		gcovr -r . --xml -o ../../../report/gcovr_result
+		gcovr -r . --xml -o ../../../../../../report/gcovr_result
 
 		cd ../../../../../../sources
 		ls
