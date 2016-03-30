@@ -4,6 +4,7 @@
 #include "../ShogiCore/Model/BoardMemento.h"
 #include "../ShogiCore/Shogi.h"
 #include "../ShogiCore/GameLogic/ShogiGameLogic.h"
+#include "../ShogiCore/SaveAndLoad/GameLoader.h"
 
 class ShogiCoreModuleTest : public QObject
 {
@@ -15,6 +16,7 @@ public:
 private Q_SLOTS:
     void mementoTest();
     void gameLogicTest();
+    void gameLoaderTest();
 
 
 private:
@@ -83,6 +85,16 @@ void ShogiCoreModuleTest::gameLogicTest() {
     delete p5;
     delete p6;
 }
+
+void ShogiCoreModuleTest::gameLoaderTest()
+{
+    AbstractBoard *board = new Board();
+    GameLoader gameLoader;
+    gameLoader.loadGame(*board);
+    Board *tmp = static_cast<Board*>(board);
+    delete board;
+}
+
 
 QTEST_APPLESS_MAIN(ShogiCoreModuleTest)
 
