@@ -79,3 +79,10 @@ Shogi::~Shogi()
     }
 }
 
+void Shogi::unPickPiece()
+{
+    pickedPiece = nullptr;
+}
+
+
+

@@ -29,6 +29,10 @@ public:
      */
     virtual void pickPiece(const Position& position)=0;
     /**
+     * @brief Отменить выбор фигуры.
+     */
+    virtual void unPickPiece()=0;
+    /**
      * @brief Переместить фигуру.
      * Перемещает раннее выбранную фигуру.
      * @param[in] position Позиция куда необходимо перместить фигур.

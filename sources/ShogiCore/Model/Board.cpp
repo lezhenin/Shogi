@@ -16,19 +16,8 @@ Board::Board(int w, int h)
         this->height=1;
     }
 
-    this->squares = new Square **[this->height];
-    for(int i=0; i<this->height; i++)
-    {
-        this->squares[i] = new Square *[this->width];
-    }
+    createSquares();
 
-    for(int i=1; i<=this->height; i++)
-    {
-        for(int j=1; j<=this->width; j++)
-        {
-            squares[i-1][j-1] = new Square(Position(i,j));
-        }
-    }
 }
 
 void Board::setPiece(Piece *piece, const Position &pos)
@@ -78,6 +67,45 @@ ListOfPieces &Board::getGoteCapturedPieces()
 
 Board::~Board()
 {
+    deleteSquares();
+    deletePieces();
+}
+AbstractBoardMemento* Board::getMemento()
+{
+    return new BoardMemento(this);
+}
+
+void Board::setMemento(AbstractBoardMemento *memento)
+{
+    BoardMemento *bm = static_cast<BoardMemento*>(memento);
+    bm->restore();
+    delete bm;
+}
+
+ListOfPieces &Board::getAllPieces()
+{
+    return allPieces;
+}
+
+void Board::createSquares()
+{
+    this->squares = new Square **[this->height];
+    for(int i=0; i<this->height; i++)
+    {
+        this->squares[i] = new Square *[this->width];
+    }
+
+    for(int i=1; i<=this->height; i++)
+    {
+        for(int j=1; j<=this->width; j++)
+        {
+            squares[i-1][j-1] = new Square(Position(i,j));
+        }
+    }
+}
+
+void Board::deleteSquares()
+{
     for (int i = 0; i < this->height; i++) {
         for (int j = 0; j < this->width; j++) {
             delete squares[i][j];
@@ -91,17 +119,26 @@ Board::~Board()
     delete[] this->squares;
 
 }
-AbstractBoardMemento* Board::getMemento()
+
+
+void Board::deletePieces()
 {
-    return new BoardMemento(this);
+    for (Piece *p : allPieces)
+    {
+        delete p;
+    }
 }
 
-void Board::setMemento(AbstractBoardMemento *memento)
-{
-    BoardMemento *bm = static_cast<BoardMemento*>(memento);
-    bm->restore();
-    delete bm;
-}
+
+
+
+
+
+
+
+
+
+
 
 
 

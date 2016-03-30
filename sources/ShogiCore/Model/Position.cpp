@@ -1,5 +1,5 @@
 #include "Position.h"
-#include "BadPositionException.h"
+#include "Exceptions/BadPositionException.h"
 
 Position::Position(const int h, const int v)
 {

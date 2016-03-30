@@ -10,6 +10,7 @@ public:
 
     void initGame();
     void pickPiece(const Position& position);
+    void unPickPiece();
     void movePiece(const Position& position);
     void promotePiece(const Position& position);
     void dropPiece(const PieceType pt, const Position& position);

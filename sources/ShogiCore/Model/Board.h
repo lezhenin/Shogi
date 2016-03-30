@@ -20,7 +20,7 @@ public:
     AbstractBoardMemento *getMemento();
     void setMemento(AbstractBoardMemento *memento);
 
-
+    ListOfPieces &getAllPieces();
     ListOfPieces &getPiecesOnBoard();
     ListOfPieces &getSenteCapturedPieces();
     ListOfPieces &getGoteCapturedPieces();
@@ -29,8 +29,13 @@ public:
 
 private:
 
+    void createSquares();
+    void deleteSquares();
+    void deletePieces();
+
     Square ***squares;
     ListOfPieces onBoard;
+    ListOfPieces allPieces;
     ListOfPieces SenteCaptured;
     ListOfPieces GoteCaptured;
 

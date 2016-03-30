@@ -48,7 +48,14 @@ public:
      * Восстанавливает ранее сохраненное состояние доски.
      * @param memento Указатель на класс AbstractBoardMemento
      */
-    virtual void setMemento(AbstractBoardMemento *memento)=0;
+    virtual void setMemento(AbstractBoardMemento *memento)=0;\
+    /**
+     * @brief Получить список всех фигур.
+     *
+     * Возвращает список всех фигур.
+     * @return Ссылка на список фигур.
+     */
+    virtual ListOfPieces &getAllPieces()=0;
     /**
      * @brief Получить список фигур на доске
      *

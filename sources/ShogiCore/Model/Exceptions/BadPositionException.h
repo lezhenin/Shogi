@@ -3,16 +3,21 @@
 
 
 #include <exception>
+#include "ModelException.h"
+
 /**
  * @brief Класс исключения, выбрасываемоего при
  * попытке передать позицию несоответсвующую доске.
  */
-class BadPositionException: public std::exception
+class BadPositionException: public ModelException
 {
 
 public:
     BadPositionException(){};
-    const char* what();
+    const char* what() const throw()
+    {
+        return "Position is bad";
+    }
 
 };
 
