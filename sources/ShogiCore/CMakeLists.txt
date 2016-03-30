@@ -1,13 +1,27 @@
 #ShogiCore
 
 set(SOURCE_FILES
+
         Shogi.cpp
         Shogi.h
         ShogiGameAPI.h
+
+        Model/Board.cpp
+        Model/Board.h
+        Model/AbstractBoard.h
+        Model/Piece.cpp
+        Model/Piece.h
+        Model/Square.cpp
+        Model/Square.h
+        Model/Exceptions/SquareIsEmptyException.h
+        Model/Exceptions/BadPositionException.h
+        Model/Exceptions/ModelException.h
+        Model/BoardMemento.cpp
+        Model/BoardMemento.h
+        Model/AbstractBoardMemento.h
         Model/Position.cpp
         Model/Position.h
-        Model/BadPositionException.cpp
-        Model/BadPositionException.h
+
         GameLogic/ShogiGameLogic.cpp
         GameLogic/ShogiGameLogic.h
         GameLogic/Direction.h
@@ -20,18 +34,15 @@ set(SOURCE_FILES
         GameLogic/GameSituations/PromotionIsAvailable.h
         GameLogic/AbstractShogiGameLogic.h
         GameLogic/TableOfDirections.h
-        Model/Board.cpp
-        Model/Board.h
-        Model/AbstractBoard.h
-        Model/Piece.cpp
-        Model/Piece.h
-        Model/Square.cpp
-        Model/Square.h
-        Model/SquareIsEmptyException.cpp
-        Model/SquareIsEmptyException.h
-        Model/BoardMemento.cpp
-        Model/BoardMemento.h
-        Model/AbstractBoardMemento.h GameLogic/Exceptions/GameLogicException.h GameLogic/Exceptions/KingNotFoundException.h)
+        GameLogic/Exceptions/GameLogicException.h
+        GameLogic/Exceptions/KingNotFoundException.h
+
+        SaveAndLoad/GameLoader.cpp
+        SaveAndLoad/GameLoader.h
+        SaveAndLoad/AbstractGameLoader.h
+        SaveAndLoad/Save.h
+        SaveAndLoad/AbstractGameSaver.h
+        SaveAndLoad/GameLoader.cpp)
 
 add_library (ShogiCore STATIC ${SOURCE_FILES})
 
