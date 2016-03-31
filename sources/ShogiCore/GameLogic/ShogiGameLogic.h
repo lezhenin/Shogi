@@ -6,7 +6,8 @@
 /*
  * @brief Реализация AbstractShogiGameLogic.
  */
-class ShogiGameLogic: public AbstractShogiGameLogic {
+class ShogiGameLogic: public AbstractShogiGameLogic
+{
 public:
 
     explicit ShogiGameLogic(AbstractBoard &board) : AbstractShogiGameLogic(board) { }

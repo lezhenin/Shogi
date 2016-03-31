@@ -12,7 +12,16 @@ class AbstractGameLoader
 {
 
 public:
+    /**
+     * @brief Загрузить игру с начальной расстановкой.
+     *
+     * Устанавливает фигуры на доску согласно расстановки,
+     * соответсвющей началу партии.
+     */
     virtual void loadGame(AbstractBoard &board) = 0;
+    /**
+     *
+     */
     virtual void loadGame(const Save &save, AbstractBoard &board) = 0;
 };
 
