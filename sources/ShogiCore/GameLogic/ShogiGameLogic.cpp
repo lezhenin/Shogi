@@ -12,9 +12,9 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
     for(std::vector<Direction>::iterator it=dirs.begin(); it != dirs.end() && dir == nullptr; ++it)
     {
         if ((it->getX() * (dest.getHorizontal() - source.getHorizontal())
-            - it->getY() * ((piece->getPlayer()==Sente) ? 1 : -1) * (dest.getVertical() - source.getVertical())) == 0
+            - it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1) * (dest.getVertical() - source.getVertical())) == 0
             && (pow(dest.getHorizontal() - source.getHorizontal(),2) + pow(dest.getVertical() - source.getVertical(),2))
-               > (pow(dest.getHorizontal() - source.getHorizontal() - it->getY() * ((piece->getPlayer()==Sente) ? 1 : -1),2) + pow(dest.getVertical() - source.getVertical() - it->getX(),2)))
+               > (pow(dest.getHorizontal() - source.getHorizontal() - it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1),2) + pow(dest.getVertical() - source.getVertical() - it->getX(),2)))
         {
             dir = &(*it);
         }
@@ -24,12 +24,11 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
 
     for(int i = 1; i != dir->getLimit()+1; i++)
     {
-        source = Position(source.getHorizontal() + dir->getY() * ((piece->getPlayer()==Sente) ? 1 : -1), source.getVertical() + dir->getX());
+        source = Position(source.getHorizontal() + dir->getY() * ((piece->getPlayer()==Sente) ? -1 : 1), source.getVertical() + dir->getX());
         if (source == dest && (board.getPiece(source) == nullptr || board.getPiece(source)->getPlayer() != piece->getPlayer())) return true;
         if (board.getPiece(source) != nullptr) return false;
     }
-
-
+    return false;
 }
 
 std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
@@ -40,10 +39,10 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
     for(std::vector<Direction>::iterator it = dirs.begin(); it != dirs.end(); ++it)
     {
         for(int i = 1; i!=it->getLimit()+1 && source.getVertical() + i * it->getX() <= AbstractBoard::BOARD_WIDTH && source.getVertical() + i * it->getX() >= 1
-                       && source.getHorizontal() + i * it->getY() * ((piece->getPlayer()==Sente) ? 1 : -1) <= AbstractBoard::BOARD_HEIGHT
-                       && source.getHorizontal() + i * it->getY() * ((piece->getPlayer()==Sente) ? 1 : -1) >= 1; ++i)
+                       && source.getHorizontal() + i * it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1) <= AbstractBoard::BOARD_HEIGHT
+                       && source.getHorizontal() + i * it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1) >= 1; ++i)
         {
-            Position tmp = Position(source.getHorizontal() + it->getY()*i * ((piece->getPlayer()==Sente) ? 1 : -1), source.getVertical() + it->getX()*i);
+            Position tmp = Position(source.getHorizontal() + it->getY()*i * ((piece->getPlayer()==Sente) ? -1 : 1), source.getVertical() + it->getX()*i);
             if(board.getPiece(tmp) == nullptr || board.getPiece(tmp)->getPlayer() != piece->getPlayer())
             {
                 positions.push_back(tmp);

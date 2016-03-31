@@ -32,12 +32,12 @@ void Board::setPiece(Piece *piece, const Position &pos)
 void Board::removePiece(const Position &pos)
 {
     Square *sq = this->getSquare(pos);
-    if(sq->getPiece()!=0)
+    if(sq->getPiece()!= nullptr)
     {
         this->onBoard.remove(sq->getPiece());
-        sq->getPiece()->setSquare(0);
+        sq->getPiece()->setSquare(nullptr);
     }
-    sq->setPiece(0);
+    sq->setPiece(nullptr);
 }
 
 inline Square *Board::getSquare(const Position& pos)
