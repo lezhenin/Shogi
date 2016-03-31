@@ -43,7 +43,7 @@ build_debug_version() {
         #/sources/ShogiCore/CMakeFiles/ShogiCore.dir
         ls
 		gcovr --version
-		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug -r . --xml -o ../report/gcovr_result
+		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources --root=/opt/tomcat/.jenkins/jobs/Shogi/workspace/sources --xml -o ../report/gcovr_result
 
 		#cd ../../../../../../sources
 		#ls
