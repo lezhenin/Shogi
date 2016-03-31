@@ -115,10 +115,13 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
         {
             throw std::exception();
         }
-        if(gameLogic->checkDrop(*it,position))
+        if(!gameLogic->checkDrop(*it,position))
         {
-            board->setPiece(*it, position);
+            throw std::exception();
         }
+        board->setPiece(*it, position);
+        board->getSenteCapturedPieces().remove(*it);
+
     }
     else
     {
@@ -134,6 +137,8 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
             throw std::exception();
         }
         board->setPiece(*it, position);
+        board->getGoteCapturedPieces().remove(*it);
+
 
     }
 }
