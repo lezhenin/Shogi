@@ -117,7 +117,6 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
         }
         if(gameLogic->checkDrop(*it,position))
         {
-            board->getSenteCapturedPieces().remove(*it);
             board->setPiece(*it, position);
         }
     }

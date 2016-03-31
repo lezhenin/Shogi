@@ -1,5 +1,5 @@
 #include "GameLoader.h"
-#include "algorithm"
+
 
 void GameLoader::loadGame(AbstractBoard &board)
 {
