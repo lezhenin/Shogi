@@ -133,7 +133,6 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
         {
             throw std::exception();
         }
-        board->getGoteCapturedPieces().remove(*it);
         board->setPiece(*it, position);
 
     }
