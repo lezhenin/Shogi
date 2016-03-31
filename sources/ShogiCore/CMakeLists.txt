@@ -37,12 +37,15 @@ set(SOURCE_FILES
         GameLogic/Exceptions/GameLogicException.h
         GameLogic/Exceptions/KingNotFoundException.h
 
+
         SaveAndLoad/GameLoader.cpp
         SaveAndLoad/GameLoader.h
         SaveAndLoad/AbstractGameLoader.h
         SaveAndLoad/Save.h
         SaveAndLoad/AbstractGameSaver.h
-        SaveAndLoad/GameLoader.cpp)
+        SaveAndLoad/GameLoader.cpp
+        SaveAndLoad/GameSaver.cpp
+        SaveAndLoad/GameSaver.h)
 
 add_library (ShogiCore STATIC ${SOURCE_FILES})
 

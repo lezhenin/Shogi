@@ -2,6 +2,7 @@
 #define SHOGI_SAVE_H
 
 #include <vector>
+#include <string>
 #include "../Model/Piece.h"
 
 
@@ -23,9 +24,15 @@ struct Block
 class Save
 {
 public:
+
+    Save() { }
+
     std::vector<Block> onBoard;
     std::vector<PieceType> senteCaptured;
     std::vector<PieceType> goteCaptured;
+
+    //todo impl
+    //std::string toString();
 };
 
 
