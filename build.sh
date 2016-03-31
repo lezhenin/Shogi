@@ -7,7 +7,7 @@ build_release_version() {
 	mkdir release
 	cd release
 	cmake --version
-    cmake –G "Unix Makefiles" ../../../workspace
+    cmake -D CMAKE_BUILD_TYPE=Release –G "Unix Makefiles" ../../../workspace
 
 	if [ -e "Makefile" ]; then
 		cmake --build ../release --target APP --
@@ -29,7 +29,7 @@ build_debug_version() {
 	mkdir debug
 	cd debug
 	cmake --version
-	cmake –G "Unix Makefiles" ../../../workspace
+	cmake -D CMAKE_BUILD_TYPE=Debug –G "Unix Makefiles" ../../../workspace
 	if [ -e "Makefile" ]; then
 		cmake --build ../debug --clean-first --
 
