@@ -3,11 +3,12 @@
 
 #include <vector>
 #include <memory>
+#include <queue>
 #include "GameLogic/GameSituations/GameSituation.h"
 #include "Model/Position.h"
 #include "Model/Board.h"
 
-using ListOfGameSituations = std::vector<std::shared_ptr<GameSituation>>;
+using ListOfGameSituations = std::queue<std::shared_ptr<GameSituation>>;
 
 /**
  * @brief Игровой интерфейс.
@@ -55,12 +56,12 @@ public:
      * @brief Получть доску.
      * @return Указатель на доску с фигурами.
      */
-    virtual Board &getBoard()=0;
+    virtual AbstractBoard &getBoard()=0;
     /**
      * @brief Получть статус игры.
-     * @return /todo status
+     * @return Список игровых ситуаций
      */
-    virtual ListOfGameSituations getGameSituation()=0;
+    virtual ListOfGameSituations &getGameSituation()=0;
 };
 
 #endif // GAMECORE_H

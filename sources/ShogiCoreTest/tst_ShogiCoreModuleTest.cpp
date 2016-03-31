@@ -2,7 +2,6 @@
 #include <QtTest>
 #include <iostream>
 #include "../ShogiCore/Model/BoardMemento.h"
-#include "../ShogiCore/Shogi.h"
 #include "../ShogiCore/GameLogic/ShogiGameLogic.h"
 #include "../ShogiCore/SaveAndLoad/GameLoader.h"
 
