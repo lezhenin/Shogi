@@ -17,6 +17,7 @@ public:
     bool checkPromotion(Piece *piece) const;
     bool checkDrop(Piece *piece, Position pos);
 
+    virtual ~ShogiGameLogic() { }
 
 private:
     Player transformPlayer(Player pl) const;

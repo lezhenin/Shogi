@@ -18,6 +18,9 @@ private:
      * Восстанавливает сохраненное сотстояние доски.
      */
     virtual void restore() = 0;
+
+public:
+    virtual ~AbstractBoardMemento() { }
 };
 
 
