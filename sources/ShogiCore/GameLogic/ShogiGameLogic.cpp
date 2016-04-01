@@ -25,8 +25,8 @@ bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
     for(int i = 1; i != dir->getLimit()+1; i++)
     {
         source = Position(source.getHorizontal() + dir->getY() * ((piece->getPlayer()==Sente) ? -1 : 1), source.getVertical() + dir->getX());
-        if (source == dest && (board.getPiece(source) == nullptr || board.getPiece(source)->getPlayer() != piece->getPlayer())) return true;
-        if (board.getPiece(source) != nullptr) return false;
+        if (source == dest && (board->getPiece(source) == nullptr || board->getPiece(source)->getPlayer() != piece->getPlayer())) return true;
+        if (board->getPiece(source) != nullptr) return false;
     }
     return false;
 }
@@ -43,7 +43,7 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
                        && source.getHorizontal() + i * it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1) >= 1; ++i)
         {
             Position tmp = Position(source.getHorizontal() + it->getY()*i * ((piece->getPlayer()==Sente) ? -1 : 1), source.getVertical() + it->getX()*i);
-            if(board.getPiece(tmp) == nullptr || board.getPiece(tmp)->getPlayer() != piece->getPlayer())
+            if(board->getPiece(tmp) == nullptr || board->getPiece(tmp)->getPlayer() != piece->getPlayer())
             {
                 positions.push_back(tmp);
             }
@@ -53,7 +53,7 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
 }
 
 bool ShogiGameLogic::isUnderAttack(Player player, Position pos) const {
-    for (Piece *p: board.getPiecesOnBoard())
+    for (Piece *p: board->getPiecesOnBoard())
     {
         if (p->getPlayer() == player && checkMove(p, pos)) return  true;
     }
@@ -66,7 +66,7 @@ bool ShogiGameLogic::checkShah(Player player) const
 {
     Piece tmp(King, player);
     Piece *king = nullptr;
-    for (ListOfPieces::iterator it = board.getPiecesOnBoard().begin(); king == nullptr && it != board.getPiecesOnBoard().end(); ++it) {
+    for (ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); king == nullptr && it != board->getPiecesOnBoard().end(); ++it) {
         if (tmp.equals(*it)) {
             king = *it;
         }
@@ -80,7 +80,7 @@ bool ShogiGameLogic::checkShah(Player player) const
 bool ShogiGameLogic::checkMate(Player player) const {
     Piece tmp(King, player);
     Piece *king = nullptr;
-    for (ListOfPieces::iterator it = board.getPiecesOnBoard().begin(); king == nullptr && it != board.getPiecesOnBoard().end(); ++it) {
+    for (ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); king == nullptr && it != board->getPiecesOnBoard().end(); ++it) {
         if (tmp.equals(*it)) {
             king = *it;
         }
@@ -93,23 +93,25 @@ bool ShogiGameLogic::checkMate(Player player) const {
 
     for (Position pos : positions)
     {
-        if(board.getPiece(pos)==0)
+        if(board->getPiece(pos)==0)
         {
             if (!isUnderAttack(player, pos)) return false;
         }
         else
         {
-            AbstractBoardMemento *abm = board.getMemento();
-            board.removePiece(king->getPosition());
-            board.removePiece(pos);
-            board.setPiece(king,pos);
+            AbstractBoardMemento *abm = board->getMemento();
+            board->removePiece(king->getPosition());
+            board->removePiece(pos);
+            board->setPiece(king,pos);
             if(isUnderAttack(player,king->getPosition()))
             {
-                board.setMemento(abm);
+                board->setMemento(abm);
+                delete abm;
             }
             else
             {
-                board.setMemento(abm);
+                board->setMemento(abm);
+                delete abm;
                 return false;
             }
         }
@@ -134,13 +136,13 @@ bool ShogiGameLogic::checkPromotion(Piece *piece) const {
 
 bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
 {
-    if (board.getPiece(pos) != nullptr) return false;
+    if (board->getPiece(pos) != nullptr) return false;
 
     if (piece->getType() == Pawn)
     {
         for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)
         {
-            if (board.getPiece(Position(i,pos.getVertical())) != nullptr && board.getPiece(Position(i,pos.getVertical())) -> equals(piece))
+            if (board->getPiece(Position(i,pos.getVertical())) != nullptr && board->getPiece(Position(i,pos.getVertical())) -> equals(piece))
             {
                 return false;
             }
@@ -162,16 +164,18 @@ bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
             return false;
         }
     }
-    AbstractBoardMemento *abm = board.getMemento();
-    board.setPiece(piece,pos);
+    AbstractBoardMemento *abm = board->getMemento();
+    board->setPiece(piece,pos);
 
     Player player = transformPlayer(piece->getPlayer());
     if (checkMate(player))
     {
-        board.setMemento(abm);
+        board->setMemento(abm);
+        delete abm;
         return false;
     }
-    board.setMemento(abm);
+    board->setMemento(abm);
+    delete abm;
     return true;
 }
 

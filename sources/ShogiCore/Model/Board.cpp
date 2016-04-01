@@ -79,7 +79,6 @@ void Board::setMemento(AbstractBoardMemento *memento)
 {
     BoardMemento *bm = static_cast<BoardMemento*>(memento);
     bm->restore();
-    delete bm;
 }
 
 ListOfPieces &Board::getAllPieces()

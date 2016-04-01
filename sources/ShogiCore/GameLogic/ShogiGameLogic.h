@@ -10,7 +10,7 @@ class ShogiGameLogic: public AbstractShogiGameLogic
 {
 public:
 
-    explicit ShogiGameLogic(AbstractBoard &board) : AbstractShogiGameLogic(board) { }
+    explicit ShogiGameLogic(AbstractBoard *board) : AbstractShogiGameLogic(board) { }
 
     bool checkMove(Piece *piece, Position pos) const;
     bool checkShah(Player player) const;

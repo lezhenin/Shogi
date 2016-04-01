@@ -16,7 +16,7 @@ public:
      * @param board Доска, на которой выполняется проверка ходов и
      * игоровой ситуации.
      */
-    explicit AbstractShogiGameLogic(AbstractBoard &board) : board(board) { }
+    explicit AbstractShogiGameLogic(AbstractBoard *board) : board(board) { }
     /*
      * @brief Проверить возможность хода.
      *
@@ -60,7 +60,7 @@ protected:
      * @brief Доска, на которой выполняется проверка ходов и
      * игоровой ситуации.
      */
-    AbstractBoard& board;
+    AbstractBoard* board;
 
 };
 

@@ -10,9 +10,9 @@ void Shogi::initGame()
 Shogi::Shogi()
 {
     board = new Board();
-    gameLogic = new ShogiGameLogic(*board);
-    gameLoader = new GameLoader;
-    gameSaver = new GameSaver;
+    gameLogic = new ShogiGameLogic(board);
+    gameLoader = new GameLoader();
+    gameSaver = new GameSaver();
 }
 
 Shogi::~Shogi()
@@ -119,8 +119,8 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
         {
             throw std::exception();
         }
+        board->getSenteCapturedPieces().remove(*it);
         board->setPiece(*it, position);
-        std::remove(board->getSenteCapturedPieces().begin(),board->getSenteCapturedPieces().end(),*it);
 
     }
     else
@@ -136,8 +136,8 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
         {
             throw std::exception();
         }
+        board->getGoteCapturedPieces().remove(*it);
         board->setPiece(*it, position);
-        std::remove(board->getGoteCapturedPieces().begin(),board->getGoteCapturedPieces().end(),*it);
 
 
     }
