@@ -4,6 +4,7 @@
 
 
 #include "../ShogiCore/Shogi.h"
+#include "Commands/Command.h"
 
 class ConsoleGame
 {
@@ -15,10 +16,12 @@ public:
     virtual ~ConsoleGame();
 
 private:
+    Command *inputCommand();
+    void printBoard(AbstractBoard *board);
 
-    void printBoard();
     ShogiGameAPI *game;
     bool isRun = false;
+    std::map<std::string,int> commands = {{"pick",0},{"unpick",1},{"move",2},{"drop",3},{"exit",4}};
 };
 
 
