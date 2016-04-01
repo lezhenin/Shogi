@@ -120,7 +120,7 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
             throw std::exception();
         }
         board->setPiece(*it, position);
-        board->getSenteCapturedPieces().erase(it);
+        std::remove(board->getSenteCapturedPieces().begin(),board->getSenteCapturedPieces().end(),*it);
 
     }
     else
@@ -137,7 +137,7 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
             throw std::exception();
         }
         board->setPiece(*it, position);
-        board->getGoteCapturedPieces().erase(it);
+        std::remove(board->getGoteCapturedPieces().begin(),board->getGoteCapturedPieces().end(),*it);
 
 
     }
