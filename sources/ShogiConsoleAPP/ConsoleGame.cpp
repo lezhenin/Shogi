@@ -30,6 +30,7 @@ void ConsoleGame::start()
             std::cout << "Game error" << std::endl;
         }
         printBoard(&game->getBoard());
+        delete command;
     }
 }
 

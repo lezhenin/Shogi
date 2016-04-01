@@ -1,4 +1,3 @@
-
 #ifndef SHOGI_GAME_H
 #define SHOGI_GAME_H
 

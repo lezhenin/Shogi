@@ -52,6 +52,7 @@ public:
     virtual bool checkDrop(Piece *piece, Position pos) = 0;
 
 
+    virtual ~AbstractShogiGameLogic() { }
 };
 
 
