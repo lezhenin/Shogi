@@ -99,21 +99,15 @@ bool ShogiGameLogic::checkMate(Player player) const {
         }
         else
         {
+
             AbstractBoardMemento *abm = board->getMemento();
             board->removePiece(king->getPosition());
             board->removePiece(pos);
             board->setPiece(king,pos);
-            if(isUnderAttack(player,king->getPosition()))
-            {
-                board->setMemento(abm);
-                delete abm;
-            }
-            else
-            {
-                board->setMemento(abm);
-                delete abm;
-                return false;
-            }
+            bool x = isUnderAttack(player,king->getPosition());
+            board->setMemento(abm);
+            delete abm;
+            return x;
         }
     }
     return true;
