@@ -37,6 +37,8 @@ private:
     friend class Board;
     void restore();
 
+public:
+    virtual ~BoardMemento() { }
 
 
 private:
