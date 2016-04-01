@@ -66,17 +66,11 @@ public:
     /**
      * @brief Получить список фигур Sente
      *
-     * Возвращает список всех фигур, захваченных сторооной Sente
+     * Возвращает список всех фигур, захваченных одной из сторон.
+     * @param player Игрок, чьи захваченные фигуры необъодимо получить.
      * @return Ссылка на список фигур.
      */
-    virtual ListOfPieces &getSenteCapturedPieces()=0;
-    /**
-     * @brief Получить список фигур Gote
-     *
-     * Возвращает список всех фигур, захваченных сторооной Gote
-     * @return Ссылка на список фигур.
-     */
-    virtual ListOfPieces &getGoteCapturedPieces()=0;
+    virtual ListOfPieces &getCapturedPieces(Player player)=0;
     /**
      * @brief Деструктор
      */

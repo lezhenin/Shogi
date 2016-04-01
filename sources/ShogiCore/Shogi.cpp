@@ -59,14 +59,7 @@ void Shogi::movePiece(const Position &position)
     {
         this->board->getPiece(position)->unPromote();
         this->board->getPiece(position)->setPlayer(currentPlayer);
-        if(this->board->getPiece(position)->getPlayer() == Sente)
-        {
-            this->board->getSenteCapturedPieces().push_back(this->board->getPiece(position));
-        }
-        else
-        {
-            this->board->getGoteCapturedPieces().push_back(this->board->getPiece(position));
-        }
+        this->board->getCapturedPieces(currentPlayer).push_back(this->board->getPiece(position));
         this->board->removePiece(position);
     }
     this->board->removePiece(pickedPiece->getPosition());
@@ -106,41 +99,22 @@ void Shogi::promotePiece(const Position &position)
 
 void Shogi::dropPiece(const PieceType pt, const Position &position)
 {
-    if(currentPlayer == Sente)
-    {
-        Piece tmp(pt,Sente);
-        ListOfPieces::iterator it = std::find_if(board->getSenteCapturedPieces().begin(),board->getSenteCapturedPieces().end(),
+    Piece tmp(pt,currentPlayer);
+    ListOfPieces::iterator it = std::find_if(board->getCapturedPieces(currentPlayer).begin(),board->getCapturedPieces(currentPlayer).end(),
                      std::bind1st(std::mem_fun(&Piece::equals),&tmp));
-        if(it == board->getSenteCapturedPieces().end())
-        {
-            throw std::exception();
-        }
-        if(!gameLogic->checkDrop(*it,position))
-        {
-            throw std::exception();
-        }
-        board->getSenteCapturedPieces().remove(*it);
-        board->setPiece(*it, position);
-
-    }
-    else
+    if(it == board->getCapturedPieces(currentPlayer).end())
     {
-        Piece tmp(pt,Gote);
-        ListOfPieces::iterator it = std::find_if(board->getGoteCapturedPieces().begin(),board->getGoteCapturedPieces().end(),
-                     std::bind1st(std::mem_fun(&Piece::equals),&tmp));
-        if(it == board->getGoteCapturedPieces().end())
-        {
-            throw std::exception();
-        }
-        if(!gameLogic->checkDrop(*it,position))
-        {
-            throw std::exception();
-        }
-        board->getGoteCapturedPieces().remove(*it);
-        board->setPiece(*it, position);
-
-
+        throw std::exception();
     }
+    Piece *ptr = *it;
+
+    if(!gameLogic->checkDrop(ptr,position))
+    {
+        throw std::exception();
+    }
+    board->getCapturedPieces(currentPlayer).remove(ptr);
+    board->setPiece(ptr, position);
+
 }
 
 ListOfGameSituations &Shogi::getGameSituation()

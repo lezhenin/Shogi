@@ -63,8 +63,8 @@ void ShogiCoreFuncTest::gameInitTest()
     QVERIFY(board.getPiece(Position(2,8)) != nullptr);
     QCOMPARE((int)board.getAllPieces().size(),40);
     QCOMPARE((int)board.getPiecesOnBoard().size(),40);
-    QCOMPARE((int)board.getSenteCapturedPieces().size(),0);
-    QCOMPARE((int)board.getGoteCapturedPieces().size(),0);
+    QCOMPARE((int)board.getCapturedPieces(Sente).size(),0);
+    QCOMPARE((int)board.getCapturedPieces(Gote).size(),0);
     printBoard();
 }
 
@@ -88,10 +88,10 @@ void ShogiCoreFuncTest::pickAndMoveTest()
     game.movePiece(Position(5,2));
     QCOMPARE((int)game.getBoard().getAllPieces().size(),40);
     QCOMPARE((int)game.getBoard().getPiecesOnBoard().size(),39);
-    QCOMPARE((int)game.getBoard().getSenteCapturedPieces().size(),0);
-    QCOMPARE((int)game.getBoard().getGoteCapturedPieces().size(),1);
-    QCOMPARE((*game.getBoard().getGoteCapturedPieces().begin())->getPlayer(),Gote);
-    QCOMPARE((*game.getBoard().getGoteCapturedPieces().begin())->getType(),Pawn);
+    QCOMPARE((int)game.getBoard().getCapturedPieces(Sente).size(),0);
+    QCOMPARE((int)game.getBoard().getCapturedPieces(Gote).size(),1);
+    QCOMPARE((*game.getBoard().getCapturedPieces(Gote).begin())->getPlayer(),Gote);
+    QCOMPARE((*game.getBoard().getCapturedPieces(Gote).begin())->getType(),Pawn);
     printBoard();
     game.pickPiece(Position(9,5));
     game.movePiece(Position(8,5));
@@ -125,15 +125,15 @@ void ShogiCoreFuncTest::dropTest()
     game.pickPiece(Position(8,2));
     game.movePiece(Position(7,2));
     QCOMPARE((int)game.getBoard().getPiecesOnBoard().size(),38);
-    QCOMPARE((int)game.getBoard().getSenteCapturedPieces().size(),1);
-    QCOMPARE((int)game.getBoard().getGoteCapturedPieces().size(),1);
+    QCOMPARE((int)game.getBoard().getCapturedPieces(Sente).size(),1);
+    QCOMPARE((int)game.getBoard().getCapturedPieces(Gote).size(),1);
     QVERIFY_EXCEPTION_THROWN(game.dropPiece(Pawn,Position(5,3)),std::exception);
     QVERIFY_EXCEPTION_THROWN(game.dropPiece(Pawn,Position(7,2)),std::exception);
     game.dropPiece(Pawn,Position(5,2));
     QVERIFY(game.getBoard().getPiece(Position(5,2)) != nullptr);
     QCOMPARE((int)game.getBoard().getPiecesOnBoard().size(),39);
-    QCOMPARE((int)game.getBoard().getSenteCapturedPieces().size(),1);
-    QCOMPARE((int)game.getBoard().getGoteCapturedPieces().size(),0);
+    QCOMPARE((int)game.getBoard().getCapturedPieces(Sente).size(),1);
+    QCOMPARE((int)game.getBoard().getCapturedPieces(Gote).size(),0);
     printBoard();
 }
 

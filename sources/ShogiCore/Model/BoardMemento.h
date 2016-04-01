@@ -42,8 +42,7 @@ private:
 private:
     Board * board;
     std::vector<Pair> pairs;
-    ListOfPieces senteCaptured;
-    ListOfPieces goteCaptured;
+    std::map<Player,ListOfPieces> capturedPieces;
 };
 
 

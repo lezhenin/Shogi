@@ -55,16 +55,6 @@ ListOfPieces &Board::getPiecesOnBoard()
     return this->onBoard;
 }
 
-ListOfPieces &Board::getSenteCapturedPieces()
-{
-    return this->SenteCaptured;
-}
-
-ListOfPieces &Board::getGoteCapturedPieces()
-{
-    return this->GoteCaptured;
-}
-
 Board::~Board()
 {
     deleteSquares();
@@ -127,6 +117,13 @@ void Board::deletePieces()
         delete p;
     }
 }
+
+ListOfPieces &Board::getCapturedPieces(Player player)
+{
+    return this->capturedPieces.at(player);
+}
+
+
 
 
 

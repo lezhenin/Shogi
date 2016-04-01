@@ -1,6 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <map>
 #include "AbstractBoard.h"
 #include "BoardMemento.h"
 /**
@@ -22,8 +23,7 @@ public:
 
     ListOfPieces &getAllPieces();
     ListOfPieces &getPiecesOnBoard();
-    ListOfPieces &getSenteCapturedPieces();
-    ListOfPieces &getGoteCapturedPieces();
+    ListOfPieces &getCapturedPieces(Player player);
 
     ~Board();
 
@@ -36,8 +36,7 @@ private:
     Square ***squares;
     ListOfPieces onBoard;
     ListOfPieces allPieces;
-    ListOfPieces SenteCaptured;
-    ListOfPieces GoteCaptured;
+    std::map<Player,ListOfPieces> capturedPieces{{Sente,ListOfPieces()},{Gote,ListOfPieces()}};
 
     int width;
     int height;

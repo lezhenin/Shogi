@@ -54,13 +54,13 @@ void GameLoader::loadGame(const Save &save, AbstractBoard &board)
     for (const PieceType &pt: save.senteCaptured)
     {
         Piece *tmp = new Piece(pt,Sente);
-        board.getSenteCapturedPieces().push_back(tmp);
+        board.getCapturedPieces(Sente).push_back(tmp);
         board.getAllPieces().push_back(tmp);
     }
     for (const PieceType &pt: save.goteCaptured)
     {
         Piece *tmp = new Piece(pt,Gote);
-        board.getGoteCapturedPieces().push_back(tmp);
+        board.getCapturedPieces(Gote).push_back(tmp);
         board.getAllPieces().push_back(tmp);
     }
 }
