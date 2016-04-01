@@ -12,11 +12,7 @@
 class AbstractShogiGameLogic
 {
 public:
-    /**
-     * @param board Доска, на которой выполняется проверка ходов и
-     * игоровой ситуации.
-     */
-    explicit AbstractShogiGameLogic(AbstractBoard *board) : board(board) { }
+
     /*
      * @brief Проверить возможность хода.
      *
@@ -55,12 +51,6 @@ public:
      */
     virtual bool checkDrop(Piece *piece, Position pos) = 0;
 
-protected:
-    /**
-     * @brief Доска, на которой выполняется проверка ходов и
-     * игоровой ситуации.
-     */
-    AbstractBoard* board;
 
 };
 

@@ -10,8 +10,7 @@ class ShogiGameLogic: public AbstractShogiGameLogic
 {
 public:
 
-    explicit ShogiGameLogic(AbstractBoard *board) : AbstractShogiGameLogic(board) { }
-
+    explicit ShogiGameLogic(AbstractBoard *board) : board(board){}
     bool checkMove(Piece *piece, Position pos) const;
     bool checkShah(Player player) const;
     bool checkMate(Player player) const;
@@ -23,7 +22,7 @@ private:
     Player transformPlayer(Player pl) const;
     bool isUnderAttack(Player player, Position pos) const;
     std::vector<Position> getAllPositionToMove(Piece *piece) const;
-
+    AbstractBoard *board;
     TableOfDirections table;
 
 };
