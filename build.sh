@@ -40,13 +40,17 @@ build_debug_version() {
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
 
-        #/sources/ShogiCore/CMakeFiles/ShogiCore.dir
         ls
+        mkdir  ../report/gcovr_source
+        cp -i $(find ../build/debug/sources / -name "*.gcda") ../../report/gcovr_source/
+        cp -i $(find ../build/debug/sources -name "*.gcno") ../../report/gcovr_source/
+		cp -i $(find ./ -name "*.cpp") ../report/gcovr_source/
+		cp -i $(find ./ -name "*.h") ../report/gcovr_source/
 		gcovr --version
-		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug --root=/opt/tomcat/.jenkins/jobs/Shogi/workspace --xml -o ../report/gcovr_result
+		#gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug --root=/opt/tomcat/.jenkins/jobs/Shogi/workspace --xml -o ../report/gcovr_result
+		gcovr -r ../report/gcovr_source --xml -o ../report/gcovr_result
+       # rm -f ../report/gcovr_source
 
-		#cd ../../../../../../sources
-		#ls
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_module_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/module_test || true
