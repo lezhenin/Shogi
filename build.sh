@@ -42,8 +42,8 @@ build_debug_version() {
 
         ls
         mkdir  ../report/gcovr_source
-        cp -i $(find ../build/debug/sources / -name "*.gcda") ../../report/gcovr_source/
-        cp -i $(find ../build/debug/sources -name "*.gcno") ../../report/gcovr_source/
+        cp -i $(find ../build/debug/sources / -name "*.gcda") ../report/gcovr_source/
+        cp -i $(find ../build/debug/sources -name "*.gcno") ../report/gcovr_source/
 		cp -i $(find ./ -name "*.cpp") ../report/gcovr_source/
 		cp -i $(find ./ -name "*.h") ../report/gcovr_source/
 		gcovr --version
