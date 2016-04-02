@@ -47,10 +47,12 @@ build_debug_version() {
         cp -i $(find ../build/debug/sources -name "*.o") ../report/gcovr_source/
 		cp -i $(find ./ -name "*.cpp") ../report/gcovr_source/
 		cp -i $(find ./ -name "*.h") ../report/gcovr_source/
+		cd ../report/gcovr_source
 		gcovr --version
 		#gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug --root=/opt/tomcat/.jenkins/jobs/Shogi/workspace --xml -o ../report/gcovr_result
-		gcovr -r ../report/gcovr_source --xml -o ../report/gcovr_result
-        rm -f ../report/gcovr_source
+		gcovr -r . --xml -o ../gcovr_result
+        rm *
+        cd ../../sources
 
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
