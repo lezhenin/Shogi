@@ -151,6 +151,16 @@ void ConsoleGame::printBoard(AbstractBoard *board)
         std::cout << " " << i << std::endl;
     }
     std::cout << std::endl;
+    while (!game->getGameSituation().empty())
+    {
+        std:: cout << (game->getGameSituation().front())->getMessage();
+        if (game->getGameSituation().front()->isEndOfGame())
+        {
+            stop();
+        }
+        game->getGameSituation().pop();
+    }
+
 }
 
 
