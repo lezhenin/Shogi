@@ -8,12 +8,12 @@ class Drop : public Command
 {
 
 public:
-    Drop(ShogiGameAPI *game, int h, int v) : game(game), position(h,v) { }
+    Drop(ShogiGameAPI *game, PieceType pieceType, int h, int v) : game(game), pieceType(pieceType), position(h,v) { }
     virtual void execute() override
     {
         try
         {
-            game->movePiece(position);
+            game->dropPiece(pieceType, position);
         }
         catch(std::exception &e)
         {
@@ -25,6 +25,7 @@ public:
 private:
     ShogiGameAPI *game;
     Position position;
+    PieceType pieceType;
 };
 
 

@@ -21,14 +21,15 @@ void ConsoleGame::start()
     while(isRun)
     {
         Command *command = inputCommand();
-        try
-        {
-            command->execute();
-        }
-        catch(std::exception &e)
-        {
-            std::cout << "Game error" << std::endl;
-        }
+        if (command != nullptr)
+            try
+            {
+                command->execute();
+            }
+            catch(std::exception &e)
+            {
+                std::cout << "Game error" << std::endl;
+            }
         printBoard(&game->getBoard());
         delete command;
     }
@@ -51,7 +52,7 @@ Command *ConsoleGame::inputCommand()
     int tmp;
     try
     {
-       tmp = commands.at(str);
+       tmp = tableOfCommands.at(str);
     }
     catch (std::exception &e)
     {
@@ -64,6 +65,7 @@ Command *ConsoleGame::inputCommand()
         {
             int h, v;
             std::cin >> h >> v;
+            std::cin.clear();
             if (h>=1 && h<=9 && v>=1 && v<=9)
             {
                 return new Pick(game,h,v);
@@ -82,6 +84,7 @@ Command *ConsoleGame::inputCommand()
         {
             int h, v;
             std::cin >> h >> v;
+            std::cin.clear();
             if (h>=1 && h<=9 && v>=1 && v<=9)
             {
                 return new Move(game,h,v);
@@ -95,10 +98,22 @@ Command *ConsoleGame::inputCommand()
         case 3:
         {
             int h, v;
-            std::cin >> h >> v;
+            std::string type;
+            std::cin >> type >> h >> v;
+            std::cin.clear();
+            PieceType pieceType;
+            try
+            {
+                pieceType = tableOfTypes.at(type);
+            }
+            catch (std::exception &e)
+            {
+                std::cout << "Bad arguments of command" << std::endl;
+                return nullptr;
+            }
             if (h>=1 && h<=9 && v>=1 && v<=9)
             {
-                return new Drop(game,h,v);
+                return new Drop(game, pieceType, h,v);
             }
             else
             {

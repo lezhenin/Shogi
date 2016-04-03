@@ -8,7 +8,7 @@ class Exit : public Command
 {
 
 public:
-    Exit(ConsoleGame *consoleGame) : consoleGame(consoleGame) { }
+    explicit Exit(ConsoleGame *consoleGame) : consoleGame(consoleGame) { }
     virtual void execute() override
     {
         consoleGame->stop();

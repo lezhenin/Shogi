@@ -8,7 +8,7 @@ class UnPick : public Command
 {
 
 public:
-    UnPick(ShogiGameAPI *game) : game(game) { }
+    explicit UnPick(ShogiGameAPI *game) : game(game) { }
     virtual void execute() override
     {
         try
