@@ -134,16 +134,21 @@ Command *ConsoleGame::inputCommand()
 
 void ConsoleGame::printBoard(AbstractBoard *board)
 {
+    for(int j=9; j>=1; j--)
+    {
+        std::cout << " " << j << "  ";
+    }
+    std::cout << std::endl;
     for(int i=1; i<=9; i++)
     {
         for(int j=9; j>=1; j--)
         {
             Piece *p = board->getPiece(Position(i,j));
 
-            if (p==0) std::cout <<  "* ";
-            else std:: cout << "0 ";
+            if (p==0) std::cout <<  "*** ";
+            else std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabeles.at(p->getType()) << " ";
         }
-        std::cout << std::endl;
+        std::cout << " " << i << std::endl;
     }
     std::cout << std::endl;
 }
