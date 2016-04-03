@@ -1,14 +1,9 @@
 #include "Position.h"
 #include "Exceptions/BadPositionException.h"
 
-Position::Position(const int h, const int v)
+Position::Position(const int h, const int v) : horizontal(h), vertical(v)
 {
-    if(v > 0 && h > 0)
-    {
-        this->vertical = v;
-        this->horizontal = h;
-    }
-    else throw BadPositionException();
+
 }
 
 int Position::getVertical() const

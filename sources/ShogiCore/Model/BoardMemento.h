@@ -5,18 +5,8 @@
 #include <vector>
 
 class Board;
+using Pair = std::pair<Piece*,Square*>;
 
-/**
- * @brief Структура содержащая фигуру и клетку
- *
- * Структура содеражащая пару значений: указатель
- * на клетку доски и указатель на фигуру.
- */
-struct Pair
-{
-    Piece* piece;
-    Square* square;
-};
 /**
  * @brief Реализция паттерна Мементо для модели доски.
  *

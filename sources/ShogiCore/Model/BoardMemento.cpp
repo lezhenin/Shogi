@@ -7,8 +7,8 @@ BoardMemento::BoardMemento(Board *board): board(board)
     for(ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); it != board->getPiecesOnBoard().end(); ++it)
     {
         Pair p;
-        p.piece=*it;
-        p.square=(*it)->getSquare();
+        p.first=*it;
+        p.second=(*it)->getSquare();
         pairs.push_back(p);
     }
 }
@@ -24,7 +24,7 @@ void BoardMemento::restore()
     this->board->getPiecesOnBoard().clear();
     for(std::vector<Pair>::iterator it = this->pairs.begin(); it < this->pairs.end(); ++it)
     {
-        this->board->setPiece(it->piece,it->square->getPosition());
+        this->board->setPiece(it->first,it->second->getPosition());
     }
 
     board->getCapturedPieces(Sente).clear();
