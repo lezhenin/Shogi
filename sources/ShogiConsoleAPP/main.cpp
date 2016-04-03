@@ -3,6 +3,14 @@
 
 int main()
 {
-    ConsoleGame game;
-    game.start();
+    try
+    {
+        ConsoleGame game;
+        game.start();
+    }
+    catch(std::exception &e)
+    {
+        std::cout << e.what();
+    }
+    return 0;
 }

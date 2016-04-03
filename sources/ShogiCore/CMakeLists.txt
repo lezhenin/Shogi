@@ -47,6 +47,6 @@ set(SOURCE_FILES
         Shogi.cpp
         Shogi.h)
 
-add_library (ShogiCore STATIC ${SOURCE_FILES})
+add_library (ShogiCore ${SOURCE_FILES})
 
 
