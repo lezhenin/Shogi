@@ -11,6 +11,8 @@ build_release_version() {
 
 	if [ -e "Makefile" ]; then
 		cmake --build ../release --target APP --
+		sorces/ShogiConsoleAPP/APP
+		exit
 		cd ../..
 	else
 	    cd ../..
