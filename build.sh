@@ -11,8 +11,6 @@ build_release_version() {
 
 	if [ -e "Makefile" ]; then
 		cmake --build ../release --target APP --
-		sources/ShogiConsoleAPP/APP
-		exit
 		cd ../..
 	else
 	    cd ../..
