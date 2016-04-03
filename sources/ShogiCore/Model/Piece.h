@@ -18,7 +18,7 @@ enum Player{
  */
 enum PieceType{
     King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
-    PromotedRook=Rook+PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral,  PromotedKnight, PromotedLance, PromotedPawn,
+    PromotedRook=Rook+PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral,  PromotedKnight, PromotedLance, PromotedPawn
 };
 
 /**
