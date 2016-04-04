@@ -49,16 +49,7 @@ build_debug_version() {
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_module_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/module_test || true
 
-        cd ../report/doxygen
-		if [ -e "doxygenconfig.ini" ]; then
-			doxygen --version
-			doxygen doxygenconfig.ini
-		else
-			echo "Doxygen failed"
-			echo "doxygen.ini does not exist"
-		fi
-
-		cd ../..
+		cd ..
 	else
 	    cd ..
 		echo "Makefile does not exist"
