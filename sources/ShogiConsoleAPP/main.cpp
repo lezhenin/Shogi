@@ -1,16 +1,8 @@
-#include <iostream>
 #include "ConsoleGame.h"
 
 int main()
 {
-    try
-    {
-        ConsoleGame game;
-        game.start();
-    }
-    catch(std::exception &e)
-    {
-        std::cout << e.what();
-    }
+    ConsoleGame game;
+    game.start();
     return 0;
 }

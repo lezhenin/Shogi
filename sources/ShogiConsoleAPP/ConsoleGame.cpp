@@ -151,6 +151,10 @@ void ConsoleGame::printBoard(AbstractBoard *board)
         std::cout << " " << i << std::endl;
     }
     std::cout << std::endl;
+    std::cout << "Captured pieces:" << std::endl;
+    std::cout << "Sente - " << game->getBoard().getCapturedPieces(Sente).size() << std::endl;
+    std::cout << "Gote - " << game->getBoard().getCapturedPieces(Gote).size() << std::endl;
+    std::cout << std::endl;
     while (!game->getGameSituation().empty())
     {
         std:: cout << (game->getGameSituation().front())->getMessage();
