@@ -52,6 +52,8 @@ public:
      * @param[in] position Позиция фигуры, куда нужно установить фиугру.
     */
     virtual void dropPiece(const PieceType pt, const Position& position)=0;
+    virtual void undo()=0;
+    virtual void redo()=0;
     /**
      * @brief Получть доску.
      * @return Указатель на доску с фигурами.

@@ -1,6 +1,7 @@
 #ifndef SHOGI_SHOGI_H
 #define SHOGI_SHOGI_H
 
+#include <stack>
 #include "GameLogic/GameSituations/PromotionIsAvailable.h"
 #include "GameLogic/GameSituations/Shah.h"
 #include "GameLogic/GameSituations/Mate.h"
@@ -21,6 +22,8 @@ public:
     virtual void movePiece(const Position &position) override;
     virtual void promotePiece(const Position &position) override;
     virtual void dropPiece(const PieceType pt, const Position &position) override;
+    virtual void undo() override;
+    virtual void redo() override;
     virtual AbstractBoard &getBoard() override;
     virtual ListOfGameSituations& getGameSituation() override;
     virtual ~Shogi();
@@ -31,7 +34,7 @@ private:
     AbstractGameLoader* gameLoader;
     AbstractGameSaver* gameSaver;
     ListOfGameSituations gameSituations;
-    std::vector<AbstractBoardMemento*> memntos;
+    std::stack<AbstractBoardMemento*> mementos;
     Piece *pickedPiece = nullptr;
     Player currentPlayer = Sente;
 

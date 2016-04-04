@@ -17,6 +17,11 @@ Shogi::Shogi()
 
 Shogi::~Shogi()
 {
+    while(!mementos.empty())
+    {
+        delete mementos.top();
+        mementos.pop();
+    }
     delete board;
     delete gameLogic;
     delete gameLoader;
@@ -55,6 +60,7 @@ void Shogi::movePiece(const Position &position)
     {
         throw std::exception();
     }
+    mementos.push(board->getMemento());
     if(this->board->getPiece(position) != nullptr)
     {
         this->board->getPiece(position)->unPromote();
@@ -112,6 +118,7 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
     {
         throw std::exception();
     }
+    mementos.push(board->getMemento());
     board->getCapturedPieces(currentPlayer).remove(ptr);
     board->setPiece(ptr, position);
 
@@ -121,6 +128,22 @@ ListOfGameSituations &Shogi::getGameSituation()
 {
     return gameSituations;
 }
+
+void Shogi::undo()
+{
+    board->setMemento(mementos.top());
+    delete mementos.top();
+    mementos.pop();
+}
+
+void Shogi::redo()
+{
+
+}
+
+
+
+
 
 
 
