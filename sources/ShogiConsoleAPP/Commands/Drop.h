@@ -17,7 +17,7 @@ public:
         }
         catch(std::exception &e)
         {
-            throw &e;
+            throw e;
         }
     }
 
