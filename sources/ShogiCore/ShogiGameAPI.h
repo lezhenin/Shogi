@@ -23,6 +23,11 @@ public:
      * Устанавливает фигуры на доске.
      */
     virtual void initGame()=0;
+
+    /**
+     *
+     */
+    virtual Player getCurrentPlayer() = 0;
     /**
      * @brief Выбрать фигуру.
      * Созраняет фигуру для дальнейших действий.

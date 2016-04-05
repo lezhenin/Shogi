@@ -17,6 +17,7 @@ public:
 
     Shogi();
     virtual void initGame() override;
+    virtual Player getCurrentPlayer() override;
     virtual void pickPiece(const Position &position) override;
     virtual void unPickPiece() override;
     virtual void movePiece(const Position &position) override;
