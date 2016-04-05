@@ -17,10 +17,10 @@ Shogi::Shogi()
 
 Shogi::~Shogi()
 {
-    while(!mementos.empty())
+    while(!toUndo.empty())
     {
-        delete mementos.top();
-        mementos.pop();
+        delete toUndo.top();
+        toUndo.pop();
     }
     delete board;
     delete gameLogic;
@@ -60,7 +60,7 @@ void Shogi::movePiece(const Position &position)
     {
         throw std::exception();
     }
-    mementos.push(board->getMemento());
+    toUndo.push(board->getMemento());
     if(this->board->getPiece(position) != nullptr)
     {
         this->board->getPiece(position)->unPromote();
@@ -80,7 +80,7 @@ void Shogi::movePiece(const Position &position)
     }
     if(gameLogic->checkPromotion(pickedPiece))
     {
-       gameSituations.push(std::shared_ptr<GameSituation>(new PromotionIsAvailable()));
+       gameSituations.push(std::shared_ptr<GameSituation>(new PromotionIsAvailable(this,position)));
     }
     unPickPiece();
     currentPlayer = transformPlayer(currentPlayer);
@@ -118,10 +118,10 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
     {
         throw std::exception();
     }
-    mementos.push(board->getMemento());
+    toUndo.push(board->getMemento());
     board->getCapturedPieces(currentPlayer).remove(ptr);
     board->setPiece(ptr, position);
-
+    currentPlayer = transformPlayer(currentPlayer);
 }
 
 ListOfGameSituations &Shogi::getGameSituation()
@@ -131,9 +131,9 @@ ListOfGameSituations &Shogi::getGameSituation()
 
 void Shogi::undo()
 {
-    board->setMemento(mementos.top());
-    delete mementos.top();
-    mementos.pop();
+    board->setMemento(toUndo.top());
+    delete toUndo.top();
+    toUndo.pop();
 }
 
 void Shogi::redo()

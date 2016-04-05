@@ -34,7 +34,8 @@ private:
     AbstractGameLoader* gameLoader;
     AbstractGameSaver* gameSaver;
     ListOfGameSituations gameSituations;
-    std::stack<AbstractBoardMemento*> mementos;
+    std::stack<AbstractBoardMemento*> toUndo;
+    std::stack<AbstractBoardMemento*> toRedo;
     Piece *pickedPiece = nullptr;
     Player currentPlayer = Sente;
 

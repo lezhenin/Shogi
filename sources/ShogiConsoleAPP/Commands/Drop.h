@@ -21,7 +21,6 @@ public:
         }
     }
 
-
 private:
     ShogiGameAPI *game;
     Position position;

@@ -5,7 +5,6 @@
 
 class Move : public Command
 {
-
 public:
     Move(ShogiGameAPI *game, int h, int v) : game(game), position(h,v) { }
     virtual void execute() override
@@ -19,7 +18,6 @@ public:
             throw e;
         }
     }
-
 
 private:
     ShogiGameAPI *game;

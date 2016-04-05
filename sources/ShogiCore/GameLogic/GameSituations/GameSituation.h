@@ -21,9 +21,12 @@ public:
      * false если игра продолжается.
      */
     bool isEndOfGame() { return  endOfGame;}
+    bool isExecutable() { return executable;}
+    virtual void execute(){};
 
 protected:
     bool endOfGame = false;
+    bool executable = false;
 };
 
 

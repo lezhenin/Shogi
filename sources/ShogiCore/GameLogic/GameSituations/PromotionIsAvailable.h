@@ -2,6 +2,8 @@
 #ifndef SHOGI_PROMOTIONISAVAIBLE_H
 #define SHOGI_PROMOTIONISAVAIBLE_H
 #include "GameSituation.h"
+#include "../../ShogiGameAPI.h"
+
 /**
  * @brief Игровая ситуация "Возможен переворт фигуры"
  */
@@ -9,9 +11,14 @@ class PromotionIsAvailable : public GameSituation
 {
 
 public:
-    PromotionIsAvailable():GameSituation() { }
-    std::string getMessage();
 
+    PromotionIsAvailable(ShogiGameAPI *game, const Position &position) : game(game), position(position) { executable = true; }
+
+    std::string getMessage();
+    void execute();
+private:
+    ShogiGameAPI *game;
+    Position position;
 };
 
 

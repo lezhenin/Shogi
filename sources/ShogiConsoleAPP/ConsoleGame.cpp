@@ -146,7 +146,7 @@ void ConsoleGame::printBoard(AbstractBoard *board)
             Piece *p = board->getPiece(Position(i,j));
 
             if (p==0) std::cout <<  "*** ";
-            else std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabeles.at(p->getType()) << " ";
+            else std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
         }
         std::cout << " " << i << std::endl;
     }
@@ -161,6 +161,10 @@ void ConsoleGame::printBoard(AbstractBoard *board)
         if (game->getGameSituation().front()->isEndOfGame())
         {
             stop();
+        }
+        if(game->getGameSituation().front()->isExecutable())
+        {
+
         }
         game->getGameSituation().pop();
     }
