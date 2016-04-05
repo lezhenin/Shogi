@@ -1,11 +1,13 @@
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 #include "ConsoleGame.h"
 #include "Commands/Pick.h"
 #include "Commands/UnPick.h"
 #include "Commands/Move.h"
 #include "Commands/Drop.h"
 #include "Commands/Exit.h"
+#include "Commands/ShowCapturedPieces.h"
 
 ConsoleGame::ConsoleGame()
 {
@@ -125,6 +127,10 @@ Command *ConsoleGame::inputCommand()
         {
             return new Exit(this);
         }
+        case 5:
+        {
+            return new ShowCapturedPieces(this);
+        }
         default:
         {
             return nullptr;
@@ -170,6 +176,28 @@ void ConsoleGame::printBoard(AbstractBoard *board)
     }
 
 }
+//todo refactor
+void ConsoleGame::printListOfCapturedPieces(Player player)
+{
+    ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
+    Piece tmp(Pawn,player);
+    std::cout << tableOfPlyares.at(player) << ":" << std::endl;
+    std::cout << "Pawn - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    tmp = Piece(Lance, player);
+    std::cout << "Lance - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    tmp = Piece(Knight, player);
+    std::cout << "Knight - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    tmp = Piece(Bishop, player);
+    std::cout << "Bishop - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    tmp = Piece(Rook, player);
+    std::cout << "Rook - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    tmp = Piece(SilverGeneral, player);
+    std::cout << "Silver General - " << std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    tmp = Piece(GoldGeneral,player);
+    std::cout << "Gold General - " << std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+}
+
+
 
 
 
