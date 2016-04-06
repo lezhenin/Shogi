@@ -16,8 +16,9 @@ public:
 
 private:
     Command *inputCommand();
-   // void pirintMessages();
-    void printBoard(AbstractBoard *board);
+    void print();
+    void printMessages(ListOfGameSituations &list);
+    void printBoard(AbstractBoard &board);
     void printListOfCapturedPieces(Player player);
 
     ShogiGameAPI *game;

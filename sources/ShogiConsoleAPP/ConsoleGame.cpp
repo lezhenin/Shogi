@@ -18,7 +18,7 @@ void ConsoleGame::start()
 {
     std::cout << "Start new game" << std::endl;
     game->initGame();
-    printBoard(&game->getBoard());
+    printBoard(game->getBoard());
     isRun = true;
     while(isRun)
     {
@@ -32,7 +32,7 @@ void ConsoleGame::start()
             {
                 std::cout << "Game error" << std::endl;
             }
-        printBoard(&game->getBoard());
+        print();
         delete command;
     }
 }
@@ -138,7 +138,7 @@ Command *ConsoleGame::inputCommand()
     }
 }
 
-void ConsoleGame::printBoard(AbstractBoard *board)
+void ConsoleGame::printBoard(AbstractBoard &board)
 {
     for(int j=9; j>=1; j--)
     {
@@ -149,32 +149,26 @@ void ConsoleGame::printBoard(AbstractBoard *board)
     {
         for(int j=9; j>=1; j--)
         {
-            Piece *p = board->getPiece(Position(i,j));
+            Piece *p = board.getPiece(Position(i,j));
 
-            if (p==0) std::cout <<  "*** ";
-            else std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
+            if (p == nullptr)
+            {
+                std::cout <<  "*** ";
+            }
+            else
+            {
+                bool picked = false;
+                std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
+            }
         }
         std::cout << " " << i << std::endl;
     }
     std::cout << std::endl;
+
     std::cout << "Captured pieces:" << std::endl;
-    std::cout << "Sente - " << game->getBoard().getCapturedPieces(Sente).size() << std::endl;
-    std::cout << "Gote - " << game->getBoard().getCapturedPieces(Gote).size() << std::endl;
+    std::cout << "Sente - " << board.getCapturedPieces(Sente).size() << std::endl;
+    std::cout << "Gote - " << board.getCapturedPieces(Gote).size() << std::endl;
     std::cout << std::endl;
-    while (!game->getGameSituation().empty())
-    {
-        std:: cout << (game->getGameSituation().front())->getMessage();
-        if (game->getGameSituation().front()->isEndOfGame())
-        {
-            stop();
-        }
-        if(game->getGameSituation().front()->isExecutable())
-        {
-
-        }
-        game->getGameSituation().pop();
-    }
-
 }
 //todo refactor
 void ConsoleGame::printListOfCapturedPieces(Player player)
@@ -196,6 +190,36 @@ void ConsoleGame::printListOfCapturedPieces(Player player)
     tmp = Piece(GoldGeneral,player);
     std::cout << "Gold General - " << std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
 }
+
+void ConsoleGame::printMessages(ListOfGameSituations &list)
+{
+    while (!list.empty())
+    {
+        GameSituation* gameSituation = game->getGameSituation().front().get();
+        std:: cout << gameSituation->getMessage() << std::endl;
+        if (gameSituation->isEndOfGame())
+        {
+            stop();
+        }
+        if(gameSituation->isExecutable())
+        {
+            gameSituation->execute();
+        }
+        list.pop();
+    }
+
+}
+
+void ConsoleGame::print()
+{
+    std::cout << "Player: " << tableOfPlyares.at(game->getCurrentPlayer()) << std::endl;
+    printBoard(game->getBoard());
+    printMessages(game->getGameSituation());
+}
+
+
+
+
 
 
 
