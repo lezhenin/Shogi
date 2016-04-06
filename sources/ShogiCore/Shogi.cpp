@@ -17,16 +17,8 @@ Shogi::Shogi()
 
 Shogi::~Shogi()
 {
-    while(!toUndo.empty())
-    {
-        delete toUndo.top();
-        toUndo.pop();
-    }
-    while(!toRedo.empty())
-    {
-        delete toRedo.top();
-        toRedo.pop();
-    }
+    clearToRedo();
+    clearToUndo();
     delete board;
     delete gameLogic;
     delete gameLoader;
@@ -39,15 +31,19 @@ AbstractBoard &Shogi::getBoard() {
 
 void Shogi::pickPiece(const Position &position)
 {
-    if(this->board->getPiece(position) == nullptr)
+    Piece * piece = this->board->getPiece(position);
+
+    if( piece == nullptr)
     {
         throw std::exception();
     }
-    if(this->board->getPiece(position)->getPlayer() != currentPlayer)
+
+    if(piece->getPlayer() != currentPlayer)
     {
         throw std::exception();
     }
-    this->pickedPiece = this->board->getPiece(position);
+
+    this->pickedPiece = piece;
 }
 
 void Shogi::unPickPiece()
@@ -65,21 +61,22 @@ void Shogi::movePiece(const Position &position)
     {
         throw std::exception();
     }
+
     toUndo.push(board->getMemento());
-    while(!toRedo.empty())
+    clearToRedo();
+
+    Piece* piece = this->board->getPiece(position);
+    if(piece != nullptr)
     {
-        delete toRedo.top();
-        toRedo.pop();
-    }
-    if(this->board->getPiece(position) != nullptr)
-    {
-        this->board->getPiece(position)->unPromote();
-        this->board->getPiece(position)->setPlayer(currentPlayer);
-        this->board->getCapturedPieces(currentPlayer).push_back(this->board->getPiece(position));
+        piece->unPromote();
+        piece->setPlayer(currentPlayer);
+        this->board->getCapturedPieces(currentPlayer).push_back(piece);
         this->board->removePiece(position);
     }
+
     this->board->removePiece(pickedPiece->getPosition());
     this->board->setPiece(pickedPiece,position);
+
     if(gameLogic->checkShah(transformPlayer(currentPlayer)))
     {
         gameSituations.push(std::shared_ptr<GameSituation>(new Shah()));
@@ -96,7 +93,8 @@ void Shogi::movePiece(const Position &position)
     currentPlayer = transformPlayer(currentPlayer);
 }
 
-Player Shogi::transformPlayer(Player player) const {
+Player Shogi::transformPlayer(Player player) const
+{
     return (Player)(((int)player+1)%2);
 }
 
@@ -122,20 +120,20 @@ void Shogi::dropPiece(const PieceType pt, const Position &position)
     {
         throw std::exception();
     }
-    Piece *ptr = *it;
 
-    if(!gameLogic->checkDrop(ptr,position))
+    Piece *piece = *it;
+
+    if(!gameLogic->checkDrop(piece,position))
     {
         throw std::exception();
     }
+
     toUndo.push(board->getMemento());
-    while(!toRedo.empty())
-    {
-        delete toRedo.top();
-        toRedo.pop();
-    }
-    board->getCapturedPieces(currentPlayer).remove(ptr);
-    board->setPiece(ptr, position);
+    clearToRedo();
+
+    board->getCapturedPieces(currentPlayer).remove(piece);
+    board->setPiece(piece, position);
+
     currentPlayer = transformPlayer(currentPlayer);
 }
 
@@ -166,9 +164,33 @@ void Shogi::redo()
 
 }
 
-Player Shogi::getCurrentPlayer() {
+Player Shogi::getCurrentPlayer()
+{
     return currentPlayer;
 }
+
+void Shogi::clearToUndo()
+{
+
+    while(!toUndo.empty())
+    {
+        delete toUndo.top();
+        toUndo.pop();
+    }
+}
+
+void Shogi::clearToRedo()
+{
+    while(!toRedo.empty())
+    {
+        delete toRedo.top();
+        toRedo.pop();
+    }
+}
+
+
+
+
 
 
 

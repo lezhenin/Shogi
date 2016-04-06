@@ -40,6 +40,9 @@ private:
     Piece *pickedPiece = nullptr;
     Player currentPlayer = Sente;
 
+    void clearToUndo();
+    void clearToRedo();
+
     Player transformPlayer(Player player) const;
 };
 
