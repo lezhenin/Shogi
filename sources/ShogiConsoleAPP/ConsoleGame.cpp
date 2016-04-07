@@ -8,6 +8,8 @@
 #include "Commands/Drop.h"
 #include "Commands/Exit.h"
 #include "Commands/ShowCapturedPieces.h"
+#include "Commands/Undo.h"
+#include "Commands/Redo.h"
 
 ConsoleGame::ConsoleGame()
 {
@@ -132,6 +134,14 @@ Command *ConsoleGame::inputCommand()
         case 5:
         {
             return new ShowCapturedPieces(this);
+        }
+        case 6:
+        {
+            return new Undo(game);
+        }
+        case 7:
+        {
+            return new Redo(game);
         }
         default:
         {
