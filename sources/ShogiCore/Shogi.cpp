@@ -148,6 +148,7 @@ void Shogi::undo()
     {
         toRedo.push(board->getMemento());
         board->setMemento(toUndo.top());
+        delete toUndo.top();
         toUndo.pop();
         currentPlayer = transformPlayer(currentPlayer);
     }
@@ -159,6 +160,7 @@ void Shogi::redo()
     {
         toUndo.push(board->getMemento());
         board->setMemento(toRedo.top());
+        delete toRedo.top();
         toRedo.pop();
         currentPlayer = transformPlayer(currentPlayer);
     }
