@@ -146,22 +146,22 @@ void Shogi::undo()
 {
     if(!toUndo.empty())
     {
+        toRedo.push(board->getMemento());
         board->setMemento(toUndo.top());
-        toRedo.push(toUndo.top());
         toUndo.pop();
+        currentPlayer = transformPlayer(currentPlayer);
     }
-
 }
 
 void Shogi::redo()
 {
     if(!toRedo.empty())
     {
+        toUndo.push(board->getMemento());
         board->setMemento(toRedo.top());
-        toUndo.push(toRedo.top());
         toRedo.pop();
+        currentPlayer = transformPlayer(currentPlayer);
     }
-
 }
 
 Player Shogi::getCurrentPlayer()

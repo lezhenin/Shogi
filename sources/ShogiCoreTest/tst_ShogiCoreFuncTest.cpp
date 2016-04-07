@@ -14,6 +14,7 @@ public:
 private Q_SLOTS:
     void gameInitTest();
     void pickAndMoveTest();
+    void undoAndRedoTest();
     void promoteTest();
     void getGameSitutatuinTest();
     void dropTest();
@@ -93,14 +94,30 @@ void ShogiCoreFuncTest::pickAndMoveTest()
     QCOMPARE((*game.getBoard().getCapturedPieces(Gote).begin())->getPlayer(),Gote);
     QCOMPARE((*game.getBoard().getCapturedPieces(Gote).begin())->getType(),Pawn);
     printBoard();
+
+
+
+}
+void ShogiCoreFuncTest::undoAndRedoTest()
+{
     game.pickPiece(Position(9,5));
     game.movePiece(Position(8,5));
+    printBoard();
+    QVERIFY(game.getBoard().getPiece(Position(9,5)) == nullptr);
+    QVERIFY(game.getBoard().getPiece(Position(8,5)) != nullptr);
+    game.undo();
+    printBoard();
+    QVERIFY(game.getBoard().getPiece(Position(9,5)) != nullptr);
+    QVERIFY(game.getBoard().getPiece(Position(8,5)) == nullptr);
+    game.redo();
+    printBoard();
+    QVERIFY(game.getBoard().getPiece(Position(9,5)) == nullptr);
+    QVERIFY(game.getBoard().getPiece(Position(8,5)) != nullptr);
     game.pickPiece(Position(5,2));
     game.movePiece(Position(6,2));
     game.pickPiece(Position(9,6));
     game.movePiece(Position(8,6));
     printBoard();
-
 }
 
 void ShogiCoreFuncTest::promoteTest()
