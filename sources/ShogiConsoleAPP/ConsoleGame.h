@@ -29,7 +29,7 @@ private:
                                                     {"bishop", Bishop}, {"silver general", SilverGeneral}, {"knight", Knight}, {"lance", Lance}};
     std::map<PieceType,std::string> tableOfLabels = {{King, "uK"}, {GoldGeneral, "uG"}, {Rook, "uR"}, {Bishop, "uB"}, {SilverGeneral, "uS"}, {Knight, "uH"}, {Lance, "uL"}, {Pawn, "uP"},
                                        {PromotedRook, "pR"}, {PromotedBishop, "pB"}, {PromotedSilverGeneral, "pS"}, {PromotedKnight, "pH"}, {PromotedLance, "pL"}, {PromotedPawn, "pP"}};
-    std::map<Player,std::string> tableOfPlyares = {{Sente, "Sente"},{Gote, "Gote"}};
+    std::map<Player,std::string> tableOfPlayers = {{Sente, "Sente"},{Gote, "Gote"}};
 
     friend class ShowCapturedPieces;
 };

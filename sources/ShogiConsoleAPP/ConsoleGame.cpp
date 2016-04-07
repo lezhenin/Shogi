@@ -18,7 +18,7 @@ void ConsoleGame::start()
 {
     std::cout << "Start new game" << std::endl;
     game->initGame();
-    printBoard(game->getBoard());
+    print();
     isRun = true;
     while(isRun)
     {
@@ -70,7 +70,9 @@ Command *ConsoleGame::inputCommand()
             std::cin.clear();
             if (h>=1 && h<=9 && v>=1 && v<=9)
             {
-                return new Pick(game,h,v);
+                Command *ptr = new Pick(game,h,v);
+                std::cout << "Picked piece: " << h << " " << v << std::endl;
+                return ptr;
             }
             else
             {
@@ -157,7 +159,6 @@ void ConsoleGame::printBoard(AbstractBoard &board)
             }
             else
             {
-                bool picked = false;
                 std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
             }
         }
@@ -175,7 +176,7 @@ void ConsoleGame::printListOfCapturedPieces(Player player)
 {
     ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
     Piece tmp(Pawn,player);
-    std::cout << tableOfPlyares.at(player) << ":" << std::endl;
+    std::cout << tableOfPlayers.at(player) << ":" << std::endl;
     std::cout << "Pawn - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
     tmp = Piece(Lance, player);
     std::cout << "Lance - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
@@ -203,7 +204,20 @@ void ConsoleGame::printMessages(ListOfGameSituations &list)
         }
         if(gameSituation->isExecutable())
         {
-            gameSituation->execute();
+            std::cout << "Do you want to do it?(yes/no)" << std::endl;
+            std::string answer="";
+            std::cin >> answer;
+            while(answer!="yes" && answer!="no")
+            {
+                std::cout << "Unknown command" << std::endl;
+                std::cin >> answer;
+            }
+            if(answer=="yes")
+            {
+                gameSituation->execute();
+                std::cout << "Player: " << tableOfPlayers.at(game->getCurrentPlayer()) << std::endl;
+                printBoard(game->getBoard());
+            }
         }
         list.pop();
     }
@@ -212,7 +226,7 @@ void ConsoleGame::printMessages(ListOfGameSituations &list)
 
 void ConsoleGame::print()
 {
-    std::cout << "Player: " << tableOfPlyares.at(game->getCurrentPlayer()) << std::endl;
+    std::cout << "Player: " << tableOfPlayers.at(game->getCurrentPlayer()) << std::endl;
     printBoard(game->getBoard());
     printMessages(game->getGameSituation());
 }
