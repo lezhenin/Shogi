@@ -6,9 +6,10 @@ BoardMemento::BoardMemento(Board *board): board(board)
     this->capturedPieces[Gote] = board->getCapturedPieces(Gote);
     for(ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); it != board->getPiecesOnBoard().end(); ++it)
     {
-        Pair p;
-        p.first=*it;
-        p.second=(*it)->getSquare();
+        PieceInfo p;
+        p.piece=*it;
+        p.square=(*it)->getSquare();
+        p.promote=(*it)->wasPromoted();
         pairs.push_back(p);
     }
 }
@@ -22,9 +23,17 @@ void BoardMemento::restore()
         p->setSquare(nullptr);
     }
     this->board->getPiecesOnBoard().clear();
-    for(std::vector<Pair>::iterator it = this->pairs.begin(); it < this->pairs.end(); ++it)
+    for(std::vector<PieceInfo>::iterator it = this->pairs.begin(); it < this->pairs.end(); ++it)
     {
-        this->board->setPiece(it->first,it->second->getPosition());
+        this->board->setPiece(it->piece,it->square->getPosition());
+        if(it->promote)
+        {
+            it->piece->promote();
+        }
+        else
+        {
+            it->piece->unPromote();
+        }
     }
 
     board->getCapturedPieces(Sente).clear();

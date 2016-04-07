@@ -5,7 +5,14 @@
 #include <vector>
 
 class Board;
-using Pair = std::pair<Piece*,Square*>;
+
+struct PieceInfo
+{
+    Piece* piece;
+    Square *square;
+    bool promote = false;
+};
+
 
 /**
  * @brief Реализция паттерна Мементо для модели доски.
@@ -33,7 +40,7 @@ public:
 
 private:
     Board * board;
-    std::vector<Pair> pairs;
+    std::vector<PieceInfo> pairs;
     std::map<Player,ListOfPieces> capturedPieces;
 };
 
