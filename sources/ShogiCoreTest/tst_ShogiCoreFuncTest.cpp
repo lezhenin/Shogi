@@ -116,7 +116,6 @@ void ShogiCoreFuncTest::getGameSitutatuinTest()
 {
     QCOMPARE((int)game.getGameSituation().size(),1);
     QVERIFY(!game.getGameSituation().front()->isEndOfGame());
-    GameSituation* gs = game.getGameSituation().front().get();
     QCOMPARE(game.getGameSituation().front()->getMessage(), std::string("You can promote piece."));
     game.getGameSituation().pop();
     QVERIFY(game.getGameSituation().empty());

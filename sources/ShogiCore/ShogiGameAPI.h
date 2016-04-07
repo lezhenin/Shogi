@@ -69,6 +69,8 @@ public:
      * @return Список игровых ситуаций
      */
     virtual ListOfGameSituations &getGameSituation()=0;
+
+    virtual ~ShogiGameAPI(){};
 };
 
 #endif // GAMECORE_H
