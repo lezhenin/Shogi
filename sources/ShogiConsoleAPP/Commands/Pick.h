@@ -5,30 +5,27 @@
 
 
 #include "Command.h"
+namespace APP {
+    class Pick : public Command {
 
-class Pick : public Command
-{
+    public:
+        Pick(ShogiAPI *game, int h, int v) : game(game), position(h, v) { }
 
-public:
-    Pick(ShogiAPI *game, int h, int v) : game(game), position(h,v) { }
-    virtual void execute() override
-    {
-        try
-        {
+        virtual void execute() override {
+            try {
 //            game->pickPiece(position);
+            }
+            catch (std::exception &e) {
+                throw e;
+            }
         }
-        catch(std::exception &e)
-        {
-            throw e;
-        }
-    }
 
 
-private:
-    ShogiAPI *game;
-    Position position;
-};
+    private:
+        ShogiAPI *game;
+        Position position;
+    };
 
-
+}
 
 #endif //SHOGI_PICK_H

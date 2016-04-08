@@ -4,9 +4,9 @@
 #include <vector>
 #include <memory>
 #include <queue>
-#include "GameLogic/GameSituations/GameSituation.h"
-#include "Model/Position.h"
-#include "Model/Board.h"
+#include "../GameLogic/GameSituations/GameSituation.h"
+#include "../Model/Position.h"
+#include "../Model/Board.h"
 
 using ListOfGameSituations = std::queue<std::shared_ptr<GameSituation>>;
 

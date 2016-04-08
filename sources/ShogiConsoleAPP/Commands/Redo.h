@@ -3,27 +3,24 @@
 
 
 #include "Command.h"
+namespace APP {
+    class Redo : public Command {
+    public:
+        Redo(ShogiAPI *game) : game(game) { }
 
-class Redo : public Command
-{
-public:
-    Redo(ShogiAPI *game) : game(game) { }
-    virtual void execute() override
-    {
-        try
-        {
+        virtual void execute() override {
+            try {
 //            game->redo();
+            }
+            catch (std::exception &e) {
+                throw e;
+            }
         }
-        catch(std::exception &e)
-        {
-            throw e;
-        }
-    }
 
-private:
-    ShogiAPI *game;
-};
+    private:
+        ShogiAPI *game;
+    };
 
-
+}
 
 #endif //SHOGI_REDO_H

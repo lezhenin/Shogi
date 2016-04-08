@@ -3,28 +3,25 @@
 
 
 #include "Command.h"
+namespace APP {
+    class UnPick : public Command {
 
-class UnPick : public Command
-{
+    public:
+        explicit UnPick(ShogiAPI *game) : game(game) { }
 
-public:
-    explicit UnPick(ShogiAPI *game) : game(game) { }
-    virtual void execute() override
-    {
-        try
-        {
+        virtual void execute() override {
+            try {
 //            game->unPickPiece();
+            }
+            catch (std::exception &e) {
+                throw e;
+            }
         }
-        catch(std::exception &e)
-        {
-            throw e;
-        }
-    }
 
-private:
-    ShogiAPI *game;
-};
+    private:
+        ShogiAPI *game;
+    };
 
-
+}
 
 #endif //SHOGI_UNPICK_H

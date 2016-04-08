@@ -3,12 +3,15 @@
 
 #include "../ConsoleGame.h"
 
-class Command
-{
-public:
-    virtual void execute() = 0;
-    virtual ~Command() { }
-};
+namespace APP {
 
+
+    class Command {
+    public:
+        virtual void execute() = 0;
+
+        virtual ~Command() { }
+    };
+}
 
 #endif //SHOGI_COMMAND_H

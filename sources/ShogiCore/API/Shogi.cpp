@@ -43,9 +43,16 @@ AbstractBoard &Shogi::getBoard()
 
 void Shogi::movePiece(const Position &from, const Position &to)
 {
-    Action* action = new Move(shogiGame,from,to);
-    action->execute();
-    done.push(action);
+    try
+    {
+        Action *action = new Move(shogiGame, from, to);
+        action->execute();
+        done.push(action);
+    }
+    catch(std::exception &e)
+    {
+        throw e;
+    }
 }
 
 void Shogi::dropPiece(const PieceType pt, const Position &position)

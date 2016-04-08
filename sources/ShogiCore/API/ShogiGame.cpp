@@ -1,8 +1,8 @@
 #include <algorithm>
 #include "ShogiGame.h"
-#include "GameLogic/GameSituations/PromotionIsAvailable.h"
-#include "GameLogic/GameSituations/Mate.h"
-#include "GameLogic/GameSituations/Shah.h"
+#include "../GameLogic/GameSituations/PromotionIsAvailable.h"
+#include "../GameLogic/GameSituations/Mate.h"
+#include "../GameLogic/GameSituations/Shah.h"
 
 void ShogiGame::initGame()
 {

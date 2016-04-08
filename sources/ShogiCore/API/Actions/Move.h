@@ -3,7 +3,7 @@
 
 
 #include "Action.h"
-#include "../Model/Position.h"
+#include "../../Model/Position.h"
 #include "../ShogiGameAPI.h"
 
 class Move : public Action
@@ -16,7 +16,6 @@ public:
 
     virtual void execute() override
     {
-        memento = shogiGame->getBoard().getMemento();
         try
         {
             shogiGame->pickPiece(from);

@@ -3,19 +3,20 @@
 
 #include "Command.h"
 
-class ShowCapturedPieces : public Command
-{
-public:
-    explicit ShowCapturedPieces(ConsoleGame *game) : game(game) { }
-    virtual void execute() override
-    {
+namespace APP {
+
+    class ShowCapturedPieces : public Command {
+    public:
+        explicit ShowCapturedPieces(ConsoleGame *game) : game(game) { }
+
+        virtual void execute() override {
             game->printListOfCapturedPieces(Sente);
             game->printListOfCapturedPieces(Gote);
-    }
+        }
 
-private:
-    ConsoleGame *game;
-};
-
+    private:
+        ConsoleGame *game;
+    };
+}
 
 #endif //SHOGI_SHOWCAPTUREDPIECES_H

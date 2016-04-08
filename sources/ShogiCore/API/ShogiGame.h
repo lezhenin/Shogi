@@ -3,9 +3,9 @@
 
 
 #include "ShogiGameAPI.h"
-#include "SaveAndLoad/GameSaver.h"
-#include "SaveAndLoad/GameLoader.h"
-#include "GameLogic/ShogiGameLogic.h"
+#include "../SaveAndLoad/GameSaver.h"
+#include "../SaveAndLoad/GameLoader.h"
+#include "../GameLogic/ShogiGameLogic.h"
 
 class ShogiGame : public ShogiGameAPI
 {

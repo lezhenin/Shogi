@@ -2,7 +2,7 @@
 
 int main()
 {
-    ConsoleGame game;
+    APP::ConsoleGame game;
     game.start();
     return 0;
 }

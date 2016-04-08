@@ -3,29 +3,26 @@
 
 
 #include "Command.h"
+namespace APP {
+    class Drop : public Command {
 
-class Drop : public Command
-{
+    public:
+        Drop(ShogiAPI *game, PieceType pieceType, int h, int v) : game(game), pieceType(pieceType), position(h, v) { }
 
-public:
-    Drop(ShogiAPI *game, PieceType pieceType, int h, int v) : game(game), pieceType(pieceType), position(h,v) { }
-    virtual void execute() override
-    {
-        try
-        {
-            game->dropPiece(pieceType, position);
+        virtual void execute() override {
+            try {
+                game->dropPiece(pieceType, position);
+            }
+            catch (std::exception &e) {
+                throw e;
+            }
         }
-        catch(std::exception &e)
-        {
-            throw e;
-        }
-    }
 
-private:
-    ShogiAPI *game;
-    Position position;
-    PieceType pieceType;
-};
+    private:
+        ShogiAPI *game;
+        Position position;
+        PieceType pieceType;
+    };
 
-
+}
 #endif //SHOGI_DROP_H

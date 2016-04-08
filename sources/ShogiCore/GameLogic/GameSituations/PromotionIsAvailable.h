@@ -2,7 +2,7 @@
 #ifndef SHOGI_PROMOTIONISAVAIBLE_H
 #define SHOGI_PROMOTIONISAVAIBLE_H
 #include "GameSituation.h"
-#include "../../ShogiAPI.h"
+#include "../../API/ShogiAPI.h"
 
 /**
  * @brief Игровая ситуация "Возможен переворт фигуры"

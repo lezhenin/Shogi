@@ -3,21 +3,20 @@
 
 
 #include "Command.h"
+namespace APP {
+    class Exit : public Command {
 
-class Exit : public Command
-{
+    public:
+        explicit Exit(ConsoleGame *consoleGame) : consoleGame(consoleGame) { }
 
-public:
-    explicit Exit(ConsoleGame *consoleGame) : consoleGame(consoleGame) { }
-    virtual void execute() override
-    {
-        consoleGame->stop();
-    }
-
-
-private:
-    ConsoleGame *consoleGame;
-};
+        virtual void execute() override {
+            consoleGame->stop();
+        }
 
 
+    private:
+        ConsoleGame *consoleGame;
+    };
+
+}
 #endif //SHOGI_EXIT_H
