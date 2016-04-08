@@ -7,12 +7,12 @@
 class Redo : public Command
 {
 public:
-    Redo(ShogiGameAPI *game) : game(game) { }
+    Redo(ShogiAPI *game) : game(game) { }
     virtual void execute() override
     {
         try
         {
-            game->redo();
+//            game->redo();
         }
         catch(std::exception &e)
         {
@@ -21,7 +21,7 @@ public:
     }
 
 private:
-    ShogiGameAPI *game;
+    ShogiAPI *game;
 };
 
 

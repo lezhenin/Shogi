@@ -7,7 +7,7 @@
 class Undo : public Command
 {
 public:
-    Undo(ShogiGameAPI *game) : game(game) { }
+    Undo(ShogiAPI *game) : game(game) { }
     virtual void execute() override
     {
         try
@@ -21,7 +21,7 @@ public:
     }
 
 private:
-    ShogiGameAPI *game;
+    ShogiAPI *game;
 };
 
 

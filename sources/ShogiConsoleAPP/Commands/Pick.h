@@ -10,12 +10,12 @@ class Pick : public Command
 {
 
 public:
-    Pick(ShogiGameAPI *game, int h, int v) : game(game), position(h,v) { }
+    Pick(ShogiAPI *game, int h, int v) : game(game), position(h,v) { }
     virtual void execute() override
     {
         try
         {
-            game->pickPiece(position);
+//            game->pickPiece(position);
         }
         catch(std::exception &e)
         {
@@ -25,7 +25,7 @@ public:
 
 
 private:
-    ShogiGameAPI *game;
+    ShogiAPI *game;
     Position position;
 };
 

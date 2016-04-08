@@ -1,18 +1,18 @@
-#ifndef SHOGI_SHOGIGAMEAPI_H
-#define SHOGI_SHOGIGAMEAPI_H
+#ifndef GAMECORE_H
+#define GAMECORE_H
 
-#include <vector>
-#include <memory>
-#include <queue>
-#include "GameLogic/GameSituations/GameSituation.h"
-#include "Model/Position.h"
-#include "Model/Board.h"
+#include "ShogiGameAPI.h"
 
-using ListOfGameSituations = std::queue<std::shared_ptr<GameSituation>>;
 
-class ShogiGameAPI
+
+/**
+ * @brief Игровой интерфейс.
+ */
+class ShogiAPI
 {
+
 public:
+
     /**
      * @brief Инициализировать игру.
      * Устанавливает фигуры на доске.
@@ -23,21 +23,11 @@ public:
      */
     virtual Player getCurrentPlayer() = 0;
     /**
-     * @brief Выбрать фигуру.
-     * Созраняет фигуру для дальнейших действий.
-     * @param[in] position Позиция фигуры.
-     */
-    virtual void pickPiece(const Position& position)=0;
-    /**
-     * @brief Отменить выбор фигуры.
-     */
-    virtual void unPickPiece()=0;
-    /**
      * @brief Переместить фигуру.
      * Перемещает раннее выбранную фигуру.
      * @param[in] position Позиция куда необходимо перместить фигур.
      */
-    virtual void movePiece(const Position& position)=0;
+    virtual void movePiece(const Position &from, const Position& to)=0;
     /**
      * @brief Перевернуть фигуру.
      * Переворачивает фигуру.
@@ -62,9 +52,10 @@ public:
      */
     virtual ListOfGameSituations &getGameSituation()=0;
 
+    virtual void undo()=0;
 
-    virtual ~ShogiGameAPI() { }
+
+    virtual ~ShogiAPI(){};
 };
 
-
-#endif //SHOGI_SHOGIGAMEAPI_H
+#endif // GAMECORE_H

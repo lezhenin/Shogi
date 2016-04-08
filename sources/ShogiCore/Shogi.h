@@ -5,12 +5,13 @@
 #include "GameLogic/GameSituations/PromotionIsAvailable.h"
 #include "GameLogic/GameSituations/Shah.h"
 #include "GameLogic/GameSituations/Mate.h"
-#include "ShogiGameAPI.h"
+#include "ShogiAPI.h"
 #include "GameLogic/ShogiGameLogic.h"
 #include "SaveAndLoad/GameLoader.h"
 #include "SaveAndLoad/GameSaver.h"
+#include "Actions/Action.h"
 
-class Shogi: public ShogiGameAPI
+class Shogi: public ShogiAPI
 {
 
 public:
@@ -18,32 +19,21 @@ public:
     Shogi();
     virtual void initGame() override;
     virtual Player getCurrentPlayer() override;
-    virtual void pickPiece(const Position &position) override;
-    virtual void unPickPiece() override;
-    virtual void movePiece(const Position &position) override;
+    virtual void movePiece(const Position &from, const Position &to) override;
     virtual void promotePiece(const Position &position) override;
     virtual void dropPiece(const PieceType pt, const Position &position) override;
-    virtual void undo() override;
-    virtual void redo() override;
     virtual AbstractBoard &getBoard() override;
     virtual ListOfGameSituations& getGameSituation() override;
     virtual ~Shogi();
 
+    virtual void undo() override;
+
 private:
-    AbstractBoard* board;
-    AbstractShogiGameLogic* gameLogic;
-    AbstractGameLoader* gameLoader;
-    AbstractGameSaver* gameSaver;
-    ListOfGameSituations gameSituations;
-    std::stack<AbstractBoardMemento*> toUndo;
-    std::stack<AbstractBoardMemento*> toRedo;
-    Piece *pickedPiece = nullptr;
-    Player currentPlayer = Sente;
 
-    void clearToUndo();
-    void clearToRedo();
+    ShogiGameAPI *shogiGame;
+    std::stack<Action*> done;
 
-    Player transformPlayer(Player player) const;
+
 };
 
 

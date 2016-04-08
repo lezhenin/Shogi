@@ -2,7 +2,7 @@
 
 set(SOURCE_FILES
 
-        ShogiGameAPI.h
+        ShogiAPI.h
 
         Model/Board.cpp
         Model/Board.h
@@ -45,7 +45,7 @@ set(SOURCE_FILES
         SaveAndLoad/GameSaver.h
 
         Shogi.cpp
-        Shogi.h)
+        Shogi.h ShogiGameAPI.h ShogiGame.cpp ShogiGame.h Actions/Action.h Actions/Move.h Actions/Drop.h Actions/Promote.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 

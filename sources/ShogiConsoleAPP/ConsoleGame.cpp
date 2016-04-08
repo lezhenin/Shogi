@@ -72,9 +72,10 @@ Command *ConsoleGame::inputCommand()
             std::cin.clear();
             if (h>=1 && h<=9 && v>=1 && v<=9)
             {
-                Command *ptr = new Pick(game,h,v);
-                std::cout << "Picked piece: " << h << " " << v << std::endl;
-                return ptr;
+               // Command *ptr = new Pick(game,h,v);
+                //std::cout << "Picked piece: " << h << " " << v << std::endl;
+               // return ptr;
+                return nullptr;
             }
             else
             {
@@ -84,16 +85,17 @@ Command *ConsoleGame::inputCommand()
         }
         case 1:
         {
-            return new UnPick(game);
+            //return new UnPick(game);
+            return nullptr;
         }
         case 2:
         {
-            int h, v;
-            std::cin >> h >> v;
+            int h1, v1, h2, v2;
+            std::cin >> h1 >> v1 >> h2 >> v2;
             std::cin.clear();
-            if (h>=1 && h<=9 && v>=1 && v<=9)
+            if (h1>=1 && h1<=9 && v1>=1 && v1<=9 && h2>=1 && h2<=9 && v2>=1 && v2<=9)
             {
-                return new Move(game,h,v);
+                return new Move(game,h1,v1,h2,v2);
             }
             else
             {
@@ -141,7 +143,8 @@ Command *ConsoleGame::inputCommand()
         }
         case 7:
         {
-            return new Redo(game);
+         //   return new Redo(game);
+            return nullptr;
         }
         default:
         {

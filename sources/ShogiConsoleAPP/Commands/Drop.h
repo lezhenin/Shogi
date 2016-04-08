@@ -8,7 +8,7 @@ class Drop : public Command
 {
 
 public:
-    Drop(ShogiGameAPI *game, PieceType pieceType, int h, int v) : game(game), pieceType(pieceType), position(h,v) { }
+    Drop(ShogiAPI *game, PieceType pieceType, int h, int v) : game(game), pieceType(pieceType), position(h,v) { }
     virtual void execute() override
     {
         try
@@ -22,7 +22,7 @@ public:
     }
 
 private:
-    ShogiGameAPI *game;
+    ShogiAPI *game;
     Position position;
     PieceType pieceType;
 };

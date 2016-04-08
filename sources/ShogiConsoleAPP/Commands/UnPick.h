@@ -8,12 +8,12 @@ class UnPick : public Command
 {
 
 public:
-    explicit UnPick(ShogiGameAPI *game) : game(game) { }
+    explicit UnPick(ShogiAPI *game) : game(game) { }
     virtual void execute() override
     {
         try
         {
-            game->unPickPiece();
+//            game->unPickPiece();
         }
         catch(std::exception &e)
         {
@@ -22,7 +22,7 @@ public:
     }
 
 private:
-    ShogiGameAPI *game;
+    ShogiAPI *game;
 };
 
 

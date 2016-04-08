@@ -21,7 +21,7 @@ private:
     void printBoard(AbstractBoard &board);
     void printListOfCapturedPieces(Player player);
 
-    ShogiGameAPI *game;
+    ShogiAPI *game;
     bool isRun = false;
 
     std::map<std::string,int> tableOfCommands = {{"pick",0},{"unpick",1},{"move",2},{"drop",3},{"exit",4},{"show", 5},{"undo", 6}, {"redo", 7}};

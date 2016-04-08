@@ -6,12 +6,12 @@
 class Move : public Command
 {
 public:
-    Move(ShogiGameAPI *game, int h, int v) : game(game), position(h,v) { }
+    Move(ShogiAPI *game, int h1, int v1, int h2, int v2) : game(game), from(h1,v1), to(v2,h2)  { }
     virtual void execute() override
     {
         try
         {
-            game->movePiece(position);
+            game->movePiece(to, from);
         }
         catch(std::exception &e)
         {
@@ -20,8 +20,10 @@ public:
     }
 
 private:
-    ShogiGameAPI *game;
-    Position position;
+    ShogiAPI *game;
+    Position from;
+    Position to;
+
 };
 
 
