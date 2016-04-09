@@ -1,8 +1,8 @@
-#include "ConsoleGame.h"
+#include "GameApp.h"
 
 int main()
 {
-    ConsoleGame game;
-    game.start();
+    GameApp app;
+    app.start();
     return 0;
 }

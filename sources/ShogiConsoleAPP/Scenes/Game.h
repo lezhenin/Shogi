@@ -1,21 +1,21 @@
 #ifndef SHOGI_GAME_H
 #define SHOGI_GAME_H
+#include "../../ShogiCore/ShogiGameAPI.h"
+#include "Scene.h"
 
-
-#include "../ShogiCore/Shogi.h"
-#include "Commands/Command.h"
-
-class ConsoleGame
+class Game : public Scene
 {
+
 public:
 
-    ConsoleGame();
-    void start();
-    void stop();
-    virtual ~ConsoleGame();
+    Game();
+
+    virtual void show();
+    virtual ~Game();
 
 private:
-    Command *inputCommand();
+    void input();
+    void stop();
     void print();
     void printMessages(ListOfGameSituations &list);
     void printBoard(AbstractBoard &board);
@@ -28,10 +28,10 @@ private:
     std::map<std::string,PieceType> tableOfTypes = {{"pawn", Pawn},{"king", King}, {"golden general", GoldGeneral}, {"rook" ,Rook},
                                                     {"bishop", Bishop}, {"silver general", SilverGeneral}, {"knight", Knight}, {"lance", Lance}};
     std::map<PieceType,std::string> tableOfLabels = {{King, "uK"}, {GoldGeneral, "uG"}, {Rook, "uR"}, {Bishop, "uB"}, {SilverGeneral, "uS"}, {Knight, "uH"}, {Lance, "uL"}, {Pawn, "uP"},
-                                       {PromotedRook, "pR"}, {PromotedBishop, "pB"}, {PromotedSilverGeneral, "pS"}, {PromotedKnight, "pH"}, {PromotedLance, "pL"}, {PromotedPawn, "pP"}};
+                                                     {PromotedRook, "pR"}, {PromotedBishop, "pB"}, {PromotedSilverGeneral, "pS"}, {PromotedKnight, "pH"}, {PromotedLance, "pL"}, {PromotedPawn, "pP"}};
     std::map<Player,std::string> tableOfPlayers = {{Sente, "Sente"},{Gote, "Gote"}};
 
-    friend class ShowCapturedPieces;
 };
+
 
 #endif //SHOGI_GAME_H
