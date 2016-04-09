@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MainMenu.h"
 #include "Game.h"
+#include "Help.h"
 
 void MainMenu::show()
 {
@@ -16,6 +17,11 @@ void MainMenu::show()
         case 1:
         {
             next = new Game();
+            break;
+        }
+        case 4:
+        {
+            next = new Help();
             break;
         }
         case 5:
