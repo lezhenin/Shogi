@@ -23,15 +23,16 @@ public:
      * Устанавливает фигуры на доске.
      */
     virtual void initGame()=0;
-
     /**
+     * @brief Узнать какому игрку принадлежит очередность хода.
      *
+     * @return Игрок, который совершает ход в данный момент.
      */
     virtual Player getCurrentPlayer() = 0;
     /**
      * @brief Выбрать фигуру.
      * Созраняет фигуру для дальнейших действий.
-     * @param[in] position Позиция фигуры.
+     * @param position Позиция фигуры.
      */
     virtual void pickPiece(const Position& position)=0;
     /**
@@ -41,7 +42,7 @@ public:
     /**
      * @brief Переместить фигуру.
      * Перемещает раннее выбранную фигуру.
-     * @param[in] position Позиция куда необходимо перместить фигур.
+     * @param position Позиция куда необходимо перместить фигур.
      */
     virtual void movePiece(const Position& position)=0;
     /**
@@ -57,7 +58,19 @@ public:
      * @param[in] position Позиция фигуры, куда нужно установить фиугру.
     */
     virtual void dropPiece(const PieceType pt, const Position& position)=0;
+    /**
+     * @brief Отмена хода
+     *
+     * Возвращает доску к тому состоянию, которое
+     * было до совершения предыдущего хода.
+     */
     virtual void undo()=0;
+    /**
+     * @brief Возврат хода
+     *
+     * Возвращает доску к тому состоянию, которое
+     * было до отмены предыдущего хода.
+     */
     virtual void redo()=0;
     /**
      * @brief Получть доску.
