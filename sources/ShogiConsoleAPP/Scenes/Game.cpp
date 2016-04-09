@@ -118,6 +118,7 @@ void Game::input()
                 case 4:
                 {
                     stop();
+                    x = false;
                     break;
                 }
                 case 5:
