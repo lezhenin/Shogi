@@ -1,13 +1,14 @@
 #ifndef SHOGI_GAMESAVER_H
 #define SHOGI_GAMESAVER_H
 
-#include "AbstractGameSaver.h"
+#include "WritersAndReaders/SaveWriter.h"
+#include "../Model/AbstractBoard.h"
 
-class GameSaver : public AbstractGameSaver
+class GameSaver
 {
-
 public:
-    virtual Save saveGame(AbstractBoard &board);
+
+    void saveGame(SaveWriter *saveWriter,AbstractBoard &board);
 
 };
 

@@ -32,8 +32,8 @@ public:
 private:
     AbstractBoard* board;
     AbstractShogiGameLogic* gameLogic;
-    AbstractGameLoader* gameLoader;
-    AbstractGameSaver* gameSaver;
+    GameLoader* gameLoader;
+    GameSaver* gameSaver;
     ListOfGameSituations gameSituations;
     std::stack<AbstractBoardMemento*> toUndo;
     std::stack<AbstractBoardMemento*> toRedo;

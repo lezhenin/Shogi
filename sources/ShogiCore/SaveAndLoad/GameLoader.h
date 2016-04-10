@@ -2,13 +2,15 @@
 #define SHOGI_GAMELOADER_H
 
 
-#include "AbstractGameLoader.h"
+#include "../Model/AbstractBoard.h"
+#include "WritersAndReaders/SaveWriter.h"
+#include "WritersAndReaders/SaveReader.h"
 
-class GameLoader: public AbstractGameLoader
+class GameLoader
 {
 public:
 
-    virtual void loadGame(const Save &save, AbstractBoard &board);
+    virtual void loadGame(SaveReader *saveReader, AbstractBoard &board);
     virtual void loadGame(AbstractBoard &board);
 
 };

@@ -1,21 +1,19 @@
 
 #include "GameSaver.h"
 
-Save GameSaver::saveGame(AbstractBoard &board)
+void GameSaver::saveGame(SaveWriter *saveWriter, AbstractBoard &board)
 {
-    Save save;
+
     for (Piece *piece: board.getPiecesOnBoard())
     {
-        save.onBoard.push_back(Block(piece->getType(),piece->getPlayer(),
-                                     piece->getPosition().getHorizontal(),piece->getPosition().getVertical()));
+        saveWriter->addPieceOnBoard(piece->getType(), piece->getPlayer(), piece->getPosition());
     }
     for(Piece *piece: board.getCapturedPieces(Sente))
     {
-        save.senteCaptured.push_back(piece->getType());
+        saveWriter->addCapturedPiece(Sente, piece->getType());
     }
     for(Piece *piece: board.getCapturedPieces(Gote))
     {
-        save.goteCaptured.push_back(piece->getType());
+        saveWriter->addCapturedPiece(Gote, piece->getType());
     }
-    return save;
 }

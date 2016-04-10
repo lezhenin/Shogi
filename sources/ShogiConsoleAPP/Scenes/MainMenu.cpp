@@ -19,6 +19,11 @@ void MainMenu::show()
             next = new Game();
             break;
         }
+        case 2:
+        {
+            next = new Game();
+            break;
+        }
         case 4:
         {
             next = new Help();

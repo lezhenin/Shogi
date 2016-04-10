@@ -1,63 +1,72 @@
 #include "GameLoader.h"
+#include "WritersAndReaders/Simple/SimpleSaveWriter.h"
+#include "WritersAndReaders/Simple/SimpleSaveReader.h"
 
 
 void GameLoader::loadGame(AbstractBoard &board)
 {
-    Save newGame;
+    SimpleSaveWriter *newGame = new SimpleSaveWriter();
+
     for(int i = 1; i<=9; i++)
     {
-        newGame.onBoard.push_back(Block(Pawn, Sente, i, 7));
-        newGame.onBoard.push_back(Block(Pawn, Gote, i, 3));
+        newGame->addPieceOnBoard(Pawn, Sente, Position(7, i));
+        newGame->addPieceOnBoard(Pawn, Gote, Position(3, i));
     }
-    newGame.onBoard.push_back(Block(Lance,Sente,9,9));
-    newGame.onBoard.push_back(Block(Lance,Sente,1,9));
-    newGame.onBoard.push_back(Block(Lance,Gote,1,1));
-    newGame.onBoard.push_back(Block(Lance,Gote,9,1));
+    newGame->addPieceOnBoard(Lance,Sente,Position(9, 9));
+    newGame->addPieceOnBoard(Lance,Sente,Position(9, 1));
+    newGame->addPieceOnBoard(Lance,Gote,Position(1, 1));
+    newGame->addPieceOnBoard(Lance,Gote,Position(1, 9));
 
-    newGame.onBoard.push_back(Block(Knight,Sente,8,9));
-    newGame.onBoard.push_back(Block(Knight,Sente,2,9));
-    newGame.onBoard.push_back(Block(Knight,Gote,2,1));
-    newGame.onBoard.push_back(Block(Knight,Gote,8,1));
+    newGame->addPieceOnBoard(Knight,Sente,Position(9, 8));
+    newGame->addPieceOnBoard(Knight,Sente,Position(9, 2));
+    newGame->addPieceOnBoard(Knight,Gote,Position(1, 8));
+    newGame->addPieceOnBoard(Knight,Gote,Position(1, 2));
 
-    newGame.onBoard.push_back(Block(SilverGeneral,Sente,7,9));
-    newGame.onBoard.push_back(Block(SilverGeneral,Sente,3,9));
-    newGame.onBoard.push_back(Block(SilverGeneral,Gote,3,1));
-    newGame.onBoard.push_back(Block(SilverGeneral,Gote,7,1));
+    newGame->addPieceOnBoard(SilverGeneral,Sente,Position(9, 7));
+    newGame->addPieceOnBoard(SilverGeneral,Sente,Position(9, 3));
+    newGame->addPieceOnBoard(SilverGeneral,Gote,Position(1, 3));
+    newGame->addPieceOnBoard(SilverGeneral,Gote,Position(1, 7));
 
-    newGame.onBoard.push_back(Block(GoldGeneral,Sente,6,9));
-    newGame.onBoard.push_back(Block(GoldGeneral,Sente,4,9));
-    newGame.onBoard.push_back(Block(GoldGeneral,Gote,4,1));
-    newGame.onBoard.push_back(Block(GoldGeneral,Gote,6,1));
+    newGame->addPieceOnBoard(GoldGeneral,Sente,Position(9, 6));
+    newGame->addPieceOnBoard(GoldGeneral,Sente,Position(9, 4));
+    newGame->addPieceOnBoard(GoldGeneral,Gote,Position(1, 4));
+    newGame->addPieceOnBoard(GoldGeneral,Gote,Position(1, 6));
 
-    newGame.onBoard.push_back(Block(King,Sente,5,9));
-    newGame.onBoard.push_back(Block(King,Gote,5,1));
+    newGame->addPieceOnBoard(King,Sente,Position(9, 5));
+    newGame->addPieceOnBoard(King,Gote,Position(1, 5));
 
-    newGame.onBoard.push_back(Block(Rook,Sente,2,8));
-    newGame.onBoard.push_back(Block(Rook,Gote,8,2));
+    newGame->addPieceOnBoard(Rook,Sente,Position(8, 2));
+    newGame->addPieceOnBoard(Rook,Gote,Position(2, 8));
 
-    newGame.onBoard.push_back(Block(Bishop,Sente,8,8));
-    newGame.onBoard.push_back(Block(Bishop,Gote,2,2));
+    newGame->addPieceOnBoard(Bishop,Sente,Position(8, 8));
+    newGame->addPieceOnBoard(Bishop,Gote,Position(2, 2));
 
-    loadGame(newGame,board);
+    SimpleSave *save = newGame->getSimpleSave();
+    SaveReader *reader = new SimpleSaveReader(save);
+    loadGame(reader,board);
+    delete reader;
+    delete newGame;
+
 }
 
-void GameLoader::loadGame(const Save &save, AbstractBoard &board)
+void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board)
 {
-    for (const Block &b: save.onBoard)
+
+    for (const Block &b: saveReader->getPiecesOnBoard())
     {
         {
             Piece *tmp = new Piece (b.pieceType,b.player);
-            board.setPiece(tmp,Position(b.horizontal,b.vertical));
+            board.setPiece(tmp,b.position);
             board.getAllPieces().push_back(tmp);
         }
     }
-    for (const PieceType &pt: save.senteCaptured)
+    for (const PieceType &pt: saveReader->getCapturedPieces(Sente))
     {
         Piece *tmp = new Piece(pt,Sente);
         board.getCapturedPieces(Sente).push_back(tmp);
         board.getAllPieces().push_back(tmp);
     }
-    for (const PieceType &pt: save.goteCaptured)
+    for (const PieceType &pt: saveReader->getCapturedPieces(Gote))
     {
         Piece *tmp = new Piece(pt,Gote);
         board.getCapturedPieces(Gote).push_back(tmp);

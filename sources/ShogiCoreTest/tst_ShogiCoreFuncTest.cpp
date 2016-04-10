@@ -51,6 +51,7 @@ void ShogiCoreFuncTest::gameInitTest()
 {
     game.initGame();
     AbstractBoard &board = game.getBoard();
+    printBoard();
     for(int i = 1; i<=9; i++)
     {
      QVERIFY(board.getPiece(Position(9,i)) != nullptr);
