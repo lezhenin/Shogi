@@ -43,7 +43,7 @@ void Game::input()
                             game->pickPiece(Position(h, v));
                             x = false;
                         }
-                        catch (std::exception)
+                        catch (std::exception) /// (std::exception &e)
                         {
                             std::cout << "Game error" << std::endl;
                         }
@@ -72,7 +72,7 @@ void Game::input()
                             game->movePiece(Position(h, v));
                             x = false;
                         }
-                        catch (std::exception)
+                        catch (std::exception) /// (std::exception &e)
                         {
                             std::cout << "Game error" << std::endl;
                         }
@@ -100,7 +100,7 @@ void Game::input()
                                 game->dropPiece(pieceType, Position(h, v));
                                 x = false;
                             }
-                            catch (std::exception)
+                            catch (std::exception) /// (std::exception &e)
                             {
                                 std::cout << "Game error" << std::endl;
                             }
@@ -157,16 +157,16 @@ void Game::input()
 
 void Game::printBoard(AbstractBoard &board)
 {
-    for(int j=9; j>=1; j--)
+    for(int j=9; j>=1; j--) /// for (int j = 9; j >= 1; j--) 
     {
         std::cout << " " << j << "  ";
     }
     std::cout << std::endl;
-    for(int i=1; i<=9; i++)
+    for(int i=1; i<=9; i++) /// и тут тоже напиши красиво
     {
-        for(int j=9; j>=1; j--)
+        for(int j=9; j>=1; j--) /// ....
         {
-            Piece *p = board.getPiece(Position(i,j));
+            Piece *p = board.getPiece(Position(i,j)); /// Position(i, j)
 
             if (p == nullptr)
             {
@@ -174,7 +174,8 @@ void Game::printBoard(AbstractBoard &board)
             }
             else
             {
-                std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
+                std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " "; /// почему ты отделяешь 
+                /// операции присваивания пробелами (строка 192, например), а логические операции нет
             }
         }
         std::cout << " " << i << std::endl;
@@ -192,8 +193,9 @@ void Game::printListOfCapturedPieces(Player player)
     ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
     Piece tmp(Pawn,player);
     std::cout << tableOfPlayers.at(player) << ":" << std::endl;
-    std::cout << "Pawn - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
-    tmp = Piece(Lance, player);
+    /// поставь пробелы после запятых - легче читать будет, в Game::input хорошо же было
+    std::cout << "Pawn - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
+    tmp = Piece(Lance, player); 
     std::cout << "Lance - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
     tmp = Piece(Knight, player);
     std::cout << "Knight - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
@@ -220,14 +222,14 @@ void Game::printMessages(ListOfGameSituations &list)
         if(gameSituation->isExecutable())
         {
             std::cout << "Do you want to do it?(yes/no)" << std::endl;
-            std::string answer="";
+            std::string answer=""; /// а тут не отделил присваивание
             std::cin >> answer;
-            while(answer!="yes" && answer!="no")
+            while(answer != "yes" && answer != "no")
             {
                 std::cout << "Unknown command" << std::endl;
                 std::cin >> answer;
             }
-            if(answer=="yes")
+            if(answer == "yes")
             {
                 gameSituation->execute();
                 std::cout << "Player: " << tableOfPlayers.at(game->getCurrentPlayer()) << std::endl;
