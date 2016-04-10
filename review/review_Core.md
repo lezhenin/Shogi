@@ -34,7 +34,7 @@ class ShogiGameLogic: public AbstractShogiGameLogic
 virtual void pickPiece(const Position& position)=0;
 ```
  
- * Не все методы прокомментированы, например в файле **AbstractGameLoader.h** :
+ * Не все методы прокомментированы, например, в файле **AbstractGameLoader.h** :
 ```cpp
 /**
  *
