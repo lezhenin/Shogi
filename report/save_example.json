@@ -1,35 +1,32 @@
 {
-  "party":
-  {
-    "piecesOnBoard" :
-    [
-      {
-        "type" : "pawn",
-        "player" : "sente",
-        "position" : [ 7 , 2 ]
-      },
-      {
-        "type" : "pawn",
-        "player" : "sente",
-        "position" : [ 7 , 3 ]
-      }
-
-    ],
-    "capturedPieces" :
+  "piecesOnBoard": [
     {
-      "sente":
-      [
-        {
-          "type": "lance"
-        }
-      ],
-      "gote":
-      [
-        {
-          "type": "knight"
-        }
+      "type": "pawn",
+      "player": "sente",
+      "position": [
+        7,
+        2
+      ]
+    },
+    {
+      "type": "pawn",
+      "player": "sente",
+      "position": [
+        7,
+        3
       ]
     }
+  ],
+  "capturedPieces": {
+    "sente": [
+      {
+        "type": "lance"
+      }
+    ],
+    "gote": [
+      {
+        "type": "knight"
+      }
+    ]
   }
-
 }
