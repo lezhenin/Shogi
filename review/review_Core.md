@@ -22,7 +22,7 @@ catch (std::exception &e)
  */
 class ShogiGameLogic: public AbstractShogiGameLogic
 ```
- По факту не хватает '*'
+ По факту не хватает *
  
  * Присутствую описки в комментариях, например, в файле **ShogiGameAPI.h** :
 ```cpp
@@ -34,7 +34,7 @@ class ShogiGameLogic: public AbstractShogiGameLogic
 virtual void pickPiece(const Position& position)=0;
 ```
  
- * Не все методы откомментированы, например в файле **AbstractGameLoader.h** :
+ * Не все методы прокомментированы, например в файле **AbstractGameLoader.h** :
 ```cpp
 /**
  *
