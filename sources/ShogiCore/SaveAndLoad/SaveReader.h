@@ -5,11 +5,29 @@
 #include "../Model/Piece.h"
 #include "Block.h"
 
-
+/**
+ * @brief Интерфейс для чтения сохранений.
+ *
+ */
 class SaveReader
 {
 public:
+     /**
+     * @brief Получит список фигур, стоящих на доске.
+     *
+     * @return Вектор объектов типа Block,
+     * которые хронят информацию о фигурах.
+     */
     virtual std::vector<Block> getPiecesOnBoard() = 0;
+    /**
+     * @brief Получит список захваченных фигур.
+     *
+     * @param player Игрок, захваченные фигуры
+     * которые необходимо получить.
+     *
+     * @return Вектор объектов типа PieceType,
+     * соответсвующих типам захваченных фигур.
+     */
     virtual std::vector<PieceType> getCapturedPieces(Player player) = 0;
 };
 

@@ -8,6 +8,12 @@
 #include "../SaveWriter.h"
 #include "../SaveReader.h"
 
+/**
+ * @brief Класс обеспечивающий создание,
+ * чтение и хранение сохранения в формате JSON строк.
+ *
+ * Класс реализуте интерфейсы SaveReader и SaveWriter.
+ */
 class JSONSaveManager : public SaveWriter, public SaveReader
 {
 
@@ -15,7 +21,9 @@ public:
 
 
     JSONSaveManager();
-
+    /**
+     * @param JSONString Сохранение в формате JSON строки.
+     */
     explicit JSONSaveManager(const std::string &JSONString);
 
     virtual std::vector<Block> getPiecesOnBoard();
@@ -26,8 +34,17 @@ public:
 
     virtual void addCapturedPiece(Player player, PieceType pieceType);
 
+    /**
+     * @brief Получить JSON строку.
+     *
+     * @return JSON строку содержащую сохранение.
+     */
     const std::string getJSONString() const;
-
+    /**
+     * @breif Очистить
+     *
+     * Удаляет внутренне прдеставление доски.
+     */
     void clear();
 
 private:

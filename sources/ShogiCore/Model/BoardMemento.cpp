@@ -1,5 +1,5 @@
 #include "BoardMemento.h"
-
+//todo for each loops
 BoardMemento::BoardMemento(Board *board): board(board)
 {
     this->capturedPieces[Sente] = board->getCapturedPieces(Sente);

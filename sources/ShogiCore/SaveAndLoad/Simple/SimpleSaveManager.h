@@ -5,11 +5,19 @@
 #include "../SaveWriter.h"
 #include "SimpleSave.h"
 
+/**
+ * @brief Класс обеспечивающий создание,
+ * чтение и хранение сохранения типа SimpleSave.
+ *
+ * Класс реализуте интерфейсы SaveReader и SaveWriter.
+ */
 class SimpleSaveManager : public SaveReader, public SaveWriter
 {
 
 public:
-
+    /**
+     * @param save Объект типа SimpleSave.
+     */
     explicit SimpleSaveManager(const SimpleSave &save) : save(save) { }
     SimpleSaveManager() { }
 
@@ -17,6 +25,11 @@ public:
     virtual std::vector<PieceType> getCapturedPieces(Player player);
     virtual void addPieceOnBoard(PieceType pieceType, Player player, Position position);
     virtual void addCapturedPiece(Player player, PieceType pieceType);
+    /**
+     * @brief Получить объект сохранения.
+     *
+     * @return Объект сохранения SimpleSave.
+     */
     SimpleSave *getSimpleSave()
     {
      return &save;

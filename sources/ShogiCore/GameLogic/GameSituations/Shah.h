@@ -9,7 +9,11 @@ class Shah : public GameSituation
 {
 public:
     Shah(): GameSituation(){};
-    std::string getMessage();
+    std::string getMessage()
+    {
+        return "Shah!";
+    }
+
 };
 
 

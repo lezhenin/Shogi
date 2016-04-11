@@ -10,7 +10,10 @@ class Mate : public GameSituation
 
 public:
     Mate() : GameSituation() { endOfGame = true;}
-    std::string getMessage();
+    std::string getMessage() 
+    {
+        return "Mate! Game is over";
+    }
 };
 
 

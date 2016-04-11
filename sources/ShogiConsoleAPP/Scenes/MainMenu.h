@@ -3,7 +3,9 @@
 
 
 #include "Scene.h"
-
+/**
+ * @brief Сцена содержащая основное меню.
+ */
 class MainMenu : public Scene
 {
 

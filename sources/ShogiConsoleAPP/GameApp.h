@@ -1,11 +1,14 @@
-
 #ifndef SHOGI_GAMEAPP_H
 #define SHOGI_GAMEAPP_H
 
 
 #include "Application.h"
 #include "Scenes/MainMenu.h"
-
+/**
+ * @brief Игровое приложение
+ *
+ * Основной класс приложения, запускает отрисовку сцен.
+ */
 class GameApp : public Application
 {
 public:

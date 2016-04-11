@@ -14,8 +14,23 @@ public:
 
     PromotionIsAvailable(ShogiGameAPI *game, const Position &position) : game(game), position(position) { executable = true; }
 
-    std::string getMessage();
-    void execute();
+    std::string getMessage()
+    {
+        return "You can promote piece.";
+    }
+
+    void execute()
+    {
+        try
+        {
+            game->promotePiece(position);
+        }
+        catch (std::exception &e)
+        {
+            throw e;
+        }
+
+    }
 private:
     ShogiGameAPI *game;
     Position position;

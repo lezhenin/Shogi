@@ -2,7 +2,8 @@
 #include "Exceptions/KingNotFoundException.h"
 #include <algorithm>
 
-//todo optimize algorithms
+//todo optimize all algorithms
+
 bool ShogiGameLogic::checkMove(Piece *piece, Position dest) const
 {
     std::vector<Direction> dirs = table.getDirections(piece->getType());

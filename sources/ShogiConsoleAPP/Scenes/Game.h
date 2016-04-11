@@ -5,7 +5,9 @@
 
 class Game : public Scene
 {
-
+/**
+ * @brief Сцена содержащая игровой процесс.
+ */
 public:
 
     Game();
@@ -14,11 +16,43 @@ public:
     virtual ~Game();
 
 private:
+    /**
+     * @brief Ввод
+     *
+     * Метод обрабатывает входную команду.
+     */
     void input();
+    /**
+     * @brief Остновить
+     *
+     * Останавливает игровой цикл
+     */
     void stop();
+    /**
+     * @brief Отрисовать
+     *
+     * Распечатывает доску и обрабатывает полученные
+     * сообщения
+     */
     void print();
+    /**
+     * brief Распечатать сообщения
+     *
+     * Распечаетывает и обрабатывает сообщения
+     */
     void printMessages(ListOfGameSituations &list);
+    /**
+     * brief Распечатать доску
+     *
+     * Отрисовывает доску в консоли
+     */
     void printBoard(AbstractBoard &board);
+    /**
+     * @brief Распечатать список захваченных фигур.
+     *
+     * @param player Игрок, чьи фигуры будут
+     * выведены на экран
+     */
     void printListOfCapturedPieces(Player player);
 
     ShogiGameAPI *game;
