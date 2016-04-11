@@ -3,8 +3,8 @@
 
 
 #include "../Model/AbstractBoard.h"
-#include "WritersAndReaders/SaveWriter.h"
-#include "WritersAndReaders/SaveReader.h"
+#include "SaveWriter.h"
+#include "SaveReader.h"
 
 class GameLoader
 {

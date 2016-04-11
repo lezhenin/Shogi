@@ -2,7 +2,7 @@
 #define SHOGI_SAVEREADER_H
 
 #include <vector>
-#include "../../Model/Piece.h"
+#include "../Model/Piece.h"
 #include "Block.h"
 
 

@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "../../../Model/Piece.h"
+#include "../../Model/Piece.h"
 #include "../Block.h"
 
 /**

@@ -1,7 +1,7 @@
 #ifndef SHOGI_GAMESAVER_H
 #define SHOGI_GAMESAVER_H
 
-#include "WritersAndReaders/SaveWriter.h"
+#include "SaveWriter.h"
 #include "../Model/AbstractBoard.h"
 
 class GameSaver

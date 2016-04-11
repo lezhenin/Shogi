@@ -2,7 +2,7 @@
 #define SHOGI_BLOCK_H
 
 
-#include "../../Model/Piece.h"
+#include "../Model/Piece.h"
 
 class Block
 {

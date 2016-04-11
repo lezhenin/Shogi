@@ -37,20 +37,20 @@ set(SOURCE_FILES
 
         SaveAndLoad/GameLoader.cpp
         SaveAndLoad/GameLoader.h
-        SaveAndLoad/WritersAndReaders/Simple/SimpleSave.h
+        SaveAndLoad/Simple/SimpleSave.h
         SaveAndLoad/GameLoader.cpp
         SaveAndLoad/GameSaver.cpp
         SaveAndLoad/GameSaver.h
-        SaveAndLoad/WritersAndReaders/SaveWriter.h
-        SaveAndLoad/WritersAndReaders/SaveReader.h
+        SaveAndLoad/SaveWriter.h
+        SaveAndLoad/SaveReader.h
 
         Shogi.cpp
         Shogi.h
-        SaveAndLoad/WritersAndReaders/Block.h
-        SaveAndLoad/WritersAndReaders/JSON/JSONSaveManager.cpp
-        SaveAndLoad/WritersAndReaders/JSON/JSONSaveManager.h
-        SaveAndLoad/WritersAndReaders/Simple/SimpleSaveManager.cpp
-        SaveAndLoad/WritersAndReaders/Simple/SimpleSaveManager.h)
+        SaveAndLoad/Block.h
+        SaveAndLoad/JSON/JSONSaveManager.cpp
+        SaveAndLoad/JSON/JSONSaveManager.h
+        SaveAndLoad/Simple/SimpleSaveManager.cpp
+        SaveAndLoad/Simple/SimpleSaveManager.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 
