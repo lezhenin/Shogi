@@ -88,9 +88,10 @@ void ShogiCoreModuleTest::gameLogicTest() {
 
 void ShogiCoreModuleTest::gameLoaderTest()
 {
+    Player player;
     AbstractBoard *board = new Board();
     GameLoader gameLoader;
-    gameLoader.loadGame(*board);
+    gameLoader.loadGame(*board,&player);
     Board *tmp = static_cast<Board*>(board);
     delete board;
 }
