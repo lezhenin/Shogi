@@ -20,6 +20,13 @@ public:
      * на доске в объект сохранения.
      */
     virtual void addCapturedPiece(Player player, PieceType pieceType) = 0;
+    /**
+     * @brief Установить игрка.
+     *
+     * Устанавливает игрока, которому
+     * принадлежит ход.
+     */
+    virtual void setCurrentPlayer(Player player) = 0;
 };
 
 

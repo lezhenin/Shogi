@@ -1,8 +1,9 @@
 
 #include "GameSaver.h"
 
-void GameSaver::saveGame(SaveWriter *saveWriter, AbstractBoard &board)
+void GameSaver::saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer)
 {
+    saveWriter->setCurrentPlayer(*currentPlayer);
 
     for (Piece *piece: board.getPiecesOnBoard())
     {

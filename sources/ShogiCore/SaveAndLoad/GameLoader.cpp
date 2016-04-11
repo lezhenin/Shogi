@@ -2,7 +2,7 @@
 #include "Simple/SimpleSaveManager.h"
 
 
-void GameLoader::loadGame(AbstractBoard &board)
+void GameLoader::loadGame(AbstractBoard &board, Player *currentPlayer)
 {
     SimpleSaveManager *newGame = new SimpleSaveManager();
 
@@ -40,14 +40,14 @@ void GameLoader::loadGame(AbstractBoard &board)
     newGame->addPieceOnBoard(Bishop,Sente,Position(8, 8));
     newGame->addPieceOnBoard(Bishop,Gote,Position(2, 2));
 
-    loadGame(newGame,board);
+    loadGame(newGame,board, currentPlayer);
     delete newGame;
 
 }
 
-void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board)
+void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer)
 {
-
+    *currentPlayer = saveReader->getCurrentPlayer();
     for (const Block &b: saveReader->getPiecesOnBoard())
     {
         {

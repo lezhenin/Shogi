@@ -70,6 +70,7 @@ const std::string JSONSaveManager::getJSONString() const
 JSONSaveManager::JSONSaveManager()
 {
     save.SetObject();
+    save.AddMember("currentPlayer",rapidjson::Value(rapidjson::kStringType),save.GetAllocator());
     save.AddMember("piecesOnBoard",rapidjson::Value(rapidjson::kArrayType),save.GetAllocator());
     save.AddMember("capturedPieces",rapidjson::Value(rapidjson::kObjectType),save.GetAllocator());
     save["capturedPieces"].AddMember("sente",rapidjson::Value(rapidjson::kArrayType),save.GetAllocator());
@@ -85,6 +86,20 @@ void JSONSaveManager::clear()
 {
     save.Clear();
 }
+
+Player JSONSaveManager::getCurrentPlayer()
+{
+    return reverseTableOfPlayers.at(save["currentPlayer"].GetString());
+}
+
+void JSONSaveManager::setCurrentPlayer(Player player)
+{
+    save["currentPlayer"].SetString(tableOfPlayers.at(player).c_str(),tableOfPlayers.at(player).size());
+}
+
+
+
+
 
 
 

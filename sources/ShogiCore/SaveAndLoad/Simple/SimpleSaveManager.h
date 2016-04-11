@@ -25,6 +25,8 @@ public:
     virtual std::vector<PieceType> getCapturedPieces(Player player);
     virtual void addPieceOnBoard(PieceType pieceType, Player player, Position position);
     virtual void addCapturedPiece(Player player, PieceType pieceType);
+    virtual void setCurrentPlayer(Player player);
+    virtual Player getCurrentPlayer();
     /**
      * @brief Получить объект сохранения.
      *

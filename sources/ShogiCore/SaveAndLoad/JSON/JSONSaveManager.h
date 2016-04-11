@@ -34,6 +34,9 @@ public:
 
     virtual void addCapturedPiece(Player player, PieceType pieceType);
 
+    virtual Player getCurrentPlayer();
+
+    virtual void setCurrentPlayer(Player player);
     /**
      * @brief Получить JSON строку.
      *

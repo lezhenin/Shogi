@@ -33,6 +33,20 @@ void SimpleSaveManager::addCapturedPiece(Player player, PieceType pieceType)
     }
 }
 
+void SimpleSaveManager::setCurrentPlayer(Player player)
+{
+    save.currentPlayer = player;
+}
+
+Player SimpleSaveManager::getCurrentPlayer()
+{
+    return save.currentPlayer;
+}
+
+
+
+
+
 
 
 

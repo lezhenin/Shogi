@@ -20,7 +20,7 @@ public:
      * Загружает игру, используя объекты
      * поддерживающие интерфейс SaveWriter.
      */
-    void saveGame(SaveWriter *saveWriter, AbstractBoard &board);
+    void saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer);
 
 };
 

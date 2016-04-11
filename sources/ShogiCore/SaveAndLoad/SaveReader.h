@@ -29,7 +29,13 @@ public:
      * соответсвующих типам захваченных фигур.
      */
     virtual std::vector<PieceType> getCapturedPieces(Player player) = 0;
+    /**
+     * @brief Получить игрока, которому
+     * принадлежит текущий ход.
+     */
+    virtual Player getCurrentPlayer() = 0;
 };
+
 
 
 #endif //SHOGI_SAVEREADER_H

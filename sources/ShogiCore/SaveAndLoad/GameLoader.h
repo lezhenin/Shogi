@@ -20,7 +20,7 @@ public:
      * Загружает игру, используя объекты
      * поддерживающие интерфейс SaveReader.
      */
-    virtual void loadGame(SaveReader *saveReader, AbstractBoard &board);
+    virtual void loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer);
     /**
      * @brief Загрузить игру
      *
@@ -28,7 +28,7 @@ public:
      * соответствии со стандартной расстоновкой
      * в начале партии.
      */
-    virtual void loadGame(AbstractBoard &board);
+    virtual void loadGame(AbstractBoard &board, Player *currentPlayer);
 
 };
 

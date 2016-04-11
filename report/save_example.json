@@ -1,4 +1,5 @@
 {
+  "currentPlayer": "sente",
   "piecesOnBoard": [
     {
       "type": "pawn",

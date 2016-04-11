@@ -18,6 +18,7 @@ public:
 
     SimpleSave() { }
 
+    Player currentPlayer = Sente;
     std::vector<Block> onBoard;
     std::vector<PieceType> senteCaptured;
     std::vector<PieceType> goteCaptured;

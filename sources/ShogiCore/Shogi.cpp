@@ -4,7 +4,7 @@
 
 void Shogi::initGame()
 {
-    gameLoader->loadGame(*board);
+    gameLoader->loadGame(*board, &currentPlayer);
 }
 
 Shogi::Shogi()
