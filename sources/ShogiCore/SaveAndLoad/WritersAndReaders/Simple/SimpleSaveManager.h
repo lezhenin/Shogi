@@ -4,7 +4,6 @@
 #include "../SaveReader.h"
 #include "../SaveWriter.h"
 #include "SimpleSave.h"
-#include "SimpleSaveReader.h"
 
 class SimpleSaveManager : public SaveReader, public SaveWriter
 {
