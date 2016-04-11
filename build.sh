@@ -24,7 +24,7 @@ build_release_version() {
 build_debug_version() {
     cd sources
     cloc --version
-	cloc --by-file --xml --out=../report/cloc_result *
+	cloc --by-file --exclude-dir=ShogiCore/SaveAndLoad/JSON/rapidjson --xml --out=../report/cloc_result *
 	cd ../build
 	mkdir debug
 	cd debug
@@ -38,7 +38,7 @@ build_debug_version() {
 		../build/debug/sources/ShogiCoreTest/module_test -xml -o ../report/module_test_results || true
 
 		cppcheck --version
-		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck_result
+		cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson --xml  * 2> ../report/cppcheck_result
 
         ls
 
