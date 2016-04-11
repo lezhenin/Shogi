@@ -8,7 +8,7 @@ class GameSaver
 {
 public:
 
-    void saveGame(SaveWriter *saveWriter,AbstractBoard &board);
+    void saveGame(SaveWriter *saveWriter, AbstractBoard &board);
 
 };
 
