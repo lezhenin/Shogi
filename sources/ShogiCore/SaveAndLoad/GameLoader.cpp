@@ -1,5 +1,5 @@
 #include "GameLoader.h"
-#include "WritersAndReaders/Simple/SimpleSaveManager.h"
+#include "Simple/SimpleSaveManager.h"
 
 
 void GameLoader::loadGame(AbstractBoard &board)
