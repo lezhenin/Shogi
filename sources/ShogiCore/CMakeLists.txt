@@ -25,10 +25,7 @@ set(SOURCE_FILES
         GameLogic/Direction.h
         GameLogic/GameSituations/GameSituation.h
         GameLogic/GameSituations/Shah.h
-        GameLogic/GameSituations/Shah.cpp
-        GameLogic/GameSituations/Mate.cpp
         GameLogic/GameSituations/Mate.h
-        GameLogic/GameSituations/PromotionIsAvailable.cpp
         GameLogic/GameSituations/PromotionIsAvailable.h
         GameLogic/AbstractShogiGameLogic.h
         GameLogic/TableOfDirections.h
@@ -43,14 +40,14 @@ set(SOURCE_FILES
         SaveAndLoad/GameSaver.h
         SaveAndLoad/SaveWriter.h
         SaveAndLoad/SaveReader.h
-
-        Shogi.cpp
-        Shogi.h
         SaveAndLoad/Block.h
         SaveAndLoad/JSON/JSONSaveManager.cpp
         SaveAndLoad/JSON/JSONSaveManager.h
         SaveAndLoad/Simple/SimpleSaveManager.cpp
-        SaveAndLoad/Simple/SimpleSaveManager.h)
+        SaveAndLoad/Simple/SimpleSaveManager.h
+
+        Shogi.cpp
+        Shogi.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 
