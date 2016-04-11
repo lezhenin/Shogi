@@ -16,7 +16,7 @@ public:
 
     JSONSaveManager();
 
-    JSONSaveManager(const std::string &JSONString);
+    explicit JSONSaveManager(const std::string &JSONString);
 
     virtual std::vector<Block> getPiecesOnBoard();
 
@@ -28,10 +28,11 @@ public:
 
     const std::string getJSONString() const;
 
+    void clear();
+
 private:
 
     rapidjson::Document save;
-    std::string JSONString;
 
     std::map<PieceType, std::string> tableOfTypes = {{Pawn,          "pawn"},
                                                      {King,          "king"},

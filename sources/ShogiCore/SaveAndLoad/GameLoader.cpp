@@ -1,11 +1,10 @@
 #include "GameLoader.h"
-#include "WritersAndReaders/Simple/SimpleSaveWriter.h"
-#include "WritersAndReaders/Simple/SimpleSaveReader.h"
+#include "WritersAndReaders/Simple/SimpleSaveManager.h"
 
 
 void GameLoader::loadGame(AbstractBoard &board)
 {
-    SimpleSaveWriter *newGame = new SimpleSaveWriter();
+    SimpleSaveManager *newGame = new SimpleSaveManager();
 
     for(int i = 1; i<=9; i++)
     {
@@ -41,10 +40,7 @@ void GameLoader::loadGame(AbstractBoard &board)
     newGame->addPieceOnBoard(Bishop,Sente,Position(8, 8));
     newGame->addPieceOnBoard(Bishop,Gote,Position(2, 2));
 
-    SimpleSave *save = newGame->getSimpleSave();
-    SaveReader *reader = new SimpleSaveReader(save);
-    loadGame(reader,board);
-    delete reader;
+    loadGame(newGame,board);
     delete newGame;
 
 }

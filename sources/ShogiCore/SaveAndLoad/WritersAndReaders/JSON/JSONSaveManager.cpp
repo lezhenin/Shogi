@@ -41,7 +41,6 @@ void JSONSaveManager::addPieceOnBoard(PieceType pieceType, Player player, Positi
     rapidjson::Value tmp;
     tmp.SetObject();
     tmp.AddMember("type", rapidjson::Value(rapidjson::kStringType), save.GetAllocator());
-    std::string string = "hui";
     tmp["type"].SetString(tableOfTypes.at(pieceType).c_str(),tableOfTypes.at(pieceType).size());
     tmp.AddMember("player", rapidjson::Value(rapidjson::kStringType), save.GetAllocator());
     tmp["player"].SetString(tableOfPlayers.at(player).c_str(),tableOfPlayers.at(player).size());
@@ -77,10 +76,17 @@ JSONSaveManager::JSONSaveManager()
     save["capturedPieces"].AddMember("gote",rapidjson::Value(rapidjson::kArrayType),save.GetAllocator());
 }
 
-JSONSaveManager::JSONSaveManager(const std::string &JSONString) : JSONString(JSONString)
+JSONSaveManager::JSONSaveManager(const std::string &JSONString)
 {
-
+    save.Parse(JSONString.c_str());
 }
+
+void JSONSaveManager::clear()
+{
+    save.Clear();
+}
+
+
 
 
 
