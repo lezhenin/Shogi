@@ -46,7 +46,11 @@ set(SOURCE_FILES
         SaveAndLoad/WritersAndReaders/SaveReader.h
 
         Shogi.cpp
-        Shogi.h SaveAndLoad/WritersAndReaders/Block.h SaveAndLoad/WritersAndReaders/Simple/SimpleSaveReader.h SaveAndLoad/WritersAndReaders/JSON/JSONSaveReader.cpp SaveAndLoad/WritersAndReaders/JSON/JSONSaveReader.h SaveAndLoad/WritersAndReaders/JSON/JSONSaveWriter.cpp SaveAndLoad/WritersAndReaders/JSON/JSONSaveWriter.h)
+        Shogi.h
+        SaveAndLoad/WritersAndReaders/Block.h
+        SaveAndLoad/WritersAndReaders/Simple/SimpleSaveReader.h
+        SaveAndLoad/WritersAndReaders/JSON/JSONSaveManager.cpp
+        SaveAndLoad/WritersAndReaders/JSON/JSONSaveManager.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 
