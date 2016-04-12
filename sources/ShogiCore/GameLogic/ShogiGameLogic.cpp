@@ -119,6 +119,10 @@ Player ShogiGameLogic::transformPlayer(Player pl) const {
 }
 
 bool ShogiGameLogic::checkPromotion(Piece *piece) const {
+    if(piece->wasPromoted())
+    {
+        return false;
+    }
     if(piece->getPlayer()==Sente)
     {
         return piece->canBePromoted() && piece->getPosition().getHorizontal()<=3;
