@@ -12,31 +12,36 @@ void MainMenu::show()
               << "5. Exit" << std::endl;
     int choice;
     std::cin >> choice;
-    switch (choice)
+    bool x = true;
+    while(x)
     {
-        case 1:
-        {
-            next = new Game();
-            break;
-        }
-        case 2:
-        {
-            next = new Game();
-            break;
-        }
-        case 4:
-        {
-            next = new Help();
-            break;
-        }
-        case 5:
-        {
-            next = nullptr;
-            break;
-        }
-        default:
-        {
-            std::cout << "Unknown command";
+        x = false;
+        switch (choice) {
+            case 1:
+            {
+                next = new Game();
+                break;
+            }
+            case 2:
+            {
+                next = new Game();
+                break;
+            }
+            case 4:
+            {
+                next = new Help();
+                break;
+            }
+            case 5:
+            {
+                next = nullptr;
+                break;
+            }
+            default:
+            {
+                x = true;
+                std::cout << "Unknown command";
+            }
         }
     }
 
