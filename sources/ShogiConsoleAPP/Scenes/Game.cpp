@@ -43,7 +43,7 @@ void Game::input()
                             game->pickPiece(Position(h, v));
                             x = false;
                         }
-                        catch (std::exception) /// (std::exception &e)
+                        catch (std::exception &e)
                         {
                             std::cout << "Game error" << std::endl;
                         }
@@ -72,7 +72,7 @@ void Game::input()
                             game->movePiece(Position(h, v));
                             x = false;
                         }
-                        catch (std::exception) /// (std::exception &e)
+                        catch (std::exception &e)
                         {
                             std::cout << "Game error" << std::endl;
                         }
@@ -100,7 +100,7 @@ void Game::input()
                                 game->dropPiece(pieceType, Position(h, v));
                                 x = false;
                             }
-                            catch (std::exception) /// (std::exception &e)
+                            catch (std::exception &e)
                             {
                                 std::cout << "Game error" << std::endl;
                             }
@@ -158,25 +158,23 @@ void Game::input()
 
 void Game::printBoard(AbstractBoard &board)
 {
-    for(int j=9; j>=1; j--) /// for (int j = 9; j >= 1; j--) 
+    for(int j = 9; j >= 1; j--)
     {
         std::cout << " " << j << "  ";
     }
     std::cout << std::endl;
-    for(int i=1; i<=9; i++) /// и тут тоже напиши красиво
+    for(int i = 1; i <= 9; i++)
     {
-        for(int j=9; j>=1; j--) /// ....
+        for(int j = 9; j >= 1; j--)
         {
-            Piece *p = board.getPiece(Position(i,j)); /// Position(i, j)
-
+            Piece *p = board.getPiece(Position(i, j));
             if (p == nullptr)
             {
                 std::cout <<  "*** ";
             }
             else
             {
-                std:: cout << ((p->getPlayer()==Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " "; /// почему ты отделяешь 
-                /// операции присваивания пробелами (строка 192, например), а логические операции нет
+                std:: cout << ((p->getPlayer() == Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
             }
         }
         std::cout << " " << i << std::endl;
@@ -192,22 +190,21 @@ void Game::printBoard(AbstractBoard &board)
 void Game::printListOfCapturedPieces(Player player)
 {
     ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
-    Piece tmp(Pawn,player);
+    Piece tmp(Pawn, player);
     std::cout << tableOfPlayers.at(player) << ":" << std::endl;
-    /// поставь пробелы после запятых - легче читать будет, в Game::input хорошо же было
     std::cout << "Pawn - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
     tmp = Piece(Lance, player); 
-    std::cout << "Lance - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    std::cout << "Lance - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
     tmp = Piece(Knight, player);
-    std::cout << "Knight - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    std::cout << "Knight - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
     tmp = Piece(Bishop, player);
-    std::cout << "Bishop - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    std::cout << "Bishop - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
     tmp = Piece(Rook, player);
-    std::cout << "Rook - "<< std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    std::cout << "Rook - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
     tmp = Piece(SilverGeneral, player);
-    std::cout << "Silver General - " << std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
-    tmp = Piece(GoldGeneral,player);
-    std::cout << "Gold General - " << std::count_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&tmp)) << std::endl;
+    std::cout << "Silver General - " << std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
+    tmp = Piece(GoldGeneral, player);
+    std::cout << "Gold General - " << std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
 }
 
 void Game::printMessages(ListOfGameSituations &list)
@@ -223,7 +220,7 @@ void Game::printMessages(ListOfGameSituations &list)
         if(gameSituation->isExecutable())
         {
             std::cout << "Do you want to do it?(yes/no)" << std::endl;
-            std::string answer=""; /// а тут не отделил присваивание
+            std::string answer = "";
             std::cin >> answer;
             while(answer != "yes" && answer != "no")
             {
