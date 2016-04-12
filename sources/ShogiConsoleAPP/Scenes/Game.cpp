@@ -147,7 +147,8 @@ void Game::input()
             }
 
         }
-        catch (std::exception &e) {
+        catch (std::exception &e)
+        {
             std::cout << "Unknown command" << std::endl;
         }
     }

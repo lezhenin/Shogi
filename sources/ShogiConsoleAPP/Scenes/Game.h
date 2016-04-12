@@ -3,11 +3,12 @@
 #include "../../ShogiCore/ShogiGameAPI.h"
 #include "Scene.h"
 
-class Game : public Scene
-{
 /**
  * @brief Сцена содержащая игровой процесс.
  */
+class Game : public Scene
+{
+
 public:
 
     Game();
