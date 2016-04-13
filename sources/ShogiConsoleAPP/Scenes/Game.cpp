@@ -17,11 +17,14 @@ void Game::show()
     }
 }
 
+//TODO: хочу чтобы ни в одном месте этого класса не было цифры 9!!!
 void Game::input()
 {
 
     std::string str;
+    //TODO: переименовать tmp
     int tmp;
+    //TODO: переименовать x
     bool x = true;
     while(x)
     {
@@ -33,9 +36,12 @@ void Game::input()
             {
                 case 0:
                 {
+                            //TODO: выделить метод
+                //TODO: переименовать h и v
                     int h, v;
                     std::cin >> h >> v;
                     std::cin.clear();
+                    //TODO: использовать символьные константы из abstract board для задания размеров вместо 9, можно получить их каким-то методом, если не хочется напрямую
                     if (h >= 1 && h <= 9 && v >= 1 && v <= 9)
                     {
                         try
@@ -62,6 +68,8 @@ void Game::input()
                 }
                 case 2:
                 {
+                            //TODO: выделить метод
+                //TODO: переименовать h и v
                     int h, v;
                     std::cin >> h >> v;
                     std::cin.clear();
@@ -85,6 +93,8 @@ void Game::input()
                 }
                 case 3:
                 {
+                            //TODO: выделить метод
+                //TODO: переименовать h и v
                     int h, v;
                     std::string type;
                     std::cin >> type >> h >> v;

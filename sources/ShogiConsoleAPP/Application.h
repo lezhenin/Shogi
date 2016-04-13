@@ -17,6 +17,7 @@ public:
      * @param scene Указатель на первую сцену.
      */
     explicit Application(Scene *scene = nullptr) : scene(scene) { }
+
     /**
      * @brief Запустить приложение.
      *
@@ -28,6 +29,7 @@ public:
         while (scene != nullptr)
         {
             scene->show();
+            //TODO: переименовать tmp ->  nextScene
             Scene *tmp = scene->getNextScene();
             delete scene;
             scene = tmp;

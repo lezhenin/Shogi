@@ -4,7 +4,7 @@
 #include "Scene.h"
 
 /**
- * @brief Сцена содержащая помощь по игре.
+ * @brief Сцена, содержащая помощь по игре.
  */
 class Help : public Scene
 {
