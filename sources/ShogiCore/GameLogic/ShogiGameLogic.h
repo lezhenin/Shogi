@@ -16,10 +16,8 @@ public:
     bool checkMate(Player player) const;
     bool checkPromotion(Piece *piece) const;
     bool checkDrop(Piece *piece, Position pos);
-
     virtual ~ShogiGameLogic() { }
 
-    Piece * some(Player player) const;
 
 private:
     Player transformPlayer(Player pl) const;

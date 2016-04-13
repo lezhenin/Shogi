@@ -25,7 +25,7 @@ Shogi::~Shogi()
     delete gameSaver;
 }
 
-AbstractBoard &Shogi::getBoard() {
+AbstractBoard &Shogi::getBoard() const {
     return *board;
 }
 
@@ -128,9 +128,9 @@ void Shogi::promotePiece(const Position &position)
 }
 
 //TODO: лучше не экономить буковки -- pieceType
-void Shogi::dropPiece(const PieceType pt, const Position &position)
+void Shogi::dropPiece(const PieceType pieceType, const Position &position)
 {
-    Piece tmp(pt,currentPlayer);
+    Piece tmp(pieceType,currentPlayer);
     ListOfPieces::iterator it = std::find_if(board->getCapturedPieces(currentPlayer).begin(),board->getCapturedPieces(currentPlayer).end(),
                      std::bind1st(std::mem_fun(&Piece::equals),&tmp));
     if(it == board->getCapturedPieces(currentPlayer).end())
@@ -202,7 +202,7 @@ void Shogi::redo()
     }
 }
 
-Player Shogi::getCurrentPlayer()
+Player Shogi::getCurrentPlayer () const
 {
     return currentPlayer;
 }

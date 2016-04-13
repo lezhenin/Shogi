@@ -29,15 +29,14 @@ public:
      *
      * @return Игрок, который совершает ход в данный момент.
      */
-    //TODO: это не может быть const?
-    virtual Player getCurrentPlayer() = 0;
+    virtual Player getCurrentPlayer() const = 0 ;
 
     /**
      * @brief Выбрать фигуру.
      * Сохраняет фигуру для дальнейших действий.
      * @param position Позиция фигуры.
      */
-    virtual void pickPiece(const Position& position)=0;
+    virtual void pickPiece(const Position& position) = 0;
 
     /**
      * @brief Отменить выбор фигуры.
@@ -72,7 +71,7 @@ public:
      * Возвращает доску к тому состоянию, которое
      * было до совершения предыдущего хода.
      */
-    virtual void undo()=0;
+    virtual void undo() = 0;
 
     /**
      * @brief Возврат хода
@@ -80,21 +79,20 @@ public:
      * Возвращает доску к тому состоянию, которое
      * было до отмены предыдущего хода.
      */
-    virtual void redo()=0;
+    virtual void redo() = 0;
 
     /**
      * @brief Получить доску.
      * @return Указатель на доску с фигурами.
      */
-    //TODO: это не может быть const?
-    virtual AbstractBoard &getBoard()=0;
+    virtual AbstractBoard &getBoard() const = 0;
 
     /**
      * @brief Получить статус игры.
      * @return Список игровых ситуаций
      */
-    //TODO: это не может быть const?
-    virtual ListOfGameSituations &getGameSituation()=0;
+    //TODO: const
+    virtual ListOfGameSituations &getGameSituation()  = 0;
 
     virtual ~ShogiGameAPI(){}
 };

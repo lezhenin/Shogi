@@ -17,15 +17,15 @@ public:
 
     Shogi();
     virtual void initGame() override;
-    virtual Player getCurrentPlayer() override;
+    virtual Player getCurrentPlayer() const override;
     virtual void pickPiece(const Position &position) override;
     virtual void unPickPiece() override;
     virtual void movePiece(const Position &position) override;
     virtual void promotePiece(const Position &position) override;
-    virtual void dropPiece(const PieceType pt, const Position &position) override;
+    virtual void dropPiece(const PieceType pieceType, const Position &position) override;
     virtual void undo() override;
     virtual void redo() override;
-    virtual AbstractBoard &getBoard() override;
+    virtual AbstractBoard &getBoard() const override;
     virtual ListOfGameSituations& getGameSituation() override;
     virtual ~Shogi();
 

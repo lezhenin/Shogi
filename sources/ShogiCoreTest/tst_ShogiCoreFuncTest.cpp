@@ -32,10 +32,9 @@ ShogiCoreFuncTest::ShogiCoreFuncTest()
 
 void ShogiCoreFuncTest::printBoard()
 {
-//TODO: в тестех не так важно, но все равно надо использовать символьные константы
-    for(int i=1; i<=9; i++)
+    for(int i = 1; i <= AbstractBoard::BOARD_HEIGHT; i++)
     {
-        for(int j=9; j>=1; j--)
+        for(int j = AbstractBoard::BOARD_WIDTH; j >= 1; j--)
         {
             Piece *p = game.getBoard().getPiece(Position(i,j));
 
