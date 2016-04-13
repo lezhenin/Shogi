@@ -1,6 +1,11 @@
 #ifndef SHOGI_DIRECTION_H
 #define SHOGI_DIRECTION_H
 
+enum Directions
+{
+    UP = 1, DOWN = -1,
+    RIGHT = 1, LEFT = -1
+};
 
 /**
  * @brief Класс, характеризующий направление ходов фигур.
@@ -11,7 +16,8 @@
  * до и после хода на минимальное возможное расстояние в
  * данном направлении.
  */
-class Direction {
+class Direction
+{
 
 public:
     /**
@@ -39,6 +45,7 @@ public:
     int getLimit() const {return limit;}
 
 private:
+
     int x;
     int y;
     int limit;

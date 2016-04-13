@@ -12,7 +12,10 @@
 class TableOfDirections
 {
 public:
-    std::vector<Direction> getDirections(PieceType pieceType) const{ return dirs.at(pieceType);}
+    std::vector<Direction> getDirections(PieceType pieceType) const
+    {
+        return dirs.at(pieceType);
+    }
 
 private:
 
