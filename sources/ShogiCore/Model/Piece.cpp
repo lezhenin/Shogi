@@ -57,7 +57,7 @@ void Piece::promote()
 {
     if(this->bePromoted && !this->promoted)
     {
-        this->ptype=PieceType((int)(this->ptype)+PROMOTION_STEP);
+        this->ptype = PieceType((int)(this->ptype) + PROMOTION_STEP);
     }
 }
 
@@ -66,20 +66,21 @@ void Piece::unPromote()
     if(this->bePromoted && this->promoted)
     {
 
-        this->ptype=PieceType((int)(this->ptype)-PROMOTION_STEP);
+        this->ptype = PieceType((int)(this->ptype) - PROMOTION_STEP);
     }
 }
 
 void Piece::setSquare(Square *sq)
 {
-    this->sq=sq;
+    this->sq = sq;
 }
 
 void Piece::setPlayer(Player pl)
 {
-    this->player=pl;
+    this->player = pl;
 }
 
+//TODO: зачем нам нужен невиртуальный деструктор, и почему тело не в .h
 Piece::~Piece()
 {
 

@@ -3,7 +3,7 @@
 #include "AbstractShogiGameLogic.h"
 #include "TableOfDirections.h"
 
-/*
+/**
  * @brief Реализация AbstractShogiGameLogic.
  */
 class ShogiGameLogic: public AbstractShogiGameLogic
@@ -18,6 +18,8 @@ public:
     bool checkDrop(Piece *piece, Position pos);
 
     virtual ~ShogiGameLogic() { }
+
+    Piece * some(Player player) const;
 
 private:
     Player transformPlayer(Player pl) const;

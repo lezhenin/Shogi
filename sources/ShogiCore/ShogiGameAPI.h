@@ -23,41 +23,49 @@ public:
      * Устанавливает фигуры на доске.
      */
     virtual void initGame()=0;
+
     /**
      * @brief Узнать какому игрку принадлежит очередность хода.
      *
      * @return Игрок, который совершает ход в данный момент.
      */
+    //TODO: это не может быть const?
     virtual Player getCurrentPlayer() = 0;
+
     /**
      * @brief Выбрать фигуру.
-     * Созраняет фигуру для дальнейших действий.
+     * Сохраняет фигуру для дальнейших действий.
      * @param position Позиция фигуры.
      */
     virtual void pickPiece(const Position& position)=0;
+
     /**
      * @brief Отменить выбор фигуры.
      */
     virtual void unPickPiece()=0;
+
     /**
      * @brief Переместить фигуру.
      * Перемещает раннее выбранную фигуру.
-     * @param position Позиция куда необходимо перместить фигур.
+     * @param position Позиция куда необходимо переместить фигуру.
      */
     virtual void movePiece(const Position& position)=0;
+
     /**
      * @brief Перевернуть фигуру.
      * Переворачивает фигуру.
-     * @param[in] position Позиция фигуры, которую необходимо превернуть.
+     * @param[in] position Позиция фигуры, которую необходимо перевернуть.
     */
     virtual void promotePiece(const Position& position)=0;
+
     /**
-     * @brief Устанвоить фигуру.
+     * @brief Установить фигуру.
      * Устанавливает фигуру из захваченных одной из сторон.
      * @param[in] pt       Тип устанавливаемой фигуры.
-     * @param[in] position Позиция фигуры, куда нужно установить фиугру.
+     * @param[in] position Позиция, куда нужно установить фигуру.
     */
     virtual void dropPiece(const PieceType pt, const Position& position)=0;
+
     /**
      * @brief Отмена хода
      *
@@ -65,6 +73,7 @@ public:
      * было до совершения предыдущего хода.
      */
     virtual void undo()=0;
+
     /**
      * @brief Возврат хода
      *
@@ -72,18 +81,22 @@ public:
      * было до отмены предыдущего хода.
      */
     virtual void redo()=0;
+
     /**
-     * @brief Получть доску.
+     * @brief Получить доску.
      * @return Указатель на доску с фигурами.
      */
+    //TODO: это не может быть const?
     virtual AbstractBoard &getBoard()=0;
+
     /**
-     * @brief Получть статус игры.
+     * @brief Получить статус игры.
      * @return Список игровых ситуаций
      */
+    //TODO: это не может быть const?
     virtual ListOfGameSituations &getGameSituation()=0;
 
-    virtual ~ShogiGameAPI(){};
+    virtual ~ShogiGameAPI(){}
 };
 
 #endif // GAMECORE_H

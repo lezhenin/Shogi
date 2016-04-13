@@ -23,7 +23,7 @@ bool Position::operator ==(const Position &pos)
 
 Position &Position::operator =(const Position &pos)
 {
-    if (*this==pos)
+    if (*this == pos)
     {
         return *this;
     }

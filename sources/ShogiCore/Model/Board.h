@@ -21,6 +21,7 @@ public:
     AbstractBoardMemento *getMemento();
     void setMemento(AbstractBoardMemento *memento);
 
+
     ListOfPieces &getAllPieces();
     ListOfPieces &getPiecesOnBoard();
     ListOfPieces &getCapturedPieces(Player player);

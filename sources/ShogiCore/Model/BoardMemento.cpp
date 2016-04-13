@@ -22,6 +22,7 @@ void BoardMemento::restore()
         p->getSquare()->setPiece(nullptr);
         p->setSquare(nullptr);
     }
+
     this->board->getPiecesOnBoard().clear();
     for(std::vector<PieceInfo>::iterator it = this->pairs.begin(); it < this->pairs.end(); ++it)
     {

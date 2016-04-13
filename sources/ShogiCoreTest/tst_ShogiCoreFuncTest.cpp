@@ -32,7 +32,7 @@ ShogiCoreFuncTest::ShogiCoreFuncTest()
 
 void ShogiCoreFuncTest::printBoard()
 {
-
+//TODO: в тестех не так важно, но все равно надо использовать символьные константы
     for(int i=1; i<=9; i++)
     {
         for(int j=9; j>=1; j--)
@@ -47,6 +47,7 @@ void ShogiCoreFuncTest::printBoard()
     std::cout << std::endl;
 }
 
+//TODO: этот тест тоже перегружен в конце, лучше разделить на несколько
 void ShogiCoreFuncTest::gameInitTest()
 {
     game.initGame();
@@ -70,6 +71,7 @@ void ShogiCoreFuncTest::gameInitTest()
     printBoard();
 }
 
+//TODO: а можно отдельно пик и мув?
 void ShogiCoreFuncTest::pickAndMoveTest()
 {
     QVERIFY_EXCEPTION_THROWN(game.pickPiece(Position(3,2)), std::exception);
@@ -138,6 +140,7 @@ void ShogiCoreFuncTest::getGameSitutatuinTest()
     game.getGameSituation().pop();
     QVERIFY(game.getGameSituation().empty());
 }
+
 void ShogiCoreFuncTest::dropTest()
 {
     game.pickPiece(Position(8,2));
