@@ -9,8 +9,9 @@ class GameLogicException: public std::exception
 {
 
 public:
-    virtual const char *what() throw() {
-        const char* str = "GameLogic exception";
+    virtual const char *what() throw()
+    {
+        const char *str = "GameLogic exception";
         return str;
     }
 

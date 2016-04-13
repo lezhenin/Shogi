@@ -13,8 +13,7 @@ public:
      *
      * @return Сообщение о текущей игровой ситуации.
      */
-    //TODO: это не может быть const?
-    virtual std::string getMessage()=0;
+    virtual std::string getMessage() const = 0;
 
     /**
      * @brief Узнать завершилась ли игра.
@@ -22,8 +21,7 @@ public:
      * @return true если игра завершилась,
      * false если игра продолжается.
      */
-    //TODO: это не может быть const?
-    bool isEndOfGame() { return  endOfGame;}
+    bool isEndOfGame() const { return  endOfGame;}
 
     /**
      * @brief Узнать возможно ли выполнить
@@ -33,8 +31,7 @@ public:
      * @return true если есть возможность выполнить
      * действие, false в противном случае.
      */
-    //TODO: это не может быть const?
-    bool isExecutable() { return executable;}
+    bool isExecutable() const { return executable;}
 
     /**
      * @brief Выполнить действие, связанное с данным

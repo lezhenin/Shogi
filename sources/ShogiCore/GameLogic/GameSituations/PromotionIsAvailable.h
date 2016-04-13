@@ -14,7 +14,7 @@ public:
 
     PromotionIsAvailable(ShogiGameAPI *game, const Position &position) : game(game), position(position) { executable = true; }
 
-    std::string getMessage()
+    std::string getMessage() const
     {
         return "You can promote piece.";
     }

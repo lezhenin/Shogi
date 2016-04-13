@@ -12,7 +12,8 @@ class KingNotFoundException: public GameLogicException
 {
 
 public:
-    const char *what() throw() {
+    virtual const char *what() throw()
+    {
         const char *str = "King wasn't found";
         return  str;
     }
