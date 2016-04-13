@@ -3,15 +3,15 @@
 
 Board::Board(int w, int h)
 {
-    this->width=w;
-    this->height=h;
+    this->width = w;
+    this->height = h;
 
-    if(w<=0)
+    if(w <= 0)
     {
         this->width=1;
     }
 
-    if(h<=0)
+    if(h <= 0)
     {
         this->height=1;
     }
@@ -32,7 +32,7 @@ void Board::setPiece(Piece *piece, const Position &pos)
 void Board::removePiece(const Position &pos)
 {
     Square *sq = this->getSquare(pos);
-    if(sq->getPiece()!= nullptr)
+    if(sq->getPiece() != nullptr)
     {
         this->onBoard.remove(sq->getPiece());
         sq->getPiece()->setSquare(nullptr);
@@ -42,7 +42,7 @@ void Board::removePiece(const Position &pos)
 
 inline Square *Board::getSquare(const Position& pos)
 {
-    return squares[pos.getHorizontal()-1][pos.getVertical()-1];
+    return squares[pos.getHorizontal() - 1][pos.getVertical() - 1];
 }
 
 Piece *Board::getPiece(const Position &pos)
@@ -79,16 +79,16 @@ ListOfPieces &Board::getAllPieces()
 void Board::createSquares()
 {
     this->squares = new Square **[this->height];
-    for(int i=0; i<this->height; i++)
+    for(int i = 0; i < this->height; i++)
     {
         this->squares[i] = new Square *[this->width];
     }
 
-    for(int i=1; i<=this->height; i++)
+    for(int i = 1; i <= this->height; i++)
     {
-        for(int j=1; j<=this->width; j++)
+        for(int j = 1; j <= this->width; j++)
         {
-            squares[i-1][j-1] = new Square(Position(i,j));
+            squares[i - 1][j - 1] = new Square(Position(i, j));
         }
     }
 }

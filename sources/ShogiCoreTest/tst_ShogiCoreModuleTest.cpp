@@ -46,6 +46,7 @@ void ShogiCoreModuleTest::mementoTest() {
 
 }
 
+//TODO: разделить на десяток тестов board можно построить в конструкторе, а перед тестом брать себе копию и достраивать
 void ShogiCoreModuleTest::gameLogicTest() {
     Board board;
     Piece *p1 = new Piece(Rook, Sente);

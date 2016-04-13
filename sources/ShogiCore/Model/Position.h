@@ -10,7 +10,7 @@ public:
 
     /**
     * @brief Конструктор
-     *
+    *
     * @param[in] h Порядковый номер горизонтали.
     * @param[in] v Порядковый номер вертикали.
     */
@@ -22,20 +22,24 @@ public:
      * @return Порядковый номер вертикали соотвествующий данной позиции.
      */
     int getVertical() const;
+
     /**
      * @brief Получить порядковый номер горизонтали.
      *
      * @return Порядковый номер гоизонтали соотвествующий данной позиции.
      */
     int getHorizontal() const;
+
     /**
      * @brief Сравнить две позиции.
      *
      * Сравнивает порядковые номера вертикалей и горизонталей,
      * содержащихся в двух объектах.
      */
+        //TODO: это не может быть const?
     bool operator == (const Position& pos);
 
+        //TODO: это не может быть const?
     bool operator != (const Position& pos);
 
     /**
@@ -44,10 +48,11 @@ public:
      * Присваивает занчения данных одного объекта другому.
      */
     Position& operator = (const Position& pos);
+
     /**
      * @brief Деструтор
      */
-    ~Position(){};
+    ~Position(){}
 
 private:
 

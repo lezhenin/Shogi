@@ -6,14 +6,15 @@
 #include "ModelException.h"
 
 /**
- * @brief Класс исключения, выбрасываемоего при
+ * @brief Класс исключения, возбуждаемого при
  * попытке передать позицию несоответсвующую доске.
  */
+//TODO: можно сюда добавить поля для хранения подробностей, какая позиция была плохая и почему?
 class BadPositionException: public ModelException
 {
 
 public:
-    BadPositionException(){};
+    BadPositionException(){}
     const char* what() const throw()
     {
         return "Position is bad";

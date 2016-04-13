@@ -1,9 +1,10 @@
 #ifndef SHOGI_MODELEXCEPTION_H
 #define SHOGI_MODELEXCEPTION_H
 #include <exception>
+
 /**
- * @brief Класс исключения, выкидываемого при
- * возникновении ошибке связанной с игровой моделью.
+ * @brief Класс исключения, возбуждаемого при
+ * возникновении ошибки связанной с игровой моделью.
  */
 class ModelException: public std::exception
 {
