@@ -3,10 +3,8 @@ export PATH=$PATH:/opt/Qt5.5.0/5.5/gcc_64/bin/
 
 build_release_version()
 {
-	mkdir -p build
-	cd build
-	mkdir -p release
-	cd release
+	mkdir -p build/release
+	cd build/release
 	cmake --version
     cmake -D CMAKE_BUILD_TYPE=Release –G "Unix Makefiles" ../../../workspace
 
@@ -30,9 +28,8 @@ build_debug_version()
     cloc --version
 	cloc --by-file --exclude-dir=ShogiCore/SaveAndLoad/JSON/rapidjson --xml --out=../report/cloc_result *
 
-	cd ../build
-	mkdir -p debug
-	cd debug
+	mkdir -p ../build/debug
+	cd ../build/debug
 	cmake --version
 	cmake -D CMAKE_BUILD_TYPE=Debug –G "Unix Makefiles" ../../../workspace
 
@@ -55,7 +52,7 @@ build_debug_version()
 
 		echo "Makefile does not exist"
 		echo "Build debug version failure!"
-		return
+		return 1
 
 	fi
 	cd ..
@@ -77,7 +74,7 @@ make_report()
 
 		echo "Makefile does not exist"
 		echo "Report failure!"
-		return
+		return 1
 	fi
 	cd ../../..
 }
@@ -88,7 +85,7 @@ zip_files()
 	if [ -z ${JOB_NAME} ] || [ -z ${BUILD_NUMBER}]; then
 		echo "Vars JOB_NAME/BUILD_NUMBER are unset"
 		echo "Zip failure!"
-		exit 1
+		return 1
 	fi
 
 	TITLE="${JOB_NAME}_v${BUILD_NUMBER}"
@@ -110,7 +107,7 @@ zip_files()
 
 		echo "ConsoleApp does not exist"
 		echo "Zip failure!"
-		return
+		return 1
 	fi
 
 }
