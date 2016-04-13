@@ -29,10 +29,9 @@ public:
         while (scene != nullptr)
         {
             scene->show();
-            //TODO: переименовать tmp ->  nextScene
-            Scene *tmp = scene->getNextScene();
+            Scene *nextScene = scene->getNextScene();
             delete scene;
-            scene = tmp;
+            scene = nextScene;
         }
     }
 

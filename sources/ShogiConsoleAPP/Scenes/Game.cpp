@@ -17,37 +17,33 @@ void Game::show()
     }
 }
 
-//TODO: хочу чтобы ни в одном месте этого класса не было цифры 9!!!
 void Game::input()
 {
 
-    std::string str;
-    //TODO: переименовать tmp
-    int tmp;
-    //TODO: переименовать x
-    bool x = true;
-    while(x)
+    std::string input;
+    int commandID;
+    bool listenUser = true;
+    while(listenUser)
     {
-        std::cin >> str;
+        std::cin >> input;
         try
         {
-            tmp = tableOfCommands.at(str);
-            switch (tmp)
+            commandID = tableOfCommands.at(input);
+            switch (commandID)
             {
                 case 0:
                 {
                             //TODO: выделить метод
                 //TODO: переименовать h и v
-                    int h, v;
-                    std::cin >> h >> v;
+                    int horizontal, vertical;
+                    std::cin >> horizontal >> vertical;
                     std::cin.clear();
-                    //TODO: использовать символьные константы из abstract board для задания размеров вместо 9, можно получить их каким-то методом, если не хочется напрямую
-                    if (h >= 1 && h <= 9 && v >= 1 && v <= 9)
+                    if (horizontal >= 1 && horizontal <= AbstractBoard::BOARD_HEIGHT && vertical >= 1 && vertical <= AbstractBoard::BOARD_WIDTH)
                     {
                         try
                         {
-                            game->pickPiece(Position(h, v));
-                            x = false;
+                            game->pickPiece(Position(horizontal, vertical));
+                            listenUser = false;
                         }
                         catch (std::exception &e)
                         {
@@ -63,7 +59,7 @@ void Game::input()
                 case 1:
                 {
                     game->unPickPiece();
-                    x = false;
+                    listenUser = false;
                     break;
                 }
                 case 2:
@@ -78,7 +74,7 @@ void Game::input()
                         try
                         {
                             game->movePiece(Position(h, v));
-                            x = false;
+                            listenUser = false;
                         }
                         catch (std::exception &e)
                         {
@@ -108,7 +104,7 @@ void Game::input()
                             try
                             {
                                 game->dropPiece(pieceType, Position(h, v));
-                                x = false;
+                                listenUser = false;
                             }
                             catch (std::exception &e)
                             {
@@ -128,26 +124,26 @@ void Game::input()
                 case 4:
                 {
                     stop();
-                    x = false;
+                    listenUser = false;
                     break;
                 }
                 case 5:
                 {
                     printListOfCapturedPieces(Sente);
                     printListOfCapturedPieces(Gote);
-                    x = false;
+                    listenUser = false;
                     break;
                 }
                 case 6:
                 {
                     game->undo();
-                    x = false;
+                    listenUser = false;
                     break;
                 }
                 case 7:
                 {
                     game->redo();
-                    x = false;
+                    listenUser = false;
                     break;
                 }
                 default:
@@ -166,16 +162,16 @@ void Game::input()
 
 }
 
-void Game::printBoard(AbstractBoard &board)
+void Game::printBoard(AbstractBoard &board) const
 {
-    for(int j = 9; j >= 1; j--)
+    for(int j = AbstractBoard::BOARD_WIDTH; j >= 1; j--)
     {
         std::cout << " " << j << "  ";
     }
     std::cout << std::endl;
-    for(int i = 1; i <= 9; i++)
+    for(int i = 1; i <= AbstractBoard::BOARD_HEIGHT; i++)
     {
-        for(int j = 9; j >= 1; j--)
+        for(int j = AbstractBoard::BOARD_WIDTH; j >= 1; j--)
         {
             Piece *p = board.getPiece(Position(i, j));
             if (p == nullptr)
@@ -197,7 +193,7 @@ void Game::printBoard(AbstractBoard &board)
     std::cout << std::endl;
 }
 //todo refactor
-void Game::printListOfCapturedPieces(Player player)
+void Game::printListOfCapturedPieces(Player player) const
 {
     ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
     Piece tmp(Pawn, player);
