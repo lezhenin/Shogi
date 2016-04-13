@@ -25,6 +25,8 @@ private:
     Player transformPlayer(Player pl) const;
     bool isUnderAttack(Player player, Position pos) const;
     std::vector<Position> getAllPositionToMove(Piece *piece) const;
+    Piece* findPiece(PieceType pieceType, Player player, ListOfPieces& pieces) const;
+
     AbstractBoard *board;
     TableOfDirections table;
 

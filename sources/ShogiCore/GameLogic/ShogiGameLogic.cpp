@@ -78,34 +78,23 @@ bool ShogiGameLogic::isUnderAttack(Player player, Position pos) const {
 
 bool ShogiGameLogic::checkShah(Player player) const
 {
-    //TODO: переименовать tmp и it (tmp -- sampleKing?)
-    Piece tmp(King, player);
-    Piece *king = nullptr;
-    //TODO: думаю можно использовать foreach синтаксис, если делать break после присваивание кингу
-    for (ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); king == nullptr && it != board->getPiecesOnBoard().end(); ++it) {
-        if (tmp.equals(*it)) {
-            king = *it;
-        }
-
-    }
+    Piece *king = findPiece(King, player, board->getPiecesOnBoard());
     if (king == nullptr)
+    {
         throw KingNotFoundException();
+    }
     player = transformPlayer(player);
     return isUnderAttack(player, king->getPosition());
 }
 
 bool ShogiGameLogic::checkMate(Player player) const {
-    //TODO: это копипаста с проверки шаха, выделить в отдельный метод
-    Piece tmp(King, player);
-    Piece *king = nullptr;
-    for (ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); king == nullptr && it != board->getPiecesOnBoard().end(); ++it) {
-        if (tmp.equals(*it)) {
-            king = *it;
-        }
-    }
-    if (king == nullptr)
-        throw KingNotFoundException();
 
+    Piece *king = findPiece(King, player, board->getPiecesOnBoard());
+
+    if (king == nullptr)
+    {
+        throw KingNotFoundException();
+    }
 
     std::vector<Position> positions = getAllPositionToMove(king);
     positions.push_back(king->getPosition());
@@ -114,25 +103,25 @@ bool ShogiGameLogic::checkMate(Player player) const {
 
     for (Position pos : positions)
     {
-        //TODO: в других местах кода везде nullptr
-        //TODO: можно поменять ветви местами, так кажется логичнее
-        if(board->getPiece(pos) == 0)
+        if(board->getPiece(pos) != nullptr)
         {
-            if (!isUnderAttack(player, pos))
-                return false;
-        }
-        else
-        {
-
             AbstractBoardMemento *abm = board->getMemento();
             board->removePiece(king->getPosition());
             board->removePiece(pos);
             board->setPiece(king,pos);
-            //TODO: переименовать x в y без потери смысла
-            bool x = isUnderAttack(player,king->getPosition());
+            bool kingIsUnderAttack = isUnderAttack(player,king->getPosition());
             board->setMemento(abm);
             delete abm;
-            return x;
+            if(!kingIsUnderAttack)
+            {
+                return false;
+            }
+
+        }
+        else
+        {
+            if (!isUnderAttack(player, pos))
+                return false;
         }
     }
     return true;
@@ -144,37 +133,34 @@ Player ShogiGameLogic::transformPlayer(Player pl) const {
 }
 
 bool ShogiGameLogic::checkPromotion(Piece *piece) const {
-    if(piece->wasPromoted())
+    if(piece->wasPromoted() || !piece->canBePromoted())
     {
         return false;
     }
     if(piece->getPlayer() == Sente)
     {
-        //TODO: магические константы лучше вынести в AbstractBoard и присвоить им значения относительно размеров доски (3 и размер доски - 3);
-        // или PROMOTION_AREA_SIZE = 3, PROMOTION_LINE_SENTE = PROMITION_AREA_SIZE, PROMOTION_LINE_GOTE = BORDER_SIZE - PROMOTION_AREA_SIZE
-        // или еще метод, которые по Player вернет promotion line, тогда без if можно будет
-        //TODO:  piece->canBePromoted() можно перенести в if повыше, все ж false возвращать (чтоб не писать два раза, да и тут он не к месту кажется)
-        return piece->canBePromoted() && piece->getPosition().getHorizontal()<=3;
+        return  piece->getPosition().getHorizontal() <= AbstractBoard::PROMOTION_LINE_SENTE;
     }
     else
     {
-        return piece->canBePromoted() && piece->getPosition().getHorizontal()>=7;
+        return  piece->getPosition().getHorizontal() >= AbstractBoard::PROMOTION_LINE_GOTE;
     }
 }
 
 bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
 {
     if (board->getPiece(pos) != nullptr)
+    {
         return false;
-
+    }
     //TODO: этот if выделить в метод
     if (piece->getType() == Pawn)
     {
         for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)
         {
-            //TODO: board->getPiece(Position(i,pos.getVertical())) вынести из if
-            if (board->getPiece(Position(i,pos.getVertical())) != nullptr &&
-                    board->getPiece(Position(i,pos.getVertical())) -> equals(piece))
+            Position temp(i,pos.getVertical());
+            if (board->getPiece(temp) != nullptr &&
+                board->getPiece(temp) -> equals(piece))
             {
                 return false;
             }
@@ -182,10 +168,9 @@ bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
     }
 
     //TODO: этот if выделить в метод
-    //TODO: 9,1,8,2 -- это тоже особые зоны? В символьные константы их как и promotion line! И в отдельные методы.
     if (piece->getType() == Pawn || piece->getType() == Lance)
     {
-        if (piece->getPlayer() == Sente && pos.getHorizontal() == 9
+        if (piece->getPlayer() == Sente && pos.getHorizontal() == AbstractBoard::BOARD_HEIGHT
             || piece->getPlayer() == Gote && pos.getHorizontal() == 1)
         {
             return false;
@@ -195,7 +180,7 @@ bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
     //TODO: этот if выделить в метод
     if(piece->getType()==Knight)
     {
-        if (piece->getPlayer() == Sente && pos.getHorizontal() >= 8
+        if (piece->getPlayer() == Sente && pos.getHorizontal() >= AbstractBoard::BOARD_HEIGHT - 1
            || piece->getPlayer() == Gote && pos.getHorizontal() <= 2)
         {
             return false;
@@ -204,15 +189,28 @@ bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
 
     AbstractBoardMemento *abm = board->getMemento();
     board->setPiece(piece,pos);
-
     Player player = transformPlayer(piece->getPlayer());
-    if (checkMate(player))
-    {
-        board->setMemento(abm);
-        delete abm;
-        return false;
-    }
+    bool mate = checkMate(player);
     board->setMemento(abm);
     delete abm;
-    return true;
+    return !mate;
 }
+
+Piece *ShogiGameLogic::findPiece(PieceType pieceType, Player player, ListOfPieces &pieces) const
+{
+    Piece samplePiece(pieceType,player);
+    ListOfPieces::iterator iterator = std::find_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&samplePiece));
+    if (iterator != pieces.end())
+    {
+        return *iterator;
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
+
+
+
+

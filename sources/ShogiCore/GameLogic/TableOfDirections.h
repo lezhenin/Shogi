@@ -7,19 +7,31 @@
 #include "../Model/Piece.h"
 
 /**
- * Класс содержащий таблицу фигур и их возможных направлений ходов.
+ * @brief Класс содержащий таблицу фигур и их возможных направлений ходов.
  */
 class TableOfDirections
 {
 public:
-    std::vector<Direction> getDirections(PieceType pieceType) const
+
+    std::vector<Direction> getDirections(PieceType pieceType, Player player = Gote) const
     {
-        return dirs.at(pieceType);
+        if (player == Gote)
+        {
+            return directions.at(pieceType);
+        }
+
+        std::vector<Direction> newDirections;
+        for (Direction direction: directions.at(pieceType))
+        {
+            Direction newDirection(direction.getX(),direction.getY() * (-1));
+            newDirections.push_back(newDirection);
+        }
+        return newDirections;
     }
 
 private:
 
-    std::map<PieceType,std::vector<Direction>> dirs= {
+    std::map<PieceType, std::vector<Direction>> directions= {
             {
                     King,           {Direction{     0,   UP, 1},
                                      Direction{ RIGHT,   UP, 1},
