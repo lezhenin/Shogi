@@ -23,7 +23,7 @@ public:
         std::vector<Direction> newDirections;
         for (Direction direction: directions.at(pieceType))
         {
-            Direction newDirection(direction.getX(),direction.getY() * (-1));
+            Direction newDirection(direction.getX(), direction.getY() * (-1), direction.getLimit());
             newDirections.push_back(newDirection);
         }
         return newDirections;

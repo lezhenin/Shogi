@@ -5,32 +5,33 @@
 //todo optimize all algorithms
 
 //TODO: даже если не оптимизировать, предлагаю выделить отдельные методы, чекТо, чекЭто
-// я заглянула в этот метод, чтобы понять, какие именно проверки проводятся, но поняла, что мне не судьба
-// подозреваю, что в двух циклах осуществляются разные проверки
 bool ShogiGameLogic::checkMove(Piece *piece, Position destination) const
 {
-    std::vector<Direction> dirs = table.getDirections(piece->getType());
+    std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
+
     Position source = piece->getPosition();
-    Direction *dir = nullptr;
 
-    for(std::vector<Direction>::iterator it=dirs.begin(); it != dirs.end() && dir == nullptr; ++it)
+    Direction *dir = findDirection(source, destination, directions);
+
+    if(dir == nullptr)
     {
-        if ((it->getX() * (destination.getHorizontal() - source.getHorizontal())
-            - it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1) * (destination.getVertical() - source.getVertical())) == 0
-            && (pow(destination.getHorizontal() - source.getHorizontal(),2) + pow(destination.getVertical() - source.getVertical(),2))
-               > (pow(destination.getHorizontal() - source.getHorizontal() - it->getY() * ((piece->getPlayer()==Sente) ? -1 : 1),2) + pow(destination.getVertical() - source.getVertical() - it->getX(),2)))
-        {
-            dir = &(*it);
-        }
+        return false;
     }
-
-    if(dir == nullptr) return false;
 
     for(int i = 1; i != dir->getLimit()+1; i++)
     {
-        source = Position(source.getHorizontal() + dir->getY() * ((piece->getPlayer()==Sente) ? -1 : 1), source.getVertical() + dir->getX());
-        if (source == destination && (board->getPiece(source) == nullptr || board->getPiece(source)->getPlayer() != piece->getPlayer())) return true;
-        if (board->getPiece(source) != nullptr) return false;
+        source = Position(source.getHorizontal() + dir->getY(), source.getVertical() + dir->getX());
+
+        if (source == destination &&
+           (board->getPiece(source) == nullptr ||
+            board->getPiece(source)->getPlayer() != piece->getPlayer()))
+        {
+            return true;
+        }
+        if (board->getPiece(source) != nullptr)
+        {
+            return false;
+        }
     }
     return false;
 }
@@ -41,7 +42,7 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
     Position source = piece->getPosition();
     std::vector<Position> positions;
 
-    for (Direction direction : directions)
+    for (Direction &direction : directions)
     {
         for(int i = 1; i != direction.getLimit() + 1; ++i)
         {
@@ -58,7 +59,6 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
             }
         }
     }
-
     return  positions;
 }
 
@@ -216,6 +216,26 @@ bool ShogiGameLogic::onBoard(Position position)  const
     return (position.getHorizontal() >= 1 && position.getHorizontal() <= AbstractBoard::BOARD_HEIGHT &&
             position.getVertical()   >= 1 && position.getVertical()   <= AbstractBoard::BOARD_WIDTH );
 }
+
+Direction *ShogiGameLogic::findDirection(Position &source, Position &destination, std::vector<Direction> &directions) const
+{
+    for (Direction &direction : directions)
+    {
+        if ((direction.getX() * (destination.getHorizontal() - source.getHorizontal()) -
+             direction.getY() * (destination.getVertical()   - source.getVertical())) == 0
+
+            && (pow(destination.getHorizontal() - source.getHorizontal(), 2) +
+                pow(destination.getVertical()   - source.getVertical(), 2)) >
+               (pow(destination.getHorizontal() - source.getHorizontal() - direction.getY(), 2) +
+                pow(destination.getVertical()   - source.getVertical()   - direction.getX(), 2)))
+        {
+            return &direction;
+        }
+    }
+    return nullptr;
+}
+
+
 
 
 
