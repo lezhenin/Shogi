@@ -16,7 +16,7 @@ build_release_version()
 
 		echo "Makefile does not exist"
 		echo "Build release version failure!"
-		return
+		return 1
 
 	fi
 	cd ../..
