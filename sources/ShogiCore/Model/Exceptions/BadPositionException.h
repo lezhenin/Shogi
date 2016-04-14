@@ -3,7 +3,11 @@
 
 
 #include <exception>
+#include <string>
+#include <sstream>
+#include <cstring>
 #include "ModelException.h"
+#include "../AbstractBoard.h"
 
 /**
  * @brief Класс исключения, возбуждаемого при
@@ -14,11 +18,19 @@ class BadPositionException: public ModelException
 {
 
 public:
-    BadPositionException(const Position &position){}
+    explicit BadPositionException(const Position &position) : position(position){}
     const char* what() const throw()
     {
-        return "Position is bad";
+        std::stringstream stringstream;
+        stringstream << "Position(" << position.getHorizontal() << ", "
+                                    << position.getVertical()   << ") is bad. "
+                     << "Board size: " << AbstractBoard::BOARD_HEIGHT << " x "
+                                       << AbstractBoard::BOARD_WIDTH  <<  ".";
+        return stringstream.str().c_str();
     }
+
+private:
+    const Position &position;
 
 };
 

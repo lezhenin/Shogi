@@ -11,7 +11,7 @@ class ShogiGameLogic: public AbstractShogiGameLogic
 public:
 
     explicit ShogiGameLogic(AbstractBoard *board) : board(board){}
-    bool checkMove(Piece *piece, Position pos) const;
+    bool checkMove(Piece *piece, Position destination) const;
     bool checkShah(Player player) const;
     bool checkMate(Player player) const;
     bool checkPromotion(Piece *piece) const;
@@ -24,6 +24,8 @@ private:
     bool isUnderAttack(Player player, Position pos) const;
     std::vector<Position> getAllPositionToMove(Piece *piece) const;
     Piece* findPiece(PieceType pieceType, Player player, ListOfPieces& pieces) const;
+
+    bool onBoard(Position position) const;
 
     AbstractBoard *board;
     TableOfDirections table;
