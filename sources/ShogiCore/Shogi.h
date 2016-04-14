@@ -23,8 +23,8 @@ public:
     virtual void movePiece(const Position &position) override;
     virtual void promotePiece(const Position &position) override;
     virtual void dropPiece(const PieceType pieceType, const Position &position) override;
-    virtual void undo() override;
-    virtual void redo() override;
+    virtual bool undo() override;
+    virtual bool redo() override;
     virtual AbstractBoard &getBoard() const override;
     virtual ListOfGameSituations& getGameSituation() override;
     virtual ~Shogi();

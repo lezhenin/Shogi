@@ -175,8 +175,7 @@ ListOfGameSituations &Shogi::getGameSituation()
     return gameSituations;
 }
 
-//TODO: м.б. сделать возвращаемое значение, чтобы рассказать, была отмена или не было?
-void Shogi::undo()
+bool Shogi::undo()
 {
     if(!toUndo.empty())
     {
@@ -185,11 +184,12 @@ void Shogi::undo()
         delete toUndo.top();
         toUndo.pop();
         currentPlayer = transformPlayer(currentPlayer);
+        return true;
     }
+    return false;
 }
 
-//TODO: м.б. сделать возвращаемое значение, чтобы рассказать, была отмена отмены или не было?
-void Shogi::redo()
+bool Shogi::redo()
 {
     if(!toRedo.empty())
     {
@@ -198,7 +198,9 @@ void Shogi::redo()
         delete toRedo.top();
         toRedo.pop();
         currentPlayer = transformPlayer(currentPlayer);
+        return true;
     }
+    return false;
 }
 
 Player Shogi::getCurrentPlayer () const
