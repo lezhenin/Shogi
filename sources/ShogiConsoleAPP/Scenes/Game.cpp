@@ -33,92 +33,22 @@ void Game::input()
             {
                 case 0:
                 {
-                            //TODO: выделить метод
-                //TODO: переименовать h и v
-                    int horizontal, vertical;
-                    std::cin >> horizontal >> vertical;
-                    std::cin.clear();
-                    if (horizontal >= 1 && horizontal <= AbstractBoard::BOARD_HEIGHT && vertical >= 1 && vertical <= AbstractBoard::BOARD_WIDTH)
-                    {
-                        try
-                        {
-                            game->pickPiece(Position(horizontal, vertical));
-                            listenUser = false;
-                        }
-                        catch (std::exception &e)
-                        {
-                            std::cout << "Game error" << std::endl;
-                        }
-                    }
-                    else
-                    {
-                        std::cout << "Bad arguments of command" << std::endl;
-                    }
+                    listenUser = pick();
                     break;
                 }
                 case 1:
                 {
-                    game->unPickPiece();
-                    listenUser = false;
+                    listenUser = unpick();
                     break;
                 }
                 case 2:
                 {
-                            //TODO: выделить метод
-                //TODO: переименовать h и v
-                    int h, v;
-                    std::cin >> h >> v;
-                    std::cin.clear();
-                    if (h >= 1 && h <= 9 && v >= 1 && v <= 9)
-                    {
-                        try
-                        {
-                            game->movePiece(Position(h, v));
-                            listenUser = false;
-                        }
-                        catch (std::exception &e)
-                        {
-                            std::cout << "Game error" << std::endl;
-                        }
-                    }
-                    else
-                    {
-                        std::cout << "Bad arguments of command" << std::endl;
-                    }
+                    listenUser = move();
                     break;
                 }
                 case 3:
                 {
-                            //TODO: выделить метод
-                //TODO: переименовать h и v
-                    int h, v;
-                    std::string type;
-                    std::cin >> type >> h >> v;
-                    std::cin.clear();
-                    try
-                    {
-                        PieceType pieceType;
-                        pieceType = tableOfTypes.at(type);
-                        if (h >= 1 && h <= 9 && v >= 1 && v <= 9)
-                        {
-                            try
-                            {
-                                game->dropPiece(pieceType, Position(h, v));
-                                listenUser = false;
-                            }
-                            catch (std::exception &e)
-                            {
-                                std::cout << "Game error" << std::endl;
-                            }
-                        }
-                        else
-                        {
-                            std::cout << "Bad arguments of command" << std::endl;
-                        }
-                    }
-                    catch (std::exception &e) {
-                        std::cout << "Bad arguments of command" << std::endl;
-                    }
+                    listenUser = drop();
                     break;
                 }
                 case 4:
@@ -136,14 +66,12 @@ void Game::input()
                 }
                 case 6:
                 {
-                    game->undo();
-                    listenUser = false;
+                    listenUser = undo();
                     break;
                 }
                 case 7:
                 {
-                    game->redo();
-                    listenUser = false;
+                    listenUser = redo();
                     break;
                 }
                 default:
@@ -158,8 +86,6 @@ void Game::input()
             std::cout << "Unknown command" << std::endl;
         }
     }
-
-
 }
 
 void Game::printBoard(AbstractBoard &board) const
@@ -267,6 +193,134 @@ Game::Game()
 {
     game = new Shogi();
 }
+
+bool Game::checkPositon(int horizontal, int vertical) const
+{
+    return (horizontal >= 1 && horizontal <= AbstractBoard::BOARD_HEIGHT &&
+            vertical   >= 1 && vertical   <= AbstractBoard::BOARD_WIDTH );
+}
+
+bool Game::pick()
+{
+    int horizontal, vertical;
+    std::cin >> horizontal >> vertical;
+    std::cin.clear();
+    if (checkPositon(horizontal,vertical))
+    {
+        try
+        {
+            game->pickPiece(Position(horizontal, vertical));
+            return false;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "Game error" << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Bad arguments of command" << std::endl;
+    }
+    return true;
+}
+
+bool Game::unpick()
+{
+    game->unPickPiece();
+    return false;
+}
+
+bool Game::move()
+{
+    int horizontal, vertical;
+    std::cin >> horizontal >> vertical;
+    std::cin.clear();
+    if (checkPositon(horizontal, vertical))
+    {
+        try
+        {
+            game->movePiece(Position(horizontal, vertical));
+            return false;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "Game error" << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Bad arguments of command" << std::endl;
+    }
+    return true;
+}
+
+bool Game::drop()
+{
+    int horizontal, vertical;
+    std::string type;
+    std::cin >> type >> horizontal >> vertical;
+    std::cin.clear();
+    try
+    {
+        PieceType pieceType;
+        pieceType = tableOfTypes.at(type);
+        if (checkPositon(horizontal,vertical))
+        {
+            try
+            {
+                game->dropPiece(pieceType, Position(horizontal, vertical));
+                return false;
+            }
+            catch (std::exception &e)
+            {
+                std::cout << "Game error" << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << "Bad arguments of command" << std::endl;
+        }
+    }
+    catch (std::exception &e) {
+        std::cout << "Bad arguments of command" << std::endl;
+    }
+    return true;
+}
+
+bool Game::undo()
+{
+    if(!game->undo())
+    {
+        std::cout << "Can't undo move!" << std::endl;
+    }
+    return false;
+}
+
+bool Game::redo()
+{
+    if(!game->redo())
+    {
+        std::cout << "Can't redo move!" << std::endl;
+    }
+    return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

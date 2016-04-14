@@ -61,6 +61,16 @@ private:
      */
     void printListOfCapturedPieces(Player player) const;
 
+    bool checkPositon(int horizontal, int vertical) const;
+
+    bool pick();
+    bool unpick();
+    bool move();
+    bool drop();
+    bool undo();
+    bool redo();
+
+
     ShogiGameAPI *game;
     bool isRun = false;
 
