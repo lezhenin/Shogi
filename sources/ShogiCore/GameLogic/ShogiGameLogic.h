@@ -22,7 +22,7 @@ public:
 
 
 private:
-    Player transformPlayer(Player pl) const;
+    Player changePlayer(Player pl) const;
 
     bool isUnderAttack(Player player, Position pos) const;
     bool onBoard(Position position) const;

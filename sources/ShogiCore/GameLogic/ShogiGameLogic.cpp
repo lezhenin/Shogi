@@ -81,7 +81,7 @@ bool ShogiGameLogic::checkShah(Player player) const
     {
         throw KingNotFoundException();
     }
-    player = transformPlayer(player);
+    player = changePlayer(player);
     return isUnderAttack(player, king->getPosition());
 }
 
@@ -98,9 +98,9 @@ bool ShogiGameLogic::checkMate(Player player) const
     std::vector<Position> positions = getAllPositionToMove(king);
     positions.push_back(king->getPosition());
 
-    player = transformPlayer(player);
+    player = changePlayer(player);
 
-    for (Position pos : positions)
+    for (Position &pos : positions)
     {
         if(board->getPiece(pos) != nullptr)
         {
@@ -128,9 +128,9 @@ bool ShogiGameLogic::checkMate(Player player) const
 }
 
 //TODO: аналогичный метод есть Shogi.cpp, следует оставить только один из них
-Player ShogiGameLogic::transformPlayer(Player pl) const
+Player ShogiGameLogic::changePlayer(Player player) const
 {
-     return (Player)((int)(pl+1)%2);
+     return (player == Sente) ? Gote : Sente;
 }
 
 bool ShogiGameLogic::checkPromotion(Piece *piece) const
@@ -191,7 +191,7 @@ bool ShogiGameLogic::checkDrop(Piece *piece, Position pos)
 
     AbstractBoardMemento *memento = board->getMemento();
     board->setPiece(piece,pos);
-    bool mate = checkMate(transformPlayer(piece->getPlayer()));
+    bool mate = checkMate(changePlayer(piece->getPlayer()));
     board->setMemento(memento);
     delete memento;
     return !mate;
