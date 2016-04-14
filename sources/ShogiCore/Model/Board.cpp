@@ -40,12 +40,12 @@ void Board::removePiece(const Position &pos)
     sq->setPiece(nullptr);
 }
 
-inline Square *Board::getSquare(const Position& pos)
+inline Square *Board::getSquare(const Position& pos) const
 {
     return squares[pos.getHorizontal() - 1][pos.getVertical() - 1];
 }
 
-Piece *Board::getPiece(const Position &pos)
+Piece *Board::getPiece(const Position &pos) const
 {
     return this->getSquare(pos)->getPiece();
 }

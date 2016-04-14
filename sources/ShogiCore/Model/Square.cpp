@@ -17,9 +17,3 @@ void Square::setPiece(Piece *p)
     this->piece=p;
 }
 
-//TODO: зачем нам нужен невиртуальный деструктор, и почему тело не в .h
-Square::~Square()
-{
-
-}
-

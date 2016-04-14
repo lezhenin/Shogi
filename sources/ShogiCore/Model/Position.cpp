@@ -16,7 +16,7 @@ int Position::getHorizontal() const
     return this->horizontal;
 }
 
-bool Position::operator ==(const Position &pos)
+bool Position::operator ==(const Position &pos) const
 {
     return (this->horizontal == pos.horizontal && this->vertical == pos.vertical);
 }
@@ -32,7 +32,8 @@ Position &Position::operator =(const Position &pos)
     return *this;
 }
 
-bool Position::operator!=(const Position &pos) {
+bool Position::operator!=(const Position &pos) const
+{
     return !operator==(pos);
 }
 

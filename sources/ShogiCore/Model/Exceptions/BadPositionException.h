@@ -14,7 +14,7 @@ class BadPositionException: public ModelException
 {
 
 public:
-    BadPositionException(){}
+    BadPositionException(const Position &position){}
     const char* what() const throw()
     {
         return "Position is bad";

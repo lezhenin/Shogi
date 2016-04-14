@@ -36,11 +36,9 @@ public:
      * Сравнивает порядковые номера вертикалей и горизонталей,
      * содержащихся в двух объектах.
      */
-        //TODO: это не может быть const?
-    bool operator == (const Position& pos);
+    bool operator == (const Position& pos) const ;
 
-        //TODO: это не может быть const?
-    bool operator != (const Position& pos);
+    bool operator != (const Position& pos) const ;
 
     /**
      * @brief Присвоить значение

@@ -27,6 +27,7 @@ public:
      * @param[in] pos   Позиция, куда будет установлена фигура
      */
     virtual void setPiece(Piece *piece, const Position &pos)=0;
+
     /**
      * @brief Убрать фигуру
      *
@@ -34,6 +35,7 @@ public:
      * @param[in] pos Позиция, откуда будет убрана фигура.
      */
     virtual void removePiece(const Position &pos)=0;
+
     /**
      * @brief Получить фигуру
      *
@@ -41,8 +43,8 @@ public:
      * @param[in] pos   Позиция где находится фигура.
      * @return Указатель на фигуру.
      */
-        //TODO: это не может быть const?
-    virtual Piece *getPiece(const Position &pos)=0;
+    virtual Piece *getPiece(const Position &pos) const = 0;
+
     /**
      * @brief Получить мементо.
      *
@@ -51,39 +53,39 @@ public:
      */
         //TODO: это не может быть const?
     virtual AbstractBoardMemento *getMemento() = 0;
+
     /**
      * @brief Установить мементо.
      *
      * Восстанавливает ранее сохраненное состояние доски.
      * @param memento Указатель на класс AbstractBoardMemento
      */
-    virtual void setMemento(AbstractBoardMemento *memento)=0;\
+    virtual void setMemento(AbstractBoardMemento *memento) = 0;
+
     /**
      * @brief Получить список всех фигур.
      *
      * Возвращает список всех фигур.
      * @return Ссылка на список фигур.
      */
-        //TODO: это не может быть const?
-    virtual ListOfPieces &getAllPieces()=0;
+    virtual ListOfPieces &getAllPieces() = 0;
+
     /**
      * @brief Получить список фигур на доске
      *
      * Возвращает список всех фигур, находящихся на доске
      * @return Ссылка на список фигур.
      */
-        //TODO: это не может быть const?
-    virtual ListOfPieces &getPiecesOnBoard()=0;
-    //TODO: почему список фигур sente? это ведь только один из игроков?
+    virtual ListOfPieces &getPiecesOnBoard() = 0;
+
     /**
-     * @brief Получить список фигур Sente
+     * @brief Получить список фигур, захваченных одним из игроков
      *
      * Возвращает список всех фигур, захваченных одной из сторон.
      * @param player Игрок, чьи захваченные фигуры необъодимо получить.
      * @return Ссылка на список фигур.
      */
-        //TODO: это не может быть const?
-    virtual ListOfPieces &getCapturedPieces(Player player)=0;
+    virtual ListOfPieces &getCapturedPieces(Player player) = 0;
     /**
      * @brief Деструктор
      */

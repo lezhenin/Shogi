@@ -80,11 +80,6 @@ void Piece::setPlayer(Player pl)
     this->player = pl;
 }
 
-//TODO: зачем нам нужен невиртуальный деструктор, и почему тело не в .h
-Piece::~Piece()
-{
-
-}
 
 bool Piece::equals(Piece *piece) {
     return (player == piece->player && ptype == piece->ptype);

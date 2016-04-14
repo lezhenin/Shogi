@@ -44,7 +44,7 @@ public:
     /**
      * @brief Деструктор
      */
-    ~Square();
+    virtual ~Square() {};
 
 private:
 

@@ -16,7 +16,7 @@ public:
     void setPiece(Piece *piece, const Position &pos);
     void removePiece(const Position &pos);
 
-    Piece *getPiece(const Position &pos);
+    Piece *getPiece(const Position &pos) const ;
 
     AbstractBoardMemento *getMemento();
     void setMemento(AbstractBoardMemento *memento);
@@ -42,7 +42,7 @@ private:
     int width;
     int height;
 
-    Square *getSquare(const Position &pos);
+    Square *getSquare(const Position &pos) const;
 };
 
 #endif // BOARD_H

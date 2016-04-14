@@ -123,7 +123,7 @@ public:
     /**
      * @brief Деструктор
      */
-    ~Piece();
+    virtual ~Piece(){};
 
 
 private:

@@ -127,7 +127,6 @@ void Shogi::promotePiece(const Position &position)
     this->board->getPiece(position)->promote();
 }
 
-//TODO: лучше не экономить буковки -- pieceType
 void Shogi::dropPiece(const PieceType pieceType, const Position &position)
 {
     Piece tmp(pieceType,currentPlayer);
