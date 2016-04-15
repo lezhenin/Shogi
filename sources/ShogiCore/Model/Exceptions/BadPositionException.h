@@ -18,19 +18,20 @@ class BadPositionException: public ModelException
 {
 
 public:
-    explicit BadPositionException(const Position &position) : position(position){}
+    explicit BadPositionException(const Position &position)
+    {
+        message = ( "Position(" + std::to_string(position.getHorizontal()) + ", "
+                                + std::to_string(position.getVertical())   + ") is bad. " +
+                    "Board size: " + std::to_string(AbstractBoard::BOARD_HEIGHT) + " x "
+                                   + std::to_string(AbstractBoard::BOARD_WIDTH)  +  ".");
+    }
     const char* what() const throw()
     {
-        std::stringstream stringstream;
-        stringstream << "Position(" << position.getHorizontal() << ", "
-                                    << position.getVertical()   << ") is bad. "
-                     << "Board size: " << AbstractBoard::BOARD_HEIGHT << " x "
-                                       << AbstractBoard::BOARD_WIDTH  <<  ".";
-        return stringstream.str().c_str();
+        return message.c_str();
     }
 
 private:
-    const Position &position;
+    std::string message = "";
 
 };
 
