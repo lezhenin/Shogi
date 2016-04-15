@@ -10,15 +10,17 @@ const int PROMOTION_STEP = 10;
  * Содержит значения соответсвующие играющим сторонам
  */
 //TODO: что тут player делает в piece?
-enum Player{
-    Sente=0, Gote
+enum Player
+{
+    Sente = 0, Gote
 };
 
 /**
  * @enum PieceType
  * Содержит типы сущестсвующих фигур, включая перевернутые фигуры.
  */
-enum PieceType{
+enum PieceType
+{
     King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
     PromotedRook = Rook + PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral, PromotedKnight, PromotedLance, PromotedPawn
 };

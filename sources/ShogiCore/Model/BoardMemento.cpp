@@ -1,39 +1,40 @@
 #include "BoardMemento.h"
-//todo for each loops
+
 BoardMemento::BoardMemento(Board *board): board(board)
 {
     this->capturedPieces[Sente] = board->getCapturedPieces(Sente);
     this->capturedPieces[Gote] = board->getCapturedPieces(Gote);
-    for(ListOfPieces::iterator it = board->getPiecesOnBoard().begin(); it != board->getPiecesOnBoard().end(); ++it)
+
+    for (Piece *piece : board->getPiecesOnBoard())
     {
-        PieceInfo p;
-        p.piece=*it;
-        p.square=(*it)->getSquare();
-        p.promote=(*it)->wasPromoted();
-        pairs.push_back(p);
+        PieceInfo info;
+        info.piece = piece;
+        info.square = piece->getSquare();
+        info.promote = piece->wasPromoted();
+        pairs.push_back(info);
     }
 }
 
 void BoardMemento::restore()
 {
-    for(ListOfPieces::iterator it = this->board->getPiecesOnBoard().begin(); it != this->board->getPiecesOnBoard().end(); ++it)
+    for (Piece *piece : board->getPiecesOnBoard())
     {
-        Piece *p =this->board->getPiece((*it)->getPosition());
-        p->getSquare()->setPiece(nullptr);
-        p->setSquare(nullptr);
+        piece->getSquare()->setPiece(nullptr);
+        piece->setSquare(nullptr);
     }
 
-    this->board->getPiecesOnBoard().clear();
-    for(std::vector<PieceInfo>::iterator it = this->pairs.begin(); it < this->pairs.end(); ++it)
+    board->getPiecesOnBoard().clear();
+
+    for (PieceInfo pieceInfo : pairs)
     {
-        this->board->setPiece(it->piece,it->square->getPosition());
-        if(it->promote)
+        board->setPiece(pieceInfo.piece, pieceInfo.square->getPosition());
+        if(pieceInfo.promote)
         {
-            it->piece->promote();
+            pieceInfo.piece->promote();
         }
         else
         {
-            it->piece->unPromote();
+            pieceInfo.piece->unPromote();
         }
     }
 
