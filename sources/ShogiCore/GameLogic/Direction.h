@@ -3,7 +3,7 @@
 
 enum Directions
 {
-    UP = 1, DOWN = -1,
+    UP    = 1, DOWN = -1,
     RIGHT = 1, LEFT = -1
 };
 
@@ -25,8 +25,7 @@ public:
      * @param     Y Координата по оси Y
      * @param limit Количество ходов фигуры по данному направлению.
      */
-    //TODO: во всех случаях использования к limit прибавляют единицу, м.б. сразу инкрементировать?
-    Direction(int x, int y, int limit = -1) : x(x),y(y),limit(limit){}
+    Direction(int x, int y, int limit = -1) : x(x) ,y(y), limit(limit){}
 
     /**
      * @brief Получить координату по оси X

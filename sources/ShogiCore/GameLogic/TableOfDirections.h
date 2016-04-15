@@ -13,7 +13,7 @@ class TableOfDirections
 {
 public:
 
-    std::vector<Direction> getDirections(PieceType pieceType, Player player = Gote) const
+    const std::vector<Direction> getDirections(const PieceType pieceType, const Player player) const
     {
         if (player == Gote)
         {
@@ -21,7 +21,7 @@ public:
         }
 
         std::vector<Direction> newDirections;
-        for (Direction direction: directions.at(pieceType))
+        for (const Direction &direction: directions.at(pieceType))
         {
             Direction newDirection(direction.getX(), direction.getY() * (-1), direction.getLimit());
             newDirections.push_back(newDirection);
@@ -31,7 +31,7 @@ public:
 
 private:
 
-    std::map<PieceType, std::vector<Direction>> directions= {
+    const std::map<PieceType, std::vector<Direction>> directions= {
             {
                     King,           {Direction{     0,   UP, 1},
                                      Direction{ RIGHT,   UP, 1},
