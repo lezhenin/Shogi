@@ -118,7 +118,7 @@ void Game::printBoard(AbstractBoard &board) const
     std::cout << std::endl;
 }
 
-void Game::printListOfCapturedPieces(const Player player) const
+void Game::printListOfCapturedPieces(const Player &player) const
 {
     ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
 
@@ -299,7 +299,7 @@ bool Game::redo() const
     return true;
 }
 
-int Game::countPieces(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const
+int Game::countPieces(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const
 {
     Piece piece(pieceType,player);
     return std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &piece));

@@ -59,7 +59,7 @@ private:
      * @param player Игрок, чьи фигуры будут
      * выведены на экран
      */
-    void printListOfCapturedPieces(const Player player) const;
+    void printListOfCapturedPieces(const Player &player) const;
 
     bool checkPosition(int horizontal, int vertical) const;
 
@@ -70,7 +70,7 @@ private:
     bool undo() const;
     bool redo() const;
 
-    int countPieces(const PieceType pieceType, const Player player, const ListOfPieces& pieces) const;
+    int countPieces(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const;
 
     ShogiGameAPI *game;
     bool isRun = false;
