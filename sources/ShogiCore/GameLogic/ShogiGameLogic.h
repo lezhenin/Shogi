@@ -12,26 +12,26 @@ public:
 
     explicit ShogiGameLogic(AbstractBoard *board) : board(board){}
 
-    bool checkMove(Piece *piece, Position destination) const;
-    bool checkShah(Player player) const;
-    bool checkMate(Player player) const;
-    bool checkPromotion(Piece *piece) const;
-    bool checkDrop(Piece *piece, Position pos);
+    bool checkMove(const Piece *piece, const Position &destination) const;
+    bool checkShah(const Player player) const;
+    bool checkMate(const Player player) const;
+    bool checkPromotion(const Piece *piece) const;
+    bool checkDrop(Piece *piece, const Position &position) const;
 
     virtual ~ShogiGameLogic() { }
 
 
 private:
-    Player changePlayer(Player pl) const;
+    Player changePlayer(const Player player) const;
 
-    bool isUnderAttack(Player player, Position pos) const;
-    bool onBoard(Position position) const;
+    bool isUnderAttack(const Player player, const Position &position) const;
+    bool onBoard(const Position &position) const;
 
     std::vector<Position> getAllPositionToMove(Piece *piece) const;
 
-    Piece* findPiece(PieceType pieceType, Player player, ListOfPieces& pieces) const;
+    Piece* findPiece(const PieceType pieceType, const Player player, const ListOfPieces& pieces) const;
 
-    Direction *findDirection(Position &source, Position &destination, std::vector<Direction> &directions) const;
+    const Direction *findDirection(const Position &source, const  Position &destination, const std::vector<Direction> &directions) const;
 
     AbstractBoard *board;
     TableOfDirections table;

@@ -20,7 +20,7 @@ public:
      * @param pos   Позиция, ход в которую будет проверяться.
      * @return true если ход возможен, false если ход не возможен.
      */
-    virtual bool checkMove(Piece *piece, Position pos) const = 0;
+    virtual bool checkMove(const Piece *piece, const Position &pos) const = 0;
 
     /**
      * @brief Проверить постановку шаха.
@@ -28,7 +28,7 @@ public:
      * @param player Игрок, постановка шаха которому будет проверяться.
      * @return true если шах поставлен, false если шах не поставлен.
      */
-    virtual bool checkShah(Player player) const = 0;
+    virtual bool checkShah(const Player player) const = 0;
 
     /**
      * @brief Проверить постановку мата.
@@ -36,7 +36,7 @@ public:
      * @param player Игрок, постановка мата которому будет проверяться.
      * @return true если мат поставлен, false если мат не поставлен.
      */
-    virtual bool checkMate(Player player) const = 0;
+    virtual bool checkMate(const Player player) const = 0;
 
     /**
      * @brief Проверить возможность переворта.
@@ -44,7 +44,7 @@ public:
      * @param piece Фигура, возможность переворота которой будет проверяться.
      * @return true если переворот возможен, false если переворот не возможен.
      */
-    virtual bool checkPromotion(Piece *piece) const = 0;
+    virtual bool checkPromotion(const Piece *piece) const = 0;
 
     /**
      * @brief Проверить возможность постановки ранее захваченной фигуры на доску.
@@ -53,7 +53,7 @@ public:
      * @param pos Позиция, куда будет выставляться фигура.
      * @return true если постановка возможна, false если постановка не возможна.
      */
-    virtual bool checkDrop(Piece *piece, Position pos) = 0;
+    virtual bool checkDrop(Piece *piece, const Position &position) const = 0;
 
 
     virtual ~AbstractShogiGameLogic() { }

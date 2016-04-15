@@ -12,10 +12,10 @@ void MainMenu::show()
               << "5. Exit" << std::endl;
     int choice;
     std::cin >> choice;
-    bool x = true;
-    while(x)
+    bool error = true;
+    while(error)
     {
-        x = false;
+        error = false;
         switch (choice) {
             case 1:
             {
@@ -39,7 +39,7 @@ void MainMenu::show()
             }
             default:
             {
-                x = true;
+                error = true;
                 std::cout << "Unknown command";
             }
         }
