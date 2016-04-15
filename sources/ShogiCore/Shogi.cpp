@@ -202,6 +202,18 @@ void Shogi::capturePiece(const Position &position)
     }
 }
 
+void Shogi::save(SaveWriter *saveWriter)
+{
+    gameSaver->saveGame(saveWriter,*board,&currentPlayer);
+}
+
+void Shogi::load(SaveReader *saveReader)
+{
+    gameLoader->loadGame(saveReader,*board,&currentPlayer);
+}
+
+
+
 
 
 

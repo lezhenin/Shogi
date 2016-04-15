@@ -7,6 +7,8 @@
 #include "GameLogic/GameSituations/GameSituation.h"
 #include "Model/Position.h"
 #include "Model/Board.h"
+#include "SaveAndLoad/SaveWriter.h"
+#include "SaveAndLoad/SaveReader.h"
 
 using ListOfGameSituations = std::queue<std::shared_ptr<GameSituation>>;
 
@@ -80,6 +82,20 @@ public:
      * было до отмены предыдущего хода.
      */
     virtual bool redo() = 0;
+    /**
+    * @brief Сохранить игру
+    *
+    * Сохранят игру, используя интерфейс
+    * SaveWriter.
+    */
+    virtual void save(SaveWriter *saveWriter) = 0;
+    /**
+     * @brief Загрузить игру
+     *
+     * Загружает игру, используя интерфейс
+     * SaveReader.
+     */
+    virtual void load(SaveReader *saveReader) = 0;
 
     /**
      * @brief Получить доску.

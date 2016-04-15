@@ -26,6 +26,9 @@ public:
     virtual bool undo() override;
     virtual bool redo() override;
 
+    virtual void save(SaveWriter *saveWriter) override;
+    virtual void load(SaveReader *saveReader) override;
+
     virtual Player getCurrentPlayer() const override;
     virtual AbstractBoard &getBoard() const override;
     virtual ListOfGameSituations& getGameSituation() override;
