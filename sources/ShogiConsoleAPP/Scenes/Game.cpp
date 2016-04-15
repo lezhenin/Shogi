@@ -1,8 +1,10 @@
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 #include "Game.h"
 #include "MainMenu.h"
 #include "../../ShogiCore/Shogi.h"
+#include "../../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
 
 void Game::show()
 {
@@ -71,6 +73,16 @@ void Game::input()
                 case 7:
                 {
                     successful = redo();
+                    break;
+                }
+                case 8:
+                {
+                    successful = save();
+                    break;
+                }
+                case 9:
+                {
+                    successful = load();
                     break;
                 }
                 default:
@@ -304,6 +316,69 @@ int Game::countPieces(const PieceType pieceType, const Player &player, const Lis
     Piece piece(pieceType,player);
     return std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &piece));
 }
+
+bool Game::save() const
+{
+    std::string fileName;
+
+    std::cout << "Enter name of save file: " << std::endl;
+    std::cin >> fileName;
+
+    std::ofstream save(fileName);
+
+    if(save.bad() || save.fail() || save.eof())
+    {
+        std::cout << "Can't open file." << std::endl;
+        return false;
+    }
+
+    JSONSaveManager *saveManager = new JSONSaveManager();
+    game->save(saveManager);
+
+    save << saveManager->getJSONString();
+    save.close();
+
+    std::cout << "Saved!" << std::endl;
+
+    delete saveManager;
+    return true;
+}
+
+bool Game::load() const
+{
+    std::string fileName;
+
+    std::cout << "Enter name of save file: " << std::endl;
+    std::cin >> fileName;
+
+    std::ifstream save(fileName);
+
+    if(save.bad() || save.fail() || save.eof())
+    {
+        std::cout << "Can't open file." << std::endl;
+        return false;
+    }
+
+    std::string JSONSaveString;
+    while(!save.eof())
+    {
+        JSONSaveString.push_back((char)save.get());
+    }
+    JSONSaveString.pop_back();
+    JSONSaveManager *saveManager = new JSONSaveManager(JSONSaveString);
+    game->load(saveManager);
+
+    save.close();
+
+    std::cout << "Loaded!" << std::endl;
+
+    delete saveManager;
+    return true;
+}
+
+
+
+
 
 
 

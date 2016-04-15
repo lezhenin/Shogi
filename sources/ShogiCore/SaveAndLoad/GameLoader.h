@@ -30,6 +30,8 @@ public:
      */
     virtual void loadGame(AbstractBoard &board, Player *currentPlayer);
 
+private:
+    void clearBoard(AbstractBoard &board);
 };
 
 #endif //SHOGI_GAMELOADER_H

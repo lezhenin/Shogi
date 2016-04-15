@@ -69,6 +69,8 @@ private:
     bool drop() const;
     bool undo() const;
     bool redo() const;
+    bool save() const;
+    bool load() const;
 
     int countPieces(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const;
 
@@ -84,7 +86,9 @@ private:
             {  "exit", 4},
             {  "show", 5},
             {  "undo", 6},
-            {  "redo", 7}
+            {  "redo", 7},
+            {  "save", 8},
+            {  "load", 9}
         };
 
     const std::map<std::string,PieceType> tableOfTypes =

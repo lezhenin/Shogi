@@ -47,6 +47,7 @@ void GameLoader::loadGame(AbstractBoard &board, Player *currentPlayer)
 
 void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer)
 {
+    clearBoard(board);
     *currentPlayer = saveReader->getCurrentPlayer();
     for (const Block &b: saveReader->getPiecesOnBoard())
     {
@@ -69,6 +70,26 @@ void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *
         board.getAllPieces().push_back(tmp);
     }
 }
+
+void GameLoader::clearBoard(AbstractBoard &board)
+{
+    {
+        for (Piece *piece : board.getAllPieces())
+        {
+            if(piece->getSquare() != nullptr)
+            {
+                piece->getSquare()->setPiece(nullptr);
+            }
+            delete piece;
+        }
+        board.getAllPieces().clear();
+        board.getPiecesOnBoard().clear();
+        board.getCapturedPieces(Sente).clear();
+        board.getCapturedPieces(Gote).clear();
+    }
+}
+
+
 
 
 

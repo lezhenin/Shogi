@@ -10,11 +10,12 @@ void MainMenu::show()
               << "3. Settings" << std::endl
               << "4. Help" << std::endl
               << "5. Exit" << std::endl;
+
     int choice;
-    std::cin >> choice;
     bool error = true;
     while(error)
     {
+        std::cin >> choice;
         error = false;
         switch (choice) {
             case 1:

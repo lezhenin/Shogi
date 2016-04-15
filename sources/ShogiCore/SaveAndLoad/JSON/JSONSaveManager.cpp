@@ -79,7 +79,9 @@ JSONSaveManager::JSONSaveManager()
 
 JSONSaveManager::JSONSaveManager(const std::string &JSONString)
 {
-    save.Parse(JSONString.c_str());
+    const char *string = JSONString.c_str();
+    save.Parse(string);
+    assert(save.IsObject());
 }
 
 void JSONSaveManager::clear()
@@ -89,6 +91,7 @@ void JSONSaveManager::clear()
 
 Player &JSONSaveManager::getCurrentPlayer()
 {
+
     return reverseTableOfPlayers.at(save["currentPlayer"].GetString());
 }
 
