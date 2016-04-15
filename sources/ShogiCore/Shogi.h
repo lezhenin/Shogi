@@ -17,33 +17,40 @@ public:
 
     Shogi();
     virtual void initGame() override;
-    virtual Player getCurrentPlayer() const override;
     virtual void pickPiece(const Position &position) override;
     virtual void unPickPiece() override;
-    virtual void movePiece(const Position &position) override;
+    virtual void movePiece(const Position &destination) override;
     virtual void promotePiece(const Position &position) override;
     virtual void dropPiece(const PieceType pieceType, const Position &position) override;
+
     virtual bool undo() override;
     virtual bool redo() override;
+
+    virtual Player getCurrentPlayer() const override;
     virtual AbstractBoard &getBoard() const override;
     virtual ListOfGameSituations& getGameSituation() override;
     virtual ~Shogi();
 
 private:
+
     AbstractBoard* board;
     AbstractShogiGameLogic* gameLogic;
     GameLoader* gameLoader;
     GameSaver* gameSaver;
     ListOfGameSituations gameSituations;
-    std::stack<AbstractBoardMemento*> toUndo;
-    std::stack<AbstractBoardMemento*> toRedo;
     Piece *pickedPiece = nullptr;
     Player currentPlayer = Sente;
 
+    std::stack<AbstractBoardMemento*> toUndo;
+    std::stack<AbstractBoardMemento*> toRedo;
+
     void clearToUndo();
     void clearToRedo();
+    void checkShahMateGameSituations();
+    void checkPromoteGameSituation(const Position &position);
+    void capturePiece(const Position &position);
 
-    Player transformPlayer(Player player) const;
+    Player changePlayer(const Player player) const;
 };
 
 

@@ -63,7 +63,7 @@ public:
      * @param[in] pt       Тип устанавливаемой фигуры.
      * @param[in] position Позиция, куда нужно установить фигуру.
     */
-    virtual void dropPiece(const PieceType pt, const Position& position)=0;
+    virtual void dropPiece(const PieceType pieceType, const Position& position)=0;
 
     /**
      * @brief Отмена хода
@@ -91,8 +91,7 @@ public:
      * @brief Получить статус игры.
      * @return Список игровых ситуаций
      */
-    //TODO: const
-    virtual ListOfGameSituations &getGameSituation()  = 0;
+    virtual ListOfGameSituations &getGameSituation() = 0;
 
     virtual ~ShogiGameAPI(){}
 };

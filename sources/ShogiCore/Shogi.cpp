@@ -25,7 +25,8 @@ Shogi::~Shogi()
     delete gameSaver;
 }
 
-AbstractBoard &Shogi::getBoard() const {
+AbstractBoard &Shogi::getBoard() const
+{
     return *board;
 }
 
@@ -51,15 +52,13 @@ void Shogi::unPickPiece()
     this->pickedPiece = nullptr;
 }
 
-//TODO: кажется, что если переименовать метод в movePickedPiece, будет легче читаться. Нельзя ведь мувить непикнутый?
-//TODO: или position в newPosition
-void Shogi::movePiece(const Position &position)
+void Shogi::movePiece(const Position &destination)
 {
     if(pickedPiece == nullptr)
     {
         throw std::exception();
     }
-    if(!this->gameLogic->checkMove(this->pickedPiece, position))
+    if(!this->gameLogic->checkMove(this->pickedPiece, destination))
     {
         throw std::exception();
     }
@@ -67,51 +66,21 @@ void Shogi::movePiece(const Position &position)
     toUndo.push(board->getMemento());
     clearToRedo();
 
-    //TODO: предлагаю следующие 8 строк выделить в метод "попробовать захватить фигуру",
-    //передать позицию и параметр "захватить/не захватить" -- по умолчанию "захватить"
-    //и вернуть значение, получается или нет
-    //если я правильно поняла смысл
-
-    //TODO: и что если там будет своя же фигура?
-    //есть подозрение, что checkMove это проверил уже, но в ней я не разобралась
-    //лучше бы тут еще разочек, если не сложно
-    Piece* piece = this->board->getPiece(position);
-    if(piece != nullptr)
-    {
-        piece->unPromote();
-        piece->setPlayer(currentPlayer);
-        this->board->getCapturedPieces(currentPlayer).push_back(piece);
-        this->board->removePiece(position);
-    }
+    capturePiece(destination);
 
     this->board->removePiece(pickedPiece->getPosition());
-    this->board->setPiece(pickedPiece, position);
+    this->board->setPiece(pickedPiece, destination);
 
-
-    //TODO:следующие два if просятся в отдельный метода (или два метода)
-    if(gameLogic->checkShah(transformPlayer(currentPlayer)))
-    {
-        gameSituations.push(std::shared_ptr<GameSituation>(new Shah()));
-        if(gameLogic->checkMate(transformPlayer(currentPlayer)))
-        {
-            gameSituations.push(std::shared_ptr<GameSituation>(new Mate()));
-        }
-    }
-    if(gameLogic->checkPromotion(pickedPiece))
-    {
-       gameSituations.push(std::shared_ptr<GameSituation>(new PromotionIsAvailable(this,position)));
-    }
+    checkShahMateGameSituations();
+    checkPromoteGameSituation(destination);
 
     unPickPiece();
-    currentPlayer = transformPlayer(currentPlayer);
+    currentPlayer = changePlayer(currentPlayer);
 }
 
-Player Shogi::transformPlayer(Player player) const
+Player Shogi::changePlayer(const Player player) const
 {
-    //TODO: лучше просто if, если сенте, то готе, и наоборот
-    //если я правильно поняла смысл, потому что transform -- это тоже очень расплывчато
-    // nextPlayer? nextTurn?
-    return (Player)(((int)player+1)%2);
+    return (player == Sente) ? Gote : Sente;
 }
 
 void Shogi::promotePiece(const Position &position)
@@ -129,32 +98,11 @@ void Shogi::promotePiece(const Position &position)
 
 void Shogi::dropPiece(const PieceType pieceType, const Position &position)
 {
-    Piece tmp(pieceType,currentPlayer);
-    ListOfPieces::iterator it = std::find_if(board->getCapturedPieces(currentPlayer).begin(),board->getCapturedPieces(currentPlayer).end(),
-                     std::bind1st(std::mem_fun(&Piece::equals),&tmp));
-    if(it == board->getCapturedPieces(currentPlayer).end())
+    Piece *piece = board->findPiece(pieceType, currentPlayer, board->getCapturedPieces(currentPlayer));
+    if (piece == nullptr)
     {
         throw std::exception();
     }
-
-    //TODO:я не умею компилировать ваш код, но мне бы хотелось сделать метод "проверить, есть ли среди захваченных"
-    // и м.б. его даже в board,
-    // не кажется, что так полегче читать? И не жадничайте на пробелы
-/*
-    Piece samplePiece(pieceType, currentPlayer);
-    auto firstPiece = board->getCapturedPieces(currentPlayer).begin();
-    auto lastPiece = board->getCapturedPieces(currentPlayer).end();
-
-    auto it = std::find_if(firstPiece, lastPiece,
-                           std::bind1st(std::mem_fun(&Piece::equals), &samplePiece));
-
-    if(it == lastPiece){
-        throw std::exception();
-    }
-    */
-    //--------------------------------
-
-    Piece *piece = *it;
 
     if(!gameLogic->checkDrop(piece, position))
     {
@@ -167,7 +115,7 @@ void Shogi::dropPiece(const PieceType pieceType, const Position &position)
     board->getCapturedPieces(currentPlayer).remove(piece);
     board->setPiece(piece, position);
 
-    currentPlayer = transformPlayer(currentPlayer);
+    currentPlayer = changePlayer(currentPlayer);
 }
 
 ListOfGameSituations &Shogi::getGameSituation()
@@ -183,7 +131,7 @@ bool Shogi::undo()
         board->setMemento(toUndo.top());
         delete toUndo.top();
         toUndo.pop();
-        currentPlayer = transformPlayer(currentPlayer);
+        currentPlayer = changePlayer(currentPlayer);
         return true;
     }
     return false;
@@ -197,7 +145,7 @@ bool Shogi::redo()
         board->setMemento(toRedo.top());
         delete toRedo.top();
         toRedo.pop();
-        currentPlayer = transformPlayer(currentPlayer);
+        currentPlayer = changePlayer(currentPlayer);
         return true;
     }
     return false;
@@ -226,6 +174,44 @@ void Shogi::clearToRedo()
         toRedo.pop();
     }
 }
+
+void Shogi::checkPromoteGameSituation(const Position &position)
+{
+    if(gameLogic->checkPromotion(pickedPiece))
+    {
+        gameSituations.push(std::shared_ptr<GameSituation>(new PromotionIsAvailable(this,position)));
+    }
+}
+
+void Shogi::checkShahMateGameSituations()
+{
+    if(gameLogic->checkShah(changePlayer(currentPlayer)))
+    {
+        gameSituations.push(std::shared_ptr<GameSituation>(new Shah()));
+        if(gameLogic->checkMate(changePlayer(currentPlayer)))
+        {
+            gameSituations.push(std::shared_ptr<GameSituation>(new Mate()));
+        }
+    }
+}
+
+void Shogi::capturePiece(const Position &position)
+{
+    Piece* piece = this->board->getPiece(position);
+    if(piece != nullptr && piece->getPlayer() != currentPlayer)
+    {
+        piece->unPromote();
+        piece->setPlayer(currentPlayer);
+        this->board->getCapturedPieces(currentPlayer).push_back(piece);
+        this->board->removePiece(position);
+    }
+}
+
+
+
+
+
+
 
 
 
