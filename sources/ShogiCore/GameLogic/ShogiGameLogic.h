@@ -26,8 +26,9 @@ private:
 
     bool isUnderAttack(const Player player, const Position &position) const;
     bool onBoard(const Position &position) const;
+    bool checkAbleToMove(const Piece *piece, const Position &position) const;
 
-    std::vector<Position> getAllPositionToMove(Piece *piece) const;
+    std::vector<Position> getAllPositionToMove(const Piece *piece) const;
 
     const Direction *findDirection(const Position &source, const  Position &destination, const std::vector<Direction> &directions) const;
 

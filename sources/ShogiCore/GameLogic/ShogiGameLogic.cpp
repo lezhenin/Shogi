@@ -2,8 +2,6 @@
 #include "Exceptions/KingNotFoundException.h"
 #include <algorithm>
 
-//todo optimize all algorithms
-
 //TODO: даже если не оптимизировать, предлагаю выделить отдельные методы, чекТо, чекЭто
 bool ShogiGameLogic::checkMove(const Piece *piece, const Position &destination) const
 {
@@ -36,7 +34,7 @@ bool ShogiGameLogic::checkMove(const Piece *piece, const Position &destination) 
     return false;
 }
 
-std::vector<Position> ShogiGameLogic::getAllPositionToMove(Piece *piece) const
+std::vector<Position> ShogiGameLogic::getAllPositionToMove(const Piece *piece) const
 {
     std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
     Position source = piece->getPosition();
@@ -167,25 +165,10 @@ bool ShogiGameLogic::checkDrop(Piece *piece, const Position &position) const
             }
         }
     }
-
-    //TODO: этот if выделить в метод
-    if (piece->getType() == Pawn || piece->getType() == Lance)
+    
+    if(!checkAbleToMove(piece, position))
     {
-        if (piece->getPlayer() == Sente && position.getHorizontal() == AbstractBoard::BOARD_HEIGHT
-            || piece->getPlayer() == Gote && position.getHorizontal() == 1)
-        {
-            return false;
-        }
-    }
-
-    //TODO: этот if выделить в метод
-    if(piece->getType()==Knight)
-    {
-        if (piece->getPlayer() == Sente && position.getHorizontal() >= AbstractBoard::BOARD_HEIGHT - 1
-           || piece->getPlayer() == Gote && position.getHorizontal() <= 2)
-        {
-            return false;
-        }
+        return false;
     }
 
     AbstractBoardMemento *memento = board->getMemento();
@@ -219,6 +202,32 @@ const Direction *ShogiGameLogic::findDirection(const Position &source, const Pos
     }
     return nullptr;
 }
+
+bool ShogiGameLogic::checkAbleToMove(const Piece *piece, const Position &position) const
+{
+
+    if (piece->getType() == Pawn || piece->getType() == Lance)
+    {
+        if (piece->getPlayer() == Sente && position.getHorizontal() == AbstractBoard::BOARD_HEIGHT
+            || piece->getPlayer() == Gote && position.getHorizontal() == 1)
+        {
+            return false;
+        }
+    }
+
+    if(piece->getType()==Knight)
+    {
+        if (piece->getPlayer() == Sente && position.getHorizontal() >= AbstractBoard::BOARD_HEIGHT - 1
+            || piece->getPlayer() == Gote && position.getHorizontal() <= 2)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
 
 
 
