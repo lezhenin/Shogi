@@ -27,14 +27,14 @@ public:
     explicit JSONSaveManager(const std::string &JSONString);
 
     virtual std::vector<Block> getPiecesOnBoard();
-    virtual std::vector<PieceType> getCapturedPieces(const Player player);
+    virtual std::vector<PieceType> getCapturedPieces(const Player &player);
 
-    virtual void addPieceOnBoard(const PieceType pieceType, const Player player, const Position &position);
-    virtual void addCapturedPiece(const Player player, const PieceType pieceType);
+    virtual void addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position);
+    virtual void addCapturedPiece(const Player &player, const PieceType pieceType);
 
-    virtual Player getCurrentPlayer();
+    virtual Player &getCurrentPlayer();
 
-    virtual void setCurrentPlayer(const Player player);
+    virtual void setCurrentPlayer(const Player &player);
     /**
      * @brief Получить JSON строку.
      *

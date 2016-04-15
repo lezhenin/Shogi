@@ -47,7 +47,7 @@ set(SOURCE_FILES
         SaveAndLoad/Simple/SimpleSaveManager.h
 
         Shogi.cpp
-        Shogi.h)
+        Shogi.h Model/Player.h Model/Player.cpp)
 
 add_library (ShogiCore ${SOURCE_FILES})
 

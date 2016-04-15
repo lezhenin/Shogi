@@ -13,8 +13,8 @@ public:
     explicit ShogiGameLogic(AbstractBoard *board) : board(board){}
 
     bool checkMove(const Piece *piece, const Position &destination) const;
-    bool checkShah(const Player player) const;
-    bool checkMate(const Player player) const;
+    bool checkShah(const Player &player) const;
+    bool checkMate(const Player &player) const;
     bool checkPromotion(const Piece *piece) const;
     bool checkDrop(Piece *piece, const Position &position) const;
 
@@ -22,9 +22,8 @@ public:
 
 
 private:
-    Player changePlayer(const Player player) const;
 
-    bool isUnderAttack(const Player player, const Position &position) const;
+    bool isUnderAttack(const Player &player, const Position &position) const;
     bool onBoard(const Position &position) const;
 
     bool checkAbleToMove(const Piece *piece, const Position &position) const;

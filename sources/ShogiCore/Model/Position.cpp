@@ -21,14 +21,14 @@ bool Position::operator ==(const Position &position) const
     return (this->horizontal == position.horizontal && this->vertical == position.vertical);
 }
 
-Position &Position::operator =(const Position &pos)
+Position &Position::operator =(const Position &position)
 {
-    if (*this == pos)
+    if (*this == position)
     {
         return *this;
     }
-    this->horizontal = pos.horizontal;
-    this->vertical = pos.vertical;
+    this->horizontal = position.horizontal;
+    this->vertical = position.vertical;
     return *this;
 }
 

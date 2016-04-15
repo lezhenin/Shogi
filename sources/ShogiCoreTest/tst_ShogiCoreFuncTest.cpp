@@ -93,8 +93,8 @@ void ShogiCoreFuncTest::pickAndMoveTest()
     QCOMPARE((int)game.getBoard().getPiecesOnBoard().size(),39);
     QCOMPARE((int)game.getBoard().getCapturedPieces(Sente).size(),0);
     QCOMPARE((int)game.getBoard().getCapturedPieces(Gote).size(),1);
-    QCOMPARE((*game.getBoard().getCapturedPieces(Gote).begin())->getPlayer(),Gote);
-    QCOMPARE((*game.getBoard().getCapturedPieces(Gote).begin())->getType(),Pawn);
+    QVERIFY((*game.getBoard().getCapturedPieces(Gote).begin())->getPlayer() == Gote);
+    QVERIFY((*game.getBoard().getCapturedPieces(Gote).begin())->getType() == Pawn);
     printBoard();
 
 

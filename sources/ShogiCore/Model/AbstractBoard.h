@@ -84,14 +84,14 @@ public:
      * @param player Игрок, чьи захваченные фигуры необъодимо получить.
      * @return Ссылка на список фигур.
      */
-    virtual ListOfPieces &getCapturedPieces(const Player player) = 0;
+    virtual ListOfPieces &getCapturedPieces(const Player &player) = 0;
 
     /**
      * @brief Найти фигуру
      *
      * Позволяет найти фигуру в одном из списоков фигур.
      */
-    virtual Piece* findPiece(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const = 0;
+    virtual Piece* findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const = 0;
 
     /**
      * @brief Деструктор

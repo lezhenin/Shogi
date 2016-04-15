@@ -5,7 +5,8 @@ std::vector<Block> SimpleSaveManager::getPiecesOnBoard()
     return save.onBoard;
 }
 
-std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player player)  {
+std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player &player)  {
+
     if(player == Sente)
     {
         return save.senteCaptured;
@@ -16,12 +17,12 @@ std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player player)
     }
 }
 
-void SimpleSaveManager::addPieceOnBoard(const PieceType pieceType, const Player player, const Position &position)
+void SimpleSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position)
 {
     save.onBoard.push_back(Block(pieceType, player, position));
 }
 
-void SimpleSaveManager::addCapturedPiece(const Player player, const PieceType pieceType)
+void SimpleSaveManager::addCapturedPiece(const Player &player, const PieceType pieceType)
 {
     if(player == Sente)
     {
@@ -33,12 +34,12 @@ void SimpleSaveManager::addCapturedPiece(const Player player, const PieceType pi
     }
 }
 
-void SimpleSaveManager::setCurrentPlayer(const Player player)
+void SimpleSaveManager::setCurrentPlayer(const Player &player)
 {
     save.currentPlayer = player;
 }
 
-Player SimpleSaveManager::getCurrentPlayer()
+Player &SimpleSaveManager::getCurrentPlayer()
 {
     return save.currentPlayer;
 }

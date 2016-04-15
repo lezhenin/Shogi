@@ -119,12 +119,12 @@ void Board::deletePieces()
     }
 }
 
-ListOfPieces &Board::getCapturedPieces(Player player)
+ListOfPieces &Board::getCapturedPieces(const Player &player)
 {
     return this->capturedPieces.at(player);
 }
 
-Piece *Board::findPiece(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const
+Piece *Board::findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const
 {
     Piece samplePiece(pieceType,player);
     ListOfPieces::const_iterator iterator =

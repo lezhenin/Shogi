@@ -1,7 +1,7 @@
 #include "Piece.h"
 
 
-Piece::Piece(PieceType pieceType, Player player, Square *sq): pieceType(pieceType), player(player), square(sq)
+Piece::Piece(const PieceType pieceType, const Player &player, Square *square): pieceType(pieceType), player(player), square(square)
 {
     if (this->pieceType >= Rook)
     {
@@ -74,7 +74,7 @@ void Piece::setSquare(Square *square)
     this->square = square;
 }
 
-void Piece::setPlayer(const Player player)
+void Piece::setPlayer(const Player &player)
 {
     this->player = player;
 }

@@ -50,7 +50,6 @@ private:
     void checkPromoteGameSituation(const Position &position);
     void capturePiece(const Position &position);
 
-    Player changePlayer(const Player player) const;
 };
 
 

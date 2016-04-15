@@ -13,7 +13,7 @@ class TableOfDirections
 {
 public:
 
-    const std::vector<Direction> getDirections(const PieceType pieceType, const Player player) const
+    const std::vector<Direction> getDirections(const PieceType pieceType, const Player &player) const
     {
         if (player == Gote)
         {

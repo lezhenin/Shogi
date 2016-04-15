@@ -28,7 +28,7 @@ public:
      * @param player Игрок, постановка шаха которому будет проверяться.
      * @return true если шах поставлен, false если шах не поставлен.
      */
-    virtual bool checkShah(const Player player) const = 0;
+    virtual bool checkShah(const Player &player) const = 0;
 
     /**
      * @brief Проверить постановку мата.
@@ -36,7 +36,7 @@ public:
      * @param player Игрок, постановка мата которому будет проверяться.
      * @return true если мат поставлен, false если мат не поставлен.
      */
-    virtual bool checkMate(const Player player) const = 0;
+    virtual bool checkMate(const Player &player) const = 0;
 
     /**
      * @brief Проверить возможность переворта.
