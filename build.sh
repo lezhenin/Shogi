@@ -42,7 +42,7 @@ build_debug_version()
 		../build/debug/sources/ShogiCoreTest/module_test -xml -o ../report/module_test_results || true
 
 		cppcheck --version
-		cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson --xml  * 2> ../report/cppcheck_result
+		cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson -iShogiCoreTest --xml  * 2> ../report/cppcheck_result
 
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
