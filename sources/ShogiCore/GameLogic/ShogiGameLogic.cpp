@@ -154,7 +154,7 @@ bool ShogiGameLogic::checkDrop(Piece *piece, const Position &position) const
 
     if (piece->getType() == Pawn)
     {
-        if(!checkLine(piece))
+        if(!checkLine(piece, position.getVertical()))
         {
             return false;
         }
@@ -221,13 +221,12 @@ bool ShogiGameLogic::checkAbleToMove(const Piece *piece, const Position &positio
     return true;
 }
 
-bool ShogiGameLogic::checkLine(const Piece *pawn) const
+bool ShogiGameLogic::checkLine(const Piece *pawn, int vertical) const
 {
-    Position position = pawn->getPosition();
     Piece samplePiece(pawn->getType(), pawn->getPlayer());
     for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)
     {
-        Position temp(i,position.getVertical());
+        Position temp(i, vertical);
         if (board->getPiece(temp) != nullptr &&
             board->getPiece(temp) -> equals(&samplePiece))
         {

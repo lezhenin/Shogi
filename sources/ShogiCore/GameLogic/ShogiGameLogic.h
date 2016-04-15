@@ -28,7 +28,7 @@ private:
     bool onBoard(const Position &position) const;
 
     bool checkAbleToMove(const Piece *piece, const Position &position) const;
-    bool checkLine(const Piece *pawn) const;
+    bool checkLine(const Piece *pawn, int vertical) const;
 
     std::vector<Position> getAllPositionToMove(const Piece *piece) const;
 
