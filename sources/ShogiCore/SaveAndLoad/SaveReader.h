@@ -28,7 +28,7 @@ public:
      * @return Вектор объектов типа PieceType,
      * соответсвующих типам захваченных фигур.
      */
-    virtual std::vector<PieceType> getCapturedPieces(Player player) = 0;
+    virtual std::vector<PieceType> getCapturedPieces(const Player player) = 0;
     /**
      * @brief Получить игрока, которому
      * принадлежит текущий ход.
