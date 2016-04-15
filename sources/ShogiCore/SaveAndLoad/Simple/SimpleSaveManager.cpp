@@ -6,6 +6,7 @@ std::vector<Block> SimpleSaveManager::getPiecesOnBoard()
 }
 
 std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player player)  {
+
     if(player == Sente)
     {
         return save.senteCaptured;

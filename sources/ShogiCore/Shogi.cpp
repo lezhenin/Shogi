@@ -75,12 +75,7 @@ void Shogi::movePiece(const Position &destination)
     checkPromoteGameSituation(destination);
 
     unPickPiece();
-    currentPlayer = changePlayer(currentPlayer);
-}
-
-Player Shogi::changePlayer(const Player player) const
-{
-    return (player == Sente) ? Gote : Sente;
+    currentPlayer.changePlayer();
 }
 
 void Shogi::promotePiece(const Position &position)
@@ -115,7 +110,7 @@ void Shogi::dropPiece(const PieceType pieceType, const Position &position)
     board->getCapturedPieces(currentPlayer).remove(piece);
     board->setPiece(piece, position);
 
-    currentPlayer = changePlayer(currentPlayer);
+    currentPlayer.changePlayer();
 }
 
 ListOfGameSituations &Shogi::getGameSituation()
@@ -131,7 +126,7 @@ bool Shogi::undo()
         board->setMemento(toUndo.top());
         delete toUndo.top();
         toUndo.pop();
-        currentPlayer = changePlayer(currentPlayer);
+        currentPlayer.changePlayer();
         return true;
     }
     return false;
@@ -145,7 +140,7 @@ bool Shogi::redo()
         board->setMemento(toRedo.top());
         delete toRedo.top();
         toRedo.pop();
-        currentPlayer = changePlayer(currentPlayer);
+        currentPlayer.changePlayer();
         return true;
     }
     return false;
@@ -185,10 +180,10 @@ void Shogi::checkPromoteGameSituation(const Position &position)
 
 void Shogi::checkShahMateGameSituations()
 {
-    if(gameLogic->checkShah(changePlayer(currentPlayer)))
+    if(gameLogic->checkShah(currentPlayer.nextPlayer()))
     {
         gameSituations.push(std::shared_ptr<GameSituation>(new Shah()));
-        if(gameLogic->checkMate(changePlayer(currentPlayer)))
+        if(gameLogic->checkMate(currentPlayer.nextPlayer()))
         {
             gameSituations.push(std::shared_ptr<GameSituation>(new Mate()));
         }

@@ -22,7 +22,6 @@ public:
 
 
 private:
-    Player changePlayer(const Player player) const;
 
     bool isUnderAttack(const Player player, const Position &position) const;
     bool onBoard(const Position &position) const;

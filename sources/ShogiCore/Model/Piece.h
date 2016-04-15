@@ -1,6 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 #include "Square.h"
+#include "Player.h"
 
 class Square;
 
@@ -10,10 +11,6 @@ const int PROMOTION_STEP = 10;
  * Содержит значения соответсвующие играющим сторонам
  */
 //TODO: что тут player делает в piece?
-enum Player
-{
-    Sente = 0, Gote
-};
 
 /**
  * @enum PieceType
