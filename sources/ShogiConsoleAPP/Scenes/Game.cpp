@@ -19,11 +19,10 @@ void Game::show()
 
 void Game::input()
 {
-
     std::string input;
     int commandID;
-    bool listenUser = true;
-    while(listenUser)
+    bool successful = false;
+    while(!successful)
     {
         std::cin >> input;
         try
@@ -33,45 +32,45 @@ void Game::input()
             {
                 case 0:
                 {
-                    listenUser = pick();
+                    successful = pick();
                     break;
                 }
                 case 1:
                 {
-                    listenUser = unpick();
+                    successful = unpick();
                     break;
                 }
                 case 2:
                 {
-                    listenUser = move();
+                    successful = move();
                     break;
                 }
                 case 3:
                 {
-                    listenUser = drop();
+                    successful = drop();
                     break;
                 }
                 case 4:
                 {
                     stop();
-                    listenUser = false;
+                    successful = true;
                     break;
                 }
                 case 5:
                 {
                     printListOfCapturedPieces(Sente);
                     printListOfCapturedPieces(Gote);
-                    listenUser = false;
+                    successful = true;
                     break;
                 }
                 case 6:
                 {
-                    listenUser = undo();
+                    successful = undo();
                     break;
                 }
                 case 7:
                 {
-                    listenUser = redo();
+                    successful = redo();
                     break;
                 }
                 default:
@@ -194,7 +193,7 @@ Game::Game()
     game = new Shogi();
 }
 
-bool Game::checkPositon(int horizontal, int vertical) const
+bool Game::checkPosition(int horizontal, int vertical) const
 {
     return (horizontal >= 1 && horizontal <= AbstractBoard::BOARD_HEIGHT &&
             vertical   >= 1 && vertical   <= AbstractBoard::BOARD_WIDTH );
@@ -205,12 +204,12 @@ bool Game::pick()
     int horizontal, vertical;
     std::cin >> horizontal >> vertical;
     std::cin.clear();
-    if (checkPositon(horizontal,vertical))
+    if (checkPosition(horizontal, vertical))
     {
         try
         {
             game->pickPiece(Position(horizontal, vertical));
-            return false;
+            return true;
         }
         catch (std::exception &e)
         {
@@ -221,13 +220,13 @@ bool Game::pick()
     {
         std::cout << "Bad arguments of command" << std::endl;
     }
-    return true;
+    return false;
 }
 
 bool Game::unpick()
 {
     game->unPickPiece();
-    return false;
+    return true;
 }
 
 bool Game::move()
@@ -235,12 +234,12 @@ bool Game::move()
     int horizontal, vertical;
     std::cin >> horizontal >> vertical;
     std::cin.clear();
-    if (checkPositon(horizontal, vertical))
+    if (checkPosition(horizontal, vertical))
     {
         try
         {
             game->movePiece(Position(horizontal, vertical));
-            return false;
+            return true;
         }
         catch (std::exception &e)
         {
@@ -251,7 +250,7 @@ bool Game::move()
     {
         std::cout << "Bad arguments of command" << std::endl;
     }
-    return true;
+    return false;
 }
 
 bool Game::drop()
@@ -264,12 +263,12 @@ bool Game::drop()
     {
         PieceType pieceType;
         pieceType = tableOfTypes.at(type);
-        if (checkPositon(horizontal,vertical))
+        if (checkPosition(horizontal, vertical))
         {
             try
             {
                 game->dropPiece(pieceType, Position(horizontal, vertical));
-                return false;
+                return true;
             }
             catch (std::exception &e)
             {
@@ -284,7 +283,7 @@ bool Game::drop()
     catch (std::exception &e) {
         std::cout << "Bad arguments of command" << std::endl;
     }
-    return true;
+    return false;
 }
 
 bool Game::undo()
@@ -293,7 +292,7 @@ bool Game::undo()
     {
         std::cout << "Can't undo move!" << std::endl;
     }
-    return false;
+    return true;
 }
 
 bool Game::redo()
@@ -302,7 +301,7 @@ bool Game::redo()
     {
         std::cout << "Can't redo move!" << std::endl;
     }
-    return false;
+    return true;
 }
 
 

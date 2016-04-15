@@ -61,7 +61,7 @@ private:
      */
     void printListOfCapturedPieces(Player player) const;
 
-    bool checkPositon(int horizontal, int vertical) const;
+    bool checkPosition(int horizontal, int vertical) const;
 
     bool pick();
     bool unpick();
