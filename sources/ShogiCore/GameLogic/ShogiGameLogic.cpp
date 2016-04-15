@@ -2,7 +2,6 @@
 #include "Exceptions/KingNotFoundException.h"
 #include <algorithm>
 
-//TODO: даже если не оптимизировать, предлагаю выделить отдельные методы, чекТо, чекЭто
 bool ShogiGameLogic::checkMove(const Piece *piece, const Position &destination) const
 {
     std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
@@ -152,17 +151,12 @@ bool ShogiGameLogic::checkDrop(Piece *piece, const Position &position) const
     {
         return false;
     }
-    //TODO: этот if выделить в метод
+
     if (piece->getType() == Pawn)
     {
-        for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)
+        if(!checkLine(piece))
         {
-            Position temp(i,position.getVertical());
-            if (board->getPiece(temp) != nullptr &&
-                board->getPiece(temp) -> equals(piece))
-            {
-                return false;
-            }
+            return false;
         }
     }
     
@@ -226,6 +220,24 @@ bool ShogiGameLogic::checkAbleToMove(const Piece *piece, const Position &positio
 
     return true;
 }
+
+bool ShogiGameLogic::checkLine(const Piece *pawn) const
+{
+    Position position = pawn->getPosition();
+    Piece samplePiece(pawn->getType(), pawn->getPlayer());
+    for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)
+    {
+        Position temp(i,position.getVertical());
+        if (board->getPiece(temp) != nullptr &&
+            board->getPiece(temp) -> equals(&samplePiece))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 
 
 

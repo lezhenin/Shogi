@@ -26,7 +26,9 @@ private:
 
     bool isUnderAttack(const Player player, const Position &position) const;
     bool onBoard(const Position &position) const;
+
     bool checkAbleToMove(const Piece *piece, const Position &position) const;
+    bool checkLine(const Piece *pawn) const;
 
     std::vector<Position> getAllPositionToMove(const Piece *piece) const;
 
