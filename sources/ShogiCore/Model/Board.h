@@ -13,18 +13,18 @@ public:
 
     Board(int w = BOARD_WIDTH, int h = BOARD_HEIGHT);
 
-    void setPiece(Piece *piece, const Position &pos);
-    void removePiece(const Position &pos);
+    virtual void setPiece(Piece *piece, const Position &pos);
+    virtual void removePiece(const Position &pos);
 
-    Piece *getPiece(const Position &pos) const ;
+    virtual Piece *getPiece(const Position &pos) const;
+    virtual Piece *findPiece(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const;
 
-    AbstractBoardMemento *getMemento();
-    void setMemento(AbstractBoardMemento *memento);
+    virtual AbstractBoardMemento *getMemento();
+    virtual void setMemento(AbstractBoardMemento *memento);
 
-
-    ListOfPieces &getAllPieces();
-    ListOfPieces &getPiecesOnBoard();
-    ListOfPieces &getCapturedPieces(Player player);
+    virtual ListOfPieces &getAllPieces();
+    virtual ListOfPieces &getPiecesOnBoard();
+    virtual ListOfPieces &getCapturedPieces(Player player);
 
     ~Board();
 

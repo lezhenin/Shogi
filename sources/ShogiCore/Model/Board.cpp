@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Board.h"
 
 
@@ -122,6 +123,24 @@ ListOfPieces &Board::getCapturedPieces(Player player)
 {
     return this->capturedPieces.at(player);
 }
+
+Piece *Board::findPiece(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const
+{
+    Piece samplePiece(pieceType,player);
+    ListOfPieces::const_iterator iterator =
+            std::find_if(pieces.begin(), pieces.end(),std::bind1st(std::mem_fun(&Piece::equals), &samplePiece));
+
+    if (iterator != pieces.end())
+    {
+        return *iterator;
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
+
 
 
 

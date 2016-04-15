@@ -76,7 +76,7 @@ bool ShogiGameLogic::isUnderAttack(const Player player, const Position &position
 
 bool ShogiGameLogic::checkShah(const Player player) const
 {
-    Piece *king = findPiece(King, player, board->getPiecesOnBoard());
+    Piece *king = board->findPiece(King, player, board->getPiecesOnBoard());
     if (king == nullptr)
     {
         throw KingNotFoundException();
@@ -87,7 +87,7 @@ bool ShogiGameLogic::checkShah(const Player player) const
 bool ShogiGameLogic::checkMate(const Player player) const
 {
 
-    Piece *king = findPiece(King, player, board->getPiecesOnBoard());
+    Piece *king = board->findPiece(King, player, board->getPiecesOnBoard());
 
     if (king == nullptr)
     {
@@ -194,20 +194,6 @@ bool ShogiGameLogic::checkDrop(Piece *piece, const Position &position) const
     board->setMemento(memento);
     delete memento;
     return !mate;
-}
-
-Piece *ShogiGameLogic::findPiece(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const
-{
-    Piece samplePiece(pieceType,player);
-    ListOfPieces::const_iterator iterator = std::find_if(pieces.begin(),pieces.end(),std::bind1st(std::mem_fun(&Piece::equals),&samplePiece));
-    if (iterator != pieces.end())
-    {
-        return *iterator;
-    }
-    else
-    {
-        return nullptr;
-    }
 }
 
 bool ShogiGameLogic::onBoard(const Position &position)  const

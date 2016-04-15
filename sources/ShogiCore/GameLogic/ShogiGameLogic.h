@@ -29,8 +29,6 @@ private:
 
     std::vector<Position> getAllPositionToMove(Piece *piece) const;
 
-    Piece* findPiece(const PieceType pieceType, const Player player, const ListOfPieces& pieces) const;
-
     const Direction *findDirection(const Position &source, const  Position &destination, const std::vector<Direction> &directions) const;
 
     AbstractBoard *board;
