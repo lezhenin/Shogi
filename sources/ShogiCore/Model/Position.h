@@ -45,7 +45,7 @@ public:
      *
      * Присваивает занчения данных одного объекта другому.
      */
-    Position& operator = (const Position& pos);
+    Position& operator = (const Position& position);
 
     /**
      * @brief Деструтор

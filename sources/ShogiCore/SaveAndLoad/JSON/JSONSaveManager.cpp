@@ -16,7 +16,7 @@ std::vector<Block> JSONSaveManager::getPiecesOnBoard()
     return onBoard;
 }
 
-std::vector<PieceType> JSONSaveManager::getCapturedPieces(const Player player)
+std::vector<PieceType> JSONSaveManager::getCapturedPieces(const Player &player)
 {
     std::string sPlayer;
     std::vector<PieceType> captured;
@@ -36,7 +36,7 @@ std::vector<PieceType> JSONSaveManager::getCapturedPieces(const Player player)
     return captured;
 }
 
-void JSONSaveManager::addPieceOnBoard(const PieceType pieceType, const Player player, const Position &position)
+void JSONSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position)
 {
     rapidjson::Value tmp;
     tmp.SetObject();
@@ -50,7 +50,7 @@ void JSONSaveManager::addPieceOnBoard(const PieceType pieceType, const Player pl
     save["piecesOnBoard"].PushBack(tmp, save.GetAllocator());
 }
 
-void JSONSaveManager::addCapturedPiece(const Player player, const PieceType pieceType)
+void JSONSaveManager::addCapturedPiece(const Player &player, const PieceType pieceType)
 {
     rapidjson::Value tmp;
     tmp.SetObject();
@@ -87,31 +87,13 @@ void JSONSaveManager::clear()
     save.Clear();
 }
 
-Player JSONSaveManager::getCurrentPlayer()
+Player &JSONSaveManager::getCurrentPlayer()
 {
     return reverseTableOfPlayers.at(save["currentPlayer"].GetString());
 }
 
-void JSONSaveManager::setCurrentPlayer(const Player player)
+void JSONSaveManager::setCurrentPlayer(const Player &player)
 {
     save["currentPlayer"].SetString(tableOfPlayers.at(player).c_str(),tableOfPlayers.at(player).size());
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

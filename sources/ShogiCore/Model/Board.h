@@ -17,14 +17,14 @@ public:
     virtual void removePiece(const Position &pos);
 
     virtual Piece *getPiece(const Position &pos) const;
-    virtual Piece *findPiece(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const;
+    virtual Piece *findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const;
 
     virtual AbstractBoardMemento *getMemento();
     virtual void setMemento(AbstractBoardMemento *memento);
 
     virtual ListOfPieces &getAllPieces();
     virtual ListOfPieces &getPiecesOnBoard();
-    virtual ListOfPieces &getCapturedPieces(Player player);
+    virtual ListOfPieces &getCapturedPieces(const Player &player);
 
     ~Board();
 

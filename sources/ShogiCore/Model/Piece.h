@@ -36,7 +36,7 @@ public:
      * @param[in] pl Игрок, которому принадлежит фигура.
      * @param[in] sq Клетка, на которой находится фигура.
      */
-    Piece(PieceType pieceType, Player player, Square *sq=nullptr);
+    Piece(const PieceType pieceType, const Player &player, Square *square = nullptr);
 
     /**
      * @brief Получить тип фигуры.
@@ -107,7 +107,7 @@ public:
      *
      *  Устанавливает игрока, которому принадлежит фигура.
      */
-    void setPlayer(const Player player);
+    void setPlayer(const Player &player);
 
     /**
      * @brief Узнать эквивалентны ли фигуры.

@@ -60,7 +60,7 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(const Piece *piece) c
     return  positions;
 }
 
-bool ShogiGameLogic::isUnderAttack(const Player player, const Position &position) const
+bool ShogiGameLogic::isUnderAttack(const Player &player, const Position &position) const
 {
     for (Piece *p: board->getPiecesOnBoard())
     {
@@ -72,7 +72,7 @@ bool ShogiGameLogic::isUnderAttack(const Player player, const Position &position
     return false;
 }
 
-bool ShogiGameLogic::checkShah(const Player player) const
+bool ShogiGameLogic::checkShah(const Player &player) const
 {
     Piece *king = board->findPiece(King, player, board->getPiecesOnBoard());
     if (king == nullptr)
@@ -82,7 +82,7 @@ bool ShogiGameLogic::checkShah(const Player player) const
     return isUnderAttack(player.nextPlayer(), king->getPosition());
 }
 
-bool ShogiGameLogic::checkMate(const Player player) const
+bool ShogiGameLogic::checkMate(const Player &player) const
 {
 
     Piece *king = board->findPiece(King, player, board->getPiecesOnBoard());

@@ -51,7 +51,7 @@ void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *
     for (const Block &b: saveReader->getPiecesOnBoard())
     {
         {
-            Piece *tmp = new Piece (b.pieceType,b.player);
+            Piece *tmp = new Piece (b.pieceType, b.player);
             board.setPiece(tmp,b.position);
             board.getAllPieces().push_back(tmp);
         }
@@ -64,7 +64,7 @@ void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *
     }
     for (const PieceType &pt: saveReader->getCapturedPieces(Gote))
     {
-        Piece *tmp = new Piece(pt,Gote);
+        Piece *tmp = new Piece(pt, Gote);
         board.getCapturedPieces(Gote).push_back(tmp);
         board.getAllPieces().push_back(tmp);
     }

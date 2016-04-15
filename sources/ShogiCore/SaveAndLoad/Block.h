@@ -11,7 +11,7 @@
 class Block
 {
 public:
-    Block(const PieceType pieceType, const Player player, const Position &position) : pieceType(pieceType), player(player),
+    Block(const PieceType pieceType, const Player &player, const Position &position) : pieceType(pieceType), player(player),
                                                                           position(position) { }
 
     PieceType pieceType;
