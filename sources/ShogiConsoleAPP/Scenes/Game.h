@@ -59,22 +59,23 @@ private:
      * @param player Игрок, чьи фигуры будут
      * выведены на экран
      */
-    void printListOfCapturedPieces(Player player) const;
+    void printListOfCapturedPieces(const Player player) const;
 
     bool checkPosition(int horizontal, int vertical) const;
 
-    bool pick();
-    bool unpick();
-    bool move();
-    bool drop();
-    bool undo();
-    bool redo();
+    bool pick() const;
+    bool unpick() const;
+    bool move() const;
+    bool drop() const;
+    bool undo() const;
+    bool redo() const;
 
+    int countPieces(const PieceType pieceType, const Player player, const ListOfPieces& pieces) const;
 
     ShogiGameAPI *game;
     bool isRun = false;
 
-    std::map<std::string,int> tableOfCommands =
+    const std::map<std::string,int> tableOfCommands =
         {
             {  "pick", 0},
             {"unpick", 1},
@@ -86,7 +87,7 @@ private:
             {  "redo", 7}
         };
 
-    std::map<std::string,PieceType> tableOfTypes =
+    const std::map<std::string,PieceType> tableOfTypes =
         {
             {          "pawn",          Pawn},
             {          "king",          King},
@@ -98,7 +99,7 @@ private:
             {         "lance",         Lance}
         };
 
-    std::map<PieceType,std::string> tableOfLabels =
+    const std::map<PieceType,std::string> tableOfLabels =
         {
             {                 King, "uK"},
             {          GoldGeneral, "uG"},
@@ -115,7 +116,7 @@ private:
             {        PromotedLance, "pL"},
             {         PromotedPawn, "pP"}};
 
-    std::map<Player,std::string> tableOfPlayers =
+    const std::map<Player,std::string> tableOfPlayers =
         {
             {Sente, "Sente"},
             { Gote,  "Gote"}

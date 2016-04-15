@@ -113,29 +113,24 @@ void Game::printBoard(AbstractBoard &board) const
     std::cout << std::endl;
 
     std::cout << "Captured pieces:" << std::endl;
-    std::cout << "Sente - " << board.getCapturedPieces(Sente).size() << std::endl;
-    std::cout << "Gote - " << board.getCapturedPieces(Gote).size() << std::endl;
+    std::cout << "Sente - "         << board.getCapturedPieces(Sente).size() << std::endl;
+    std::cout << "Gote - "          << board.getCapturedPieces(Gote).size()  << std::endl;
     std::cout << std::endl;
 }
-//todo refactor
-void Game::printListOfCapturedPieces(Player player) const
+
+void Game::printListOfCapturedPieces(const Player player) const
 {
     ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
-    Piece tmp(Pawn, player);
+
     std::cout << tableOfPlayers.at(player) << ":" << std::endl;
-    std::cout << "Pawn - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
-    tmp = Piece(Lance, player); 
-    std::cout << "Lance - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
-    tmp = Piece(Knight, player);
-    std::cout << "Knight - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
-    tmp = Piece(Bishop, player);
-    std::cout << "Bishop - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
-    tmp = Piece(Rook, player);
-    std::cout << "Rook - "<< std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
-    tmp = Piece(SilverGeneral, player);
-    std::cout << "Silver General - " << std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
-    tmp = Piece(GoldGeneral, player);
-    std::cout << "Gold General - " << std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &tmp)) << std::endl;
+
+    std::cout << "Pawn - "           << countPieces(Pawn,          player, pieces) << std::endl;
+    std::cout << "Lance - "          << countPieces(Lance,         player, pieces) << std::endl;
+    std::cout << "Knight - "         << countPieces(Knight,        player, pieces) << std::endl;
+    std::cout << "Bishop - "         << countPieces(Bishop,        player, pieces) << std::endl;
+    std::cout << "Rook - "           << countPieces(Rook,          player, pieces) << std::endl;
+    std::cout << "Silver General - " << countPieces(SilverGeneral, player, pieces) << std::endl;
+    std::cout << "Gold General - "   << countPieces(GoldGeneral,   player, pieces) << std::endl;
 }
 
 void Game::printMessages(ListOfGameSituations &list)
@@ -199,7 +194,7 @@ bool Game::checkPosition(int horizontal, int vertical) const
             vertical   >= 1 && vertical   <= AbstractBoard::BOARD_WIDTH );
 }
 
-bool Game::pick()
+bool Game::pick() const
 {
     int horizontal, vertical;
     std::cin >> horizontal >> vertical;
@@ -223,13 +218,13 @@ bool Game::pick()
     return false;
 }
 
-bool Game::unpick()
+bool Game::unpick() const
 {
     game->unPickPiece();
     return true;
 }
 
-bool Game::move()
+bool Game::move() const
 {
     int horizontal, vertical;
     std::cin >> horizontal >> vertical;
@@ -253,7 +248,7 @@ bool Game::move()
     return false;
 }
 
-bool Game::drop()
+bool Game::drop() const
 {
     int horizontal, vertical;
     std::string type;
@@ -286,7 +281,7 @@ bool Game::drop()
     return false;
 }
 
-bool Game::undo()
+bool Game::undo() const
 {
     if(!game->undo())
     {
@@ -295,7 +290,7 @@ bool Game::undo()
     return true;
 }
 
-bool Game::redo()
+bool Game::redo() const
 {
     if(!game->redo())
     {
@@ -303,6 +298,14 @@ bool Game::redo()
     }
     return true;
 }
+
+int Game::countPieces(const PieceType pieceType, const Player player, const ListOfPieces &pieces) const
+{
+    Piece piece(pieceType,player);
+    return std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &piece));
+}
+
+
 
 
 
