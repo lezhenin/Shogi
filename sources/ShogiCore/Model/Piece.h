@@ -6,11 +6,6 @@
 class Square;
 
 const int PROMOTION_STEP = 10;
-/**
- * @enum Player
- * Содержит значения соответсвующие играющим сторонам
- */
-//TODO: что тут player делает в piece?
 
 /**
  * @enum PieceType
