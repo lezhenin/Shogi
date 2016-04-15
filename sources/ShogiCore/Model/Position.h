@@ -14,7 +14,7 @@ public:
     * @param[in] h Порядковый номер горизонтали.
     * @param[in] v Порядковый номер вертикали.
     */
-    Position(const int h, const int v);
+    Position(const int horizontal, const int vertical);
 
     /**
      * @brief Получить порядковый номер вертикали.
@@ -36,9 +36,9 @@ public:
      * Сравнивает порядковые номера вертикалей и горизонталей,
      * содержащихся в двух объектах.
      */
-    bool operator == (const Position& pos) const ;
+    bool operator == (const Position& position) const ;
 
-    bool operator != (const Position& pos) const ;
+    bool operator != (const Position& position) const ;
 
     /**
      * @brief Присвоить значение

@@ -26,7 +26,7 @@ public:
      * @param[in] piece Фигура, которая будет установлена.
      * @param[in] pos   Позиция, куда будет установлена фигура
      */
-    virtual void setPiece(Piece *piece, const Position &pos)=0;
+    virtual void setPiece(Piece *piece, const Position &position)=0;
 
     /**
      * @brief Убрать фигуру
@@ -34,7 +34,7 @@ public:
      * Убирает фигуру с клетки доски.
      * @param[in] pos Позиция, откуда будет убрана фигура.
      */
-    virtual void removePiece(const Position &pos)=0;
+    virtual void removePiece(const Position &position)=0;
 
     /**
      * @brief Получить фигуру
@@ -43,7 +43,7 @@ public:
      * @param[in] pos   Позиция где находится фигура.
      * @return Указатель на фигуру.
      */
-    virtual Piece *getPiece(const Position &pos) const = 0;
+    virtual Piece *getPiece(const Position &position) const = 0;
 
     /**
      * @brief Получить мементо.
@@ -51,7 +51,6 @@ public:
      * @return Указатель на класс AbstractBoardMemento,
      * в котором сохранено текущее состояние доски.
      */
-        //TODO: это не может быть const?
     virtual AbstractBoardMemento *getMemento() = 0;
 
     /**

@@ -17,7 +17,7 @@ public:
      * @param[in] pos   Позиция клетки на доске.
      * @param[in] piece Фигура, которая находится на это клетке.
      */
-    Square(Position pos, Piece *piece = nullptr);
+    Square(const Position &position, Piece *piece = nullptr);
 
     /**
      * @brief Получить позицию клетки на доске.
@@ -38,8 +38,7 @@ public:
      *
      * Устанавливает фигуру на данную клетку
      */
-        //TODO: piece не может быть const?
-    void setPiece (Piece *p);
+    void setPiece (Piece *piece);
 
     /**
      * @brief Деструктор
@@ -48,7 +47,7 @@ public:
 
 private:
 
-    Position pos;
+    Position position;
     Piece *piece;
 
 };

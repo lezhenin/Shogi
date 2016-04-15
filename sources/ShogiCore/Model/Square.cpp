@@ -1,10 +1,10 @@
 #include "Square.h"
 
-Square::Square(Position pos, Piece *piece): pos(pos), piece(piece){}
+Square::Square(const Position &position, Piece *piece): position(position), piece(piece){}
 
 Position &Square::getPosition()
 {
-    return this->pos;
+    return this->position;
 }
 
 Piece *Square::getPiece() const
@@ -12,8 +12,8 @@ Piece *Square::getPiece() const
     return this->piece;
 }
 
-void Square::setPiece(Piece *p)
+void Square::setPiece(Piece *piece)
 {
-    this->piece=p;
+    this->piece=piece;
 }
 

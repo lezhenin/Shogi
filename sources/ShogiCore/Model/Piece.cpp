@@ -1,10 +1,9 @@
 #include "Piece.h"
 
 
-Piece::Piece(PieceType pt, Player pl, Square *sq): ptype(pt), player(pl), sq(sq)
+Piece::Piece(PieceType pieceType, Player player, Square *sq): pieceType(pieceType), player(player), square(sq)
 {
-    //todo simplify construction
-    if (this->ptype >= Rook)
+    if (this->pieceType >= Rook)
     {
         this->bePromoted = true;
     }
@@ -12,7 +11,7 @@ Piece::Piece(PieceType pt, Player pl, Square *sq): ptype(pt), player(pl), sq(sq)
     {
         this->bePromoted = false;
     }
-    if (this->ptype >= PromotedRook)
+    if (this->pieceType >= PromotedRook)
     {
         this->promoted=true;
     }
@@ -25,12 +24,12 @@ Piece::Piece(PieceType pt, Player pl, Square *sq): ptype(pt), player(pl), sq(sq)
 
 PieceType Piece::getType() const
 {
-    return this->ptype;
+    return this->pieceType;
 }
 
 Square *Piece::getSquare() const
 {
-    return this->sq;
+    return this->square;
 }
 
 Player Piece::getPlayer() const
@@ -57,7 +56,7 @@ void Piece::promote()
 {
     if(this->bePromoted && !this->promoted)
     {
-        this->ptype = PieceType((int)(this->ptype) + PROMOTION_STEP);
+        this->pieceType = PieceType((int)(this->pieceType) + PROMOTION_STEP);
     }
 }
 
@@ -66,23 +65,23 @@ void Piece::unPromote()
     if(this->bePromoted && this->promoted)
     {
 
-        this->ptype = PieceType((int)(this->ptype) - PROMOTION_STEP);
+        this->pieceType = PieceType((int)(this->pieceType) - PROMOTION_STEP);
     }
 }
 
-void Piece::setSquare(Square *sq)
+void Piece::setSquare(Square *square)
 {
-    this->sq = sq;
+    this->square = square;
 }
 
-void Piece::setPlayer(Player pl)
+void Piece::setPlayer(const Player player)
 {
-    this->player = pl;
+    this->player = player;
 }
 
 
 bool Piece::equals(Piece *piece) {
-    return (player == piece->player && ptype == piece->ptype);
+    return (player == piece->player && pieceType == piece->pieceType);
 }
 
 

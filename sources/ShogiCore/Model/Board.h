@@ -42,7 +42,7 @@ private:
     int width;
     int height;
 
-    Square *getSquare(const Position &pos) const;
+    Square *getSquare(const Position &position) const;
 };
 
 #endif // BOARD_H

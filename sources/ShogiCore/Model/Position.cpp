@@ -1,7 +1,7 @@
 #include "Position.h"
 #include "Exceptions/BadPositionException.h"
 
-Position::Position(const int h, const int v) : horizontal(h), vertical(v)
+Position::Position(const int horizontal, const int vertical) : horizontal(horizontal), vertical(vertical)
 {
 
 }
@@ -16,9 +16,9 @@ int Position::getHorizontal() const
     return this->horizontal;
 }
 
-bool Position::operator ==(const Position &pos) const
+bool Position::operator ==(const Position &position) const
 {
-    return (this->horizontal == pos.horizontal && this->vertical == pos.vertical);
+    return (this->horizontal == position.horizontal && this->vertical == position.vertical);
 }
 
 Position &Position::operator =(const Position &pos)
@@ -32,9 +32,9 @@ Position &Position::operator =(const Position &pos)
     return *this;
 }
 
-bool Position::operator!=(const Position &pos) const
+bool Position::operator!=(const Position &position) const
 {
-    return !operator==(pos);
+    return !operator==(position);
 }
 
 

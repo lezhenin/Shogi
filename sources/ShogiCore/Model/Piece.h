@@ -20,7 +20,7 @@ enum Player{
  */
 enum PieceType{
     King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
-    PromotedRook=Rook+PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral, PromotedKnight, PromotedLance, PromotedPawn
+    PromotedRook = Rook + PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral, PromotedKnight, PromotedLance, PromotedPawn
 };
 
 /**
@@ -37,7 +37,7 @@ public:
      * @param[in] pl Игрок, которому принадлежит фигура.
      * @param[in] sq Клетка, на которой находится фигура.
      */
-    Piece(PieceType pt, Player pl, Square *sq=nullptr);
+    Piece(PieceType pieceType, Player player, Square *sq=nullptr);
 
     /**
      * @brief Получить тип фигуры.
@@ -101,14 +101,14 @@ public:
      *
      *  Устанавливает клетку на которой находится фигура.
      */
-    void setSquare(Square *sq);
+    void setSquare(Square *square);
 
     /**
      * @brief Установить игрока
      *
      *  Устанавливает игрока, которому принадлежит фигура.
      */
-    void setPlayer(Player pl);
+    void setPlayer(const Player player);
 
     /**
      * @brief Узнать эквивалентны ли фигуры.
@@ -128,9 +128,9 @@ public:
 
 private:
 
-    PieceType ptype;
+    PieceType pieceType;
     Player player;
-    Square *sq;
+    Square *square;
 
     bool promoted;
     bool bePromoted;
