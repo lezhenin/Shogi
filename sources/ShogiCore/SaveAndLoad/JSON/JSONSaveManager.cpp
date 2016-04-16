@@ -80,8 +80,12 @@ JSONSaveManager::JSONSaveManager()
 JSONSaveManager::JSONSaveManager(const std::string &JSONString)
 {
     const char *string = JSONString.c_str();
-    save.Parse(string);
-    assert(save.IsObject());
+    rapidjson::ParseResult result;
+    result = save.Parse(string);
+    if(result.Code() != rapidjson::kParseErrorNone)
+    {
+        throw std::exception();
+    }
 }
 
 void JSONSaveManager::clear()

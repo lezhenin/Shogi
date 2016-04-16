@@ -204,7 +204,10 @@ Game::Game(bool newGame)
     }
     else
     {
-        load();
+        if(!load())
+        {
+            game->load();
+        }
     }
 }
 
@@ -377,9 +380,17 @@ bool Game::load() const
         JSONSaveString.push_back((char)save.get());
     }
     JSONSaveString.pop_back();
-    JSONSaveManager *saveManager = new JSONSaveManager(JSONSaveString);
-    game->load(saveManager);
-
+    JSONSaveManager *saveManager = nullptr;
+    try
+    {
+        saveManager = new JSONSaveManager(JSONSaveString);
+        game->load(saveManager);
+    }
+    catch(std::exception &e)
+    {
+        std::cout << "Save is bad" << std::endl;
+        return false;
+    }
     save.close();
 
     std::cout << "Loaded!" << std::endl;
