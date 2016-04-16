@@ -11,7 +11,7 @@ class Game : public Scene
 
 public:
 
-    Game();
+    explicit Game(bool newGame = true);
 
     virtual void show();
     virtual ~Game();

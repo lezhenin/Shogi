@@ -9,7 +9,7 @@ set(SOURCE_FILES
         Scenes/Game.h
         GameApp.h
         Scenes/Help.cpp
-        Scenes/Help.h)
+        Scenes/Help.h )
 
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 add_executable(APP ${SOURCE_FILES})

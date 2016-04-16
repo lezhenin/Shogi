@@ -9,7 +9,6 @@
 void Game::show()
 {
     std::cout << "Start new game" << std::endl;
-    game->initGame();
     print();
     isRun = true;
     while(isRun)
@@ -195,10 +194,20 @@ Game::~Game()
     delete game;
 }
 
-Game::Game()
+Game::Game(bool newGame)
 {
     game = new Shogi();
+
+    if(newGame)
+    {
+        game->load();
+    }
+    else
+    {
+        load();
+    }
 }
+
 
 bool Game::checkPosition(int horizontal, int vertical) const
 {
@@ -375,6 +384,8 @@ bool Game::load() const
     delete saveManager;
     return true;
 }
+
+
 
 
 

@@ -49,7 +49,7 @@ void ShogiCoreFuncTest::printBoard()
 //TODO: этот тест тоже перегружен в конце, лучше разделить на несколько
 void ShogiCoreFuncTest::gameInitTest()
 {
-    game.initGame();
+    game.load();
     AbstractBoard &board = game.getBoard();
     printBoard();
     for(int i = 1; i<=9; i++)

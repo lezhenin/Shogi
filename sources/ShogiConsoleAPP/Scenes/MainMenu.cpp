@@ -19,12 +19,12 @@ void MainMenu::show()
         switch (choice) {
             case 1:
             {
-                next = new Game();
+                next = new Game(true);
                 break;
             }
             case 2:
             {
-                next = new Game();
+                next = new Game(false);
                 break;
             }
             case 3:
