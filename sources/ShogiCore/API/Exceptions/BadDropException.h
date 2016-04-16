@@ -4,7 +4,10 @@
 
 
 #include "GameProcessException.h"
-
+/**
+ * @brief Исключение, возбуждаемое при
+ * попытке выставить фигуру на доску неправильно.
+ */
 class BadDropException : public GameProcessException
 {
 

@@ -4,7 +4,10 @@
 
 
 #include "GameProcessException.h"
-
+/**
+ * @brief Исключение, возбуждаемое при
+ * попытке перевернуть фигуру против правил.
+ */
 class BadPromoteException : public GameProcessException
 {
 

@@ -4,7 +4,10 @@
 
 
 #include "GameProcessException.h"
-
+/**
+ * @brief Исключение, возбуждаемое при
+ * попытке совершить неверный ход.
+ */
 class BadMoveException : public GameProcessException
 {
 

@@ -4,7 +4,10 @@
 
 
 #include "GameProcessException.h"
-
+/**
+ * @brief Исключение, возбуждаемое при
+ * попытке выбрать фигуру неправильно.
+ */
 class BadPickException : public GameProcessException
 {
 public:
