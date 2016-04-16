@@ -8,13 +8,22 @@ void MainMenu::show()
     std::cout << "1. Start new game" << std::endl
               << "2. Load game" << std::endl
               << "3. Help" << std::endl
-              << "0. Exit" << std::endl;
+              << "4. Exit" << std::endl;
 
+    std::string input;
     int choice;
     bool error = true;
     while(error)
     {
-        std::cin >> choice;
+        std::cin >> input;
+        try
+        {
+            choice = std::stoi(input);
+        }
+        catch (std::exception &e)
+        {
+            choice = 0;
+        }
         error = false;
         switch (choice) {
             case 1:
@@ -32,7 +41,7 @@ void MainMenu::show()
                 next = new Help();
                 break;
             }
-            case 0:
+            case 4:
             {
                 next = nullptr;
                 break;
@@ -40,7 +49,7 @@ void MainMenu::show()
             default:
             {
                 error = true;
-                std::cout << "Unknown command";
+                std::cout << "Unknown command" << std::endl;
             }
         }
     }
