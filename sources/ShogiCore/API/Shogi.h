@@ -20,7 +20,7 @@ class Shogi: public ShogiGameAPI
 public:
 
     Shogi();
-    virtual void initGame() override;
+
     virtual void pickPiece(const Position &position) override;
     virtual void unPickPiece() override;
     virtual void movePiece(const Position &destination) override;
@@ -32,6 +32,7 @@ public:
 
     virtual void save(SaveWriter *saveWriter) override;
     virtual void load(SaveReader *saveReader) override;
+    virtual void load() override;
 
     virtual Player getCurrentPlayer() const override;
     virtual AbstractBoard &getBoard() const override;

@@ -20,11 +20,6 @@ class ShogiGameAPI
 
 public:
 
-    /**
-     * @brief Инициализировать игру.
-     * Устанавливает фигуры на доске.
-     */
-    virtual void initGame()=0;
 
     /**
      * @brief Узнать какому игрку принадлежит очередность хода.
@@ -96,6 +91,14 @@ public:
      * SaveReader.
      */
     virtual void load(SaveReader *saveReader) = 0;
+
+    /**
+    * @brief Загружает игру.
+    *
+    * Устанавливает фигуры на доске, в соотвевтсвии
+    * с начальной растановкой.
+    */
+    virtual void load()=0;
 
     /**
      * @brief Получить доску.

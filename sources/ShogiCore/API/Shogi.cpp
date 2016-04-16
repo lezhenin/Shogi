@@ -3,7 +3,7 @@
 #include "Exceptions/BadMoveException.h"
 
 
-void Shogi::initGame()
+void Shogi::load()
 {
     gameLoader->loadGame(*board, &currentPlayer);
 }
