@@ -105,14 +105,14 @@ private:
 
     const std::map<PieceType,std::string> tableOfLabels =
         {
-            {                 King, "uK"},
-            {          GoldGeneral, "uG"},
-            {                 Rook, "uR"},
-            {               Bishop, "uB"},
-            {        SilverGeneral, "uS"},
-            {               Knight, "uH"},
-            {                Lance, "uL"},
-            {                 Pawn, "uP"},
+            {                 King, "nK"},
+            {          GoldGeneral, "nG"},
+            {                 Rook, "nR"},
+            {               Bishop, "nB"},
+            {        SilverGeneral, "nS"},
+            {               Knight, "nH"},
+            {                Lance, "nL"},
+            {                 Pawn, "nP"},
             {         PromotedRook, "pR"},
             {       PromotedBishop, "pB"},
             {PromotedSilverGeneral, "pS"},
