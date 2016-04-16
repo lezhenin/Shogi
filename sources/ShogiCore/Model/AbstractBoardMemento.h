@@ -2,28 +2,31 @@
 #define SHOGI_ABSTRACTBOARDMEMENTO_H
 
 #include "AbstractBoard.h"
-/**
- * @brief Интерфейс паттерна Мементо.
- * Класс сохраняющий внутреннее состояние объекта класса
- * Board и способный восстановить его при необходимости.
- */
-class AbstractBoardMemento
+
+namespace shogi
 {
-public:
-
-private:
-    friend class AbstractBoard;
-
     /**
-     * @brief Восстановить состояние доски.
-     *
-     * Восстанавливает сохраненное сотстояние доски.
+     * @brief Интерфейс паттерна Мементо.
+     * Класс сохраняющий внутреннее состояние объекта класса
+     * Board и способный восстановить его при необходимости.
      */
-    virtual void restore() = 0;
+    class AbstractBoardMemento
+    {
+    public:
 
-public:
-    virtual ~AbstractBoardMemento() { }
-};
+    private:
+        friend class AbstractBoard;
 
+        /**
+		 * @brief Восстановить состояние доски.
+		 *
+		 * Восстанавливает сохраненное сотстояние доски.
+		 */
+        virtual void restore() = 0;
+
+    public:
+        virtual ~AbstractBoardMemento() { }
+    };
+}
 
 #endif //SHOGI_ABSTRACTBOARDMEMENTO_H

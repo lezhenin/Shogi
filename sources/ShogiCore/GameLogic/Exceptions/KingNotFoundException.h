@@ -1,25 +1,27 @@
 #ifndef SHOGI_KINGNOTFOUNDEXCEPTION_H
 #define SHOGI_KINGNOTFOUNDEXCEPTION_H
 
-
 #include "GameLogicException.h"
-/**
- * @brief Класс исключения, выбрасываемого в том случае,
- * если во время проверки шаха или мата не был найден
- * король на доске.
- */
-class KingNotFoundException: public GameLogicException
+
+namespace shogi
 {
-
-public:
-    virtual const char *what() throw()
+    /**
+     * @brief Класс исключения, выбрасываемого в том случае,
+     * если во время проверки шаха или мата не был найден
+     * король на доске.
+     */
+    class KingNotFoundException : public GameLogicException
     {
-        const char *str = "King wasn't found";
-        return  str;
-    }
 
-    virtual ~KingNotFoundException() { }
-};
+    public:
+        virtual const char *what() throw()
+        {
+            const char *str = "King wasn't found";
+            return str;
+        }
 
+        virtual ~KingNotFoundException() { }
+    };
+}
 
 #endif //SHOGI_KINGNOTFOUNDEXCEPTION_H

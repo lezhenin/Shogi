@@ -1,5 +1,7 @@
 #include "Square.h"
 
+using namespace shogi;
+
 Square::Square(const Position &position, Piece *piece): position(position), piece(piece){}
 
 Position &Square::getPosition()

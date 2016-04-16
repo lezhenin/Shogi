@@ -1,40 +1,46 @@
-
 #ifndef SHOGI_PROMOTIONISAVAIBLE_H
 #define SHOGI_PROMOTIONISAVAIBLE_H
+
 #include "GameSituation.h"
 #include "../../API/ShogiGameAPI.h"
 
-/**
- * @brief Игровая ситуация "Возможен переворт фигуры"
- */
-class PromotionIsAvailable : public GameSituation
+namespace shogi
 {
-
-public:
-
-    PromotionIsAvailable(ShogiGameAPI *game, const Position &position) : game(game), position(position) { executable = true; }
-
-    std::string getMessage() const
+    /**
+     * @brief Игровая ситуация "Возможен переворт фигуры"
+     */
+    class PromotionIsAvailable : public GameSituation
     {
-        return "You can promote piece.";
-    }
 
-    void execute()
-    {
-        try
+    public:
+
+        PromotionIsAvailable(ShogiGameAPI *game, const Position &position) : game(game), position(position)
         {
-            game->promotePiece(position);
-        }
-        catch (std::exception &e)
-        {
-            throw;
+            executable = true;
         }
 
-    }
-private:
-    ShogiGameAPI *game;
-    Position position;
-};
+        std::string getMessage() const
+        {
+            return "You can promote piece.";
+        }
 
+        void execute()
+        {
+            try
+            {
+                game->promotePiece(position);
+            }
+            catch (std::exception &e)
+            {
+                throw;
+            }
+
+        }
+
+    private:
+        ShogiGameAPI *game;
+        Position position;
+    };
+}
 
 #endif //SHOGI_PROMOTIONISAVAIBLE_H

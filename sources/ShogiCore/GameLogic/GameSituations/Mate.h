@@ -2,19 +2,26 @@
 #define SHOGI_MATE_H
 
 #include "GameSituation.h"
-/**
- * @brief Игровая ситуация "Мат"
- */
-class Mate : public GameSituation
+
+namespace shogi
 {
-
-public:
-    Mate() : GameSituation() { endOfGame = true;}
-    std::string getMessage() const
+	/**
+	 * @brief Игровая ситуация "Мат"
+	 */
+    class Mate : public GameSituation
     {
-        return "Mate! Game is over";
-    }
-};
 
+    public:
+        Mate() : GameSituation()
+        {
+            endOfGame = true;
+        }
+
+        std::string getMessage() const
+        {
+            return "Mate! Game is over";
+        }
+    };
+}
 
 #endif //SHOGI_MATE_H

@@ -2,20 +2,23 @@
 #define SHOGI_GAMELOGICEXCEPTION_H
 
 #include <exception>
-/**
- * @brief Класс исключений отнясщихся к игровой логике.
- */
-class GameLogicException: public std::exception
+
+namespace shogi
 {
-
-public:
-    virtual const char *what() throw()
+    /**
+     * @brief Класс исключений отнясщихся к игровой логике.
+     */
+    class GameLogicException : public std::exception
     {
-        const char *str = "GameLogic exception";
-        return str;
-    }
 
-};
+    public:
+        virtual const char *what() throw()
+        {
+            const char *str = "GameLogic exception";
+            return str;
+        }
 
+    };
+}
 
 #endif //SHOGI_GAMELOGICEXCEPTION_H

@@ -21,14 +21,14 @@ set(SOURCE_FILES
         Model/Player.h
         Model/Player.cpp
 
-        GameLogic/ShogiGameLogic.cpp
-        GameLogic/ShogiGameLogic.h
+        GameLogic/GameLogic.cpp
+        GameLogic/GameLogic.h
         GameLogic/Direction.h
         GameLogic/GameSituations/GameSituation.h
         GameLogic/GameSituations/Shah.h
         GameLogic/GameSituations/Mate.h
         GameLogic/GameSituations/PromotionIsAvailable.h
-        GameLogic/AbstractShogiGameLogic.h
+        GameLogic/AbstractGameLogic.h
         GameLogic/TableOfDirections.h
         GameLogic/Exceptions/GameLogicException.h
         GameLogic/Exceptions/KingNotFoundException.h

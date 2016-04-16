@@ -1,8 +1,10 @@
-#include "ShogiGameLogic.h"
+#include "GameLogic.h"
 #include "Exceptions/KingNotFoundException.h"
 #include <algorithm>
 
-bool ShogiGameLogic::checkMove(const Piece *piece, const Position &destination) const
+using namespace shogi;
+
+bool GameLogic::checkMove(const Piece *piece, const Position &destination) const
 {
     std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
 
@@ -33,7 +35,7 @@ bool ShogiGameLogic::checkMove(const Piece *piece, const Position &destination) 
     return false;
 }
 
-std::vector<Position> ShogiGameLogic::getAllPositionToMove(const Piece *piece) const
+std::vector<Position> GameLogic::getAllPositionToMove(const Piece *piece) const
 {
     std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
     Position source = piece->getPosition();
@@ -59,7 +61,7 @@ std::vector<Position> ShogiGameLogic::getAllPositionToMove(const Piece *piece) c
     return  positions;
 }
 
-bool ShogiGameLogic::isUnderAttack(const Player &player, const Position &position) const
+bool GameLogic::isUnderAttack(const Player &player, const Position &position) const
 {
     for (Piece *p: board->getPiecesOnBoard())
     {
@@ -71,7 +73,7 @@ bool ShogiGameLogic::isUnderAttack(const Player &player, const Position &positio
     return false;
 }
 
-bool ShogiGameLogic::checkShah(const Player &player) const
+bool GameLogic::checkShah(const Player &player) const
 {
     Piece *king = board->findPiece(King, player, board->getPiecesOnBoard());
     if (king == nullptr)
@@ -81,7 +83,7 @@ bool ShogiGameLogic::checkShah(const Player &player) const
     return isUnderAttack(player.nextPlayer(), king->getPosition());
 }
 
-bool ShogiGameLogic::checkMate(const Player &player) const
+bool GameLogic::checkMate(const Player &player) const
 {
 
     Piece *king = board->findPiece(King, player, board->getPiecesOnBoard());
@@ -123,7 +125,7 @@ bool ShogiGameLogic::checkMate(const Player &player) const
     return true;
 }
 
-bool ShogiGameLogic::checkPromotion(const Piece *piece) const
+bool GameLogic::checkPromotion(const Piece *piece) const
 {
     if(piece->wasPromoted() || !piece->canBePromoted())
     {
@@ -139,7 +141,7 @@ bool ShogiGameLogic::checkPromotion(const Piece *piece) const
     }
 }
 
-bool ShogiGameLogic::checkDrop(Piece *piece, const Position &position) const
+bool GameLogic::checkDrop(Piece *piece, const Position &position) const
 {
     if (board->getPiece(position) != nullptr)
     {
@@ -167,13 +169,13 @@ bool ShogiGameLogic::checkDrop(Piece *piece, const Position &position) const
     return !mate;
 }
 
-bool ShogiGameLogic::onBoard(const Position &position)  const
+bool GameLogic::onBoard(const Position &position)  const
 {
     return (position.getHorizontal() >= 1 && position.getHorizontal() <= AbstractBoard::BOARD_HEIGHT &&
             position.getVertical()   >= 1 && position.getVertical()   <= AbstractBoard::BOARD_WIDTH );
 }
 
-const Direction *ShogiGameLogic::findDirection(const Position &source, const Position &destination, const std::vector<Direction> &directions) const
+const Direction *GameLogic::findDirection(const Position &source, const Position &destination, const std::vector<Direction> &directions) const
 {
     for (const Direction &direction : directions)
     {
@@ -191,7 +193,7 @@ const Direction *ShogiGameLogic::findDirection(const Position &source, const Pos
     return nullptr;
 }
 
-bool ShogiGameLogic::checkAbleToMove(const Piece *piece, const Position &position) const
+bool GameLogic::checkAbleToMove(const Piece *piece, const Position &position) const
 {
 
     if (piece->getType() == Pawn || piece->getType() == Lance)
@@ -215,7 +217,7 @@ bool ShogiGameLogic::checkAbleToMove(const Piece *piece, const Position &positio
     return true;
 }
 
-bool ShogiGameLogic::checkLine(const Piece *pawn, int vertical) const
+bool GameLogic::checkLine(const Piece *pawn, int vertical) const
 {
     Piece samplePiece(pawn->getType(), pawn->getPlayer());
     for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)

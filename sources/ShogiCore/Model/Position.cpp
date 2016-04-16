@@ -1,6 +1,8 @@
 #include "Position.h"
 #include "Exceptions/BadPositionException.h"
 
+using namespace shogi;
+
 Position::Position(const int horizontal, const int vertical) : horizontal(horizontal), vertical(vertical)
 {
 

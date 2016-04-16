@@ -1,5 +1,7 @@
 #include "SimpleSaveManager.h"
 
+using namespace shogi;
+
 std::vector<Block> SimpleSaveManager::getPiecesOnBoard()
 {
     return save.onBoard;

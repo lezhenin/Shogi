@@ -1,136 +1,151 @@
 #ifndef PIECE_H
 #define PIECE_H
+
 #include "Square.h"
 #include "Player.h"
 
-class Square;
-
-const int PROMOTION_STEP = 10;
-
-/**
- * @enum PieceType
- * Содержит типы сущестсвующих фигур, включая перевернутые фигуры.
- */
-enum PieceType
+namespace shogi
 {
-    King=2, GoldGeneral, Rook, Bishop, SilverGeneral, Knight, Lance, Pawn,
-    PromotedRook = Rook + PROMOTION_STEP, PromotedBishop, PromotedSilverGeneral, PromotedKnight, PromotedLance, PromotedPawn
-};
+    class Square;
 
-/**
- * @brief Модель фигуры
- */
-class Piece
-{
-public:
+    const int PROMOTION_STEP = 10;
 
     /**
-     * @brief Конструктор
-     *
-     * @param[in] pt Тип фигуры.
-     * @param[in] pl Игрок, которому принадлежит фигура.
-     * @param[in] sq Клетка, на которой находится фигура.
+     * @enum PieceType
+     * Содержит типы сущестсвующих фигур, включая перевернутые фигуры.
      */
-    Piece(const PieceType pieceType, const Player &player, Square *square = nullptr);
+    enum PieceType
+    {
+        King = 2,
+        GoldGeneral,
+        Rook,
+        Bishop,
+        SilverGeneral,
+        Knight,
+        Lance,
+        Pawn,
+        PromotedRook = Rook + PROMOTION_STEP,
+        PromotedBishop,
+        PromotedSilverGeneral,
+        PromotedKnight,
+        PromotedLance,
+        PromotedPawn
+    };
 
     /**
-     * @brief Получить тип фигуры.
-     *
-     * @return Тип фигуры
+     * @brief Модель фигуры
      */
-    PieceType getType() const;
+    class Piece
+    {
+    public:
 
-    /**
-     * @brief Получить игрока.
-     *
-     * @return Значение соответсвующие игроку,
-     * которому принадлежит фигура
-     */
-    Player getPlayer() const;
+        /**
+		 * @brief Конструктор
+		 *
+		 * @param[in] pt Тип фигуры.
+		 * @param[in] pl Игрок, которому принадлежит фигура.
+		 * @param[in] sq Клетка, на которой находится фигура.
+		 */
+        Piece(const PieceType pieceType, const Player &player, Square *square = nullptr);
 
-    /**
-     * @brief Получить позицию фигуры.
-     *
-     * @return Позиция, где находится фигура
-     */
-    Position &getPosition() const;
+        /**
+		 * @brief Получить тип фигуры.
+		 *
+		 * @return Тип фигуры
+		 */
+        PieceType getType() const;
 
-    /**
-     * @brief Получить клетку.
-     *
-     * @return Клетка, на которой находится фигура
-     */
-    Square *getSquare() const;
+        /**
+		 * @brief Получить игрока.
+		 *
+		 * @return Значение соответсвующие игроку,
+		 * которому принадлежит фигура
+		 */
+        Player getPlayer() const;
 
-    /**
-     * @brief Узнать переврнута ли фигура.
-     *
-     * @return true или false
-     */
-    bool wasPromoted() const;
+        /**
+		 * @brief Получить позицию фигуры.
+		 *
+		 * @return Позиция, где находится фигура
+		 */
+        Position &getPosition() const;
 
-    /**
-     * @brief Узнать может ли быть переврнута фигура.
-     *
-     * @return true или false
-     */
-    bool canBePromoted() const;
+        /**
+		 * @brief Получить клетку.
+		 *
+		 * @return Клетка, на которой находится фигура
+		 */
+        Square *getSquare() const;
 
-    /**
-     * @brief Перевернуть фигуру.
-     *
-     *  Меняет тип фигуры если это возможно.
-     */
-    void promote();
+        /**
+		 * @brief Узнать переврнута ли фигура.
+		 *
+		 * @return true или false
+		 */
+        bool wasPromoted() const;
 
-    /**
-     * @brief Отменить переворот фигуры.
-     *
-     *  Меняет тип фигуры если это возможно.
-     **/
-    void unPromote();
+        /**
+		 * @brief Узнать может ли быть переврнута фигура.
+		 *
+		 * @return true или false
+		 */
+        bool canBePromoted() const;
 
-    /**
-     * @brief Установить клетку
-     *
-     *  Устанавливает клетку на которой находится фигура.
-     */
-    void setSquare(Square *square);
+        /**
+		 * @brief Перевернуть фигуру.
+		 *
+		 *  Меняет тип фигуры если это возможно.
+		 */
+        void promote();
 
-    /**
-     * @brief Установить игрока
-     *
-     *  Устанавливает игрока, которому принадлежит фигура.
-     */
-    void setPlayer(const Player &player);
+        /**
+		 * @brief Отменить переворот фигуры.
+		 *
+		 *  Меняет тип фигуры если это возможно.
+		 **/
+        void unPromote();
 
-    /**
-     * @brief Узнать эквивалентны ли фигуры.
-     *
-     * Фигуры эквиваленты в том случае если их тип и сторона,
-     * которой они принадлежат свопадают.
-     * @param piece Фигура для сравнения.
-     * @return true если фигуры эквивалентны, false если нет.
-     */
-    bool equals(Piece* piece);
+        /**
+		 * @brief Установить клетку
+		 *
+		 *  Устанавливает клетку на которой находится фигура.
+		 */
+        void setSquare(Square *square);
 
-    /**
-     * @brief Деструктор
-     */
-    virtual ~Piece(){};
+        /**
+		 * @brief Установить игрока
+		 *
+		 *  Устанавливает игрока, которому принадлежит фигура.
+		 */
+        void setPlayer(const Player &player);
+
+        /**
+		 * @brief Узнать эквивалентны ли фигуры.
+		 *
+		 * Фигуры эквиваленты в том случае если их тип и сторона,
+		 * которой они принадлежат свопадают.
+		 * @param piece Фигура для сравнения.
+		 * @return true если фигуры эквивалентны, false если нет.
+		 */
+        bool equals(Piece *piece);
+
+        /**
+		 * @brief Деструктор
+		 */
+        virtual ~Piece() { };
 
 
-private:
+    private:
 
-    PieceType pieceType;
-    Player player;
-    Square *square;
+        PieceType pieceType;
+        Player player;
+        Square *square;
 
-    bool promoted;
-    bool bePromoted;
+        bool promoted;
+        bool bePromoted;
 
-};
-
+    };
+}
 
 
 

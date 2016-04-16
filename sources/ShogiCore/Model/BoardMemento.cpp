@@ -1,9 +1,11 @@
 #include "BoardMemento.h"
 
+using namespace shogi;
+
 BoardMemento::BoardMemento(Board *board): board(board)
 {
     this->capturedPieces[Sente] = board->getCapturedPieces(Sente);
-    this->capturedPieces[Gote] = board->getCapturedPieces(Gote);
+    this->capturedPieces[Gote]  = board->getCapturedPieces(Gote);
 
     for (Piece *piece : board->getPiecesOnBoard())
     {
@@ -41,7 +43,7 @@ void BoardMemento::restore()
     board->getCapturedPieces(Sente).clear();
     board->getCapturedPieces(Gote).clear();
     board->getCapturedPieces(Sente) = capturedPieces.at(Sente);
-    board->getCapturedPieces(Gote) = capturedPieces.at(Gote);
+    board->getCapturedPieces(Gote)  = capturedPieces.at(Gote);
 }
 
 

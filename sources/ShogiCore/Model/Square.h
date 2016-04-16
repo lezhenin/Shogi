@@ -1,55 +1,58 @@
 #ifndef SQUARE_H
 #define SQUARE_H
+
 #include "Position.h"
 #include "Piece.h"
 
-class Piece;
-
-/**
- * @brief Игровая модель клетки доски
- */
-class Square
+namespace shogi
 {
-public:
-    /**
-     * @brief Конструктор
-     *
-     * @param[in] pos   Позиция клетки на доске.
-     * @param[in] piece Фигура, которая находится на это клетке.
-     */
-    Square(const Position &position, Piece *piece = nullptr);
+    class Piece;
 
     /**
-     * @brief Получить позицию клетки на доске.
-     *
-     * @return Позиция клетки
+     * @brief Игровая модель клетки доски
      */
-    Position &getPosition();
+    class Square
+    {
+    public:
+        /**
+		 * @brief Конструктор
+		 *
+		 * @param[in] pos   Позиция клетки на доске.
+		 * @param[in] piece Фигура, которая находится на это клетке.
+		 */
+        Square(const Position &position, Piece *piece = nullptr);
 
-    /**
-     * @brief Получить фигуру.
-     *
-     * @return Фигура, которая находится на данной клетке.
-     */
-    Piece *getPiece() const;
+        /**
+		 * @brief Получить позицию клетки на доске.
+		 *
+		 * @return Позиция клетки
+		 */
+        Position &getPosition();
 
-    /**
-     * @brief Установить фигуру.
-     *
-     * Устанавливает фигуру на данную клетку
-     */
-    void setPiece (Piece *piece);
+        /**
+		 * @brief Получить фигуру.
+		 *
+		 * @return Фигура, которая находится на данной клетке.
+		 */
+        Piece *getPiece() const;
 
-    /**
-     * @brief Деструктор
-     */
-    virtual ~Square() {};
+        /**
+		 * @brief Установить фигуру.
+		 *
+		 * Устанавливает фигуру на данную клетку
+		 */
+        void setPiece(Piece *piece);
 
-private:
+        /**
+		 * @brief Деструктор
+		 */
+        virtual ~Square() { };
 
-    Position position;
-    Piece *piece;
+    private:
 
-};
+        Position position;
+        Piece *piece;
 
+    };
+}
 #endif // SQUARE_H

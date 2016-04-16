@@ -1,61 +1,65 @@
 #ifndef POSITION_H
 #define POSITION_H
 
-/**
- * @brief Класс содержащий пару чисел соответсвующих положению фигуры на доске
- */
-class Position
+namespace shogi
 {
-public:
-
     /**
-    * @brief Конструктор
-    *
-    * @param[in] h Порядковый номер горизонтали.
-    * @param[in] v Порядковый номер вертикали.
-    */
-    Position(const int horizontal, const int vertical);
-
-    /**
-     * @brief Получить порядковый номер вертикали.
-     *
-     * @return Порядковый номер вертикали соотвествующий данной позиции.
+     * @brief Класс содержащий пару чисел соответсвующих положению фигуры на доске
      */
-    int getVertical() const;
+    class Position
+    {
+    public:
 
-    /**
-     * @brief Получить порядковый номер горизонтали.
-     *
-     * @return Порядковый номер гоизонтали соотвествующий данной позиции.
-     */
-    int getHorizontal() const;
+        /**
+		* @brief Конструктор
+		*
+		* @param[in] h Порядковый номер горизонтали.
+		* @param[in] v Порядковый номер вертикали.
+		*/
+        Position(const int horizontal, const int vertical);
 
-    /**
-     * @brief Сравнить две позиции.
-     *
-     * Сравнивает порядковые номера вертикалей и горизонталей,
-     * содержащихся в двух объектах.
-     */
-    bool operator == (const Position& position) const ;
+        /**
+		 * @brief Получить порядковый номер вертикали.
+		 *
+		 * @return Порядковый номер вертикали соотвествующий данной позиции.
+		 */
+        int getVertical() const;
 
-    bool operator != (const Position& position) const ;
+        /**
+		 * @brief Получить порядковый номер горизонтали.
+		 *
+		 * @return Порядковый номер гоизонтали соотвествующий данной позиции.
+		 */
+        int getHorizontal() const;
 
-    /**
-     * @brief Присвоить значение
-     *
-     * Присваивает занчения данных одного объекта другому.
-     */
-    Position& operator = (const Position& position);
+        /**
+		 * @brief Сравнить две позиции.
+		 *
+		 * Сравнивает порядковые номера вертикалей и горизонталей,
+		 * содержащихся в двух объектах.
+		 */
+        bool operator ==(const Position &position) const;
 
-    /**
-     * @brief Деструтор
-     */
-    ~Position(){}
+        bool operator !=(const Position &position) const;
 
-private:
+        /**
+		 * @brief Присвоить значение
+		 *
+		 * Присваивает занчения данных одного объекта другому.
+		 */
+        Position &operator =(const Position &position);
 
-    int vertical;
-    int horizontal;
-};
+        /**
+		 * @brief Деструтор
+		 */
+        ~Position()
+        {
+        }
 
+    private:
+
+        int vertical;
+        int horizontal;
+    };
+}
 #endif // POSITION_H

@@ -5,29 +5,30 @@
 #include <exception>
 #include <string>
 
-/**
- * @brief Класс исключения, возбуждаемого
- * во время игрового процесса.
- *
- * Исключение такого типа возбуждается
- * при попытке соверщить неверное действие
- * в ходе игрового процесса.
- */
-class GameProcessException : public std::exception
+namespace shogi
 {
+	/**
+	 * @brief Класс исключения, возбуждаемого
+	 * во время игрового процесса.
+	 *
+	 * Исключение такого типа возбуждается
+	 * при попытке соверщить неверное действие
+	 * в ходе игрового процесса.
+ 	 */
+	class GameProcessException : public std::exception
+	{
 
-public:
+	public:
 
-    explicit GameProcessException(const std::string &message) : message(message + "\nGame process exception") { }
+		explicit GameProcessException(const std::string &message) : message(message + "\nGame process exception") {	}
 
-    virtual const char *what() const throw()
-    {
-        return message.c_str();
-    }
+		virtual const char *what() const throw()
+		{
+			return message.c_str();
+		}
 
-protected:
-    std::string message;
-};
-
-
+	protected:
+		std::string message;
+	};
+}
 #endif //SHOGI_GAMEPROCCESEXCEPTIONS_H

@@ -1,5 +1,6 @@
-
 #include "JSONSaveManager.h"
+
+using namespace shogi;
 
 std::vector<Block> JSONSaveManager::getPiecesOnBoard()
 {

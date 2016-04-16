@@ -2,6 +2,7 @@
 #include "Shogi.h"
 #include "Exceptions/BadMoveException.h"
 
+using namespace shogi;
 
 void Shogi::load()
 {
@@ -11,7 +12,7 @@ void Shogi::load()
 Shogi::Shogi()
 {
     board = new Board();
-    gameLogic = new ShogiGameLogic(board);
+    gameLogic = new GameLogic(board);
     gameLoader = new GameLoader();
     gameSaver = new GameSaver();
 }

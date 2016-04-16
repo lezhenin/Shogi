@@ -59,8 +59,8 @@ void Game::input()
                 }
                 case 5:
                 {
-                    printListOfCapturedPieces(Sente);
-                    printListOfCapturedPieces(Gote);
+                    printListOfCapturedPieces(shogi::Sente);
+                    printListOfCapturedPieces(shogi::Gote);
                     successful = true;
                     break;
                 }
@@ -98,25 +98,25 @@ void Game::input()
     }
 }
 
-void Game::printBoard(AbstractBoard &board) const
+void Game::printBoard(shogi::AbstractBoard &board) const
 {
-    for(int j = AbstractBoard::BOARD_WIDTH; j >= 1; j--)
+    for(int j = shogi::AbstractBoard::BOARD_WIDTH; j >= 1; j--)
     {
         std::cout << " " << j << "  ";
     }
     std::cout << std::endl;
-    for(int i = 1; i <= AbstractBoard::BOARD_HEIGHT; i++)
+    for(int i = 1; i <= shogi::AbstractBoard::BOARD_HEIGHT; i++)
     {
-        for(int j = AbstractBoard::BOARD_WIDTH; j >= 1; j--)
+        for(int j = shogi::AbstractBoard::BOARD_WIDTH; j >= 1; j--)
         {
-            Piece *p = board.getPiece(Position(i, j));
+            shogi::Piece *p = board.getPiece(shogi::Position(i, j));
             if (p == nullptr)
             {
                 std::cout <<  "*** ";
             }
             else
             {
-                std:: cout << ((p->getPlayer() == Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
+                std:: cout << ((p->getPlayer() == shogi::Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
             }
         }
         std::cout << " " << i << std::endl;
@@ -124,31 +124,31 @@ void Game::printBoard(AbstractBoard &board) const
     std::cout << std::endl;
 
     std::cout << "Captured pieces:" << std::endl;
-    std::cout << "Sente - "         << board.getCapturedPieces(Sente).size() << std::endl;
-    std::cout << "Gote - "          << board.getCapturedPieces(Gote).size()  << std::endl;
+    std::cout << "Sente - "         << board.getCapturedPieces(shogi::Sente).size() << std::endl;
+    std::cout << "Gote - "          << board.getCapturedPieces(shogi::Gote).size()  << std::endl;
     std::cout << std::endl;
 }
 
-void Game::printListOfCapturedPieces(const Player &player) const
+void Game::printListOfCapturedPieces(const shogi::Player &player) const
 {
-    ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
+    shogi::ListOfPieces &pieces = game->getBoard().getCapturedPieces(player);
 
     std::cout << tableOfPlayers.at(player) << ":" << std::endl;
 
-    std::cout << "Pawn - "           << countPieces(Pawn,          player, pieces) << std::endl;
-    std::cout << "Lance - "          << countPieces(Lance,         player, pieces) << std::endl;
-    std::cout << "Knight - "         << countPieces(Knight,        player, pieces) << std::endl;
-    std::cout << "Bishop - "         << countPieces(Bishop,        player, pieces) << std::endl;
-    std::cout << "Rook - "           << countPieces(Rook,          player, pieces) << std::endl;
-    std::cout << "Silver General - " << countPieces(SilverGeneral, player, pieces) << std::endl;
-    std::cout << "Gold General - "   << countPieces(GoldGeneral,   player, pieces) << std::endl;
+    std::cout << "Pawn - "           << countPieces(shogi::Pawn,          player, pieces) << std::endl;
+    std::cout << "Lance - "          << countPieces(shogi::Lance,         player, pieces) << std::endl;
+    std::cout << "Knight - "         << countPieces(shogi::Knight,        player, pieces) << std::endl;
+    std::cout << "Bishop - "         << countPieces(shogi::Bishop,        player, pieces) << std::endl;
+    std::cout << "Rook - "           << countPieces(shogi::Rook,          player, pieces) << std::endl;
+    std::cout << "Silver General - " << countPieces(shogi::SilverGeneral, player, pieces) << std::endl;
+    std::cout << "Gold General - "   << countPieces(shogi::GoldGeneral,   player, pieces) << std::endl;
 }
 
-void Game::printMessages(ListOfGameSituations &list)
+void Game::printMessages(shogi::ListOfGameSituations &list)
 {
     while (!list.empty())
     {
-        GameSituation* gameSituation = game->getGameSituation().front().get();
+        shogi::GameSituation* gameSituation = game->getGameSituation().front().get();
         std:: cout << gameSituation->getMessage() << std::endl;
         if (gameSituation->isEndOfGame())
         {
@@ -196,7 +196,7 @@ Game::~Game()
 
 Game::Game(bool newGame)
 {
-    game = new Shogi();
+    game = new shogi::Shogi();
 
     if(newGame)
     {
@@ -214,8 +214,8 @@ Game::Game(bool newGame)
 
 bool Game::checkPosition(int horizontal, int vertical) const
 {
-    return (horizontal >= 1 && horizontal <= AbstractBoard::BOARD_HEIGHT &&
-            vertical   >= 1 && vertical   <= AbstractBoard::BOARD_WIDTH );
+    return (horizontal >= 1 && horizontal <= shogi::AbstractBoard::BOARD_HEIGHT &&
+            vertical   >= 1 && vertical   <= shogi::AbstractBoard::BOARD_WIDTH );
 }
 
 bool Game::pick() const
@@ -227,7 +227,7 @@ bool Game::pick() const
     {
         try
         {
-            game->pickPiece(Position(horizontal, vertical));
+            game->pickPiece(shogi::Position(horizontal, vertical));
             std::cout << "Piece on square " << horizontal << " "
                       << vertical << " is picked." << std::endl;
 
@@ -260,7 +260,7 @@ bool Game::move() const
     {
         try
         {
-            game->movePiece(Position(horizontal, vertical));
+            game->movePiece(shogi::Position(horizontal, vertical));
             return true;
         }
         catch (std::exception &e)
@@ -283,13 +283,13 @@ bool Game::drop() const
     std::cin.clear();
     try
     {
-        PieceType pieceType;
+        shogi::PieceType pieceType;
         pieceType = tableOfTypes.at(type);
         if (checkPosition(horizontal, vertical))
         {
             try
             {
-                game->dropPiece(pieceType, Position(horizontal, vertical));
+                game->dropPiece(pieceType, shogi::Position(horizontal, vertical));
                 return true;
             }
             catch (std::exception &e)
@@ -326,10 +326,10 @@ bool Game::redo() const
     return true;
 }
 
-int Game::countPieces(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const
+int Game::countPieces(const shogi::PieceType pieceType, const shogi::Player &player, const shogi::ListOfPieces &pieces) const
 {
-    Piece piece(pieceType,player);
-    return std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&Piece::equals), &piece));
+    shogi::Piece piece(pieceType,player);
+    return std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&shogi::Piece::equals), &piece));
 }
 
 bool Game::save() const
@@ -347,7 +347,7 @@ bool Game::save() const
         return false;
     }
 
-    JSONSaveManager *saveManager = new JSONSaveManager();
+    shogi::JSONSaveManager *saveManager = new shogi::JSONSaveManager();
     game->save(saveManager);
 
     save << saveManager->getJSONString();
@@ -380,10 +380,10 @@ bool Game::load() const
         JSONSaveString.push_back((char)save.get());
     }
     JSONSaveString.pop_back();
-    JSONSaveManager *saveManager = nullptr;
+    shogi::JSONSaveManager *saveManager = nullptr;
     try
     {
-        saveManager = new JSONSaveManager(JSONSaveString);
+        saveManager = new shogi::JSONSaveManager(JSONSaveString);
         game->load(saveManager);
     }
     catch(std::exception &e)

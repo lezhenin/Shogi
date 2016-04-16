@@ -1,5 +1,6 @@
-
 #include "GameSaver.h"
+
+using namespace shogi;
 
 void GameSaver::saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer)
 {

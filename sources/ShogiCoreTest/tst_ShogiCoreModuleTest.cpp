@@ -1,9 +1,10 @@
 #include <QString>
 #include <QtTest>
-#include <iostream>
 #include "../ShogiCore/Model/BoardMemento.h"
-#include "../ShogiCore/GameLogic/ShogiGameLogic.h"
+#include "../ShogiCore/GameLogic/GameLogic.h"
 #include "../ShogiCore/SaveAndLoad/GameLoader.h"
+
+using namespace shogi;
 
 class ShogiCoreModuleTest : public QObject
 {
@@ -53,7 +54,7 @@ void ShogiCoreModuleTest::gameLogicTest() {
     Piece *p2 = new Piece(King, Gote);
     Piece *p3 = new Piece(Rook, Gote);
     Piece *p4 = new Piece(King, Sente);
-    ShogiGameLogic g(&board);
+    GameLogic g(&board);
     board.setPiece(p1, Position(2, 2));
     board.setPiece(p2, Position(2, 4));
     board.setPiece(p3, Position(8, 1));

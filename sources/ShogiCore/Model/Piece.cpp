@@ -1,5 +1,6 @@
 #include "Piece.h"
 
+using namespace shogi;
 
 Piece::Piece(const PieceType pieceType, const Player &player, Square *square): pieceType(pieceType), player(player), square(square)
 {

@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "Board.h"
 
+using namespace shogi;
 
 Board::Board(int w, int h)
 {

@@ -4,6 +4,8 @@
 #include "../ShogiCore/API/Shogi.h"
 #include <iostream>
 
+using namespace shogi;
+
 class ShogiCoreFuncTest : public QObject
 {
     Q_OBJECT

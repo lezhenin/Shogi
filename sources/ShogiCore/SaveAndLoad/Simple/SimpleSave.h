@@ -6,24 +6,26 @@
 #include "../../Model/Piece.h"
 #include "../Block.h"
 
-/**
- * @brief Класс сохранения
- *
- * Используется внутри библиотеки,
- * не имеет внешнего представления.
- */
-class SimpleSave
+namespace shogi
 {
-public:
+	/**
+	 * @brief Класс сохранения
+	 *
+	 * Используется внутри библиотеки,
+	 * не имеет внешнего представления.
+	 */
+	class SimpleSave
+	{
+	public:
 
-    SimpleSave() { }
+		SimpleSave() { }
 
-    Player currentPlayer = Sente;
-    std::vector<Block> onBoard;
-    std::vector<PieceType> senteCaptured;
-    std::vector<PieceType> goteCaptured;
+		Player currentPlayer = Sente;
+		std::vector<Block> onBoard;
+		std::vector<PieceType> senteCaptured;
+		std::vector<PieceType> goteCaptured;
 
-};
-
+	};
+}
 
 #endif //SHOGI_SAVE_H

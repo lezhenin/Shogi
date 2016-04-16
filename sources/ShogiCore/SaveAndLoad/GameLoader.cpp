@@ -1,6 +1,7 @@
 #include "GameLoader.h"
 #include "Simple/SimpleSaveManager.h"
 
+using namespace shogi;
 
 void GameLoader::loadGame(AbstractBoard &board, Player *currentPlayer)
 {
