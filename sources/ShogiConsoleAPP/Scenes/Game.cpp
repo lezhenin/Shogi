@@ -229,7 +229,7 @@ bool Game::pick() const
         {
             game->pickPiece(Position(horizontal, vertical));
             std::cout << "Piece on square " << horizontal << " "
-                      << vertical << "is picked." << std::endl;
+                      << vertical << " is picked." << std::endl;
 
             return true;
         }
