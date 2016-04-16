@@ -225,6 +225,9 @@ bool Game::pick() const
         try
         {
             game->pickPiece(Position(horizontal, vertical));
+            std::cout << "Piece on square " << horizontal << " "
+                      << vertical << "is picked." << std::endl;
+
             return true;
         }
         catch (std::exception &e)
