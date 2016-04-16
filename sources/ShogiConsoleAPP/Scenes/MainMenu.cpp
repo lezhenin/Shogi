@@ -7,9 +7,8 @@ void MainMenu::show()
 {
     std::cout << "1. Start new game" << std::endl
               << "2. Load game" << std::endl
-              << "3. Settings" << std::endl
-              << "4. Help" << std::endl
-              << "5. Exit" << std::endl;
+              << "3. Help" << std::endl
+              << "0. Exit" << std::endl;
 
     int choice;
     bool error = true;
@@ -28,12 +27,12 @@ void MainMenu::show()
                 next = new Game();
                 break;
             }
-            case 4:
+            case 3:
             {
                 next = new Help();
                 break;
             }
-            case 5:
+            case 0:
             {
                 next = nullptr;
                 break;

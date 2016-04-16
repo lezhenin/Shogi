@@ -1,6 +1,6 @@
 #ifndef SHOGI_GAME_H
 #define SHOGI_GAME_H
-#include "../../ShogiCore/ShogiGameAPI.h"
+#include "../../ShogiCore/API/ShogiGameAPI.h"
 #include "Scene.h"
 
 /**

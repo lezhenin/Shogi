@@ -1,7 +1,7 @@
 #include <QString>
 #include <QtTest>
 #include "../ShogiCore/Model/BoardMemento.h"
-#include "../ShogiCore/Shogi.h"
+#include "../ShogiCore/API/Shogi.h"
 #include <iostream>
 
 class ShogiCoreFuncTest : public QObject

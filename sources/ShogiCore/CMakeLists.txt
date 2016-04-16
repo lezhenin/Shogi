@@ -2,7 +2,7 @@
 
 set(SOURCE_FILES
 
-        ShogiGameAPI.h
+        API/ShogiGameAPI.h
 
         Model/Board.cpp
         Model/Board.h
@@ -11,7 +11,6 @@ set(SOURCE_FILES
         Model/Piece.h
         Model/Square.cpp
         Model/Square.h
-        Model/Exceptions/SquareIsEmptyException.h
         Model/Exceptions/BadPositionException.h
         Model/Exceptions/ModelException.h
         Model/BoardMemento.cpp
@@ -19,6 +18,8 @@ set(SOURCE_FILES
         Model/AbstractBoardMemento.h
         Model/Position.cpp
         Model/Position.h
+        Model/Player.h
+        Model/Player.cpp
 
         GameLogic/ShogiGameLogic.cpp
         GameLogic/ShogiGameLogic.h
@@ -46,8 +47,9 @@ set(SOURCE_FILES
         SaveAndLoad/Simple/SimpleSaveManager.cpp
         SaveAndLoad/Simple/SimpleSaveManager.h
 
-        Shogi.cpp
-        Shogi.h Model/Player.h Model/Player.cpp)
+        API/Shogi.cpp
+        API/Shogi.h
+        API/Exceptions/GameProcessException.h API/Exceptions/BadMoveException.h API/Exceptions/BadPickException.h API/Exceptions/BadDropException.h API/Exceptions/BadPromoteException.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 

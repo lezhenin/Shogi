@@ -3,7 +3,7 @@
 #include <fstream>
 #include "Game.h"
 #include "MainMenu.h"
-#include "../../ShogiCore/Shogi.h"
+#include "../../ShogiCore/API/Shogi.h"
 #include "../../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
 
 void Game::show()
@@ -220,7 +220,7 @@ bool Game::pick() const
         }
         catch (std::exception &e)
         {
-            std::cout << "Game error" << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     else
@@ -250,7 +250,7 @@ bool Game::move() const
         }
         catch (std::exception &e)
         {
-            std::cout << "Game error" << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     else
@@ -279,7 +279,7 @@ bool Game::drop() const
             }
             catch (std::exception &e)
             {
-                std::cout << "Game error" << std::endl;
+                std::cout << e.what() << std::endl;
             }
         }
         else

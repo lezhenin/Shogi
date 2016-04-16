@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "Shogi.h"
+#include "Exceptions/BadMoveException.h"
 
 
 void Shogi::initGame()
@@ -36,12 +37,12 @@ void Shogi::pickPiece(const Position &position)
 
     if( piece == nullptr)
     {
-        throw std::exception();
+        throw BadPickException("Square is empty");
     }
 
     if(piece->getPlayer() != currentPlayer)
     {
-        throw std::exception();
+        throw BadPickException("Piece don't belong you.");
     }
 
     this->pickedPiece = piece;
@@ -56,11 +57,11 @@ void Shogi::movePiece(const Position &destination)
 {
     if(pickedPiece == nullptr)
     {
-        throw std::exception();
+        throw BadMoveException("Piece was not picked.");
     }
     if(!this->gameLogic->checkMove(this->pickedPiece, destination))
     {
-        throw std::exception();
+        throw BadMoveException("Illegal move.");
     }
 
     toUndo.push(board->getMemento());
@@ -82,11 +83,11 @@ void Shogi::promotePiece(const Position &position)
 {
     if(this->board->getPiece(position) == nullptr)
     {
-        throw std::exception();
+        throw BadPromoteException("Square is empty.");
     }
     if(!gameLogic->checkPromotion(this->board->getPiece(position)))
     {
-        throw std::exception();
+        throw BadPromoteException("Illegal promotion.");
     }
     this->board->getPiece(position)->promote();
 }
@@ -96,12 +97,12 @@ void Shogi::dropPiece(const PieceType pieceType, const Position &position)
     Piece *piece = board->findPiece(pieceType, currentPlayer, board->getCapturedPieces(currentPlayer));
     if (piece == nullptr)
     {
-        throw std::exception();
+        throw BadDropException("Piece was not captured.");
     }
 
     if(!gameLogic->checkDrop(piece, position))
     {
-        throw std::exception();
+        throw BadDropException("Illegal drop.");
     }
 
     toUndo.push(board->getMemento());

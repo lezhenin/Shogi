@@ -2,13 +2,17 @@
 #define SHOGI_SHOGI_H
 
 #include <stack>
-#include "GameLogic/GameSituations/PromotionIsAvailable.h"
-#include "GameLogic/GameSituations/Shah.h"
-#include "GameLogic/GameSituations/Mate.h"
 #include "ShogiGameAPI.h"
-#include "GameLogic/ShogiGameLogic.h"
-#include "SaveAndLoad/GameLoader.h"
-#include "SaveAndLoad/GameSaver.h"
+#include "../GameLogic/GameSituations/PromotionIsAvailable.h"
+#include "../GameLogic/GameSituations/Shah.h"
+#include "../GameLogic/GameSituations/Mate.h"
+#include "../GameLogic/ShogiGameLogic.h"
+#include "../SaveAndLoad/GameLoader.h"
+#include "../SaveAndLoad/GameSaver.h"
+#include "Exceptions/BadPickException.h"
+#include "Exceptions/BadMoveException.h"
+#include "Exceptions/BadDropException.h"
+#include "Exceptions/BadPromoteException.h"
 
 class Shogi: public ShogiGameAPI
 {
