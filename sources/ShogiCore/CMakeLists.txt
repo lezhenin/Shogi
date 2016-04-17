@@ -55,7 +55,7 @@ set(SOURCE_FILES
         API/Exceptions/BadDropException.h
         API/Exceptions/BadPromoteException.h)
 
-add_library (ShogiCore STATIC ${SOURCE_FILES})
+add_library (ShogiCore ${SOURCE_FILES})
 
 
 
