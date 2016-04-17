@@ -2,7 +2,7 @@
 #define SHOGI_PROMOTIONISAVAIBLE_H
 
 #include "GameSituation.h"
-#include "../../API/ShogiGameAPI.h"
+#include "../../API/GameAPI.h"
 
 namespace shogi
 {
@@ -14,7 +14,7 @@ namespace shogi
 
     public:
 
-        PromotionIsAvailable(ShogiGameAPI *game, const Position &position) : game(game), position(position)
+        PromotionIsAvailable(GameAPI *game, const Position &position) : game(game), position(position)
         {
             executable = true;
         }
@@ -38,7 +38,7 @@ namespace shogi
         }
 
     private:
-        ShogiGameAPI *game;
+        GameAPI *game;
         Position position;
     };
 }
