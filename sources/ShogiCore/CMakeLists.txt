@@ -2,7 +2,7 @@
 
 set(SOURCE_FILES
 
-        API/ShogiGameAPI.h
+        API/GameAPI.h
 
         Model/Board.cpp
         Model/Board.h
@@ -49,8 +49,14 @@ set(SOURCE_FILES
 
         API/Shogi.cpp
         API/Shogi.h
-        API/Exceptions/GameProcessException.h API/Exceptions/BadMoveException.h API/Exceptions/BadPickException.h API/Exceptions/BadDropException.h API/Exceptions/BadPromoteException.h)
+        API/Exceptions/GameProcessException.h
+        API/Exceptions/BadMoveException.h
+        API/Exceptions/BadPickException.h
+        API/Exceptions/BadDropException.h
+        API/Exceptions/BadPromoteException.h)
 
-add_library (ShogiCore ${SOURCE_FILES})
+add_library (ShogiCore STATIC ${SOURCE_FILES})
+
+
 
 

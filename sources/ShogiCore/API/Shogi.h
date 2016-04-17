@@ -2,7 +2,7 @@
 #define SHOGI_SHOGI_H
 
 #include <stack>
-#include "ShogiGameAPI.h"
+#include "GameAPI.h"
 #include "../GameLogic/GameSituations/PromotionIsAvailable.h"
 #include "../GameLogic/GameSituations/Shah.h"
 #include "../GameLogic/GameSituations/Mate.h"
@@ -17,7 +17,7 @@
 namespace shogi
 {
 
-	class Shogi : public ShogiGameAPI
+	class Shogi : public GameAPI
 	{
 
 	public:

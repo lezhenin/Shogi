@@ -17,7 +17,7 @@ namespace shogi
 	/**
  	 * @brief Игровой интерфейс.
   	 */
-	class ShogiGameAPI
+	class GameAPI
 	{
 
 	public:
@@ -114,7 +114,7 @@ namespace shogi
 		 */
 		virtual ListOfGameSituations &getGameSituation() = 0;
 
-		virtual ~ShogiGameAPI()
+		virtual ~GameAPI()
 		{
 		}
 	};
