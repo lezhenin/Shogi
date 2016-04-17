@@ -1,4 +1,6 @@
 #include "JSONSaveManager.h"
+#include "rapidjson/stringbuffer.h"
+#include "rapidjson/writer.h"
 
 using namespace shogi;
 
