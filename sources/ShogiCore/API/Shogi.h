@@ -57,6 +57,7 @@ namespace shogi
 
 		void clearToUndo();
 		void clearToRedo();
+		void clearBoard(AbstractBoard &board);
 		void checkShahMateGameSituations();
 		void checkPromoteGameSituation(const Position &position);
 		void capturePiece(const Position &position);

@@ -211,8 +211,29 @@ void Shogi::save(SaveWriter *saveWriter)
 
 void Shogi::load(SaveReader *saveReader)
 {
+    clearToRedo();
+    clearToUndo();
+    clearBoard(*board);
     gameLoader->loadGame(saveReader,*board,&currentPlayer);
 }
+
+void Shogi::clearBoard(AbstractBoard &board)
+{
+    for (Piece *piece : board.getAllPieces())
+    {
+        if (piece->getSquare() != nullptr)
+        {
+            piece->getSquare()->setPiece(nullptr);
+        }
+        delete piece;
+    }
+    board.getAllPieces().clear();
+    board.getPiecesOnBoard().clear();
+    board.getCapturedPieces(Sente).clear();
+    board.getCapturedPieces(Gote).clear();
+}
+
+
 
 
 
