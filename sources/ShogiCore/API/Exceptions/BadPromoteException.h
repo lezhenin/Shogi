@@ -14,7 +14,7 @@ namespace shogi
 
 	public:
 		explicit BadPromoteException(const std::string &message) :
-				GameProcessException(message + "\nYou can't promote this piece") { }
+				message(message + "\nYou can't promote this piece") { }
 
 	};
 }

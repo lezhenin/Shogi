@@ -20,7 +20,8 @@ namespace shogi
 
 	public:
 
-		explicit GameProcessException(const std::string &message) : message(message + "\nGame process exception") {	}
+		explicit GameProcessException() {}
+		explicit GameProcessException(std::string &message) : message(message) {}
 
 		virtual const char *what() const throw()
 		{

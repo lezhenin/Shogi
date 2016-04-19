@@ -13,8 +13,9 @@ namespace shogi
 	{
 
 	public:
+
 		explicit BadDropException(const std::string &message) :
-				GameProcessException(message + "\nYou can't drop piece here.") { }
+				message(message + "\nYou can't drop piece here.") { }
 
 	};
 
