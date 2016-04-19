@@ -77,18 +77,28 @@ private:
     shogi::GameAPI *game;
     bool isRun = false;
 
-    const std::map<std::string,int> tableOfCommands =
+    const std::map<std::string, int> tableOfCommands =
         {
             {"pick",    0},
+            {"p",       0},
             {"unpick",  1},
+            {"up",      1},
             {"move",    2},
+            {"m",       2},
             {"drop",    3},
+            {"d",       3},
             {"exit",    4},
+            {"e",       4},
             {"show",    5},
+            {"sh",      5},
             {"undo",    6},
+            {"u",       6},
             {"redo",    7},
+            {"r",       7},
             {"save",    8},
-            {"load",    9}
+            {"s",       8},
+            {"load",    9},
+            {"l",       9}
         };
 
     const std::map<std::string, shogi::PieceType> tableOfTypes =
