@@ -25,8 +25,8 @@ Board::Board(int w, int h)
 
 void Board::setPiece(Piece *piece, const Position &position)
 {
-    if (position.getHorizontal() >= 1 && position.getHorizontal() <= height &&
-        position.getVertical()   >= 1 && position.getVertical()   <= width)
+    if (position.getHorizontal() < 1 || position.getHorizontal() > height ||
+        position.getVertical()   < 1 || position.getVertical()   > width)
     {
         throw BadPositionException(position);
     }
@@ -50,8 +50,8 @@ void Board::removePiece(const Position &pos)
 
 inline Square *Board::getSquare(const Position& position) const
 {
-    if (position.getHorizontal() >= 1 && position.getHorizontal() <= height &&
-        position.getVertical()   >= 1 && position.getVertical()   <= width)
+    if (position.getHorizontal() < 1 || position.getHorizontal() > height ||
+        position.getVertical()   < 1 || position.getVertical()   > width)
     {
         throw BadPositionException(position);
     }
