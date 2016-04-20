@@ -5,6 +5,7 @@
 #include "MainMenu.h"
 #include "../../ShogiCore/API/Shogi.h"
 #include "../../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
+#include "../../ShogiCore/Model/Exceptions/BadPositionException.h"
 
 void Game::show()
 {
@@ -100,26 +101,45 @@ void Game::input()
 
 void Game::printBoard(shogi::AbstractBoard &board) const
 {
+    bool isPicked = false;
+
     for(int j = shogi::AbstractBoard::BOARD_WIDTH; j >= 1; j--)
     {
         std::cout << " " << j << "  ";
     }
     std::cout << std::endl;
+
+    //todo убрать все костыли когда-нибудь
     for(int i = 1; i <= shogi::AbstractBoard::BOARD_HEIGHT; i++)
     {
         for(int j = shogi::AbstractBoard::BOARD_WIDTH; j >= 1; j--)
         {
-            shogi::Piece *p = board.getPiece(shogi::Position(i, j));
-            if (p == nullptr)
+            shogi::Piece *samplePiece = board.getPiece(shogi::Position(i, j));
+            try
             {
-                std::cout <<  "*** ";
+                isPicked = (samplePiece                             == game->getPickedPiece() ||
+                            board.getPiece(shogi::Position(i,j+1))  == game->getPickedPiece()) &&
+                           game->getPickedPiece() != nullptr;
+            }
+            catch (shogi::BadPositionException &e)
+            {
+                isPicked = samplePiece == game->getPickedPiece() &&
+                           game->getPickedPiece() != nullptr;
+            }
+            std::cout << ((isPicked) ? "|" : " ");
+            if (samplePiece == nullptr)
+            {
+                std::cout <<  "***";
             }
             else
             {
-                std:: cout << ((p->getPlayer() == shogi::Sente) ? "s" : "g") << tableOfLabels.at(p->getType()) << " ";
+                std:: cout << ((samplePiece->getPlayer() == shogi::Sente) ? "s" : "g") << tableOfLabels.at(samplePiece->getType());
             }
+
         }
-        std::cout << " " << i << std::endl;
+        isPicked = (board.getPiece(shogi::Position(i,1)) == game->getPickedPiece() &&
+                              game->getPickedPiece() != nullptr);
+        std::cout << ((isPicked) ? "|" : " ") << i << std::endl;
     }
     std::cout << std::endl;
 
