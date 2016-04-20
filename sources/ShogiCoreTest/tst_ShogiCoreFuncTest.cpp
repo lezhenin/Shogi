@@ -393,6 +393,9 @@ void ShogiCoreFuncTest::loadTest()
     }
     QCOMPARE(board.getCapturedPieces(Sente).size(), board1.getCapturedPieces(Sente).size());
     QCOMPARE(board.getCapturedPieces(Gote).size(), board1.getCapturedPieces(Gote).size());
+
+    delete saveManager->getSimpleSave();
+    delete saveManager;
 }
 
 
