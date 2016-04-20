@@ -336,9 +336,9 @@ void ShogiCoreFuncTest::saveTest()
     SimpleSave *save = saveManager->getSimpleSave();
 
     QCOMPARE(save->currentPlayer, Player(Gote));
-    QCOMPARE(save->onBoard.size(), (unsigned int)38);
-    QCOMPARE(save->goteCaptured.size(), (unsigned int)1);
-    QCOMPARE(save->senteCaptured.size(), (unsigned int)1);
+    QCOMPARE((int)save->onBoard.size(), 38);
+    QCOMPARE((int)save->goteCaptured.size(), 1);
+    QCOMPARE((int)save->senteCaptured.size(), 1);
 
     delete save;
     delete saveManager;
