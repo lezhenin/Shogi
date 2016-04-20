@@ -233,6 +233,13 @@ void Shogi::clearBoard(AbstractBoard &board)
     board.getCapturedPieces(Gote).clear();
 }
 
+const Piece *Shogi::getPickedPiece() const
+{
+    return pickedPiece;
+}
+
+
+
 
 
 

@@ -37,6 +37,7 @@ namespace shogi
 		virtual void load(SaveReader *saveReader) override;
 		virtual void load() override;
 
+		virtual const Piece *getPickedPiece() const override;
 		virtual Player getCurrentPlayer() const override;
 		virtual AbstractBoard &getBoard() const override;
 		virtual ListOfGameSituations &getGameSituation() override;

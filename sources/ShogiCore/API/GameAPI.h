@@ -30,6 +30,11 @@ namespace shogi
 		 */
 		virtual Player getCurrentPlayer() const = 0;
 
+        /**
+         * @brief Получить выбранную фигуру.
+         */
+		virtual const Piece* getPickedPiece() const = 0;
+
 		/**
 		 * @brief Выбрать фигуру.
 		 * Сохраняет фигуру для дальнейших действий.
