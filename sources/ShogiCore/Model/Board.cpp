@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "Board.h"
+#include "Exceptions/BadPositionException.h"
 
 using namespace shogi;
 
@@ -22,9 +23,14 @@ Board::Board(int w, int h)
 
 }
 
-void Board::setPiece(Piece *piece, const Position &pos)
+void Board::setPiece(Piece *piece, const Position &position)
 {
-    Square *sq = this->getSquare(pos);
+    if (position.getHorizontal() >= 1 && position.getHorizontal() <= height &&
+        position.getVertical()   >= 1 && position.getVertical()   <= width)
+    {
+        throw BadPositionException(position);
+    }
+    Square *sq = this->getSquare(position);
     sq->setPiece(piece);
     piece->setSquare(sq);
     this->onBoard.push_back(piece);
@@ -44,6 +50,11 @@ void Board::removePiece(const Position &pos)
 
 inline Square *Board::getSquare(const Position& position) const
 {
+    if (position.getHorizontal() >= 1 && position.getHorizontal() <= height &&
+        position.getVertical()   >= 1 && position.getVertical()   <= width)
+    {
+        throw BadPositionException(position);
+    }
     return squares[position.getHorizontal() - 1][position.getVertical() - 1];
 }
 

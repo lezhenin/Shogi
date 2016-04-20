@@ -16,7 +16,7 @@ namespace shogi
 
 		Board(int w = BOARD_WIDTH, int h = BOARD_HEIGHT);
 
-		virtual void setPiece(Piece *piece, const Position &pos);
+		virtual void setPiece(Piece *piece, const Position &position);
 		virtual void removePiece(const Position &pos);
 
 		virtual Piece *getPiece(const Position &pos) const;
