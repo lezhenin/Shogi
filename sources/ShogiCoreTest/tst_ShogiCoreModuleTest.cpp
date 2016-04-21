@@ -147,6 +147,7 @@ void ShogiCoreModuleTest::gameLoaderTest()
     QCOMPARE((*board->getCapturedPieces(Sente).begin())->getPlayer(), Player(Sente));
     QCOMPARE((*board->getCapturedPieces(Sente).begin())->getType(), GoldGeneral);
 
+    delete saveManager;
     delete board;
 }
 
