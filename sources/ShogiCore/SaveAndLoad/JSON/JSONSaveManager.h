@@ -52,26 +52,39 @@ namespace shogi
 
         rapidjson::Document save;
 
-        std::map<PieceType, std::string> tableOfTypes = {{Pawn,          "pawn"},
-                                                         {King,          "king"},
-                                                         {GoldGeneral,   "golden general"},
-                                                         {Rook,          "rook"},
-                                                         {Bishop,        "bishop"},
-                                                         {SilverGeneral, "silver general"},
-                                                         {Knight,        "knight"},
-                                                         {Lance,         "lance"}};
+        std::map<PieceType, std::string> tableOfTypes = {{Pawn,                  "pawn"},
+                                                         {King,                  "king"},
+                                                         {GoldGeneral,           "golden general"},
+                                                         {Rook,                  "rook"},
+                                                         {Bishop,                "bishop"},
+                                                         {SilverGeneral,         "silver general"},
+                                                         {Knight,                "knight"},
+                                                         {Lance,                 "lance"},
+                                                         {PromotedRook,          "promoted rook"},
+                                                         {PromotedBishop,        "promoted bishop"},
+                                                         {PromotedSilverGeneral, "promoted silver general"},
+                                                         {PromotedKnight,        "promoted knight"},
+                                                         {PromotedLance,         "promoted lance"},
+                                                         {PromotedPawn,          "promoted pawn"}};
+
 
         std::map<Player, std::string> tableOfPlayers = {{Sente, "sente"},
                                                         {Gote,  "gote"}};
 
-        std::map<std::string, PieceType> reverseTableOfTypes = {{"pawn",           Pawn},
-                                                                {"king",           King},
-                                                                {"golden general", GoldGeneral},
-                                                                {"rook",           Rook},
-                                                                {"bishop",         Bishop},
-                                                                {"silver general", SilverGeneral},
-                                                                {"knight",         Knight},
-                                                                {"lance",          Lance}};
+        std::map<std::string, PieceType> reverseTableOfTypes = {{"pawn",                    Pawn},
+                                                                {"king",                    King},
+                                                                {"golden general",          GoldGeneral},
+                                                                {"rook",                    Rook},
+                                                                {"bishop",                  Bishop},
+                                                                {"silver general",          SilverGeneral},
+                                                                {"knight",                  Knight},
+                                                                {"lance",                   Lance},
+                                                                {"promoted rook",           PromotedRook},
+                                                                {"promoted bishop",         PromotedBishop},
+                                                                {"promoted silver general", PromotedSilverGeneral},
+                                                                {"promoted knight",         PromotedKnight},
+                                                                {"promoted lance",          PromotedLance},
+                                                                {"promoted pawn",           PromotedPawn}};
 
         std::map<std::string, Player> reverseTableOfPlayers = {{"sente", Sente},
                                                                {"gote",  Gote}};
