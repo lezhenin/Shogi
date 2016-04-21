@@ -53,7 +53,7 @@ set(SOURCE_FILES
         API/Exceptions/BadMoveException.h
         API/Exceptions/BadPickException.h
         API/Exceptions/BadDropException.h
-        API/Exceptions/BadPromoteException.h)
+        API/Exceptions/BadPromoteException.h Model/Exceptions/PieceIsNotOnBoardException.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 

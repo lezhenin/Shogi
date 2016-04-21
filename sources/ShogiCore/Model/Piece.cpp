@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include "Exceptions/PieceIsNotOnBoardException.h"
 
 using namespace shogi;
 
@@ -40,6 +41,10 @@ Player Piece::getPlayer() const
 
 Position &Piece::getPosition() const
 {
+    if (this->getSquare() == nullptr)
+    {
+        throw PieceIsNotOnBoardException();
+    }
     return this->getSquare()->getPosition();
 }
 
@@ -58,6 +63,7 @@ void Piece::promote()
     if(this->bePromoted && !this->promoted)
     {
         this->pieceType = PieceType((int)(this->pieceType) + PROMOTION_STEP);
+        promoted = true;
     }
 }
 
@@ -67,6 +73,7 @@ void Piece::unPromote()
     {
 
         this->pieceType = PieceType((int)(this->pieceType) - PROMOTION_STEP);
+        promoted = false;
     }
 }
 
