@@ -18,9 +18,16 @@ namespace shogi
 																						   position(position)
 		{ }
 
+		bool operator == (const Block& block)
+		{
+			return (pieceType == block.pieceType &&
+					player 	  == block.player    &&
+					position  == block.position);
+		}
 		PieceType pieceType;
 		Player player;
 		Position position;
+
 	};
 }
 
