@@ -10,6 +10,9 @@ class MainMenuG: public QWidget
 public:
     explicit MainMenuG(QWidget *parent);
 
+    static const int HEIGHT = 600;
+    static const int WIDTH = 800;
+
 private slots:
 
     void exit();
