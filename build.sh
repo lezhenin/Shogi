@@ -11,6 +11,7 @@ build_release_version()
 	if [ -e "Makefile" ]; then
 
 		cmake --build ../release --target APP --
+		cmake --build ../release --target GUIApp --
 
 	else
 
