@@ -95,6 +95,12 @@ zip_files()
 
 		cp build/release/sources/ShogiConsoleAPP/APP $TITLE/Shogi
 
+
+		if [ -e "build/release/sources/ShogiGUI/GUIApp" ]; then
+
+		    cp build/release/sources/ShogiGUI/GUIApp $TITLE/ShogiGUI
+	    fi
+
 	    if [ -e "report/doxygen/latex/refman.pdf" ]; then
 
 		    cp report/doxygen/latex/refman.pdf $TITLE/Shogi.pdf
