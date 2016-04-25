@@ -13,8 +13,7 @@ void MainMenuG::exit()
 
 MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
 {
-    this->setFixedHeight(HEIGHT);
-    this->setFixedWidth(WIDTH);
+    this->setFixedSize(SCREEN_SIZE);
 
     QPixmap background(":/menu_background.png");
     QPalette qPalette;
@@ -27,30 +26,29 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
 //    exitButton->setIcon(icon);
 //    exitButton->setIconSize(pix.size());
 //    exitButton->setIcon(icon);
-    exitButton->setStyleSheet("QPushButton "
-                                         "{"
-                                           " border: 1px solid #000000;"
-                                           " background: #8f5732; "
-                                           " background: qlineargradient(x1: 0, y1: 1, x2: 0, y2: 0,  stop: 0 #f59356, stop: 1 #8f5732);"
-                                           " padding: 7.5px 15px;"
-                                           " border-radius: 8px;"
-                                           " color: #ffffff;"
-                                           " font-size: 22px;"
-                                         "}"
-                              "QPushButton:pressed "
-                                         "{"
-                                           " border-color #f59356;"
-                                           " background: #f59356;"
-                                         "}"
-                              "QPushButton:flat "
-                                         "{"
-                                           " border: none;"
-                                         "}");
+
+    exitButton->setStyleSheet(QPushButtonStyle);
     exitButton->setText("Exit");
-    exitButton->resize(150,50);
-    exitButton->move(WIDTH-155, HEIGHT-55);
+    exitButton->resize(BUTTON_SIZE);
+    exitButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 5,
+                     SCREEN_SIZE.height() - BUTTON_SIZE.height() - 5);
+
     connect(exitButton, SIGNAL(clicked()), this, SLOT(exit()));
 
+
+    QPushButton *loadButton = new QPushButton(this);
+    loadButton->setStyleSheet(QPushButtonStyle);
+    loadButton->setText("Load");
+    loadButton->resize(BUTTON_SIZE);
+    loadButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 5,
+                      SCREEN_SIZE.height() - BUTTON_SIZE.height() * 2 - 5 * 2);
+
+    QPushButton *startButton = new QPushButton(this);
+    startButton->setStyleSheet(QPushButtonStyle);
+    startButton->setText("Start");
+    startButton->resize(BUTTON_SIZE);
+    startButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 5,
+                      SCREEN_SIZE.height() - BUTTON_SIZE.height() * 3 - 5 * 3);
 }
 
 
