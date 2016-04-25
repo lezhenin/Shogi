@@ -15,7 +15,7 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
 {
     this->setFixedSize(SCREEN_SIZE);
 
-    QPixmap background(":/menu_background.png");
+    QPixmap background(":/menu_background2.png");
     QPalette qPalette;
     qPalette.setBrush(this->backgroundRole(),QBrush(background));
     this->setPalette(qPalette);
