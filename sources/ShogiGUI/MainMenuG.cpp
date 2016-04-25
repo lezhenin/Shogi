@@ -30,8 +30,8 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     exitButton->setStyleSheet(QPushButtonStyle);
     exitButton->setText("Exit");
     exitButton->resize(BUTTON_SIZE);
-    exitButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 5,
-                     SCREEN_SIZE.height() - BUTTON_SIZE.height() - 5);
+    exitButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
+                     SCREEN_SIZE.height() - BUTTON_SIZE.height() - 20);
 
     connect(exitButton, SIGNAL(clicked()), this, SLOT(exit()));
 
@@ -40,15 +40,15 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     loadButton->setStyleSheet(QPushButtonStyle);
     loadButton->setText("Load");
     loadButton->resize(BUTTON_SIZE);
-    loadButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 5,
-                      SCREEN_SIZE.height() - BUTTON_SIZE.height() * 2 - 5 * 2);
+    loadButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
+                      SCREEN_SIZE.height() - BUTTON_SIZE.height() * 2 - 20 - 5);
 
     QPushButton *startButton = new QPushButton(this);
     startButton->setStyleSheet(QPushButtonStyle);
     startButton->setText("Start");
     startButton->resize(BUTTON_SIZE);
-    startButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 5,
-                      SCREEN_SIZE.height() - BUTTON_SIZE.height() * 3 - 5 * 3);
+    startButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
+                      SCREEN_SIZE.height() - BUTTON_SIZE.height() * 3 - 20 - 5 * 2);
 }
 
 
