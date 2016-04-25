@@ -21,6 +21,7 @@ void Game::show()
 
 void Game::input()
 {
+    std::cout << "Enter command:" << std::endl;
     std::string input;
     int commandID;
     bool successful = false;
