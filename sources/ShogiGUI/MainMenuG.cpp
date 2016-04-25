@@ -3,12 +3,12 @@
 #include <QtCore/QTextStream>
 #include <QtWidgets/QPushButton>
 #include <QtGui/QTextFormat>
-#include <QtGui/QBitmap>
 #include "MainMenuG.h"
 
 void MainMenuG::exit()
 {
     this->close();
+
 }
 
 MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
