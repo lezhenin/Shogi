@@ -96,7 +96,7 @@ void JSONSaveManager::clear() noexcept
     save.Clear();
 }
 
-const Player &JSONSaveManager::getCurrentPlayer() noexcept
+Player &JSONSaveManager::getCurrentPlayer() noexcept
 {
 
     return reverseTableOfPlayers.at(save["currentPlayer"].GetString());

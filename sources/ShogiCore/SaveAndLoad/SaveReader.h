@@ -35,7 +35,7 @@ namespace shogi
 		 * @brief Получить игрока, которому
 		 * принадлежит текущий ход.
 		 */
-		virtual const Player &getCurrentPlayer() noexcept = 0;
+		virtual Player &getCurrentPlayer() noexcept = 0;
 	};
 }
 

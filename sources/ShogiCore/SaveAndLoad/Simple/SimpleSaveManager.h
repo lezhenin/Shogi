@@ -31,7 +31,7 @@ namespace shogi
         virtual void addCapturedPiece(const Player &player, const PieceType pieceType) noexcept override;
         virtual void setCurrentPlayer(const Player &player) noexcept override;
 
-        virtual const Player &getCurrentPlayer() noexcept override;
+        virtual Player &getCurrentPlayer() noexcept override;
 
         /**
 		 * @brief Получить объект сохранения.

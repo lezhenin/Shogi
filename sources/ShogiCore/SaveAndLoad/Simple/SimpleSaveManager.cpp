@@ -42,7 +42,7 @@ void SimpleSaveManager::setCurrentPlayer(const Player &player) noexcept
     save.currentPlayer = player;
 }
 
-const Player &SimpleSaveManager::getCurrentPlayer() noexcept
+Player &SimpleSaveManager::getCurrentPlayer() noexcept
 {
     return save.currentPlayer;
 }
