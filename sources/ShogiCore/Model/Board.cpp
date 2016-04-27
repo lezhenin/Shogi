@@ -60,10 +60,17 @@ inline Square *Board::getSquare(const Position& position) const
 
 Piece *Board::getPiece(const Position &pos) const
 {
-    return this->getSquare(pos)->getPiece();
+    try
+    {
+        return this->getSquare(pos)->getPiece();
+    }
+    catch (BadPositionException &e)
+    {
+        throw;
+    }
 }
 
-ListOfPieces &Board::getPiecesOnBoard()
+ListOfPieces &Board::getPiecesOnBoard() noexcept
 {
     return this->onBoard;
 }
@@ -73,23 +80,23 @@ Board::~Board()
     deleteSquares();
     deletePieces();
 }
-AbstractBoardMemento* Board::getMemento()
+AbstractBoardMemento* Board::getMemento() noexcept
 {
     return new BoardMemento(this);
 }
 
-void Board::setMemento(AbstractBoardMemento *memento)
+void Board::setMemento(AbstractBoardMemento *memento) noexcept
 {
     BoardMemento *bm = static_cast<BoardMemento*>(memento);
     bm->restore();
 }
 
-ListOfPieces &Board::getAllPieces()
+ListOfPieces &Board::getAllPieces() noexcept
 {
     return allPieces;
 }
 
-void Board::createSquares()
+void Board::createSquares() noexcept
 {
     this->squares = new Square **[this->height];
     for(int i = 0; i < this->height; i++)
@@ -106,7 +113,7 @@ void Board::createSquares()
     }
 }
 
-void Board::deleteSquares()
+void Board::deleteSquares() noexcept
 {
     for (int i = 0; i < this->height; i++) {
         for (int j = 0; j < this->width; j++) {
@@ -123,7 +130,7 @@ void Board::deleteSquares()
 }
 
 
-void Board::deletePieces()
+void Board::deletePieces() noexcept
 {
     for (Piece *p : allPieces)
     {
@@ -131,12 +138,12 @@ void Board::deletePieces()
     }
 }
 
-ListOfPieces &Board::getCapturedPieces(const Player &player)
+ListOfPieces &Board::getCapturedPieces(const Player &player) noexcept
 {
     return this->capturedPieces.at(player);
 }
 
-Piece *Board::findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const
+Piece *Board::findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const noexcept
 {
     Piece samplePiece(pieceType,player);
     ListOfPieces::const_iterator iterator =

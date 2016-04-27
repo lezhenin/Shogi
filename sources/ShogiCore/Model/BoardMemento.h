@@ -38,15 +38,15 @@ namespace shogi
 		 * Сохраняет текущее состояние доски.
 		 * @param[in] board Указатель на доску
 		 */
-        explicit BoardMemento(Board *board);
+        explicit BoardMemento(Board *board) noexcept;
 
     private:
         friend class Board;
 
-        void restore();
+        void restore() noexcept override;
 
     public:
-        virtual ~BoardMemento() { }
+        virtual ~BoardMemento() noexcept { }
 
 
     private:

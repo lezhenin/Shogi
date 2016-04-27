@@ -46,14 +46,14 @@ namespace shogi
 		 * @param[in] pl Игрок, которому принадлежит фигура.
 		 * @param[in] sq Клетка, на которой находится фигура.
 		 */
-        Piece(const PieceType pieceType, const Player &player, Square *square = nullptr);
+        Piece(const PieceType pieceType, const Player &player, Square *square = nullptr) noexcept;
 
         /**
 		 * @brief Получить тип фигуры.
 		 *
 		 * @return Тип фигуры
 		 */
-        PieceType getType() const;
+        PieceType getType() const noexcept;
 
         /**
 		 * @brief Получить игрока.
@@ -61,7 +61,7 @@ namespace shogi
 		 * @return Значение соответсвующие игроку,
 		 * которому принадлежит фигура
 		 */
-        Player getPlayer() const;
+        Player getPlayer() const noexcept;
 
         /**
 		 * @brief Получить позицию фигуры.
@@ -75,49 +75,49 @@ namespace shogi
 		 *
 		 * @return Клетка, на которой находится фигура
 		 */
-        Square *getSquare() const;
+        Square *getSquare() const noexcept;
 
         /**
 		 * @brief Узнать переврнута ли фигура.
 		 *
 		 * @return true или false
 		 */
-        bool wasPromoted() const;
+        bool wasPromoted() const noexcept;
 
         /**
 		 * @brief Узнать может ли быть переврнута фигура.
 		 *
 		 * @return true или false
 		 */
-        bool canBePromoted() const;
+        bool canBePromoted() const noexcept;
 
         /**
 		 * @brief Перевернуть фигуру.
 		 *
 		 *  Меняет тип фигуры если это возможно.
 		 */
-        void promote();
+        void promote() noexcept;
 
         /**
 		 * @brief Отменить переворот фигуры.
 		 *
 		 *  Меняет тип фигуры если это возможно.
 		 **/
-        void unPromote();
+        void unPromote() noexcept;
 
         /**
 		 * @brief Установить клетку
 		 *
 		 *  Устанавливает клетку на которой находится фигура.
 		 */
-        void setSquare(Square *square);
+        void setSquare(Square *square) noexcept;
 
         /**
 		 * @brief Установить игрока
 		 *
 		 *  Устанавливает игрока, которому принадлежит фигура.
 		 */
-        void setPlayer(const Player &player);
+        void setPlayer(const Player &player) noexcept;
 
         /**
 		 * @brief Узнать эквивалентны ли фигуры.
@@ -127,12 +127,12 @@ namespace shogi
 		 * @param piece Фигура для сравнения.
 		 * @return true если фигуры эквивалентны, false если нет.
 		 */
-        bool equals(Piece *piece);
+        bool equals(Piece *piece) const noexcept;
 
         /**
 		 * @brief Деструктор
 		 */
-        virtual ~Piece() { };
+        virtual ~Piece() noexcept { };
 
 
     private:

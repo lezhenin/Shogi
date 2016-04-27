@@ -29,7 +29,7 @@ namespace shogi
 		 * Возвращает новый объект игрока, отличающийся
 		 * от того, метод которого был вызван.
 		 */
-        Player nextPlayer() const
+        Player nextPlayer() const noexcept
         {
             return (*this == Sente) ? Gote : Sente;
         }
@@ -40,7 +40,7 @@ namespace shogi
 		 * Меняет игрока, внутри объекта, метод
 		 * которого был вызван.
 		 */
-        void changePlayer()
+        void changePlayer() noexcept
         {
             playerType = this->nextPlayer().playerType;
         }

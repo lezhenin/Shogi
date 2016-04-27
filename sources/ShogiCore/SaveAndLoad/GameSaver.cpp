@@ -2,7 +2,7 @@
 
 using namespace shogi;
 
-void GameSaver::saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer)
+void GameSaver::saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer) noexcept
 {
     saveWriter->setCurrentPlayer(*currentPlayer);
 

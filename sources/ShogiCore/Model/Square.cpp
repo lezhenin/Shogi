@@ -2,20 +2,20 @@
 
 using namespace shogi;
 
-Square::Square(const Position &position, Piece *piece): position(position), piece(piece){}
+Square::Square(const Position &position, Piece *piece) noexcept : position(position), piece(piece){}
 
-Position &Square::getPosition()
+Position &Square::getPosition() noexcept
 {
     return this->position;
 }
 
-Piece *Square::getPiece() const
+Piece *Square::getPiece() const noexcept
 {
     return this->piece;
 }
 
-void Square::setPiece(Piece *piece)
+void Square::setPiece(Piece *piece) noexcept
 {
-    this->piece=piece;
+    this->piece = piece;
 }
 

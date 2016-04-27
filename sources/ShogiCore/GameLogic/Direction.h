@@ -27,12 +27,12 @@ namespace shogi
 		 * @param     Y Координата по оси Y
 		 * @param limit Количество ходов фигуры по данному направлению.
 		 */
-        Direction(int x, int y, int limit = -1) : x(x), y(y), limit(limit) { }
+        Direction(int x, int y, int limit = -1) noexcept : x(x), y(y), limit(limit) { }
 
         /**
 		 * @brief Получить координату по оси X
 		 */
-        int getX() const
+        int getX() const noexcept
         {
             return x;
         }
@@ -40,7 +40,7 @@ namespace shogi
         /**
 		 * @brief Получить координату по оси X
 		 */
-        int getY() const
+        int getY() const noexcept
         {
             return y;
         }
@@ -49,7 +49,7 @@ namespace shogi
 		 * @brief Получить максимальное возможное количество ходов
 		 * фигуры по данному направлению.
 		 */
-        int getLimit() const
+        int getLimit() const noexcept
         {
             return limit;
         }

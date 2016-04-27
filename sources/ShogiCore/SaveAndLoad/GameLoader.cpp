@@ -3,7 +3,7 @@
 
 using namespace shogi;
 
-void GameLoader::loadGame(AbstractBoard &board, Player *currentPlayer)
+void GameLoader::loadGame(AbstractBoard &board, Player *currentPlayer) noexcept
 {
     SimpleSaveManager *newGame = new SimpleSaveManager();
 
@@ -46,28 +46,28 @@ void GameLoader::loadGame(AbstractBoard &board, Player *currentPlayer)
 
 }
 
-void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer)
+void GameLoader::loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer) noexcept
 {
     *currentPlayer = saveReader->getCurrentPlayer();
-    for (const Block &b: saveReader->getPiecesOnBoard())
+    for (const Block &block: saveReader->getPiecesOnBoard())
     {
         {
-            Piece *tmp = new Piece (b.pieceType, b.player);
-            board.setPiece(tmp,b.position);
-            board.getAllPieces().push_back(tmp);
+            Piece *sampleBlock = new Piece (block.pieceType, block.player);
+            board.setPiece(sampleBlock,block.position);
+            board.getAllPieces().push_back(sampleBlock);
         }
     }
     for (const PieceType &pt: saveReader->getCapturedPieces(Sente))
     {
-        Piece *tmp = new Piece(pt,Sente);
-        board.getCapturedPieces(Sente).push_back(tmp);
-        board.getAllPieces().push_back(tmp);
+        Piece *samplePiece = new Piece(pt,Sente);
+        board.getCapturedPieces(Sente).push_back(samplePiece);
+        board.getAllPieces().push_back(samplePiece);
     }
     for (const PieceType &pt: saveReader->getCapturedPieces(Gote))
     {
-        Piece *tmp = new Piece(pt, Gote);
-        board.getCapturedPieces(Gote).push_back(tmp);
-        board.getAllPieces().push_back(tmp);
+        Piece *samplePiece = new Piece(pt, Gote);
+        board.getCapturedPieces(Gote).push_back(samplePiece);
+        board.getAllPieces().push_back(samplePiece);
     }
 }
 

@@ -3,7 +3,7 @@
 
 using namespace shogi;
 
-Piece::Piece(const PieceType pieceType, const Player &player, Square *square): pieceType(pieceType), player(player), square(square)
+Piece::Piece(const PieceType pieceType, const Player &player, Square *square) noexcept : pieceType(pieceType), player(player), square(square)
 {
     if (this->pieceType >= Rook)
     {
@@ -24,17 +24,17 @@ Piece::Piece(const PieceType pieceType, const Player &player, Square *square): p
 
 }
 
-PieceType Piece::getType() const
+PieceType Piece::getType() const noexcept
 {
     return this->pieceType;
 }
 
-Square *Piece::getSquare() const
+Square *Piece::getSquare() const noexcept
 {
     return this->square;
 }
 
-Player Piece::getPlayer() const
+Player Piece::getPlayer() const noexcept
 {
     return this->player;
 }
@@ -48,17 +48,17 @@ Position &Piece::getPosition() const
     return this->getSquare()->getPosition();
 }
 
-bool Piece::wasPromoted() const
+bool Piece::wasPromoted() const noexcept
 {
     return this->promoted;
 }
 
-bool Piece::canBePromoted() const
+bool Piece::canBePromoted() const noexcept
 {
     return this->bePromoted;
 }
 
-void Piece::promote()
+void Piece::promote() noexcept
 {
     if(this->bePromoted && !this->promoted)
     {
@@ -67,7 +67,7 @@ void Piece::promote()
     }
 }
 
-void Piece::unPromote()
+void Piece::unPromote() noexcept
 {
     if(this->bePromoted && this->promoted)
     {
@@ -77,18 +77,19 @@ void Piece::unPromote()
     }
 }
 
-void Piece::setSquare(Square *square)
+void Piece::setSquare(Square *square) noexcept
 {
     this->square = square;
 }
 
-void Piece::setPlayer(const Player &player)
+void Piece::setPlayer(const Player &player) noexcept
 {
     this->player = player;
 }
 
 
-bool Piece::equals(Piece *piece) {
+bool Piece::equals(Piece *piece) const noexcept
+{
     return (player == piece->player && pieceType == piece->pieceType);
 }
 

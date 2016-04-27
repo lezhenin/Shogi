@@ -20,33 +20,33 @@ namespace shogi
 		 * @param[in] pos   Позиция клетки на доске.
 		 * @param[in] piece Фигура, которая находится на это клетке.
 		 */
-        Square(const Position &position, Piece *piece = nullptr);
+        Square(const Position &position, Piece *piece = nullptr) noexcept;
 
         /**
 		 * @brief Получить позицию клетки на доске.
 		 *
 		 * @return Позиция клетки
 		 */
-        Position &getPosition();
+        Position &getPosition() noexcept;
 
         /**
 		 * @brief Получить фигуру.
 		 *
 		 * @return Фигура, которая находится на данной клетке.
 		 */
-        Piece *getPiece() const;
+        Piece *getPiece() const noexcept;
 
         /**
 		 * @brief Установить фигуру.
 		 *
 		 * Устанавливает фигуру на данную клетку
 		 */
-        void setPiece(Piece *piece);
+        void setPiece(Piece *piece) noexcept;
 
         /**
 		 * @brief Деструктор
 		 */
-        virtual ~Square() { };
+        virtual ~Square() noexcept { };
 
     private:
 

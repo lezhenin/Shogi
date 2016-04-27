@@ -4,7 +4,7 @@
 
 using namespace shogi;
 
-bool GameLogic::checkMove(const Piece *piece, const Position &destination) const
+bool GameLogic::checkMove(const Piece *piece, const Position &destination) const noexcept
 {
     std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
 
@@ -35,7 +35,7 @@ bool GameLogic::checkMove(const Piece *piece, const Position &destination) const
     return false;
 }
 
-std::vector<Position> GameLogic::getAllPositionToMove(const Piece *piece) const
+std::vector<Position> GameLogic::getAllPositionToMove(const Piece *piece) const noexcept
 {
     std::vector<Direction> directions = table.getDirections(piece->getType(),piece->getPlayer());
     Position source = piece->getPosition();
@@ -61,7 +61,7 @@ std::vector<Position> GameLogic::getAllPositionToMove(const Piece *piece) const
     return  positions;
 }
 
-bool GameLogic::isUnderAttack(const Player &player, const Position &position) const
+bool GameLogic::isUnderAttack(const Player &player, const Position &position) const noexcept
 {
     for (Piece *p: board->getPiecesOnBoard())
     {
@@ -125,7 +125,7 @@ bool GameLogic::checkMate(const Player &player) const
     return true;
 }
 
-bool GameLogic::checkPromotion(const Piece *piece) const
+bool GameLogic::checkPromotion(const Piece *piece) const noexcept
 {
     if(piece->wasPromoted() || !piece->canBePromoted())
     {
@@ -141,7 +141,7 @@ bool GameLogic::checkPromotion(const Piece *piece) const
     }
 }
 
-bool GameLogic::checkDrop(Piece *piece, const Position &position) const
+bool GameLogic::checkDrop(Piece *piece, const Position &position) const noexcept
 {
     if (board->getPiece(position) != nullptr)
     {
@@ -169,13 +169,13 @@ bool GameLogic::checkDrop(Piece *piece, const Position &position) const
     return !mate;
 }
 
-bool GameLogic::onBoard(const Position &position)  const
+bool GameLogic::onBoard(const Position &position)  const noexcept
 {
     return (position.getHorizontal() >= 1 && position.getHorizontal() <= AbstractBoard::BOARD_HEIGHT &&
             position.getVertical()   >= 1 && position.getVertical()   <= AbstractBoard::BOARD_WIDTH );
 }
 
-const Direction *GameLogic::findDirection(const Position &source, const Position &destination, const std::vector<Direction> &directions) const
+const Direction *GameLogic::findDirection(const Position &source, const Position &destination, const std::vector<Direction> &directions) const noexcept
 {
     for (const Direction &direction : directions)
     {
@@ -193,7 +193,7 @@ const Direction *GameLogic::findDirection(const Position &source, const Position
     return nullptr;
 }
 
-bool GameLogic::checkAbleToMove(const Piece *piece, const Position &position) const
+bool GameLogic::checkAbleToMove(const Piece *piece, const Position &position) const noexcept
 {
 
     if (piece->getType() == Pawn || piece->getType() == Lance)
@@ -217,7 +217,7 @@ bool GameLogic::checkAbleToMove(const Piece *piece, const Position &position) co
     return true;
 }
 
-bool GameLogic::checkLine(const Piece *pawn, int vertical) const
+bool GameLogic::checkLine(const Piece *pawn, int vertical) const noexcept
 {
     Piece samplePiece(pawn->getType(), pawn->getPlayer());
     for (int i=1; i <= AbstractBoard::BOARD_HEIGHT; i++)

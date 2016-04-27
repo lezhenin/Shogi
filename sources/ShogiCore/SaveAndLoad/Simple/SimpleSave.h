@@ -18,7 +18,7 @@ namespace shogi
 	{
 	public:
 
-		SimpleSave() { }
+		SimpleSave() noexcept { }
 
 		Player currentPlayer = Sente;
 		std::vector<Block> onBoard;

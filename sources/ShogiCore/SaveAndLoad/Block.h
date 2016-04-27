@@ -13,12 +13,12 @@ namespace shogi
 	class Block
 	{
 	public:
-		Block(const PieceType pieceType, const Player &player, const Position &position) : pieceType(pieceType),
+		Block(const PieceType pieceType, const Player &player, const Position &position) noexcept : pieceType(pieceType),
 																						   player(player),
 																						   position(position)
 		{ }
 
-		bool operator == (const Block& block)
+		bool operator == (const Block& block) const noexcept
 		{
 			return (pieceType == block.pieceType &&
 					player 	  == block.player    &&

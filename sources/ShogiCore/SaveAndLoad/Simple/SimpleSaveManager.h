@@ -20,25 +20,25 @@ namespace shogi
         /**
 		 * @param save Объект типа SimpleSave.
 		 */
-        explicit SimpleSaveManager(const SimpleSave &save) : save(save) { }
+        explicit SimpleSaveManager(const SimpleSave &save) noexcept : save(save) { }
 
         SimpleSaveManager() { }
 
-        virtual std::vector<Block> getPiecesOnBoard();
-        virtual std::vector<PieceType> getCapturedPieces(const Player &player);
+        virtual std::vector<Block> getPiecesOnBoard() noexcept override;
+        virtual std::vector<PieceType> getCapturedPieces(const Player &player) noexcept override;
 
-        virtual void addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position);
-        virtual void addCapturedPiece(const Player &player, const PieceType pieceType);
-        virtual void setCurrentPlayer(const Player &player);
+        virtual void addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position) noexcept override;
+        virtual void addCapturedPiece(const Player &player, const PieceType pieceType) noexcept override;
+        virtual void setCurrentPlayer(const Player &player) noexcept override;
 
-        virtual Player &getCurrentPlayer();
+        virtual const Player &getCurrentPlayer() noexcept override;
 
         /**
 		 * @brief Получить объект сохранения.
 		 *
 		 * @return Объект сохранения SimpleSave.
 		 */
-        SimpleSave *getSimpleSave()
+        const SimpleSave *getSimpleSave()const noexcept
         {
             return &save;
         }

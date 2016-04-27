@@ -22,7 +22,7 @@ namespace shogi
 		 * Загружает игру, используя объекты
 		 * поддерживающие интерфейс SaveReader.
 		 */
-        virtual void loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer);
+        virtual void loadGame(SaveReader *saveReader, AbstractBoard &board, Player *currentPlayer) noexcept;
         /**
 		 * @brief Загрузить игру
 		 *
@@ -30,7 +30,7 @@ namespace shogi
 		 * соответствии со стандартной расстоновкой
 		 * в начале партии.
 		 */
-        virtual void loadGame(AbstractBoard &board, Player *currentPlayer);
+        virtual void loadGame(AbstractBoard &board, Player *currentPlayer) noexcept;
     };
 }
 #endif //SHOGI_GAMELOADER_H

@@ -54,7 +54,7 @@ namespace shogi
 		 * @return Указатель на класс AbstractBoardMemento,
 		 * в котором сохранено текущее состояние доски.
 		 */
-        virtual AbstractBoardMemento *getMemento() = 0;
+        virtual AbstractBoardMemento *getMemento() noexcept = 0;
 
         /**
 		 * @brief Установить мементо.
@@ -62,7 +62,7 @@ namespace shogi
 		 * Восстанавливает ранее сохраненное состояние доски.
 		 * @param memento Указатель на класс AbstractBoardMemento
 		 */
-        virtual void setMemento(AbstractBoardMemento *memento) = 0;
+        virtual void setMemento(AbstractBoardMemento *memento) noexcept = 0;
 
         /**
 		 * @brief Получить список всех фигур.
@@ -70,7 +70,7 @@ namespace shogi
 		 * Возвращает список всех фигур.
 		 * @return Ссылка на список фигур.
 		 */
-        virtual ListOfPieces &getAllPieces() = 0;
+        virtual ListOfPieces &getAllPieces() noexcept = 0;
 
         /**
 		 * @brief Получить список фигур на доске
@@ -78,7 +78,7 @@ namespace shogi
 		 * Возвращает список всех фигур, находящихся на доске
 		 * @return Ссылка на список фигур.
 		 */
-        virtual ListOfPieces &getPiecesOnBoard() = 0;
+        virtual ListOfPieces &getPiecesOnBoard() noexcept = 0;
 
         /**
 		 * @brief Получить список фигур, захваченных одним из игроков
@@ -87,19 +87,19 @@ namespace shogi
 		 * @param player Игрок, чьи захваченные фигуры необъодимо получить.
 		 * @return Ссылка на список фигур.
 		 */
-        virtual ListOfPieces &getCapturedPieces(const Player &player) = 0;
+        virtual ListOfPieces &getCapturedPieces(const Player &player) noexcept = 0;
 
         /**
 		 * @brief Найти фигуру
 		 *
 		 * Позволяет найти фигуру в одном из списоков фигур.
 		 */
-        virtual Piece *findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const = 0;
+        virtual Piece *findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const noexcept = 0;
 
         /**
 		 * @brief Деструктор
 		 */
-        virtual ~AbstractBoard() { }
+        virtual ~AbstractBoard() noexcept { }
 
     };
 }

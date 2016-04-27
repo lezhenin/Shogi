@@ -22,7 +22,7 @@ namespace shogi
 		 * Загружает игру, используя объекты
 		 * поддерживающие интерфейс SaveWriter.
 		 */
-        void saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer);
+        void saveGame(SaveWriter *saveWriter, AbstractBoard &board, Player *currentPlayer) noexcept;
 
     };
 }

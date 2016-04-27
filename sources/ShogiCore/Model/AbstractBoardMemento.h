@@ -22,10 +22,10 @@ namespace shogi
 		 *
 		 * Восстанавливает сохраненное сотстояние доски.
 		 */
-        virtual void restore() = 0;
+        virtual void restore() noexcept = 0;
 
     public:
-        virtual ~AbstractBoardMemento() { }
+        virtual ~AbstractBoardMemento() noexcept { }
     };
 }
 

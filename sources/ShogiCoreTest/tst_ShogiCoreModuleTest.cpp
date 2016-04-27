@@ -229,7 +229,7 @@ void ShogiCoreModuleTest::gameSaverTest()
     SimpleSaveManager *saveManager = new SimpleSaveManager();
     gameSaver.saveGame(saveManager, *board, &player);
 
-    SimpleSave *save = saveManager->getSimpleSave();
+   const SimpleSave *save = saveManager->getSimpleSave();
 
     auto iterator = std::find(save->onBoard.begin(),
                               save->onBoard.end(),

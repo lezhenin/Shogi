@@ -4,12 +4,12 @@
 
 using namespace shogi;
 
-void Shogi::load()
+void Shogi::load() noexcept
 {
     gameLoader->loadGame(*board, &currentPlayer);
 }
 
-Shogi::Shogi()
+Shogi::Shogi() noexcept
 {
     board = new Board();
     gameLogic = new GameLogic(board);
@@ -17,7 +17,7 @@ Shogi::Shogi()
     gameSaver = new GameSaver();
 }
 
-Shogi::~Shogi()
+Shogi::~Shogi() noexcept
 {
     clearToRedo();
     clearToUndo();
@@ -27,7 +27,7 @@ Shogi::~Shogi()
     delete gameSaver;
 }
 
-AbstractBoard &Shogi::getBoard() const
+AbstractBoard &Shogi::getBoard() const noexcept
 {
     return *board;
 }
@@ -49,7 +49,7 @@ void Shogi::pickPiece(const Position &position)
     this->pickedPiece = piece;
 }
 
-void Shogi::unPickPiece()
+void Shogi::unPickPiece() noexcept
 {
     this->pickedPiece = nullptr;
 }
@@ -115,12 +115,12 @@ void Shogi::dropPiece(const PieceType pieceType, const Position &position)
     currentPlayer.changePlayer();
 }
 
-ListOfGameSituations &Shogi::getGameSituation()
+ListOfGameSituations &Shogi::getGameSituation() noexcept
 {
     return gameSituations;
 }
 
-bool Shogi::undo()
+bool Shogi::undo() noexcept
 {
     if(!toUndo.empty())
     {
@@ -134,7 +134,7 @@ bool Shogi::undo()
     return false;
 }
 
-bool Shogi::redo()
+bool Shogi::redo() noexcept
 {
     if(!toRedo.empty())
     {
@@ -148,12 +148,12 @@ bool Shogi::redo()
     return false;
 }
 
-Player Shogi::getCurrentPlayer () const
+Player Shogi::getCurrentPlayer () const noexcept
 {
     return currentPlayer;
 }
 
-void Shogi::clearToUndo()
+void Shogi::clearToUndo() noexcept
 {
 
     while(!toUndo.empty())
@@ -163,7 +163,7 @@ void Shogi::clearToUndo()
     }
 }
 
-void Shogi::clearToRedo()
+void Shogi::clearToRedo() noexcept
 {
     while(!toRedo.empty())
     {
@@ -172,7 +172,7 @@ void Shogi::clearToRedo()
     }
 }
 
-void Shogi::checkPromoteGameSituation(const Position &position)
+void Shogi::checkPromoteGameSituation(const Position &position) noexcept
 {
     if(gameLogic->checkPromotion(pickedPiece))
     {
@@ -180,7 +180,7 @@ void Shogi::checkPromoteGameSituation(const Position &position)
     }
 }
 
-void Shogi::checkShahMateGameSituations()
+void Shogi::checkShahMateGameSituations() noexcept
 {
     if(gameLogic->checkShah(currentPlayer.nextPlayer()))
     {
@@ -192,7 +192,7 @@ void Shogi::checkShahMateGameSituations()
     }
 }
 
-void Shogi::capturePiece(const Position &position)
+void Shogi::capturePiece(const Position &position) noexcept
 {
     Piece* piece = this->board->getPiece(position);
     if(piece != nullptr && piece->getPlayer() != currentPlayer)
@@ -204,12 +204,12 @@ void Shogi::capturePiece(const Position &position)
     }
 }
 
-void Shogi::save(SaveWriter *saveWriter)
+void Shogi::save(SaveWriter *saveWriter) noexcept
 {
     gameSaver->saveGame(saveWriter,*board,&currentPlayer);
 }
 
-void Shogi::load(SaveReader *saveReader)
+void Shogi::load(SaveReader *saveReader) noexcept
 {
     clearToRedo();
     clearToUndo();
@@ -217,7 +217,7 @@ void Shogi::load(SaveReader *saveReader)
     gameLoader->loadGame(saveReader,*board,&currentPlayer);
 }
 
-void Shogi::clearBoard(AbstractBoard &board)
+void Shogi::clearBoard(AbstractBoard &board) noexcept
 {
     for (Piece *piece : board.getAllPieces())
     {
@@ -233,7 +233,7 @@ void Shogi::clearBoard(AbstractBoard &board)
     board.getCapturedPieces(Gote).clear();
 }
 
-const Piece *Shogi::getPickedPiece() const
+const Piece *Shogi::getPickedPiece() const noexcept
 {
     return pickedPiece;
 }

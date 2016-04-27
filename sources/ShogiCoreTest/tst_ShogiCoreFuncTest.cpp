@@ -333,7 +333,7 @@ void ShogiCoreFuncTest::saveTest()
 
     SimpleSaveManager *saveManager = new SimpleSaveManager();
     game.save(saveManager);
-    SimpleSave *save = saveManager->getSimpleSave();
+    const SimpleSave *save = saveManager->getSimpleSave();
 
     QCOMPARE(save->currentPlayer, Player(Gote));
     QCOMPARE((int)save->onBoard.size(), 38);

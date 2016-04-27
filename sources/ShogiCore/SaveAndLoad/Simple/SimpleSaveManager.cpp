@@ -2,12 +2,13 @@
 
 using namespace shogi;
 
-std::vector<Block> SimpleSaveManager::getPiecesOnBoard()
+std::vector<Block> SimpleSaveManager::getPiecesOnBoard() noexcept
 {
     return save.onBoard;
 }
 
-std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player &player)  {
+std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player &player) noexcept
+{
 
     if(player == Sente)
     {
@@ -19,12 +20,12 @@ std::vector<PieceType> SimpleSaveManager::getCapturedPieces(const Player &player
     }
 }
 
-void SimpleSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position)
+void SimpleSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position) noexcept
 {
     save.onBoard.push_back(Block(pieceType, player, position));
 }
 
-void SimpleSaveManager::addCapturedPiece(const Player &player, const PieceType pieceType)
+void SimpleSaveManager::addCapturedPiece(const Player &player, const PieceType pieceType) noexcept
 {
     if(player == Sente)
     {
@@ -36,12 +37,12 @@ void SimpleSaveManager::addCapturedPiece(const Player &player, const PieceType p
     }
 }
 
-void SimpleSaveManager::setCurrentPlayer(const Player &player)
+void SimpleSaveManager::setCurrentPlayer(const Player &player) noexcept
 {
     save.currentPlayer = player;
 }
 
-Player &SimpleSaveManager::getCurrentPlayer()
+const Player &SimpleSaveManager::getCurrentPlayer() noexcept
 {
     return save.currentPlayer;
 }

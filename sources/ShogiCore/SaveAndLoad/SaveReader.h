@@ -20,7 +20,7 @@ namespace shogi
 		* @return Вектор объектов типа Block,
 		* которые хронят информацию о фигурах.
 		*/
-		virtual std::vector<Block> getPiecesOnBoard() = 0;
+		virtual std::vector<Block> getPiecesOnBoard() noexcept = 0;
 		/**
 		 * @brief Получит список захваченных фигур.
 		 *
@@ -30,12 +30,12 @@ namespace shogi
 		 * @return Вектор объектов типа PieceType,
 		 * соответсвующих типам захваченных фигур.
 		 */
-		virtual std::vector<PieceType> getCapturedPieces(const Player &player) = 0;
+		virtual std::vector<PieceType> getCapturedPieces(const Player &player) noexcept = 0;
 		/**
 		 * @brief Получить игрока, которому
 		 * принадлежит текущий ход.
 		 */
-		virtual Player &getCurrentPlayer() = 0;
+		virtual const Player &getCurrentPlayer() noexcept = 0;
 	};
 }
 

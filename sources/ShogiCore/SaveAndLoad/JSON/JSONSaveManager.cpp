@@ -4,7 +4,7 @@
 
 using namespace shogi;
 
-std::vector<Block> JSONSaveManager::getPiecesOnBoard()
+std::vector<Block> JSONSaveManager::getPiecesOnBoard() noexcept
 {
     std::vector<Block> onBoard;
     const rapidjson::Value& piecesOnBoard = save["piecesOnBoard"];
@@ -19,7 +19,7 @@ std::vector<Block> JSONSaveManager::getPiecesOnBoard()
     return onBoard;
 }
 
-std::vector<PieceType> JSONSaveManager::getCapturedPieces(const Player &player)
+std::vector<PieceType> JSONSaveManager::getCapturedPieces(const Player &player) noexcept
 {
     std::string sPlayer;
     std::vector<PieceType> captured;
@@ -39,7 +39,7 @@ std::vector<PieceType> JSONSaveManager::getCapturedPieces(const Player &player)
     return captured;
 }
 
-void JSONSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position)
+void JSONSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &player, const Position &position) noexcept
 {
     rapidjson::Value tmp;
     tmp.SetObject();
@@ -53,7 +53,7 @@ void JSONSaveManager::addPieceOnBoard(const PieceType pieceType, const Player &p
     save["piecesOnBoard"].PushBack(tmp, save.GetAllocator());
 }
 
-void JSONSaveManager::addCapturedPiece(const Player &player, const PieceType pieceType)
+void JSONSaveManager::addCapturedPiece(const Player &player, const PieceType pieceType) noexcept
 {
     rapidjson::Value tmp;
     tmp.SetObject();
@@ -62,7 +62,7 @@ void JSONSaveManager::addCapturedPiece(const Player &player, const PieceType pie
     save["capturedPieces"][tableOfPlayers.at(player).c_str()].PushBack(tmp,save.GetAllocator());
 }
 
-const std::string JSONSaveManager::getJSONString() const
+const std::string JSONSaveManager::getJSONString() const noexcept
 {
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
@@ -70,7 +70,7 @@ const std::string JSONSaveManager::getJSONString() const
     return buffer.GetString();
 }
 
-JSONSaveManager::JSONSaveManager()
+JSONSaveManager::JSONSaveManager() noexcept
 {
     save.SetObject();
     save.AddMember("currentPlayer",rapidjson::Value(rapidjson::kStringType),save.GetAllocator());
@@ -91,18 +91,18 @@ JSONSaveManager::JSONSaveManager(const std::string &JSONString)
     }
 }
 
-void JSONSaveManager::clear()
+void JSONSaveManager::clear() noexcept
 {
     save.Clear();
 }
 
-Player &JSONSaveManager::getCurrentPlayer()
+const Player &JSONSaveManager::getCurrentPlayer() noexcept
 {
 
     return reverseTableOfPlayers.at(save["currentPlayer"].GetString());
 }
 
-void JSONSaveManager::setCurrentPlayer(const Player &player)
+void JSONSaveManager::setCurrentPlayer(const Player &player) noexcept
 {
     save["currentPlayer"].SetString(tableOfPlayers.at(player).c_str(),tableOfPlayers.at(player).size());
 }

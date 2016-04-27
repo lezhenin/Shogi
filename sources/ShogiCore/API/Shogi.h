@@ -22,26 +22,26 @@ namespace shogi
 
 	public:
 
-		Shogi();
+		Shogi() noexcept;
 
 		virtual void pickPiece(const Position &position) override;
-		virtual void unPickPiece() override;
+		virtual void unPickPiece() noexcept override;
 		virtual void movePiece(const Position &destination) override;
 		virtual void promotePiece(const Position &position) override;
 		virtual void dropPiece(const PieceType pieceType, const Position &position) override;
 
-		virtual bool undo() override;
-		virtual bool redo() override;
+		virtual bool undo() noexcept override;
+		virtual bool redo() noexcept override;
 
-		virtual void save(SaveWriter *saveWriter) override;
-		virtual void load(SaveReader *saveReader) override;
-		virtual void load() override;
+		virtual void save(SaveWriter *saveWriter) noexcept override;
+		virtual void load(SaveReader *saveReader) noexcept override;
+		virtual void load() noexcept override;
 
-		virtual const Piece *getPickedPiece() const override;
-		virtual Player getCurrentPlayer() const override;
-		virtual AbstractBoard &getBoard() const override;
-		virtual ListOfGameSituations &getGameSituation() override;
-		virtual ~Shogi();
+		virtual const Piece *getPickedPiece() const noexcept override;
+		virtual Player getCurrentPlayer() const noexcept override;
+		virtual AbstractBoard &getBoard() const noexcept override;
+		virtual ListOfGameSituations &getGameSituation() noexcept override;
+		virtual ~Shogi() noexcept;
 
 	private:
 
@@ -56,12 +56,12 @@ namespace shogi
 		std::stack<AbstractBoardMemento *> toUndo;
 		std::stack<AbstractBoardMemento *> toRedo;
 
-		void clearToUndo();
-		void clearToRedo();
-		void clearBoard(AbstractBoard &board);
-		void checkShahMateGameSituations();
-		void checkPromoteGameSituation(const Position &position);
-		void capturePiece(const Position &position);
+		void clearToUndo() noexcept;
+		void clearToRedo() noexcept;
+		void clearBoard(AbstractBoard &board) noexcept;
+		void checkShahMateGameSituations() noexcept;
+		void checkPromoteGameSituation(const Position &position) noexcept;
+		void capturePiece(const Position &position) noexcept;
 
 	};
 }

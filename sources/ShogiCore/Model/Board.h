@@ -16,26 +16,25 @@ namespace shogi
 
 		Board(int w = BOARD_WIDTH, int h = BOARD_HEIGHT);
 
-		virtual void setPiece(Piece *piece, const Position &position);
-		virtual void removePiece(const Position &pos);
+		virtual void setPiece(Piece *piece, const Position &position) override ;
+		virtual void removePiece(const Position &pos) override;
 
-		virtual Piece *getPiece(const Position &pos) const;
-		virtual Piece *findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const;
+		virtual Piece *getPiece(const Position &pos) const override;
+		virtual Piece *findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const noexcept override;
 
-		virtual AbstractBoardMemento *getMemento();
-		virtual void setMemento(AbstractBoardMemento *memento);
+		virtual AbstractBoardMemento *getMemento() noexcept override;
+		virtual void setMemento(AbstractBoardMemento *memento) noexcept override;
 
-		virtual ListOfPieces &getAllPieces();
-		virtual ListOfPieces &getPiecesOnBoard();
-		virtual ListOfPieces &getCapturedPieces(const Player &player);
-
-		~Board();
+		virtual ListOfPieces &getAllPieces() noexcept override;
+		virtual ListOfPieces &getPiecesOnBoard() noexcept override;
+		virtual ListOfPieces &getCapturedPieces(const Player &player) noexcept override;
+		~Board() noexcept;
 
 	private:
 
-		void createSquares();
-		void deleteSquares();
-		void deletePieces();
+		void createSquares() noexcept ;
+		void deleteSquares() noexcept ;
+		void deletePieces() noexcept ;
 
 		Square ***squares;
 		ListOfPieces onBoard;

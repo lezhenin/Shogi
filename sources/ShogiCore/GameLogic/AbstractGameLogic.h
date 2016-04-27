@@ -23,7 +23,7 @@ namespace shogi
 		 * @param pos   Позиция, ход в которую будет проверяться.
 		 * @return true если ход возможен, false если ход не возможен.
 		 */
-        virtual bool checkMove(const Piece *piece, const Position &pos) const = 0;
+        virtual bool checkMove(const Piece *piece, const Position &pos) const noexcept = 0;
 
         /**
 		 * @brief Проверить постановку шаха.
@@ -47,7 +47,7 @@ namespace shogi
 		 * @param piece Фигура, возможность переворота которой будет проверяться.
 		 * @return true если переворот возможен, false если переворот не возможен.
 		 */
-        virtual bool checkPromotion(const Piece *piece) const = 0;
+        virtual bool checkPromotion(const Piece *piece) const noexcept = 0;
 
         /**
 		 * @brief Проверить возможность постановки ранее захваченной фигуры на доску.
@@ -56,7 +56,7 @@ namespace shogi
 		 * @param pos Позиция, куда будет выставляться фигура.
 		 * @return true если постановка возможна, false если постановка не возможна.
 		 */
-        virtual bool checkDrop(Piece *piece, const Position &position) const = 0;
+        virtual bool checkDrop(Piece *piece, const Position &position) const noexcept = 0;
 
 
         virtual ~AbstractGameLogic() { }

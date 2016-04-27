@@ -16,21 +16,21 @@ namespace shogi
 		* @param[in] h Порядковый номер горизонтали.
 		* @param[in] v Порядковый номер вертикали.
 		*/
-        Position(const int horizontal, const int vertical);
+        Position(const int horizontal, const int vertical) noexcept;
 
         /**
 		 * @brief Получить порядковый номер вертикали.
 		 *
 		 * @return Порядковый номер вертикали соотвествующий данной позиции.
 		 */
-        int getVertical() const;
+        int getVertical() const noexcept;
 
         /**
 		 * @brief Получить порядковый номер горизонтали.
 		 *
 		 * @return Порядковый номер гоизонтали соотвествующий данной позиции.
 		 */
-        int getHorizontal() const;
+        int getHorizontal() const noexcept;
 
         /**
 		 * @brief Сравнить две позиции.
@@ -38,16 +38,16 @@ namespace shogi
 		 * Сравнивает порядковые номера вертикалей и горизонталей,
 		 * содержащихся в двух объектах.
 		 */
-        bool operator ==(const Position &position) const;
+        bool operator ==(const Position &position) const noexcept;
 
-        bool operator !=(const Position &position) const;
+        bool operator !=(const Position &position) const noexcept;
 
         /**
 		 * @brief Присвоить значение
 		 *
 		 * Присваивает занчения данных одного объекта другому.
 		 */
-        Position &operator =(const Position &position);
+        Position &operator =(const Position &position) noexcept;
 
         /**
 		 * @brief Деструтор

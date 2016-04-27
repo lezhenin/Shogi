@@ -2,7 +2,7 @@
 
 using namespace shogi;
 
-BoardMemento::BoardMemento(Board *board): board(board)
+BoardMemento::BoardMemento(Board *board) noexcept : board(board)
 {
     this->capturedPieces[Sente] = board->getCapturedPieces(Sente);
     this->capturedPieces[Gote]  = board->getCapturedPieces(Gote);
@@ -17,7 +17,7 @@ BoardMemento::BoardMemento(Board *board): board(board)
     }
 }
 
-void BoardMemento::restore()
+void BoardMemento::restore() noexcept
 {
     for (Piece *piece : board->getPiecesOnBoard())
     {

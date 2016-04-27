@@ -28,12 +28,12 @@ namespace shogi
 		 *
 		 * @return Игрок, который совершает ход в данный момент.
 		 */
-		virtual Player getCurrentPlayer() const = 0;
+		virtual Player getCurrentPlayer() const noexcept = 0;
 
         /**
          * @brief Получить выбранную фигуру.
          */
-		virtual const Piece* getPickedPiece() const = 0;
+		virtual const Piece* getPickedPiece() const noexcept = 0;
 
 		/**
 		 * @brief Выбрать фигуру.
@@ -45,7 +45,7 @@ namespace shogi
 		/**
 		 * @brief Отменить выбор фигуры.
 		 */
-		virtual void unPickPiece() = 0;
+		virtual void unPickPiece() noexcept = 0;
 
 		/**
 		 * @brief Переместить фигуру.
@@ -75,7 +75,7 @@ namespace shogi
 		 * Возвращает доску к тому состоянию, которое
 		 * было до совершения предыдущего хода.
 		 */
-		virtual bool undo() = 0;
+		virtual bool undo() noexcept = 0;
 
 		/**
 		 * @brief Возврат хода
@@ -83,21 +83,21 @@ namespace shogi
 		 * Возвращает доску к тому состоянию, которое
 		 * было до отмены предыдущего хода.
 		 */
-		virtual bool redo() = 0;
+		virtual bool redo() noexcept = 0;
 		/**
 		* @brief Сохранить игру
 		*
 		* Сохранят игру, используя интерфейс
 		* SaveWriter.
 		*/
-		virtual void save(SaveWriter *saveWriter) = 0;
+		virtual void save(SaveWriter *saveWriter) noexcept = 0;
 		/**
 		 * @brief Загрузить игру
 		 *
 		 * Загружает игру, используя интерфейс
 		 * SaveReader.
 		 */
-		virtual void load(SaveReader *saveReader) = 0;
+		virtual void load(SaveReader *saveReader) noexcept = 0;
 
 		/**
 		* @brief Загружает игру.
@@ -105,23 +105,21 @@ namespace shogi
 		* Устанавливает фигуры на доске, в соотвевтсвии
 		* с начальной растановкой.
 		*/
-		virtual void load() = 0;
+		virtual void load() noexcept = 0;
 
 		/**
 		 * @brief Получить доску.
 		 * @return Указатель на доску с фигурами.
 		 */
-		virtual AbstractBoard &getBoard() const = 0;
+		virtual AbstractBoard &getBoard() const noexcept = 0;
 
 		/**
 		 * @brief Получить статус игры.
 		 * @return Список игровых ситуаций
 		 */
-		virtual ListOfGameSituations &getGameSituation() = 0;
+		virtual ListOfGameSituations &getGameSituation() noexcept = 0;
 
-		virtual ~GameAPI()
-		{
-		}
+		virtual ~GameAPI() noexcept { }
 	};
 
 }
