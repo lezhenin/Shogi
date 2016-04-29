@@ -1,5 +1,6 @@
 #include <QtWidgets>
-#include "MainMenuG.h"
+#include "MainMenuGUI.h"
+#include "GameGUI.h"
 
 
 int main(int argc, char *argv[])

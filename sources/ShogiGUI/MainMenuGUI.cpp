@@ -3,12 +3,12 @@
 #include <QtCore/QTextStream>
 #include <QtWidgets/QPushButton>
 #include <QtGui/QTextFormat>
-#include "MainMenuG.h"
+#include "MainMenuGUI.h"
+#include "GameGUI.h"
 
 void MainMenuG::exit()
 {
     this->close();
-
 }
 
 MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
@@ -21,11 +21,6 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     this->setPalette(qPalette);
 
     QPushButton *exitButton = new QPushButton(this);
-//    QPixmap pix(":/s_icon.png");
-//    QIcon icon(pix);
-//    exitButton->setIcon(icon);
-//    exitButton->setIconSize(pix.size());
-//    exitButton->setIcon(icon);
 
     exitButton->setStyleSheet(QPushButtonStyle);
     exitButton->setText("Exit");
@@ -34,7 +29,6 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
                      SCREEN_SIZE.height() - BUTTON_SIZE.height() - 20);
 
     connect(exitButton, SIGNAL(clicked()), this, SLOT(exit()));
-
 
     QPushButton *loadButton = new QPushButton(this);
     loadButton->setStyleSheet(QPushButtonStyle);
@@ -49,7 +43,18 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     startButton->resize(BUTTON_SIZE);
     startButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
                       SCREEN_SIZE.height() - BUTTON_SIZE.height() * 3 - 20 - 5 * 2);
+
+    connect(startButton, SIGNAL(clicked()), this, SLOT(startGame()));
 }
+
+void MainMenuG::startGame()
+{
+    GameGUI *game = new GameGUI(0);
+    game->show();
+    exit();
+}
+
+
 
 
 

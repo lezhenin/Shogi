@@ -6,7 +6,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SOURCE_FILES
         main.cpp
-        MainMenuG.cpp MainMenuG.h)
+        MainMenuGUI.cpp MainMenuGUI.h GameGUI.cpp GameGUI.h)
 
 
 find_package( Qt5Core REQUIRED )
@@ -18,3 +18,4 @@ add_executable(GUIApp ${SOURCE_FILES} ${RESOURCE_ADDED})
 
 target_link_libraries(GUIApp Qt5::Core)
 target_link_libraries(GUIApp Qt5::Widgets)
+target_link_libraries(GUIApp ShogiCore)
