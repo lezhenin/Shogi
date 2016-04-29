@@ -1,6 +1,8 @@
 #ifndef SHOGI_MAINMENU_H
 #define SHOGI_MAINMENU_H
 
+#include <QtWidgets/QPushButton>
+#include <QtGui/QTextFormat>
 #include <QtWidgets/QWidget>
 
 class MainMenuG: public QWidget
@@ -15,6 +17,10 @@ private:
 
     const QSize SCREEN_SIZE{800, 600};
     const QSize BUTTON_SIZE{150, 50};
+
+    QPushButton *exitButton;
+    QPushButton *startButton;
+    QPushButton *loadButton;
 
     QString QPushButtonStyle =
             "QPushButton "

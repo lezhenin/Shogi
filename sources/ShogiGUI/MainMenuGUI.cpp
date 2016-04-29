@@ -1,8 +1,3 @@
-#include <QtWidgets/QToolButton>
-#include <QtWidgets/QGridLayout>
-#include <QtCore/QTextStream>
-#include <QtWidgets/QPushButton>
-#include <QtGui/QTextFormat>
 #include "MainMenuGUI.h"
 #include "GameGUI.h"
 
@@ -20,7 +15,7 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     qPalette.setBrush(this->backgroundRole(),QBrush(background));
     this->setPalette(qPalette);
 
-    QPushButton *exitButton = new QPushButton(this);
+    exitButton = new QPushButton(this);
 
     exitButton->setStyleSheet(QPushButtonStyle);
     exitButton->setText("Exit");
@@ -30,14 +25,14 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
 
     connect(exitButton, SIGNAL(clicked()), this, SLOT(exit()));
 
-    QPushButton *loadButton = new QPushButton(this);
+    loadButton = new QPushButton(this);
     loadButton->setStyleSheet(QPushButtonStyle);
     loadButton->setText("Load");
     loadButton->resize(BUTTON_SIZE);
     loadButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
                       SCREEN_SIZE.height() - BUTTON_SIZE.height() * 2 - 20 - 5);
 
-    QPushButton *startButton = new QPushButton(this);
+    startButton = new QPushButton(this);
     startButton->setStyleSheet(QPushButtonStyle);
     startButton->setText("Start");
     startButton->resize(BUTTON_SIZE);
