@@ -97,6 +97,7 @@ void Game::input()
         {
             std::cout << "Unknown command" << std::endl;
         }
+        std::getline(std::cin, input);
     }
 }
 
@@ -134,9 +135,9 @@ void Game::printBoard(shogi::AbstractBoard &board) const
             }
             else
             {
-                std:: cout << ((samplePiece->getPlayer() == shogi::Sente) ? "s" : "g") << tableOfLabels.at(samplePiece->getType());
+                std:: cout << ((samplePiece->getPlayer() == shogi::Sente) ? "s" : "g")
+                           << tableOfLabels.at(samplePiece->getType());
             }
-
         }
         isPicked = (board.getPiece(shogi::Position(i,1)) == game->getPickedPiece() &&
                               game->getPickedPiece() != nullptr);
