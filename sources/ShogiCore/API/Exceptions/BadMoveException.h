@@ -13,6 +13,8 @@ namespace shogi
 	{
 
 	public:
+
+		BadMoveException() : GameProcessException("You can't movie this piece here.") { }
 		explicit BadMoveException(const std::string &message) :
 				GameProcessException(message + ("\nYou can't movie this piece here.")) { }
 

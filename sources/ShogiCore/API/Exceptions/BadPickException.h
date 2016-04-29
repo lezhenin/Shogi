@@ -14,6 +14,8 @@ namespace shogi
 	class BadPickException : public GameProcessException
 	{
 	public:
+
+		BadPickException() : GameProcessException("You can't pick piece at this square.") { }
 		explicit BadPickException(const std::string &message) :
 				GameProcessException(message + ("\nYou can't pick piece at this square.")) { }
 
