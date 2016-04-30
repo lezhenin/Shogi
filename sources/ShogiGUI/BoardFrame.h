@@ -26,6 +26,10 @@ private:
     shogi::GameAPI *game;
 
 private slots:
+
+    void drawBoard(QPainter &painter) const;
+
+    void drawPieces(QPainter &painter) const;
 };
 
 
