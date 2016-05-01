@@ -2,9 +2,9 @@
 #define SHOGI_GAMEGUI_H
 
 #include "../ShogiCore/API/Shogi.h"
+#include <QtGuiDepends>
+#include <QtWidgets>
 #include "BoardFrame.h"
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QPushButton>
 
 class GameGUI : public QWidget
 {
@@ -25,6 +25,8 @@ private:
     QPushButton *loadButton;
     QPushButton *menuButton;
     QPushButton *exitButton;
+
+    QLabel *status;
 
     BoardFrame *board;
 
