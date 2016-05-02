@@ -2,8 +2,6 @@
 <RCC version="1.0">
     <qresource prefix="/">
         <file>menu_background2.png</file>
-    </qresource>
-    <qresource prefix="/pieces/">
-
+        <file>pieces/pawn.png</file>
     </qresource>
 </RCC>

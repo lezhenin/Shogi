@@ -1,7 +1,12 @@
+#include <QtCore/QVarLengthArray>
+#include <QtCore/QRect>
+#include <QtCore/QDebug>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QWidget>
 #include "BoardFrame.h"
 #include "../ShogiCore/API/Shogi.h"
 
-BoardFrame::BoardFrame(QWidget *parent, int pixelsPerSquare) : QFrame(parent), PIXELS_PER_SQUARE(pixelsPerSquare)
+BoardFrame::BoardFrame(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setFocusPolicy(Qt::StrongFocus);
@@ -16,8 +21,8 @@ BoardFrame::~BoardFrame()
 
 QSize BoardFrame::sizeHint() const
 {
-    return QSize(BOARD_WIDTH  * PIXELS_PER_SQUARE + frameWidth() * 2,
-                 BOARD_HEIGHT * PIXELS_PER_SQUARE + frameWidth() * 2);
+    return QSize(BOARD_WIDTH  * /*PIXELS_PER_SQUARE_X()*/ + frameWidth() * 2,
+                 BOARD_HEIGHT * /*PIXELS_PER_SQUARE_Y()*/ + frameWidth() * 2);
 }
 
 void BoardFrame::paintEvent(QPaintEvent *event)
@@ -31,7 +36,8 @@ void BoardFrame::paintEvent(QPaintEvent *event)
 
 }
 
-void BoardFrame::drawPieces(QPainter &painter) const {
+void BoardFrame::drawPieces(QPainter &painter) const
+{
     for(int i = 0; i < BOARD_HEIGHT; ++i)
     {
         for(int j = 0; j < BOARD_WIDTH; j++)
@@ -39,36 +45,79 @@ void BoardFrame::drawPieces(QPainter &painter) const {
             shogi::Piece *samplePiece = game->getBoard().getPiece(shogi::Position(i + 1, j + 1));
             if(samplePiece != nullptr)
             {
-                if(samplePiece->getPlayer() == shogi::Gote)
-                {
-                    painter.setPen(Qt::red);
-                }
-                else
-                {
-                    painter.setPen(Qt::black);
-                }
-                painter.drawEllipse(width() / BOARD_WIDTH * j, height() / BOARD_HEIGHT * i,
-                                    width() / BOARD_WIDTH, height() / BOARD_HEIGHT);
+                drawPiece(painter, samplePiece);
             }
         }
     }
 }
 
-void BoardFrame::drawBoard(QPainter &painter) const {
-    for (int i = 1; i < BOARD_WIDTH; i++)
+void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const
+{
+    QRect boardRect(PADDING_LEFT() + PIXELS_PER_SQUARE_X() * 3, PADDING_TOP() + PIXELS_PER_SQUARE_Y(),
+                    PIXELS_PER_SQUARE_X() * BOARD_WIDTH, PIXELS_PER_SQUARE_Y() * BOARD_HEIGHT);
+
+    int x = abs(samplePiece->getPosition().getVertical()   - 9);
+    int y =     samplePiece->getPosition().getHorizontal() - 1;
+
+
+    QRect targetRect(boardRect.left() + PIXELS_PER_SQUARE_X() * x, boardRect.top() + PIXELS_PER_SQUARE_Y() * y,
+                     PIXELS_PER_SQUARE_X(), PIXELS_PER_SQUARE_Y());
+
+    QImage piece(":/pieces/pawn.png");
+    if (samplePiece->getPlayer() == shogi::Gote)
     {
-        painter.drawLine((width() / BOARD_WIDTH) * i, 0, (width() / BOARD_WIDTH) * i, height());
+        piece = piece.mirrored(true, true);
     }
-    for (int i = 1; i < BOARD_HEIGHT; i++)
+    painter.drawImage(targetRect, piece);
+}
+
+void BoardFrame::drawBoard(QPainter &painter) const
+{
+    QRect boardRect(PADDING_LEFT() + PIXELS_PER_SQUARE_X() * 3, PADDING_TOP(),
+                    PIXELS_PER_SQUARE_X() * (BOARD_WIDTH + 1), PIXELS_PER_SQUARE_Y() * (BOARD_HEIGHT + 1));
+
+    for(int i = 0; i < 9; ++i)
     {
-        painter.drawLine(0, (height() / BOARD_HEIGHT) * i , width(), (height() / BOARD_HEIGHT) * i );
+        QRect textRect(boardRect.left() + PIXELS_PER_SQUARE_X() * i, boardRect.top(),
+                       PIXELS_PER_SQUARE_X(), PIXELS_PER_SQUARE_Y());
+        painter.drawText(textRect, Qt::AlignCenter, QString::number(abs(i-BOARD_WIDTH)));
+
+        textRect = QRect(boardRect.right() - PIXELS_PER_SQUARE_X(), boardRect.top() + PIXELS_PER_SQUARE_Y() * (i + 1),
+                         PIXELS_PER_SQUARE_X(), PIXELS_PER_SQUARE_Y());
+        painter.drawText(textRect, Qt::AlignCenter, QString::number(i+1));
     }
-    painter.drawRect(0, 0, width() - 1, height() - 1);
+
+    boardRect.setTop(boardRect.top() + PIXELS_PER_SQUARE_Y());
+    boardRect.setRight(boardRect.right() - PIXELS_PER_SQUARE_X());
+    for (int i = 0; i <= BOARD_WIDTH; i++)
+    {
+        painter.drawLine(boardRect.left() + PIXELS_PER_SQUARE_X() * i, boardRect.top(),
+                         boardRect.left() + PIXELS_PER_SQUARE_X() * i, boardRect.bottom());
+    }
+    for (int i = 0; i <= BOARD_HEIGHT; i++)
+    {
+        painter.drawLine(boardRect.left(),  boardRect.top() + PIXELS_PER_SQUARE_Y() * i,
+                         boardRect.right(), boardRect.top() + PIXELS_PER_SQUARE_Y() * i);
+    }
 }
 
 void BoardFrame::mousePressEvent(QMouseEvent *event)
 {
-    shogi::Position clickedPosition(event->y() / (height() / BOARD_HEIGHT) + 1, event->x() / (width() / BOARD_WIDTH) + 1);
+
+    QRect boardRect(PADDING_LEFT() + PIXELS_PER_SQUARE_X() * 3, PADDING_TOP() + PIXELS_PER_SQUARE_X(),
+                    PIXELS_PER_SQUARE_X() * (BOARD_WIDTH), PIXELS_PER_SQUARE_Y() * (BOARD_HEIGHT));
+
+    if(!boardRect.contains(event->pos()))
+    {
+        return;
+    }
+
+    shogi::Position clickedPosition((event->y() - boardRect.top())  / PIXELS_PER_SQUARE_Y() + 1,
+                                abs((event->x() - boardRect.left()) / PIXELS_PER_SQUARE_X() - 9));
+
+    qDebug() << QString::number(clickedPosition.getHorizontal());
+    qDebug() << QString::number(clickedPosition.getVertical());
+
     if(event->button() == Qt::MouseButton::LeftButton)
     if(game->getPickedPiece() == nullptr)
     {

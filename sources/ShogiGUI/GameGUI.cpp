@@ -6,7 +6,7 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
 {
     this->setFixedSize(SCREEN_SIZE);
 
-    board = new BoardFrame(this, 50);
+    board = new BoardFrame(this);
 
     undoButton = new QPushButton("Undo", this);
     undoButton->setFocusPolicy(Qt::NoFocus);
