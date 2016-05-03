@@ -19,6 +19,7 @@ namespace shogi
     {
         Piece *piece;
         Square *square;
+        Player player;
         bool promote = false;
     };
 

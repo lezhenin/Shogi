@@ -11,6 +11,7 @@ BoardMemento::BoardMemento(Board *board) noexcept : board(board)
     {
         PieceInfo info;
         info.piece = piece;
+        info.player = piece->getPlayer();
         info.square = piece->getSquare();
         info.promote = piece->wasPromoted();
         pairs.push_back(info);
@@ -30,6 +31,7 @@ void BoardMemento::restore() noexcept
     for (PieceInfo pieceInfo : pairs)
     {
         board->setPiece(pieceInfo.piece, pieceInfo.square->getPosition());
+        pieceInfo.piece->setPlayer(pieceInfo.player);
         if(pieceInfo.promote)
         {
             pieceInfo.piece->promote();
