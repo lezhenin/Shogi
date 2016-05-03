@@ -41,7 +41,7 @@ namespace shogi {
         /**
 		 * @brief Получить JSON строку.
 		 *
-		 * @return JSON строку содержащую сохранение.
+		 * @return JSON строку, содержащую сохранение.
 		 */
         const std::string getJSONString() const noexcept;
 

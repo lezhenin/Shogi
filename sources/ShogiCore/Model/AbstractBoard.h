@@ -16,11 +16,11 @@ namespace shogi
     {
     public:
 
-        static const int BOARD_WIDTH = 9;
-        static const int BOARD_HEIGHT = 9;
-        static const int PROMOTION_AREA_SIZE = 3;
-        static const int PROMOTION_LINE_SENTE = PROMOTION_AREA_SIZE;
-        static const int PROMOTION_LINE_GOTE = BOARD_HEIGHT - PROMOTION_AREA_SIZE + 1;
+        static constexpr int BOARD_WIDTH = 9;
+        static constexpr int BOARD_HEIGHT = 9;
+        static constexpr int PROMOTION_AREA_SIZE = 3;
+        static constexpr int PROMOTION_LINE_SENTE = PROMOTION_AREA_SIZE;
+        static constexpr int PROMOTION_LINE_GOTE = BOARD_HEIGHT - PROMOTION_AREA_SIZE + 1;
 
         /**
 		 * @brief Установить фигуру
