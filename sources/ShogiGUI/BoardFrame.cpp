@@ -19,12 +19,6 @@ BoardFrame::~BoardFrame()
     delete game;
 }
 
-QSize BoardFrame::sizeHint() const
-{
-    return QSize(BOARD_WIDTH  * /*PIXELS_PER_SQUARE_X()*/ + frameWidth() * 2,
-                 BOARD_HEIGHT * /*PIXELS_PER_SQUARE_Y()*/ + frameWidth() * 2);
-}
-
 void BoardFrame::paintEvent(QPaintEvent *event)
 {
     QFrame::paintEvent(event);
@@ -89,6 +83,8 @@ void BoardFrame::drawBoard(QPainter &painter) const
 
     boardRect.setTop(boardRect.top() + PIXELS_PER_SQUARE_Y());
     boardRect.setRight(boardRect.right() - PIXELS_PER_SQUARE_X());
+
+    painter.fillRect(boardRect, QColor(198,132,00));
     for (int i = 0; i <= BOARD_WIDTH; i++)
     {
         painter.drawLine(boardRect.left() + PIXELS_PER_SQUARE_X() * i, boardRect.top(),
@@ -124,6 +120,7 @@ void BoardFrame::mousePressEvent(QMouseEvent *event)
         try
         {
             game->pickPiece(clickedPosition);
+            emit sendMessage("Piece picked.");
         }
         catch (std::exception &e)
         {
@@ -144,17 +141,18 @@ void BoardFrame::mousePressEvent(QMouseEvent *event)
     else
     {
         game->unPickPiece();
+        emit sendMessage("Piece unpicked.");
     }
     update();
 }
 
-void BoardFrame::undo()
+void BoardFrame::undo() noexcept
 {
     game->undo();
     update();
 }
 
-void BoardFrame::redo()
+void BoardFrame::redo() noexcept
 {
     game->redo();
     update();

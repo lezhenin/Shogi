@@ -11,13 +11,12 @@ class BoardFrame : public QFrame
 public:
 
     explicit BoardFrame(QWidget *parent = 0);
-    virtual ~BoardFrame();
-    QSize sizeHint() const Q_DECL_OVERRIDE;
+    virtual ~BoardFrame() noexcept;
 
 public slots:
 
-    void undo();
-    void redo();
+    void undo() noexcept;
+    void redo() noexcept;
 
 protected:
 
@@ -41,6 +40,8 @@ private:
     void drawBoard(QPainter &painter) const;
     void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const;
     void drawPieces(QPainter &painter) const;
+
+    const std::map<shogi::Piece, QString> pieces;
 
     shogi::GameAPI *game;
 

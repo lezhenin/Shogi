@@ -29,6 +29,7 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
     menuButton->setFocusPolicy(Qt::NoFocus);
 
     status = new QLabel(this);
+    status->setWordWrap(true);
     connect(board, SIGNAL(sendMessage(QString)), status, SLOT(setText(QString)));
 
 
@@ -42,7 +43,7 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
     layout->addWidget(exitButton, 5, 7);
     layout->addWidget(status, 6, 7);
     setLayout(layout);
-
+    status->setFixedWidth(status->width());
     setWindowTitle("Shogi");
 }
 
