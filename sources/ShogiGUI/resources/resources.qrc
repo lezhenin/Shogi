@@ -3,5 +3,12 @@
     <qresource prefix="/">
         <file>menu_background2.png</file>
         <file>pieces/pawn.png</file>
+        <file>pieces/lance.png</file>
+        <file>pieces/king.png</file>
+        <file>pieces/knight.png</file>
+        <file>pieces/bishop.png</file>
+        <file>pieces/rook.png</file>
+        <file>pieces/silver_general.png</file>
+        <file>pieces/gold_general.png</file>
     </qresource>
 </RCC>

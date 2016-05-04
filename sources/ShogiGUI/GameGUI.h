@@ -17,7 +17,7 @@ public:
 
 private:
 
-    const QSize SCREEN_SIZE{800, 600};
+    const QSize SCREEN_SIZE{1020, 600};
 
     QPushButton *undoButton;
     QPushButton *redoButton;

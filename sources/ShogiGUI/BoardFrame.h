@@ -48,13 +48,13 @@ private:
 
     const std::map<shogi::PieceType, QImage> pieceImages =
             {
-                    {shogi::GoldGeneral,   QImage(":/pieces/pawn.png")},
-                    {shogi::Rook,          QImage(":/pieces/pawn.png")},
-                    {shogi::Bishop,        QImage(":/pieces/pawn.png")},
-                    {shogi::SilverGeneral, QImage(":/pieces/pawn.png")},
-                    {shogi::Knight,        QImage(":/pieces/pawn.png")},
-                    {shogi::Lance,         QImage(":/pieces/pawn.png")},
-                    {shogi::King,          QImage(":/pieces/pawn.png")},
+                    {shogi::GoldGeneral,   QImage(":/pieces/gold_general.png")},
+                    {shogi::Rook,          QImage(":/pieces/rook.png")},
+                    {shogi::Bishop,        QImage(":/pieces/bishop.png")},
+                    {shogi::SilverGeneral, QImage(":/pieces/silver_general.png")},
+                    {shogi::Knight,        QImage(":/pieces/knight.png")},
+                    {shogi::Lance,         QImage(":/pieces/lance.png")},
+                    {shogi::King,          QImage(":/pieces/king.png")},
                     {shogi::Pawn,          QImage(":/pieces/pawn.png")},
 
                     {shogi::PromotedRook,          QImage(":/pieces/pawn.png")},
