@@ -30,24 +30,65 @@ private:
 
     const int BOARD_HEIGHT = shogi::AbstractBoard::BOARD_HEIGHT;
     const int BOARD_WIDTH = shogi::AbstractBoard::BOARD_WIDTH;
-    const int PIXELS_PER_SQUARE_Y() const { return height() / (BOARD_HEIGHT + 1); }
-    const int PIXELS_PER_SQUARE_X() const { return width()  / (BOARD_WIDTH + 7); }
-    const int PADDING_LEFT() const   { return (width() - PIXELS_PER_SQUARE_X() * (BOARD_WIDTH + 7)) / 2; }
-    const int PADDING_RIGHT() const  { return  width() - PIXELS_PER_SQUARE_X() * (BOARD_WIDTH + 7) - PADDING_LEFT(); }
-    const int PADDING_TOP() const    { return (height() - PIXELS_PER_SQUARE_Y() * (BOARD_HEIGHT + 1)) / 2; }
-    const int PADDING_BOTTOM() const { return  height() - PIXELS_PER_SQUARE_Y() * (BOARD_HEIGHT + 1)/2 - PADDING_TOP(); }
+    const int CAPTURED_PIECES_BOARD_HEIGHT = 9;
+    const int CAPTURED_PIECES_BOARD_WIDTH = 2;
+    const int SQUARE_HEIGHT()  const { return  height() / (BOARD_HEIGHT + 1); }
+    const int SQUARE_WIDTH()   const { return  width()  / (BOARD_WIDTH + 7); }
+    const int PADDING_LEFT()   const { return (width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7)) / 2; }
+    const int PADDING_RIGHT()  const { return  width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7) - PADDING_LEFT(); }
+    const int PADDING_TOP()    const { return (height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1)) / 2; }
+    const int PADDING_BOTTOM() const { return  height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1) - PADDING_TOP(); }
 
     void drawBoard(QPainter &painter) const;
     void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const;
     void drawPieces(QPainter &painter) const;
+    void drawCapturedPieces(QPainter &painter) const;
 
-    const std::map<shogi::Piece, QString> pieces;
+    void countCapturedPieces();
+
+    const std::map<shogi::PieceType, QImage> pieceImages =
+            {
+                    {shogi::GoldGeneral,   QImage(":/pieces/pawn.png")},
+                    {shogi::Rook,          QImage(":/pieces/pawn.png")},
+                    {shogi::Bishop,        QImage(":/pieces/pawn.png")},
+                    {shogi::SilverGeneral, QImage(":/pieces/pawn.png")},
+                    {shogi::Knight,        QImage(":/pieces/pawn.png")},
+                    {shogi::Lance,         QImage(":/pieces/pawn.png")},
+                    {shogi::King,          QImage(":/pieces/pawn.png")},
+                    {shogi::Pawn,          QImage(":/pieces/pawn.png")},
+
+                    {shogi::PromotedRook,          QImage(":/pieces/pawn.png")},
+                    {shogi::PromotedBishop,        QImage(":/pieces/pawn.png")},
+                    {shogi::PromotedKnight,        QImage(":/pieces/pawn.png")},
+                    {shogi::PromotedSilverGeneral, QImage(":/pieces/pawn.png")},
+                    {shogi::PromotedPawn,          QImage(":/pieces/pawn.png")},
+                    {shogi::PromotedLance,         QImage(":/pieces/pawn.png")}
+            };
+
+    std::map<shogi::PieceType, int> senteCapturedPieces =
+            {
+                    {shogi::GoldGeneral,   0},
+                    {shogi::Rook,          0},
+                    {shogi::Bishop,        0},
+                    {shogi::SilverGeneral, 0},
+                    {shogi::Knight,        0},
+                    {shogi::Lance,         0},
+                    {shogi::Pawn,          0}
+            };
+    std::map<shogi::PieceType, int> goteCapturedPieces =
+            {
+                    {shogi::GoldGeneral,   0},
+                    {shogi::Rook,          0},
+                    {shogi::Bishop,        0},
+                    {shogi::SilverGeneral, 0},
+                    {shogi::Knight,        0},
+                    {shogi::Lance,         0},
+                    {shogi::Pawn,          0}
+            };
 
     shogi::GameAPI *game;
 
-private slots:
-
-
+    //todo вынести прямоугольники для отрисовки как константы
 };
 
 

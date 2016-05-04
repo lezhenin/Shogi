@@ -43,6 +43,7 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
     layout->addWidget(exitButton, 5, 7);
     layout->addWidget(status, 6, 7);
     setLayout(layout);
+
     status->setFixedWidth(status->width());
     setWindowTitle("Shogi");
 }
