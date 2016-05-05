@@ -29,9 +29,9 @@ signals:
 private:
 
     const int BOARD_HEIGHT = shogi::AbstractBoard::BOARD_HEIGHT;
-    const int BOARD_WIDTH = shogi::AbstractBoard::BOARD_WIDTH;
-    const int CAPTURED_PIECES_BOARD_HEIGHT = 9;
-    const int CAPTURED_PIECES_BOARD_WIDTH = 2;
+    const int BOARD_WIDTH  = shogi::AbstractBoard::BOARD_WIDTH;
+    const int CAPTURE_BOARD_HEIGHT = 9;
+    const int CAPTURE_BOARD_WIDTH = 2;
     const int SQUARE_HEIGHT()  const { return  height() / (BOARD_HEIGHT + 1); }
     const int SQUARE_WIDTH()   const { return  width()  / (BOARD_WIDTH + 7); }
     const int PADDING_LEFT()   const { return (width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7)) / 2; }
@@ -39,12 +39,33 @@ private:
     const int PADDING_TOP()    const { return (height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1)) / 2; }
     const int PADDING_BOTTOM() const { return  height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1) - PADDING_TOP(); }
 
+    const QRect BOARD_RECT()     const { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
+                                                      PADDING_TOP(),
+                                                      SQUARE_WIDTH()  * (BOARD_WIDTH + 1),
+                                                      SQUARE_HEIGHT() * (BOARD_HEIGHT + 1));}
+
+    const QRect GAME_ZONE_RECT() const { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
+                                                      PADDING_TOP()  + SQUARE_WIDTH(),
+                                                      SQUARE_WIDTH()  * (BOARD_WIDTH),
+                                                      SQUARE_HEIGHT() * (BOARD_HEIGHT));}
+
+    const QRect GOTE_CAPTURE_BOARD()  const { return QRect(PADDING_LEFT() + SQUARE_WIDTH()  / 2,
+                                                           PADDING_TOP()  + SQUARE_HEIGHT() / 2,
+                                                           CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
+                                                           CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
+
+    const QRect SENTE_CAPTURE_BOARD() const { return QRect(width() - PADDING_RIGHT() - SQUARE_WIDTH() / 2 - CAPTURE_BOARD_WIDTH * SQUARE_WIDTH(),
+                                                           PADDING_TOP() + SQUARE_HEIGHT() / 2,
+                                                           CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
+                                                           CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
+
     void drawBoard(QPainter &painter) const;
     void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const;
     void drawPieces(QPainter &painter) const;
-    void drawCapturedPieces(QPainter &painter) const;
+    void drawCapturedPieces(QPainter &painter, const shogi::Player &player) const;
 
-    void countCapturedPieces();
+    void countCapturedPieces(const shogi::Player &player);
+
 
     const std::map<shogi::PieceType, QImage> pieceImages =
             {
@@ -88,7 +109,7 @@ private:
 
     shogi::GameAPI *game;
 
-    //todo вынести прямоугольники для отрисовки как константы
+    void onGameZoneClicked(const QMouseEvent *event);
 };
 
 

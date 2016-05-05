@@ -30,6 +30,9 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
 
     status = new QLabel(this);
     status->setWordWrap(true);
+    QFont labelFont = status->font();
+    labelFont.setPointSize(14);
+    status->setFont(labelFont);
     connect(board, SIGNAL(sendMessage(QString)), status, SLOT(setText(QString)));
 
 
