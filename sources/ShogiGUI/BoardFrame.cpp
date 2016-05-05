@@ -35,7 +35,7 @@ void BoardFrame::paintEvent(QPaintEvent *event)
 
 }
 
-void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &player) const
+void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &player) const noexcept
 {
     QRect CAPTURE_BOARD;
     std::map<shogi::PieceType, int> capturedPieces;
@@ -74,7 +74,7 @@ void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &play
 
 }
 
-void BoardFrame::drawPieces(QPainter &painter) const
+void BoardFrame::drawPieces(QPainter &painter) const noexcept
 {
     for (shogi::Piece* piece : game->getBoard().getPiecesOnBoard())
     {
@@ -82,7 +82,7 @@ void BoardFrame::drawPieces(QPainter &painter) const
     }
 }
 
-void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const
+void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept
 {
     int x = abs(samplePiece->getPosition().getVertical()   - 9);
     int y =     samplePiece->getPosition().getHorizontal() - 1;
@@ -108,7 +108,7 @@ void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) c
     }
 }
 
-void BoardFrame::drawBoard(QPainter &painter) const
+void BoardFrame::drawBoard(QPainter &painter) const noexcept
 {
     for(int i = 0; i < 9; ++i)
     {
@@ -151,7 +151,7 @@ void BoardFrame::mousePressEvent(QMouseEvent *event)
     update();
 }
 
-void BoardFrame::onGameZoneClicked(const QMouseEvent *event)
+void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
 {
     shogi::Position clickedPosition((event->y() - GAME_ZONE_RECT().top()) / SQUARE_HEIGHT() + 1,
                                 abs((event->x() - GAME_ZONE_RECT().left()) / SQUARE_WIDTH() - 9));
@@ -209,7 +209,7 @@ void BoardFrame::redo() noexcept
 }
 
 
-void BoardFrame::countCapturedPieces(const shogi::Player &player)
+void BoardFrame::countCapturedPieces(const shogi::Player &player) noexcept
 {
     const shogi::ListOfPieces &list = game->getBoard().getCapturedPieces(player);
     std::map<shogi::PieceType, int> &capturedPieces = (player == shogi::Sente) ? senteCapturedPieces : goteCapturedPieces;

@@ -24,6 +24,7 @@ protected:
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
 
 signals:
+
     void sendMessage(QString message);
 
 private:
@@ -32,40 +33,42 @@ private:
     const int BOARD_WIDTH  = shogi::AbstractBoard::BOARD_WIDTH;
     const int CAPTURE_BOARD_HEIGHT = 9;
     const int CAPTURE_BOARD_WIDTH = 2;
-    const int SQUARE_HEIGHT()  const { return  height() / (BOARD_HEIGHT + 1); }
-    const int SQUARE_WIDTH()   const { return  width()  / (BOARD_WIDTH + 7); }
-    const int PADDING_LEFT()   const { return (width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7)) / 2; }
-    const int PADDING_RIGHT()  const { return  width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7) - PADDING_LEFT(); }
-    const int PADDING_TOP()    const { return (height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1)) / 2; }
-    const int PADDING_BOTTOM() const { return  height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1) - PADDING_TOP(); }
+    const int SQUARE_HEIGHT()  const noexcept { return  height() / (BOARD_HEIGHT + 1); }
+    const int SQUARE_WIDTH()   const noexcept { return  width()  / (BOARD_WIDTH + 7); }
+    const int PADDING_LEFT()   const noexcept { return (width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7)) / 2; }
+    const int PADDING_RIGHT()  const noexcept { return  width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7) - PADDING_LEFT(); }
+    const int PADDING_TOP()    const noexcept { return (height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1)) / 2; }
+    const int PADDING_BOTTOM() const noexcept { return  height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1) - PADDING_TOP(); }
 
-    const QRect BOARD_RECT()     const { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
+    const QRect BOARD_RECT()     const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
                                                       PADDING_TOP(),
                                                       SQUARE_WIDTH()  * (BOARD_WIDTH + 1),
                                                       SQUARE_HEIGHT() * (BOARD_HEIGHT + 1));}
 
-    const QRect GAME_ZONE_RECT() const { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
+    const QRect GAME_ZONE_RECT() const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
                                                       PADDING_TOP()  + SQUARE_WIDTH(),
                                                       SQUARE_WIDTH()  * (BOARD_WIDTH),
                                                       SQUARE_HEIGHT() * (BOARD_HEIGHT));}
 
-    const QRect GOTE_CAPTURE_BOARD()  const { return QRect(PADDING_LEFT() + SQUARE_WIDTH()  / 2,
+    const QRect GOTE_CAPTURE_BOARD()  const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH()  / 2,
                                                            PADDING_TOP()  + SQUARE_HEIGHT() / 2,
                                                            CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
                                                            CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
 
-    const QRect SENTE_CAPTURE_BOARD() const { return QRect(width() - PADDING_RIGHT() - SQUARE_WIDTH() / 2 - CAPTURE_BOARD_WIDTH * SQUARE_WIDTH(),
+    const QRect SENTE_CAPTURE_BOARD() const noexcept { return QRect(width() - PADDING_RIGHT() - SQUARE_WIDTH() / 2
+                                                           - CAPTURE_BOARD_WIDTH * SQUARE_WIDTH(),
                                                            PADDING_TOP() + SQUARE_HEIGHT() / 2,
                                                            CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
                                                            CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
 
-    void drawBoard(QPainter &painter) const;
-    void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const;
-    void drawPieces(QPainter &painter) const;
-    void drawCapturedPieces(QPainter &painter, const shogi::Player &player) const;
+    void drawBoard(QPainter &painter) const noexcept ;
+    void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept ;
+    void drawPieces(QPainter &painter) const noexcept ;
+    void drawCapturedPieces(QPainter &painter, const shogi::Player &player) const noexcept ;
 
-    void countCapturedPieces(const shogi::Player &player);
+    void onGameZoneClicked(const QMouseEvent *event) noexcept ;
 
+    void countCapturedPieces(const shogi::Player &player) noexcept ;
 
     const std::map<shogi::PieceType, QImage> pieceImages =
             {
@@ -108,8 +111,6 @@ private:
             };
 
     shogi::GameAPI *game;
-
-    void onGameZoneClicked(const QMouseEvent *event);
 };
 
 
