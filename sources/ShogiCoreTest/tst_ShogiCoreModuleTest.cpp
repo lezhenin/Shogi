@@ -188,9 +188,9 @@ void ShogiCoreModuleTest::pieceTest()
 
     QVERIFY_EXCEPTION_THROWN(piece.getPosition(), PieceIsNotOnBoardException);
 
-    QVERIFY(piece.equals(&piece1));
-    QVERIFY(!piece.equals(&piece2));
-    QVERIFY(!piece.equals(&piece3));
+    QVERIFY(piece.equals(piece1));
+    QVERIFY(!piece.equals(piece2));
+    QVERIFY(!piece.equals(piece3));
 
     QVERIFY(piece.canBePromoted());
     QVERIFY(!piece3.canBePromoted());
@@ -285,12 +285,12 @@ void ShogiCoreModuleTest::JSONSaveManagerTest()
     saveManager = new JSONSaveManager(save);
     GameLoader loader;
     loader.loadGame(saveManager, *board1, &player1);
-    QVERIFY(board1->getPiece(Position(5, 5))->equals(&piece));
-    QVERIFY(board1->getPiece(Position(4, 6))->equals(&piece1));
-    QVERIFY(board1->getPiece(Position(1, 9))->equals(&piece4));
+    QVERIFY(board1->getPiece(Position(5, 5))->equals(piece));
+    QVERIFY(board1->getPiece(Position(4, 6))->equals(piece1));
+    QVERIFY(board1->getPiece(Position(1, 9))->equals(piece4));
 
-    QVERIFY((*board1->getCapturedPieces(Sente).begin())->equals(&piece3));
-    QVERIFY((*board1->getCapturedPieces(Gote).begin())->equals(&piece2));
+    QVERIFY((*board1->getCapturedPieces(Sente).begin())->equals(piece3));
+    QVERIFY((*board1->getCapturedPieces(Gote).begin())->equals(piece2));
 
     QCOMPARE(player1, player);
 

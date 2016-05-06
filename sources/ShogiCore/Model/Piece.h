@@ -127,7 +127,7 @@ namespace shogi
 		 * @param piece Фигура для сравнения.
 		 * @return true если фигуры эквивалентны, false если нет.
 		 */
-        bool equals(Piece *piece) const noexcept;
+        bool equals(const Piece &piece) const noexcept;
 
         /**
 		 * @brief Деструктор

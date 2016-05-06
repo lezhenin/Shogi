@@ -51,54 +51,54 @@ void ShogiCoreFuncTest::initTestCase()
     {
      QVERIFY(board.getPiece(Position(9,i)) != nullptr);
      QVERIFY(board.getPiece(Position(7,i)) != nullptr);
-     QVERIFY(board.getPiece(Position(7,i))->equals(pieceForCompare));
+     QVERIFY(board.getPiece(Position(7,i))->equals(*pieceForCompare));
      QVERIFY(board.getPiece(Position(1,i)) != nullptr);
      QVERIFY(board.getPiece(Position(3,i)) != nullptr);
-     QVERIFY(board.getPiece(Position(3,i))->equals(pieceForCompare1));
+     QVERIFY(board.getPiece(Position(3,i))->equals(*pieceForCompare1));
     }
 
     delete pieceForCompare;
     delete pieceForCompare1;
     pieceForCompare = new Piece(Lance,Sente);
     pieceForCompare1 = new Piece(Lance,Gote);
-    QVERIFY(board.getPiece(Position(9,1))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(9,9))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(1,1))->equals(pieceForCompare1));
-    QVERIFY(board.getPiece(Position(1,9))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(9,1))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(9,9))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(1,1))->equals(*pieceForCompare1));
+    QVERIFY(board.getPiece(Position(1,9))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
     pieceForCompare = new Piece(Knight,Sente);
     pieceForCompare1 = new Piece(Knight,Gote);
-    QVERIFY(board.getPiece(Position(9,2))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(9,8))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(1,2))->equals(pieceForCompare1));
-    QVERIFY(board.getPiece(Position(1,8))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(9,2))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(9,8))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(1,2))->equals(*pieceForCompare1));
+    QVERIFY(board.getPiece(Position(1,8))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
     pieceForCompare = new Piece(SilverGeneral,Sente);
     pieceForCompare1 = new Piece(SilverGeneral,Gote);
-    QVERIFY(board.getPiece(Position(9,3))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(9,7))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(1,3))->equals(pieceForCompare1));
-    QVERIFY(board.getPiece(Position(1,7))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(9,3))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(9,7))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(1,3))->equals(*pieceForCompare1));
+    QVERIFY(board.getPiece(Position(1,7))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
     pieceForCompare = new Piece(GoldGeneral,Sente);
     pieceForCompare1 = new Piece(GoldGeneral,Gote);
-    QVERIFY(board.getPiece(Position(9,4))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(9,6))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(1,4))->equals(pieceForCompare1));
-    QVERIFY(board.getPiece(Position(1,6))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(9,4))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(9,6))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(1,4))->equals(*pieceForCompare1));
+    QVERIFY(board.getPiece(Position(1,6))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
     pieceForCompare = new Piece(King,Sente);
     pieceForCompare1 = new Piece(King,Gote);
-    QVERIFY(board.getPiece(Position(9,5))->equals(pieceForCompare));
-    QVERIFY(board.getPiece(Position(1,5))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(9,5))->equals(*pieceForCompare));
+    QVERIFY(board.getPiece(Position(1,5))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
@@ -106,9 +106,9 @@ void ShogiCoreFuncTest::initTestCase()
     pieceForCompare1 = new Piece(Bishop,Gote);
 
     QVERIFY(board.getPiece(Position(8,8)) != nullptr);
-    QVERIFY(board.getPiece(Position(8,8))->equals(pieceForCompare));
+    QVERIFY(board.getPiece(Position(8,8))->equals(*pieceForCompare));
     QVERIFY(board.getPiece(Position(2,2)) != nullptr);
-    QVERIFY(board.getPiece(Position(2,2))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(2,2))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
@@ -116,9 +116,9 @@ void ShogiCoreFuncTest::initTestCase()
     pieceForCompare1 = new Piece(Rook,Gote);
 
     QVERIFY(board.getPiece(Position(8,2)) != nullptr);
-    QVERIFY(board.getPiece(Position(8,2))->equals(pieceForCompare));
+    QVERIFY(board.getPiece(Position(8,2))->equals(*pieceForCompare));
     QVERIFY(board.getPiece(Position(2,8)) != nullptr);
-    QVERIFY(board.getPiece(Position(2,8))->equals(pieceForCompare1));
+    QVERIFY(board.getPiece(Position(2,8))->equals(*pieceForCompare1));
 
     delete pieceForCompare;
     delete pieceForCompare1;
@@ -386,7 +386,7 @@ void ShogiCoreFuncTest::loadTest()
             else
             {
                 QVERIFY(board.getPiece(position)->equals(
-                        board1.getPiece(position)));
+                        *board1.getPiece(position)));
             }
         }
     }

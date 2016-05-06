@@ -146,9 +146,12 @@ ListOfPieces &Board::getCapturedPieces(const Player &player) noexcept
 Piece *Board::findPiece(const PieceType pieceType, const Player &player, const ListOfPieces &pieces) const noexcept
 {
     Piece samplePiece(pieceType,player);
-    ListOfPieces::const_iterator iterator =
-            std::find_if(pieces.begin(), pieces.end(),std::bind1st(std::mem_fun(&Piece::equals), &samplePiece));
 
+    ListOfPieces::const_iterator iterator =
+            std::find_if(pieces.begin(), pieces.end(),[&samplePiece](Piece *piece)
+                                                        {
+                                                            return piece->equals(samplePiece);
+                                                        });
     if (iterator != pieces.end())
     {
         return *iterator;

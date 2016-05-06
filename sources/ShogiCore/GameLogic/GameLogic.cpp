@@ -1,6 +1,7 @@
+#include <cmath>
 #include "GameLogic.h"
 #include "Exceptions/KingNotFoundException.h"
-#include <algorithm>
+
 
 using namespace shogi;
 
@@ -224,7 +225,7 @@ bool GameLogic::checkLine(const Piece *pawn, int vertical) const noexcept
     {
         Position temp(i, vertical);
         if (board->getPiece(temp) != nullptr &&
-            board->getPiece(temp) -> equals(&samplePiece))
+            board->getPiece(temp) -> equals(samplePiece))
         {
             return false;
         }

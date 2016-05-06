@@ -88,9 +88,9 @@ void Piece::setPlayer(const Player &player) noexcept
 }
 
 
-bool Piece::equals(Piece *piece) const noexcept
+bool Piece::equals(const Piece &piece) const noexcept
 {
-    return (player == piece->player && pieceType == piece->pieceType);
+    return (player == piece.player && pieceType == piece.pieceType);
 }
 
 
