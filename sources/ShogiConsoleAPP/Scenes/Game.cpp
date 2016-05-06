@@ -105,6 +105,7 @@ void Game::printBoard(shogi::AbstractBoard &board) const
 {
     bool isPicked = false;
 
+    std::cout << " ";
     for(int j = shogi::AbstractBoard::BOARD_WIDTH; j >= 1; j--)
     {
         std::cout << " " << j << "  ";
@@ -350,8 +351,8 @@ bool Game::redo() const
 
 int Game::countPieces(const shogi::PieceType pieceType, const shogi::Player &player, const shogi::ListOfPieces &pieces) const
 {
-    shogi::Piece piece(pieceType,player);
-    return std::count_if(pieces.begin(), pieces.end(), std::bind1st(std::mem_fun(&shogi::Piece::equals), &piece));
+    shogi::Piece samplePiece(pieceType,player);
+    return std::count_if(pieces.begin(), pieces.end(), [&samplePiece](shogi::Piece *piece){ return piece->equals(samplePiece);});
 }
 
 bool Game::save() const
