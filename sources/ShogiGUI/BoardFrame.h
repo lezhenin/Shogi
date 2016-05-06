@@ -61,14 +61,16 @@ private:
                                                            CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
                                                            CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
 
-    void drawBoard(QPainter &painter) const noexcept ;
-    void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept ;
-    void drawPieces(QPainter &painter) const noexcept ;
-    void drawCapturedPieces(QPainter &painter, const shogi::Player &player) const noexcept ;
+    void drawBoard(QPainter &painter) const noexcept;
+    void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept;
+    void drawPieces(QPainter &painter) const noexcept;
+    void drawCapturedPieces(QPainter &painter, const shogi::Player &player) const noexcept;
 
-    void onGameZoneClicked(const QMouseEvent *event) noexcept ;
+    void onGameZoneClicked(const QMouseEvent *event) noexcept;
+    void onCaptureBoardClicked(const QMouseEvent *event, const shogi::Player &player) noexcept;
+    void onRightButtonClicked() noexcept;
 
-    void countCapturedPieces(const shogi::Player &player) noexcept ;
+    void countCapturedPieces(const shogi::Player &player) noexcept;
 
     const std::map<shogi::PieceType, QImage> pieceImages =
             {
@@ -110,7 +112,11 @@ private:
                     {shogi::Pawn,          0}
             };
 
+    const shogi::PieceType *pieceForDrop = nullptr;
+
     shogi::GameAPI *game;
+
+
 };
 
 

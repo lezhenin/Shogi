@@ -144,11 +144,72 @@ void BoardFrame::drawBoard(QPainter &painter) const noexcept
 
 void BoardFrame::mousePressEvent(QMouseEvent *event)
 {
+    if(event->button() == Qt::RightButton)
+    {
+        onRightButtonClicked();
+        update();
+        return;
+    }
+
     if(GAME_ZONE_RECT().contains(event->pos()))
     {
         onGameZoneClicked(event);
     }
+    if(SENTE_CAPTURE_BOARD().contains(event->pos()))
+    {
+        onCaptureBoardClicked(event, shogi::Sente);
+    }
+    if(GOTE_CAPTURE_BOARD().contains(event->pos()))
+    {
+        onCaptureBoardClicked(event, shogi::Gote);
+    }
     update();
+
+}
+
+void BoardFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Player &player) noexcept
+{
+
+    qDebug() << ((player == shogi::Sente) ? "sente" : "gote");
+    auto &capturedPieces  = senteCapturedPieces;
+    QRect captureBoard;
+
+    if(player == shogi::Sente)
+    {
+        captureBoard = QRect(SENTE_CAPTURE_BOARD().topLeft(),
+                              SENTE_CAPTURE_BOARD().bottomRight());
+    }
+    else
+    {
+        capturedPieces = goteCapturedPieces;
+        captureBoard = QRect(GOTE_CAPTURE_BOARD().topLeft(),
+                              GOTE_CAPTURE_BOARD().bottomRight());
+    }
+
+    QRect activeZone(captureBoard.left() + SQUARE_WIDTH() / 2,
+                     captureBoard.top() + SQUARE_HEIGHT() ,
+                     SQUARE_WIDTH(), SQUARE_HEIGHT() * capturedPieces.size());
+
+    if(!activeZone.contains(event->pos()))
+    {
+        return;
+    }
+
+    if(game->getCurrentPlayer() != player)
+    {
+        emit sendMessage("This piece don't belong you");
+        return;
+    }
+
+    qDebug() << "active";
+
+    int number = (event->y() - activeZone.top()) / SQUARE_HEIGHT();
+    auto piece = capturedPieces.begin();
+    for(int i = 0; i < number; i++)
+    {
+        piece++;
+    }
+    pieceForDrop = &piece->first;
 }
 
 void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
@@ -159,37 +220,60 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
     qDebug() << QString::number(clickedPosition.getHorizontal());
     qDebug() << QString::number(clickedPosition.getVertical());
 
-    if(event->button() == Qt::LeftButton)
+    if(pieceForDrop != nullptr)
     {
-        if (game->getPickedPiece() == nullptr)
+        try
         {
-            try
-            {
-                game->pickPiece(clickedPosition);
-                emit sendMessage("Piece picked.");
-            }
-            catch (std::exception &e) {
-                emit sendMessage(e.what());
-            }
+            game->dropPiece(*pieceForDrop, clickedPosition);
+            pieceForDrop = nullptr;
+            countCapturedPieces(game->getCurrentPlayer().nextPlayer());
         }
-        else
+        catch (std::exception &e)
         {
-            try
-            {
-                game->movePiece(clickedPosition);
-                countCapturedPieces(game->getCurrentPlayer().nextPlayer());
-            }
-            catch (std::exception &e)
-            {
-                emit sendMessage(e.what());
-            }
+            emit sendMessage(e.what());
         }
+        return;
+    }
+
+    if (game->getPickedPiece() == nullptr)
+    {
+        try
+        {
+            game->pickPiece(clickedPosition);
+            emit sendMessage("Piece picked.");
+        }
+        catch (std::exception &e)
+        {
+            emit sendMessage(e.what());
+        }
+
     }
     else
     {
-        game->unPickPiece();
-        emit sendMessage("Piece unpicked.");
+        try
+        {
+            game->movePiece(clickedPosition);
+            countCapturedPieces(game->getCurrentPlayer().nextPlayer());
+        }
+        catch (std::exception &e)
+        {
+            emit sendMessage(e.what());
+        }
     }
+}
+
+void BoardFrame::onRightButtonClicked() noexcept
+{
+    if(pieceForDrop != nullptr)
+        {
+            pieceForDrop = nullptr;
+            qDebug() << QString::number((int) pieceForDrop);
+        }
+    if(game->getPickedPiece() != nullptr)
+        {
+            game->unPickPiece();
+            emit sendMessage("Piece unpicked.");
+        }
 }
 
 void BoardFrame::undo() noexcept
@@ -224,17 +308,3 @@ void BoardFrame::countCapturedPieces(const shogi::Player &player) noexcept
        capturedPieces[capturedPiece.first] = amount;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
