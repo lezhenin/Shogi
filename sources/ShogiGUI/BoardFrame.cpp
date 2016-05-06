@@ -267,7 +267,6 @@ void BoardFrame::onRightButtonClicked() noexcept
     if(pieceForDrop != nullptr)
         {
             pieceForDrop = nullptr;
-            qDebug() << QString::number((int) pieceForDrop);
         }
     if(game->getPickedPiece() != nullptr)
         {
