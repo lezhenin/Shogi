@@ -41,19 +41,19 @@ private:
     const int PADDING_BOTTOM() const noexcept { return  height() - SQUARE_HEIGHT() * (BOARD_HEIGHT + 1) - PADDING_TOP(); }
 
     const QRect BOARD_RECT()     const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
-                                                      PADDING_TOP(),
-                                                      SQUARE_WIDTH()  * (BOARD_WIDTH + 1),
-                                                      SQUARE_HEIGHT() * (BOARD_HEIGHT + 1));}
+                                                         PADDING_TOP(),
+                                                         SQUARE_WIDTH()  * (BOARD_WIDTH + 1),
+                                                         SQUARE_HEIGHT() * (BOARD_HEIGHT + 1));}
 
     const QRect GAME_ZONE_RECT() const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
-                                                      PADDING_TOP()  + SQUARE_WIDTH(),
-                                                      SQUARE_WIDTH()  * (BOARD_WIDTH),
-                                                      SQUARE_HEIGHT() * (BOARD_HEIGHT));}
+                                                         PADDING_TOP()  + SQUARE_WIDTH(),
+                                                         SQUARE_WIDTH()  * (BOARD_WIDTH),
+                                                         SQUARE_HEIGHT() * (BOARD_HEIGHT));}
 
     const QRect GOTE_CAPTURE_BOARD()  const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH()  / 2,
-                                                           PADDING_TOP()  + SQUARE_HEIGHT() / 2,
-                                                           CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
-                                                           CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
+                                                                    PADDING_TOP()  + SQUARE_HEIGHT() / 2,
+                                                                    CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
+                                                                    CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
 
     const QRect SENTE_CAPTURE_BOARD() const noexcept { return QRect(width() - PADDING_RIGHT() - SQUARE_WIDTH() / 2
                                                            - CAPTURE_BOARD_WIDTH * SQUARE_WIDTH(),
