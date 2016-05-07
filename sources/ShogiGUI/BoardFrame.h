@@ -22,6 +22,7 @@ protected:
 
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void update();
 
 signals:
 
@@ -29,10 +30,11 @@ signals:
 
 private:
 
-    const int BOARD_HEIGHT = shogi::AbstractBoard::BOARD_HEIGHT;
-    const int BOARD_WIDTH  = shogi::AbstractBoard::BOARD_WIDTH;
-    const int CAPTURE_BOARD_HEIGHT = 9;
-    const int CAPTURE_BOARD_WIDTH = 2;
+    static constexpr int BOARD_HEIGHT = shogi::AbstractBoard::BOARD_HEIGHT;
+    static constexpr int BOARD_WIDTH  = shogi::AbstractBoard::BOARD_WIDTH;
+    static constexpr int CAPTURE_BOARD_HEIGHT = 9;
+    static constexpr int CAPTURE_BOARD_WIDTH = 2;
+
     const int SQUARE_HEIGHT()  const noexcept { return  height() / (BOARD_HEIGHT + 1); }
     const int SQUARE_WIDTH()   const noexcept { return  width()  / (BOARD_WIDTH + 7); }
     const int PADDING_LEFT()   const noexcept { return (width()  - SQUARE_WIDTH()  * (BOARD_WIDTH  + 7)) / 2; }
@@ -71,6 +73,10 @@ private:
     void onRightButtonClicked() noexcept;
 
     void countCapturedPieces(const shogi::Player &player) noexcept;
+    void checkGameSituations(shogi::ListOfGameSituations &list) const noexcept;
+
+    void sendQuestionMessage(std::shared_ptr<shogi::GameSituation> &situation) const;
+    void sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const;
 
     const std::map<shogi::PieceType, QImage> pieceImages =
             {
@@ -83,12 +89,12 @@ private:
                     {shogi::King,          QImage(":/pieces/king.png")},
                     {shogi::Pawn,          QImage(":/pieces/pawn.png")},
 
-                    {shogi::PromotedRook,          QImage(":/pieces/pawn.png")},
-                    {shogi::PromotedBishop,        QImage(":/pieces/pawn.png")},
-                    {shogi::PromotedKnight,        QImage(":/pieces/pawn.png")},
-                    {shogi::PromotedSilverGeneral, QImage(":/pieces/pawn.png")},
-                    {shogi::PromotedPawn,          QImage(":/pieces/pawn.png")},
-                    {shogi::PromotedLance,         QImage(":/pieces/pawn.png")}
+                    {shogi::PromotedRook,          QImage(":/pieces/promoted_rook.png")},
+                    {shogi::PromotedBishop,        QImage(":/pieces/promoted_bishop.png")},
+                    {shogi::PromotedKnight,        QImage(":/pieces/promoted_knight.png")},
+                    {shogi::PromotedSilverGeneral, QImage(":/pieces/promoted_lance.png")},
+                    {shogi::PromotedPawn,          QImage(":/pieces/promoted_pawn.png")},
+                    {shogi::PromotedLance,         QImage(":/pieces/promoted_silver_general.png")}
             };
 
     std::map<shogi::PieceType, int> senteCapturedPieces =
@@ -115,7 +121,6 @@ private:
     const shogi::PieceType *pieceForDrop = nullptr;
 
     shogi::GameAPI *game;
-
 
 };
 

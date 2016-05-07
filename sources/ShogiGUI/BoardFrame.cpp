@@ -58,12 +58,19 @@ void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &play
     painter.drawPath(path);
 
     int i = 1;
-    for (auto &&piece : capturedPieces)
+    for (auto &piece : capturedPieces)
     {
         QRect pieceRect(CAPTURE_BOARD.left() + SQUARE_WIDTH() / 2,
                         CAPTURE_BOARD.top()  + SQUARE_HEIGHT() * i,
                         SQUARE_WIDTH(), SQUARE_HEIGHT());
         painter.drawImage(pieceRect, pieceImages.at(piece.first));
+
+        if(pieceForDrop != nullptr && piece.first == *pieceForDrop &&
+           game->getCurrentPlayer() == player)
+        {
+            qDebug() << "draw ellipse";
+            painter.drawEllipse(pieceRect);
+        }
 
         QRect textRect(pieceRect.topRight(),
                        QSize(SQUARE_WIDTH(), SQUARE_HEIGHT()));
@@ -217,16 +224,12 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
     shogi::Position clickedPosition((event->y() - GAME_ZONE_RECT().top()) / SQUARE_HEIGHT() + 1,
                                 abs((event->x() - GAME_ZONE_RECT().left()) / SQUARE_WIDTH() - 9));
 
-    qDebug() << QString::number(clickedPosition.getHorizontal());
-    qDebug() << QString::number(clickedPosition.getVertical());
-
     if(pieceForDrop != nullptr)
     {
         try
         {
             game->dropPiece(*pieceForDrop, clickedPosition);
             pieceForDrop = nullptr;
-            countCapturedPieces(game->getCurrentPlayer().nextPlayer());
         }
         catch (std::exception &e)
         {
@@ -253,7 +256,6 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
         try
         {
             game->movePiece(clickedPosition);
-            countCapturedPieces(game->getCurrentPlayer().nextPlayer());
         }
         catch (std::exception &e)
         {
@@ -278,16 +280,12 @@ void BoardFrame::onRightButtonClicked() noexcept
 void BoardFrame::undo() noexcept
 {
     game->undo();
-    countCapturedPieces(shogi::Sente);
-    countCapturedPieces(shogi::Gote);
     update();
 }
 
 void BoardFrame::redo() noexcept
 {
     game->redo();
-    countCapturedPieces(shogi::Sente);
-    countCapturedPieces(shogi::Gote);
     update();
 }
 
@@ -307,3 +305,60 @@ void BoardFrame::countCapturedPieces(const shogi::Player &player) noexcept
        capturedPieces[capturedPiece.first] = amount;
     }
 }
+
+void BoardFrame::checkGameSituations(shogi::ListOfGameSituations &list) const noexcept
+{
+    while(!list.empty())
+    {
+        auto situation = list.front();
+
+        if (!situation->isExecutable())
+        {
+            sendQuestionMessage(situation);
+        }
+        else
+        {
+            sendInformativeMessage(situation);
+        }
+        list.pop();
+    }
+}
+
+void BoardFrame::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const
+{
+    QMessageBox messageBox;
+    messageBox.setText(situation->getMessage().c_str());
+    if (situation->isEndOfGame())
+    {
+        messageBox.setInformativeText("Game is end!");
+        //todo endGame;
+    }
+    messageBox.setStandardButtons(QMessageBox::Ok);
+    messageBox.exec();
+}
+
+void BoardFrame::sendQuestionMessage(std::shared_ptr<shogi::GameSituation> &situation) const
+{
+    QMessageBox messageBox;
+    messageBox.setText(situation->getMessage().c_str());
+    messageBox.setInformativeText("Do you want to do it?");
+    messageBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    int clicked = messageBox.exec();
+
+    if(clicked == QMessageBox::Yes)
+    {
+        situation->execute();
+    }
+}
+
+void BoardFrame::update()
+{
+    countCapturedPieces(shogi::Sente);
+    countCapturedPieces(shogi::Gote);
+    checkGameSituations(game->getGameSituation());
+    QWidget::update();
+}
+
+
+
+
