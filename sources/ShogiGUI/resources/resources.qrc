@@ -10,5 +10,12 @@
         <file>pieces/rook.png</file>
         <file>pieces/silver_general.png</file>
         <file>pieces/gold_general.png</file>
+
+        <file>pieces/promoted_rook.png</file>
+        <file>pieces/promoted_bishop.png</file>
+        <file>pieces/promoted_pawn.png</file>
+        <file>pieces/promoted_lance.png</file>
+        <file>pieces/promoted_silver_general.png</file>
+        <file>pieces/promoted_knight.png</file>
     </qresource>
 </RCC>
