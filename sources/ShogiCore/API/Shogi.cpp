@@ -91,6 +91,7 @@ void Shogi::promotePiece(const Position &position)
         throw BadPromoteException("Illegal promotion.");
     }
     this->board->getPiece(position)->promote();
+    checkShahMateGameSituations();
 }
 
 void Shogi::dropPiece(const PieceType pieceType, const Position &position)
