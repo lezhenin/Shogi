@@ -312,7 +312,7 @@ void BoardFrame::checkGameSituations(shogi::ListOfGameSituations &list) const no
     {
         auto situation = list.front();
 
-        if (!situation->isExecutable())
+        if (situation->isExecutable())
         {
             sendQuestionMessage(situation);
         }
