@@ -58,8 +58,8 @@ namespace shogi
 
     private:
 
-        int vertical;
-        int horizontal;
+        int vertical = 0;
+        int horizontal = 0;
     };
 }
 #endif // POSITION_H
