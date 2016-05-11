@@ -10,8 +10,10 @@ class GameGUI : public QWidget
 {
     Q_OBJECT
 
+
+
 public:
-    explicit GameGUI(QWidget *parent);
+    explicit GameGUI(QWidget *parent, bool needLoad = false);
 
     virtual ~GameGUI() { }
 
@@ -30,7 +32,17 @@ private:
 
     BoardFrame *board;
 
+    void sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &situation);
+    void sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const;
+
 private slots:
+
+    void save();
+    void load();
+    void undo();
+    void redo();
+
+    void handleGameSituation(const std::shared_ptr<shogi::GameSituation> &situation);
 };
 
 

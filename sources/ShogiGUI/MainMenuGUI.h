@@ -47,6 +47,7 @@ private slots:
 
     void exit();
     void startGame();
+    void loadGame();
 
 };
 

@@ -4,7 +4,8 @@
 #include <QtGui/QPixmap>
 #include <QtWidgets/QWidget>
 #include "BoardFrame.h"
-
+#include "../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
+#include "GameGUI.h"
 
 
 BoardFrame::BoardFrame(QWidget *parent) : QFrame(parent)
@@ -306,48 +307,12 @@ void BoardFrame::countCapturedPieces(const shogi::Player &player) noexcept
     }
 }
 
-void BoardFrame::checkGameSituations(shogi::ListOfGameSituations &list) const noexcept
+void BoardFrame::checkGameSituations(shogi::ListOfGameSituations &list) noexcept
 {
     while(!list.empty())
     {
-        auto situation = list.front();
-
-        if (situation->isExecutable())
-        {
-            sendQuestionMessage(situation);
-        }
-        else
-        {
-            sendInformativeMessage(situation);
-        }
+        sendGameSituation(list.front());
         list.pop();
-    }
-}
-
-void BoardFrame::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const
-{
-    QMessageBox messageBox;
-    messageBox.setText(situation->getMessage().c_str());
-    if (situation->isEndOfGame())
-    {
-        messageBox.setInformativeText(tr("Game is end!"));
-        //todo endGame;
-    }
-    messageBox.setStandardButtons(QMessageBox::Ok);
-    messageBox.exec();
-}
-
-void BoardFrame::sendQuestionMessage(std::shared_ptr<shogi::GameSituation> &situation) const
-{
-    QMessageBox messageBox;
-    messageBox.setText(situation->getMessage().c_str());
-    messageBox.setInformativeText(tr("Do you want to do it?"));
-    messageBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    int clicked = messageBox.exec();
-
-    if(clicked == QMessageBox::Yes)
-    {
-        situation->execute();
     }
 }
 
@@ -358,6 +323,23 @@ void BoardFrame::update()
     checkGameSituations(game->getGameSituation());
     QWidget::update();
 }
+
+std::string BoardFrame::save()
+{
+    shogi::JSONSaveManager manager;
+    game->save(&manager);
+    return manager.getJSONString();
+}
+
+void BoardFrame::load(const std::string &save)
+{
+    shogi::JSONSaveManager manager(save);
+    game->load(&manager);
+}
+
+
+
+
 
 
 

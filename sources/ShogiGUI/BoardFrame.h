@@ -11,12 +11,17 @@ class BoardFrame : public QFrame
 public:
 
     explicit BoardFrame(QWidget *parent = 0);
+
+    void undo() noexcept;
+    void redo() noexcept;
+
+    std::string save();
+    void load(const std::string& save);
+
     virtual ~BoardFrame() noexcept;
 
 public slots:
 
-    void undo() noexcept;
-    void redo() noexcept;
 
 protected:
 
@@ -26,7 +31,8 @@ protected:
 
 signals:
 
-    void sendMessage(QString message);
+    void sendMessage(const QString message);
+    void sendGameSituation(const std::shared_ptr<shogi::GameSituation> &);
 
 private:
 
@@ -58,10 +64,10 @@ private:
                                                                     CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
 
     const QRect SENTE_CAPTURE_BOARD() const noexcept { return QRect(width() - PADDING_RIGHT() - SQUARE_WIDTH() / 2
-                                                           - CAPTURE_BOARD_WIDTH * SQUARE_WIDTH(),
-                                                           PADDING_TOP() + SQUARE_HEIGHT() / 2,
-                                                           CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
-                                                           CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
+                                                                    - CAPTURE_BOARD_WIDTH * SQUARE_WIDTH(),
+                                                                    PADDING_TOP() + SQUARE_HEIGHT() / 2,
+                                                                    CAPTURE_BOARD_WIDTH  * SQUARE_WIDTH(),
+                                                                    CAPTURE_BOARD_HEIGHT * SQUARE_HEIGHT());}
 
     void drawBoard(QPainter &painter) const noexcept;
     void drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept;
@@ -73,10 +79,7 @@ private:
     void onRightButtonClicked() noexcept;
 
     void countCapturedPieces(const shogi::Player &player) noexcept;
-    void checkGameSituations(shogi::ListOfGameSituations &list) const noexcept;
-
-    void sendQuestionMessage(std::shared_ptr<shogi::GameSituation> &situation) const;
-    void sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const;
+    void checkGameSituations(shogi::ListOfGameSituations &list) noexcept;
 
     const std::map<shogi::PieceType, QImage> pieceImages =
             {

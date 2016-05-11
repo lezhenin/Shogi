@@ -31,6 +31,7 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     loadButton->resize(BUTTON_SIZE);
     loadButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
                       SCREEN_SIZE.height() - BUTTON_SIZE.height() * 2 - 20 - 5);
+    connect(loadButton, SIGNAL(clicked()), this, SLOT(loadGame()));
 
     startButton = new QPushButton(this);
     startButton->setStyleSheet(QPushButtonStyle);
@@ -42,12 +43,20 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     connect(startButton, SIGNAL(clicked()), this, SLOT(startGame()));
 }
 
-void MainMenuG::startGame()
+void MainMenuG::loadGame()
 {
-    GameGUI *game = new GameGUI(0);
+    GameGUI *game = new GameGUI(0, true);
     game->show();
     exit();
 }
+
+void MainMenuG::startGame()
+{
+    GameGUI *game = new GameGUI(0, false);
+    game->show();
+    exit();
+}
+
 
 
 
