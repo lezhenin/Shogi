@@ -18,7 +18,7 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     exitButton = new QPushButton(this);
 
     exitButton->setStyleSheet(QPushButtonStyle);
-    exitButton->setText("Exit");
+    exitButton->setText(tr("Exit"));
     exitButton->resize(BUTTON_SIZE);
     exitButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
                      SCREEN_SIZE.height() - BUTTON_SIZE.height() - 20);
@@ -27,14 +27,14 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
 
     loadButton = new QPushButton(this);
     loadButton->setStyleSheet(QPushButtonStyle);
-    loadButton->setText("Load");
+    loadButton->setText(tr("Load"));
     loadButton->resize(BUTTON_SIZE);
     loadButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
                       SCREEN_SIZE.height() - BUTTON_SIZE.height() * 2 - 20 - 5);
 
     startButton = new QPushButton(this);
     startButton->setStyleSheet(QPushButtonStyle);
-    startButton->setText("Start");
+    startButton->setText(tr("Start"));
     startButton->resize(BUTTON_SIZE);
     startButton->move(SCREEN_SIZE.width()  - BUTTON_SIZE.width()  - 30,
                       SCREEN_SIZE.height() - BUTTON_SIZE.height() * 3 - 20 - 5 * 2);

@@ -204,7 +204,7 @@ void BoardFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Pl
 
     if(game->getCurrentPlayer() != player)
     {
-        emit sendMessage("This piece don't belong you");
+        emit sendMessage(tr("This piece don't belong you"));
         return;
     }
 
@@ -243,7 +243,7 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
         try
         {
             game->pickPiece(clickedPosition);
-            emit sendMessage("Piece picked.");
+            emit sendMessage(tr("Piece picked."));
         }
         catch (std::exception &e)
         {
@@ -273,7 +273,7 @@ void BoardFrame::onRightButtonClicked() noexcept
     if(game->getPickedPiece() != nullptr)
         {
             game->unPickPiece();
-            emit sendMessage("Piece unpicked.");
+            emit sendMessage(tr("Piece unpicked."));
         }
 }
 
@@ -330,7 +330,7 @@ void BoardFrame::sendInformativeMessage(const std::shared_ptr<shogi::GameSituati
     messageBox.setText(situation->getMessage().c_str());
     if (situation->isEndOfGame())
     {
-        messageBox.setInformativeText("Game is end!");
+        messageBox.setInformativeText(tr("Game is end!"));
         //todo endGame;
     }
     messageBox.setStandardButtons(QMessageBox::Ok);
@@ -341,7 +341,7 @@ void BoardFrame::sendQuestionMessage(std::shared_ptr<shogi::GameSituation> &situ
 {
     QMessageBox messageBox;
     messageBox.setText(situation->getMessage().c_str());
-    messageBox.setInformativeText("Do you want to do it?");
+    messageBox.setInformativeText(tr("Do you want to do it?"));
     messageBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     int clicked = messageBox.exec();
 

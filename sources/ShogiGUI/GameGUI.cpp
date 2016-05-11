@@ -8,24 +8,24 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
 
     board = new BoardFrame(this);
 
-    undoButton = new QPushButton("Undo", this);
+    undoButton = new QPushButton(tr("Undo"), this);
     undoButton->setFocusPolicy(Qt::NoFocus);
     connect(undoButton, SIGNAL(clicked()), board, SLOT(undo()));
 
-    redoButton = new QPushButton("Redo", this);
+    redoButton = new QPushButton(tr("Redo"), this);
     redoButton->setFocusPolicy(Qt::NoFocus);
     connect(redoButton, SIGNAL(clicked()), board, SLOT(redo()));
 
-    saveButton = new QPushButton("Save", this);
+    saveButton = new QPushButton(tr("Save"), this);
     saveButton->setFocusPolicy(Qt::NoFocus);
 
-    loadButton = new QPushButton("Load", this);
+    loadButton = new QPushButton(tr("Load"), this);
     loadButton->setFocusPolicy(Qt::NoFocus);
 
-    exitButton = new QPushButton("Exit", this);
+    exitButton = new QPushButton(tr("Exit"), this);
     exitButton->setFocusPolicy(Qt::NoFocus);
 
-    menuButton = new QPushButton("Menu", this);
+    menuButton = new QPushButton(tr("Menu"), this);
     menuButton->setFocusPolicy(Qt::NoFocus);
 
     status = new QLabel(this);
@@ -48,7 +48,7 @@ GameGUI::GameGUI(QWidget *parent): QWidget(parent, Qt::WindowMinimizeButtonHint 
     setLayout(layout);
 
     status->setFixedWidth(status->width());
-    setWindowTitle("Shogi");
+    setWindowTitle(tr("Shogi"));
 }
 
 

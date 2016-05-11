@@ -221,16 +221,9 @@ Game::Game(bool newGame)
 {
     game = new shogi::Shogi();
 
-    if(newGame)
+    if(newGame || !load());
     {
         game->load();
-    }
-    else
-    {
-        if(!load())
-        {
-            game->load();
-        }
     }
 }
 
