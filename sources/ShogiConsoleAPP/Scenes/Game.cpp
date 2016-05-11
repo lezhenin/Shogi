@@ -236,7 +236,8 @@ bool Game::checkPosition(int horizontal, int vertical) const
 
 bool Game::pick() const
 {
-    int horizontal, vertical;
+    int horizontal = 0;
+    int vertical = 0;
     std::cin >> horizontal >> vertical;
     std::cin.clear();
     if (checkPosition(horizontal, vertical))
@@ -269,7 +270,8 @@ bool Game::unpick() const
 
 bool Game::move() const
 {
-    int horizontal, vertical;
+    int horizontal = 0;
+    int vertical = 0;
     std::cin >> horizontal >> vertical;
     std::cin.clear();
     if (checkPosition(horizontal, vertical))
@@ -293,7 +295,8 @@ bool Game::move() const
 
 bool Game::drop() const
 {
-    int horizontal, vertical;
+    int horizontal = 0;
+    int vertical = 0;
     std::string type;
     std::cin >> type >> horizontal >> vertical;
     std::cin.clear();
