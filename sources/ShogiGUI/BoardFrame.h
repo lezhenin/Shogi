@@ -17,6 +17,7 @@ public:
 
     std::string save();
     void load(const std::string& save);
+    void load();
 
     virtual ~BoardFrame() noexcept;
 

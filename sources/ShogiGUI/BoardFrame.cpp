@@ -337,6 +337,13 @@ void BoardFrame::load(const std::string &save)
     game->load(&manager);
 }
 
+void BoardFrame::load()
+{
+    game->load();
+}
+
+
+
 
 
 

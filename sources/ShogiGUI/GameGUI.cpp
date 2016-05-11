@@ -79,17 +79,35 @@ void GameGUI::sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &s
     }
 }
 
-void GameGUI::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const
+void GameGUI::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation)
 {
     QMessageBox messageBox;
     messageBox.setText(situation->getMessage().c_str());
     if (situation->isEndOfGame())
     {
         messageBox.setInformativeText(tr("Game is end!"));
-        //todo endGame;
+        messageBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Close);
     }
-    messageBox.setStandardButtons(QMessageBox::Ok);
-    messageBox.exec();
+    else
+    {
+        messageBox.setStandardButtons(QMessageBox::Ok);
+    }
+    int clicked = messageBox.exec();
+    switch (clicked)
+    {
+        case QMessageBox::Retry:
+        {
+            board->load();
+            break;
+        }
+        case QMessageBox::Close:
+            {
+                close();
+                break;
+            }
+        default: { }
+    }
+
 }
 
 void GameGUI::handleGameSituation(const std::shared_ptr<shogi::GameSituation> &situation)

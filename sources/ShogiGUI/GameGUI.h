@@ -33,7 +33,7 @@ private:
     BoardFrame *board;
 
     void sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &situation);
-    void sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation) const;
+    void sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation);
 
 private slots:
 
