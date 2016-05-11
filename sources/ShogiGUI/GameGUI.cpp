@@ -30,6 +30,7 @@ GameGUI::GameGUI(QWidget *parent, bool needLoad): QWidget(parent, Qt::WindowMini
 
     exitButton = new QPushButton(tr("Exit"), this);
     exitButton->setFocusPolicy(Qt::NoFocus);
+    connect(exitButton, SIGNAL(clicked()), this, SLOT(exit()));
 
     menuButton = new QPushButton(tr("Menu"), this);
     menuButton->setFocusPolicy(Qt::NoFocus);
@@ -48,6 +49,7 @@ GameGUI::GameGUI(QWidget *parent, bool needLoad): QWidget(parent, Qt::WindowMini
     connect(board, SIGNAL(sendGameSituation(const std::shared_ptr<shogi::GameSituation> &)),
              this, SLOT(handleGameSituation(const std::shared_ptr<shogi::GameSituation> &)));
 
+    //todo переделать расположение элементов
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(board, 0, 1, 12, 6);
     layout->addWidget(undoButton, 0, 7);
@@ -81,6 +83,7 @@ void GameGUI::sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &s
 
 void GameGUI::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation)
 {
+    //todo подумать о выделении метода
     QMessageBox messageBox;
     messageBox.setText(situation->getMessage().c_str());
     if (situation->isEndOfGame())
@@ -124,6 +127,7 @@ void GameGUI::handleGameSituation(const std::shared_ptr<shogi::GameSituation> &s
 
 void GameGUI::save()
 {
+    //todo добавить проверку файла
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Create save"), "save", tr("Shogi saves (*.shs)"));
     QFile saveFile(fileName);
@@ -136,6 +140,7 @@ void GameGUI::save()
 
 void GameGUI::load()
 {
+    //todo добавить проверку файла
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Open save"), "save", tr("Shogi saves (*.shs)"));
     QFile saveFile(fileName);
@@ -156,6 +161,20 @@ void GameGUI::redo()
 {
     board->redo();
 }
+
+void GameGUI::exit()
+{
+    close();
+}
+
+void GameGUI::menu()
+{
+    //todo реализовать переключение между окнами нормаольным способом
+}
+
+
+
+
 
 
 

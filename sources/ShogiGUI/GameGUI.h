@@ -41,6 +41,8 @@ private slots:
     void load();
     void undo();
     void redo();
+    void exit();
+    void menu();
 
     void handleGameSituation(const std::shared_ptr<shogi::GameSituation> &situation);
 };
