@@ -6,6 +6,9 @@ using namespace shogi;
 
 void Shogi::load() noexcept
 {
+    clearToRedo();
+    clearToUndo();
+    clearBoard(*board);
     gameLoader->loadGame(*board, &currentPlayer);
 }
 
