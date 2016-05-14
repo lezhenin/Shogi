@@ -11,5 +11,6 @@ int main(int argc, char *argv[])
     app.installTranslator(&translator);
     MainMenuG menu(0);
     menu.show();
+    qDebug() << "menu closed";
     return app.exec();
 }
