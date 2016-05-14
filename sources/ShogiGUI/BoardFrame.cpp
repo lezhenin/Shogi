@@ -232,9 +232,9 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
             game->dropPiece(*pieceForDrop, clickedPosition);
             pieceForDrop = nullptr;
         }
-        catch (std::exception &e)
+        catch (shogi::BadDropException &e)
         {
-            emit sendMessage(e.what());
+            emit sendMessage(tr("You can't drop this piece here."));
         }
         return;
     }
@@ -246,9 +246,9 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
             game->pickPiece(clickedPosition);
             emit sendMessage(tr("Piece picked."));
         }
-        catch (std::exception &e)
+        catch (shogi::BadPickException &e)
         {
-            emit sendMessage(e.what());
+            emit sendMessage(tr("You can't pick this piece."));
         }
 
     }
@@ -258,9 +258,9 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
         {
             game->movePiece(clickedPosition);
         }
-        catch (std::exception &e)
+        catch (shogi::BadMoveException &e)
         {
-            emit sendMessage(e.what());
+            emit sendMessage(tr("You can't move this piece here."));
         }
     }
 }
