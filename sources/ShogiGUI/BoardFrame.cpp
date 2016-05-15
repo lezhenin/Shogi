@@ -142,11 +142,12 @@ void BoardFrame::drawBoard(QPainter &painter) const noexcept
 //
 //        painter.drawText(textRect, Qt::AlignCenter, QString::number(i+1));
 //    }
-    painter.fillRect(BOARD_RECT(), QColor(183,122,00));
+    //painter.fillRect(BOARD_RECT(), QColor(183,122,00));
+    painter.drawImage(BOARD_RECT(),QImage(":/board_texture.jpg"));
     painter.drawRect(BOARD_RECT());
 
 
-    painter.fillRect(GAME_ZONE_RECT(), QColor(198,132,00));
+   // painter.fillRect(GAME_ZONE_RECT(), QColor(198,132,00));
     for (int i = 0; i <= BOARD_WIDTH; i++)
     {
         painter.drawLine(GAME_ZONE_RECT().left() + SQUARE_WIDTH() * i, GAME_ZONE_RECT().top(),
