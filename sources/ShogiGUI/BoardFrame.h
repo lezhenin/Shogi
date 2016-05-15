@@ -54,8 +54,8 @@ private:
                                                          SQUARE_WIDTH()  * (BOARD_WIDTH + 1),
                                                          SQUARE_HEIGHT() * (BOARD_HEIGHT + 1));}
 
-    const QRect GAME_ZONE_RECT() const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3,
-                                                         PADDING_TOP()  + SQUARE_WIDTH(),
+    const QRect GAME_ZONE_RECT() const noexcept { return QRect(PADDING_LEFT() + SQUARE_WIDTH() * 3 + SQUARE_WIDTH()/2,
+                                                         PADDING_TOP()  + SQUARE_WIDTH()/2,
                                                          SQUARE_WIDTH()  * (BOARD_WIDTH),
                                                          SQUARE_HEIGHT() * (BOARD_HEIGHT));}
 

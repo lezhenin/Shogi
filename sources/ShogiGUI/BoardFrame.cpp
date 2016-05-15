@@ -12,6 +12,13 @@ BoardFrame::BoardFrame(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setFocusPolicy(Qt::StrongFocus);
+
+    QPixmap background(":/board_background.jpg");
+    QPalette qPalette;
+    qPalette.setBrush(this->backgroundRole(),QBrush(background));
+    this->setAutoFillBackground(true);
+    this->setPalette(qPalette);
+
     game = new shogi::Shogi();
     game->load();
 }
@@ -118,22 +125,24 @@ void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) c
 
 void BoardFrame::drawBoard(QPainter &painter) const noexcept
 {
-    for(int i = 0; i < 9; ++i)
-    {
-        QRect textRect(BOARD_RECT().left() + SQUARE_WIDTH() * i,
-                       BOARD_RECT().top(),
-                       SQUARE_WIDTH(),
-                       SQUARE_HEIGHT());
-
-        painter.drawText(textRect, Qt::AlignCenter, QString::number(abs(i-BOARD_WIDTH)));
-
-        textRect = QRect(BOARD_RECT().right() - SQUARE_WIDTH(),
-                         BOARD_RECT().top() + SQUARE_HEIGHT() * (i + 1),
-                         SQUARE_WIDTH(),
-                         SQUARE_HEIGHT());
-
-        painter.drawText(textRect, Qt::AlignCenter, QString::number(i+1));
-    }
+    //todo подумать стоит ли оставить отрисовку цифр или нет
+//    for(int i = 0; i < 9; ++i)
+//    {
+//        QRect textRect(BOARD_RECT().left() + SQUARE_WIDTH() * i,
+//                       BOARD_RECT().top(),
+//                       SQUARE_WIDTH(),
+//                       SQUARE_HEIGHT());
+//
+//        painter.drawText(textRect, Qt::AlignCenter, QString::number(abs(i-BOARD_WIDTH)));
+//
+//        textRect = QRect(BOARD_RECT().right() - SQUARE_WIDTH(),
+//                         BOARD_RECT().top() + SQUARE_HEIGHT() * (i + 1),
+//                         SQUARE_WIDTH(),
+//                         SQUARE_HEIGHT());
+//
+//        painter.drawText(textRect, Qt::AlignCenter, QString::number(i+1));
+//    }
+    painter.fillRect(BOARD_RECT(), QColor(183,122,00));
     painter.drawRect(BOARD_RECT());
 
 
