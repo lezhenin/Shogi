@@ -4,6 +4,7 @@
         <file>menu_background2.png</file>
         <file>board_background.jpg</file>
         <file>board_texture.jpg</file>
+        <file>side_board_texture.jpg</file>
 
         <file>pieces/pawn.png</file>
         <file>pieces/lance.png</file>
