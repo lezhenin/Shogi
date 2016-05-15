@@ -13,7 +13,9 @@ class GameGUI : public QWidget
 
 
 public:
-    explicit GameGUI(QWidget *parent, bool needLoad = false);
+    explicit GameGUI(QWidget *parent);
+
+    void load(QString &saveDate);
 
     virtual ~GameGUI() { }
 

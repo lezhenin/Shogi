@@ -9,7 +9,7 @@
 #include "MainMenuGUI.h"
 
 
-GameGUI::GameGUI(QWidget *parent, bool needLoad): QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
+GameGUI::GameGUI(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
 {
     board = new BoardFrame(this);
     connect(board, SIGNAL(sendMessage(const QString)), this, SLOT(showMessage(QString)));
@@ -40,8 +40,6 @@ GameGUI::GameGUI(QWidget *parent, bool needLoad): QWidget(parent, Qt::WindowMini
     menuButton = new QPushButton(tr("Menu"), this);
     menuButton->setFocusPolicy(Qt::NoFocus);
     connect(menuButton, SIGNAL(clicked()), this, SLOT(menu()));
-
-    if(needLoad) load();
 
     this->setFixedSize(SCREEN_SIZE);
 
@@ -152,7 +150,6 @@ void GameGUI::handleGameSituation(const std::shared_ptr<shogi::GameSituation> &s
 
 void GameGUI::save()
 {
-    //todo добавить проверку файла
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Create save"), "save", tr("Shogi saves (*.shs)"));
     QFile saveFile(fileName);
@@ -173,7 +170,7 @@ void GameGUI::load()
                                                     tr("Open save"), "save", tr("Shogi saves (*.shs)"));
     QFile saveFile(fileName);
     saveFile.open(QIODevice::ReadOnly);
-    if(!saveFile.isOpen() || !saveFile.canReadLine())
+    if(!saveFile.isOpen())
     {
         return;
     }
@@ -183,6 +180,12 @@ void GameGUI::load()
     saveFile.close();
     board->load(saveString.toStdString());
 }
+
+void GameGUI::load(QString &saveDate)
+{
+    board->load(saveDate.toStdString());
+}
+
 
 void GameGUI::undo()
 {
@@ -211,6 +214,9 @@ void GameGUI::showMessage(QString msg)
 {
     status->setText(msg.simplified());
 }
+
+
+
 
 
 

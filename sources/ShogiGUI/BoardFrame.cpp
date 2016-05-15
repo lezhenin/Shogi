@@ -5,7 +5,7 @@
 #include <QtWidgets/QWidget>
 #include "BoardFrame.h"
 #include "../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
-#include "GameGUI.h"
+
 
 
 BoardFrame::BoardFrame(QWidget *parent) : QFrame(parent)

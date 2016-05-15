@@ -45,14 +45,29 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
 
 void MainMenuG::loadGame()
 {
-    GameGUI *game = new GameGUI(0, true);
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Open save"), "save", tr("Shogi saves (*.shs)"));
+    QFile saveFile(fileName);
+    saveFile.open(QIODevice::ReadOnly);
+    if(!saveFile.isOpen())
+    {
+        qDebug() << "can not open";
+        return;
+    }
+    qDebug() << "file opened";
+    QString saveString;
+    QTextStream stream(&saveFile);
+    saveString = stream.readAll();
+    saveFile.close();
+    GameGUI *game = new GameGUI(0);
+    game->load(saveString);
     game->show();
     exit();
 }
 
 void MainMenuG::startGame()
 {
-    GameGUI *game = new GameGUI(0, false);
+    GameGUI *game = new GameGUI(0);
     game->show();
     exit();
 }
