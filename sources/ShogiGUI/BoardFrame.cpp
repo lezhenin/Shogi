@@ -69,7 +69,8 @@ void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &play
     painter.setFont(font);
     QRect text(CAPTURE_BOARD.topLeft(),QSize(CAPTURE_BOARD.width(),SQUARE_HEIGHT()));
 
-    painter.drawText(text, ((player == shogi::Sente) ? "Sente" : "Gote"), QTextOption(Qt::AlignCenter | Qt::AlignHCenter));
+    painter.drawText(text, ((player == shogi::Sente) ? "Sente" : "Gote"),
+                     QTextOption(Qt::AlignCenter | Qt::AlignHCenter));
 
     int i = 1;
     for (auto &piece : capturedPieces)

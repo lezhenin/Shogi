@@ -24,8 +24,6 @@ qt5_add_translation(TRANSLATION translation/translation_ru.ts)
 
 add_executable(GUIApp ${SOURCE_FILES} ${RESOURCE_ADDED} ${TRANSLATION})
 
-set(CMAKE_EXE_LINKER_FLAGS "-static")
-
 target_link_libraries(GUIApp Qt5::Core)
 target_link_libraries(GUIApp Qt5::Widgets)
 target_link_libraries(GUIApp ShogiCore)
