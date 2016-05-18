@@ -21,7 +21,7 @@ public:
 
 private:
 
-    const QSize SCREEN_SIZE{1120, 640};
+    const QSize SCREEN_SIZE{1120, 660};
     const QSize GRAPHIC_ZONE_SIZE{960, 600};
     const QSize BUTTON_SIZE{145, 50};
 

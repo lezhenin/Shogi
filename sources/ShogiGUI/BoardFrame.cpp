@@ -1,6 +1,5 @@
 #include <QtCore/QVarLengthArray>
 #include <QtCore/QRect>
-#include <QtCore/QDebug>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QWidget>
 #include "BoardFrame.h"
@@ -83,7 +82,6 @@ void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &play
         if(pieceForDrop != nullptr && piece.first == *pieceForDrop &&
            game->getCurrentPlayer() == player)
         {
-            qDebug() << "draw ellipse";
             painter.drawEllipse(pieceRect);
         }
 
@@ -175,7 +173,6 @@ void BoardFrame::mousePressEvent(QMouseEvent *event)
 void BoardFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Player &player) noexcept
 {
 
-    qDebug() << ((player == shogi::Sente) ? "sente" : "gote");
     auto &capturedPieces  = senteCapturedPieces;
     QRect captureBoard;
 
@@ -206,7 +203,6 @@ void BoardFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Pl
         return;
     }
 
-    qDebug() << "active";
 
     int number = (event->y() - activeZone.top()) / SQUARE_HEIGHT();
     auto piece = capturedPieces.begin();

@@ -1,10 +1,5 @@
 #include "../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
 #include "BoardFrame.h"
-#include <QtWidgets/QWidget>
-#include <QtGui/QPixmap>
-#include <QtCore/QDebug>
-#include <QtCore/QVarLengthArray>
-#include <QtWidgets/QAbstractButton>
 #include "GameGUI.h"
 #include "MainMenuGUI.h"
 
