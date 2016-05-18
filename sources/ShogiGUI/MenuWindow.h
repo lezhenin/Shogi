@@ -5,12 +5,12 @@
 #include <QtGui/QTextFormat>
 #include <QtWidgets/QWidget>
 
-class MainMenuG: public QWidget
+class MenuWindow: public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MainMenuG(QWidget *parent);
+    explicit MenuWindow(QWidget *parent);
 
 
 private:

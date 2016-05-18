@@ -1,12 +1,12 @@
-#include "MainMenuGUI.h"
-#include "GameGUI.h"
+#include "MenuWindow.h"
+#include "GameWindow.h"
 
-void MainMenuG::exit()
+void MenuWindow::exit()
 {
     this->close();
 }
 
-MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
+MenuWindow::MenuWindow(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
 {
     this->setFixedSize(SCREEN_SIZE);
 
@@ -43,7 +43,7 @@ MainMenuG::MainMenuG(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButton
     connect(startButton, SIGNAL(clicked()), this, SLOT(startGame()));
 }
 
-void MainMenuG::loadGame()
+void MenuWindow::loadGame()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Open save"), "save", tr("Shogi saves (*.shs)"));
@@ -59,15 +59,15 @@ void MainMenuG::loadGame()
     QTextStream stream(&saveFile);
     saveString = stream.readAll();
     saveFile.close();
-    GameGUI *game = new GameGUI(0);
+    GameWindow *game = new GameWindow(0);
     game->load(saveString);
     game->show();
     exit();
 }
 
-void MainMenuG::startGame()
+void MenuWindow::startGame()
 {
-    GameGUI *game = new GameGUI(0);
+    GameWindow *game = new GameWindow(0);
     game->show();
     exit();
 }

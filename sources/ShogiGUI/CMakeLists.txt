@@ -6,12 +6,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SOURCE_FILES
         main.cpp
-        MainMenuGUI.cpp
-        MainMenuGUI.h
-        GameGUI.cpp
-        GameGUI.h
-        BoardFrame.cpp
-        BoardFrame.h)
+        MenuWindow.cpp
+        MenuWindow.h
+        GameWindow.cpp
+        GameWindow.h
+        GameGraphicFrame.cpp
+        GameGraphicFrame.h)
 
 
 find_package( Qt5Core REQUIRED )

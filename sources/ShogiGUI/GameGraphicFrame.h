@@ -5,12 +5,12 @@
 #include <QtWidgets>
 #include "../ShogiCore/API/Shogi.h"
 
-class BoardFrame : public QFrame
+class GameGraphicFrame : public QFrame
 {
     Q_OBJECT
 public:
 
-    explicit BoardFrame(QWidget *parent = 0);
+    explicit GameGraphicFrame(QWidget *parent = 0);
 
     void undo() noexcept;
     void redo() noexcept;
@@ -19,7 +19,7 @@ public:
     void load(const std::string& save);
     void load();
 
-    virtual ~BoardFrame() noexcept;
+    virtual ~GameGraphicFrame() noexcept;
 
 public slots:
 

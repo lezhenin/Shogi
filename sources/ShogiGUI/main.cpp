@@ -1,6 +1,6 @@
 #include <QtWidgets>
-#include "MainMenuGUI.h"
-#include "GameGUI.h"
+#include "MenuWindow.h"
+#include "GameWindow.h"
 
 
 int main(int argc, char *argv[])
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     translator.load("translation_" + QLocale::system().name());
     app.installTranslator(&translator);
-    MainMenuG menu(0);
+    MenuWindow menu(0);
     menu.show();
     return app.exec();
 }

@@ -4,20 +4,20 @@
 #include "../ShogiCore/API/Shogi.h"
 #include <QtGuiDepends>
 #include <QtWidgets>
-#include "BoardFrame.h"
+#include "GameGraphicFrame.h"
 
-class GameGUI : public QWidget
+class GameWindow : public QWidget
 {
     Q_OBJECT
 
 
 
 public:
-    explicit GameGUI(QWidget *parent);
+    explicit GameWindow(QWidget *parent);
 
     void load(QString &saveDate);
 
-    virtual ~GameGUI() { }
+    virtual ~GameWindow() { }
 
 private:
 
@@ -57,7 +57,7 @@ private:
 
     QLabel *status;
 
-    BoardFrame *board;
+    GameGraphicFrame *board;
 
     void sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &situation);
     void sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation);

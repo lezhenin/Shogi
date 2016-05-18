@@ -2,12 +2,12 @@
 #include <QtCore/QRect>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QWidget>
-#include "BoardFrame.h"
+#include "GameGraphicFrame.h"
 #include "../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
 
 
 
-BoardFrame::BoardFrame(QWidget *parent) : QFrame(parent)
+GameGraphicFrame::GameGraphicFrame(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel );
     setFocusPolicy(Qt::StrongFocus);
@@ -22,12 +22,12 @@ BoardFrame::BoardFrame(QWidget *parent) : QFrame(parent)
     game->load();
 }
 
-BoardFrame::~BoardFrame()
+GameGraphicFrame::~GameGraphicFrame()
 {
     delete game;
 }
 
-void BoardFrame::paintEvent(QPaintEvent *event)
+void GameGraphicFrame::paintEvent(QPaintEvent *event)
 {
     QFrame::paintEvent(event);
 
@@ -42,7 +42,7 @@ void BoardFrame::paintEvent(QPaintEvent *event)
 
 }
 
-void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &player) const noexcept
+void GameGraphicFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &player) const noexcept
 {
     QRect CAPTURE_BOARD;
     std::map<shogi::PieceType, int> capturedPieces;
@@ -94,7 +94,7 @@ void BoardFrame::drawCapturedPieces(QPainter &painter, const shogi::Player &play
 
 }
 
-void BoardFrame::drawPieces(QPainter &painter) const noexcept
+void GameGraphicFrame::drawPieces(QPainter &painter) const noexcept
 {
     for (shogi::Piece* piece : game->getBoard().getPiecesOnBoard())
     {
@@ -102,7 +102,7 @@ void BoardFrame::drawPieces(QPainter &painter) const noexcept
     }
 }
 
-void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept
+void GameGraphicFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) const noexcept
 {
     int x = abs(samplePiece->getPosition().getVertical()   - 9);
     int y =     samplePiece->getPosition().getHorizontal() - 1;
@@ -128,7 +128,7 @@ void BoardFrame::drawPiece(QPainter &painter, const shogi::Piece *samplePiece) c
     }
 }
 
-void BoardFrame::drawBoard(QPainter &painter) const noexcept
+void GameGraphicFrame::drawBoard(QPainter &painter) const noexcept
 {
     painter.drawImage(BOARD_RECT(),QImage(":/board_texture.jpg"));
     painter.drawRect(BOARD_RECT());
@@ -145,7 +145,7 @@ void BoardFrame::drawBoard(QPainter &painter) const noexcept
     }
 }
 
-void BoardFrame::mousePressEvent(QMouseEvent *event)
+void GameGraphicFrame::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::RightButton)
     {
@@ -170,7 +170,7 @@ void BoardFrame::mousePressEvent(QMouseEvent *event)
 
 }
 
-void BoardFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Player &player) noexcept
+void GameGraphicFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Player &player) noexcept
 {
 
     auto &capturedPieces  = senteCapturedPieces;
@@ -213,7 +213,7 @@ void BoardFrame::onCaptureBoardClicked(const QMouseEvent *event, const shogi::Pl
     pieceForDrop = &piece->first;
 }
 
-void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
+void GameGraphicFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
 {
     shogi::Position clickedPosition((event->y() - GAME_ZONE_RECT().top()) / SQUARE_HEIGHT() + 1,
                                 abs((event->x() - GAME_ZONE_RECT().left()) / SQUARE_WIDTH() - 9));
@@ -258,7 +258,7 @@ void BoardFrame::onGameZoneClicked(const QMouseEvent *event) noexcept
     }
 }
 
-void BoardFrame::onRightButtonClicked() noexcept
+void GameGraphicFrame::onRightButtonClicked() noexcept
 {
     if(pieceForDrop != nullptr)
         {
@@ -271,20 +271,20 @@ void BoardFrame::onRightButtonClicked() noexcept
         }
 }
 
-void BoardFrame::undo() noexcept
+void GameGraphicFrame::undo() noexcept
 {
     game->undo();
     update();
 }
 
-void BoardFrame::redo() noexcept
+void GameGraphicFrame::redo() noexcept
 {
     game->redo();
     update();
 }
 
 
-void BoardFrame::countCapturedPieces(const shogi::Player &player) noexcept
+void GameGraphicFrame::countCapturedPieces(const shogi::Player &player) noexcept
 {
     const shogi::ListOfPieces &list = game->getBoard().getCapturedPieces(player);
     std::map<shogi::PieceType, int> &capturedPieces = (player == shogi::Sente) ? senteCapturedPieces : goteCapturedPieces;
@@ -300,7 +300,7 @@ void BoardFrame::countCapturedPieces(const shogi::Player &player) noexcept
     }
 }
 
-void BoardFrame::checkGameSituations(shogi::ListOfGameSituations &list) noexcept
+void GameGraphicFrame::checkGameSituations(shogi::ListOfGameSituations &list) noexcept
 {
     while(!list.empty())
     {
@@ -309,7 +309,7 @@ void BoardFrame::checkGameSituations(shogi::ListOfGameSituations &list) noexcept
     }
 }
 
-void BoardFrame::update()
+void GameGraphicFrame::update()
 {
     countCapturedPieces(shogi::Sente);
     countCapturedPieces(shogi::Gote);
@@ -317,20 +317,20 @@ void BoardFrame::update()
     QWidget::update();
 }
 
-std::string BoardFrame::save()
+std::string GameGraphicFrame::save()
 {
     shogi::JSONSaveManager manager;
     game->save(&manager);
     return manager.getJSONString();
 }
 
-void BoardFrame::load(const std::string &save)
+void GameGraphicFrame::load(const std::string &save)
 {
     shogi::JSONSaveManager manager(save);
     game->load(&manager);
 }
 
-void BoardFrame::load()
+void GameGraphicFrame::load()
 {
     game->load();
 }

@@ -1,12 +1,12 @@
 #include "../ShogiCore/SaveAndLoad/JSON/JSONSaveManager.h"
-#include "BoardFrame.h"
-#include "GameGUI.h"
-#include "MainMenuGUI.h"
+#include "GameGraphicFrame.h"
+#include "GameWindow.h"
+#include "MenuWindow.h"
 
 
-GameGUI::GameGUI(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
+GameWindow::GameWindow(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
 {
-    board = new BoardFrame(this);
+    board = new GameGraphicFrame(this);
     connect(board, SIGNAL(sendMessage(const QString)), this, SLOT(showMessage(QString)));
 
     connect(board, SIGNAL(sendGameSituation(const std::shared_ptr<shogi::GameSituation> &)),
@@ -85,7 +85,7 @@ GameGUI::GameGUI(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint
 }
 
 
-void GameGUI::sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &situation)
+void GameWindow::sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &situation)
 {
     QMessageBox messageBox;
     messageBox.setText(situation->getMessage().c_str());
@@ -99,7 +99,7 @@ void GameGUI::sendQuestionMessage(const std::shared_ptr<shogi::GameSituation> &s
     }
 }
 
-void GameGUI::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation)
+void GameWindow::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation> &situation)
 {
     //todo подумать о выделении метода
     QMessageBox messageBox;
@@ -131,7 +131,7 @@ void GameGUI::sendInformativeMessage(const std::shared_ptr<shogi::GameSituation>
 
 }
 
-void GameGUI::handleGameSituation(const std::shared_ptr<shogi::GameSituation> &situation)
+void GameWindow::handleGameSituation(const std::shared_ptr<shogi::GameSituation> &situation)
 {
     if (situation->isExecutable())
     {
@@ -143,7 +143,7 @@ void GameGUI::handleGameSituation(const std::shared_ptr<shogi::GameSituation> &s
     }
 }
 
-void GameGUI::save()
+void GameWindow::save()
 {
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Create save"), "save", tr("Shogi saves (*.shs)"));
@@ -159,7 +159,7 @@ void GameGUI::save()
     saveFile.close();
 }
 
-void GameGUI::load()
+void GameWindow::load()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Open save"), "save", tr("Shogi saves (*.shs)"));
@@ -176,38 +176,40 @@ void GameGUI::load()
     board->load(saveString.toStdString());
 }
 
-void GameGUI::load(QString &saveDate)
+void GameWindow::load(QString &saveDate)
 {
     board->load(saveDate.toStdString());
 }
 
 
-void GameGUI::undo()
+void GameWindow::undo()
 {
     board->undo();
 }
 
-void GameGUI::redo()
+void GameWindow::redo()
 {
     board->redo();
 }
 
-void GameGUI::exit()
+void GameWindow::exit()
 {
     close();
 }
 
-void GameGUI::menu()
+void GameWindow::menu()
 {
     //todo реализовать переключение между окнами нормаольным способом
-    MainMenuG *menu = new MainMenuG(0);
+    MenuWindow *menu = new MenuWindow(0);
     menu->show();
     close();
 }
 
-void GameGUI::showMessage(QString msg)
+void GameWindow::showMessage(QString msg)
 {
-    status->setText(msg.simplified());
+    //проверка совместимости...
+    //status->setText(msg.simplified());
+    status->setText(msg);
 }
 
 
