@@ -221,7 +221,7 @@ Game::~Game()
 Game::Game(bool newGame)
 {
     game = new shogi::Shogi();
-    intelligence = new shogi::AI(game);
+    intelligence = new shogi::RandomAI(game);
 
     if(newGame || !load());
     {

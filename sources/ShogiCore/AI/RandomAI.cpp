@@ -1,9 +1,8 @@
-#include <random>
-#include "AI.h"
+#include "RandomAI.h"
 
 using namespace shogi;
 
-void AI::makeMove()
+void RandomAI::makeMove() noexcept
 {
     ListOfPieces &pieces = game->getBoard().getPiecesOnBoard();
     Piece *samplePiece = nullptr;
@@ -20,8 +19,7 @@ void AI::makeMove()
     game->movePiece(*get_random<std::vector<shogi::Position>>(positions));
 }
 
-int AI::random(int min, int max) const noexcept
+int RandomAI::random(int min, int max) const noexcept
 {
     return min + std::rand() & max;
 }
-

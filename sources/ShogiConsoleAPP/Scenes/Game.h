@@ -3,7 +3,7 @@
 #include "../../ShogiCore/API/GameAPI.h"
 #include "Scene.h"
 #include "../../ShogiCore/GameLogic/GameSituations/PromotionIsAvailable.h"
-#include "../../ShogiCore/AI/AI.h"
+#include "../../ShogiCore/AI/RandomAI.h"
 
 /**
  * @brief Сцена, содержащая игровой процесс.

@@ -6,30 +6,30 @@
 #include "../GameLogic/AbstractGameLogic.h"
 #include "../GameLogic/GameLogic.h"
 
-namespace shogi {
-
+namespace shogi
+{
+    /**
+     * @brief Исскуственный интелект
+     *
+     * Интерфейс иссукственного интелекта для игры в Сёги.
+     */
     class AI
     {
     public:
-
+        /**
+         * @param game Объект класса реализующего интерфейс GameAPI.
+         */
         AI(GameAPI *game) : game(game) { }
-        void makeMove();
+        /**
+         * @brief Сделать ход
+         *
+         * Совершает ход.
+         */
+        virtual void makeMove() noexcept = 0;
 
-
-    private:
-
+    protected:
         GameAPI *game;
-        AbstractGameLogic *logic = new GameLogic(&game->getBoard());
 
-        int random(int min, int max) const noexcept ;
-
-        template<typename T> const
-        typename T::iterator get_random(T & list) const noexcept
-        {
-            auto start = list.begin();
-            std::advance(start, random(0,list.size()-1));
-            return start;
-        }
     };
 
 }

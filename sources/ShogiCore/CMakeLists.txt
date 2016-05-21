@@ -13,6 +13,7 @@ set(SOURCE_FILES
         Model/Square.h
         Model/Exceptions/BadPositionException.h
         Model/Exceptions/ModelException.h
+        Model/Exceptions/PieceIsNotOnBoardException.h
         Model/BoardMemento.cpp
         Model/BoardMemento.h
         Model/AbstractBoardMemento.h
@@ -53,7 +54,11 @@ set(SOURCE_FILES
         API/Exceptions/BadMoveException.h
         API/Exceptions/BadPickException.h
         API/Exceptions/BadDropException.h
-        API/Exceptions/BadPromoteException.h Model/Exceptions/PieceIsNotOnBoardException.h AI/AI.cpp AI/AI.h)
+        API/Exceptions/BadPromoteException.h
+
+        AI/AI.h
+        AI/RandomAI.cpp
+        AI/RandomAI.h)
 
 add_library (ShogiCore ${SOURCE_FILES})
 
