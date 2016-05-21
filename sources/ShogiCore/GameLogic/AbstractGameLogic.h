@@ -58,7 +58,7 @@ namespace shogi
 		 */
         virtual bool checkDrop(Piece *piece, const Position &position) const noexcept = 0;
 
-
+        virtual std::vector<Position> getAllPositionToMove(const Piece *piece) const noexcept = 0;
         virtual ~AbstractGameLogic() { }
     };
 }
