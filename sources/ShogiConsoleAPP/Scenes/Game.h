@@ -2,6 +2,8 @@
 #define SHOGI_GAME_H
 #include "../../ShogiCore/API/GameAPI.h"
 #include "Scene.h"
+#include "../../ShogiCore/GameLogic/GameSituations/PromotionIsAvailable.h"
+#include "../../ShogiCore/AI/AI.h"
 
 /**
  * @brief Сцена, содержащая игровой процесс.
@@ -75,7 +77,9 @@ private:
     int countPieces(const shogi::PieceType pieceType, const shogi::Player &player, const shogi::ListOfPieces &pieces) const;
 
     shogi::GameAPI *game;
+    shogi::AI *intelligence;
     bool isRun = false;
+
 
     const std::map<std::string, int> tableOfCommands =
         {

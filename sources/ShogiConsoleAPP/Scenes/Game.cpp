@@ -214,12 +214,14 @@ void Game::stop()
 
 Game::~Game()
 {
+    delete intelligence;
     delete game;
 }
 
 Game::Game(bool newGame)
 {
     game = new shogi::Shogi();
+    intelligence = new shogi::AI(game);
 
     if(newGame || !load());
     {
@@ -279,6 +281,7 @@ bool Game::move() const
         try
         {
             game->movePiece(shogi::Position(horizontal, vertical));
+            intelligence->makeMove();
             return true;
         }
         catch (std::exception &e)

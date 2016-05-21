@@ -1,6 +1,4 @@
 #include <random>
-#include <ctime>
-#include <iostream>
 #include "AI.h"
 
 using namespace shogi;
