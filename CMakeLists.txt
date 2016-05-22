@@ -8,6 +8,7 @@ link_libraries(gcov)
 endif()
 
 add_subdirectory(sources)
+add_subdirectory(report)
 
 
 
