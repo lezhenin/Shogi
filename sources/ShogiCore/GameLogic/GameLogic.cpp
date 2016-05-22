@@ -57,6 +57,10 @@ std::vector<Position> GameLogic::getAllPositionToMove(const Piece *piece) const 
             {
                 positions.push_back(destination);
             }
+            else
+            {
+                break;
+            }
         }
     }
     return  positions;
