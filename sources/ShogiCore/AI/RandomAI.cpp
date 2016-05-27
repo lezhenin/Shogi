@@ -21,5 +21,5 @@ void RandomAI::makeMove() noexcept
 
 int RandomAI::random(int min, int max) const noexcept
 {
-    return min + std::rand() & max;
+    return (std::rand() % max);
 }
