@@ -148,13 +148,32 @@
 
 \subsection{Компоненты}
 
+На основе анализа концепции и выделенных прецедентов использования было принято решение выделить три компонента, которые будут входить в состав продукта: библиотека, содержащая игровую модель и механику игры, консольное и графическое приложения.
+
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.5]{../diagrams/ComponentDiagram1.png}
-		\caption{Диаграмма прцедентов использования}
-		\label{pic:use_case}
+		\includegraphics[scale=0.7]{../diagrams/ComponentDiagram1.png}
+		\caption{Диаграмма компонентов}
+		\label{pic:components}
 	\end{center}
 \end{figure}
+
+\subsubsection{Библиотека}
+
+\subsubsection{Консольное приложение}
+
+\subsubsection{Графическое приложение}
+
+\subsection{Структура генерируемых файлов}
+
+В ходе работы приложение предполагается создавать файлы сохранения, открывать и читать их. Для того, чтобы обеспечить удобный парсинг файлов сохранения было решено использовать формат JSON. Этот формат легко читается как компьютером, так и человеком. Кроме того, существует множество готовых инструментов предназначенных для работы с JSON, которые могли бы использоваться в процессе разработки.
+
+\captionof{lstlisting}{save\_example.json} 
+\lstinputlisting[label=code:hello]{../save_example.json}
+
+Файл сохранения содержит информацию об очередности хода, список фигур на доске и их положение, спиок захваченных фигур.
+
+\subsection{Инструменты}
 
 \section{Реализация}
 
@@ -169,25 +188,6 @@
 
 \section{Приложение 2}
 
-%\subsection{Список}
-%
-%\begin{itemize}
-%\item первый элемент списка
-%\item второй элемент списка
-%\end{itemize}
-%
-%
-%\subsection{Картинка}
-%
-%\begin{figure}[H]
-%	\begin{center}
-%		\includegraphics[scale=0.7]{pics/sample}
-%		\caption{название картинки}
-%		\label{pic:pic_name} % название для ссылок внутри кода
-%	\end{center}
-%\end{figure}
-%
-%
 %\subsection{Листинг}
 %
 %\captionof{lstlisting}{hell\_o.c} % для печати символ '_' требует выходной символ '\'
