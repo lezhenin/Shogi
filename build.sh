@@ -36,14 +36,16 @@ build_debug_version()
 
 	if [ -e "Makefile" ]; then
 
+        cd ../../sources
+        cppcheck --version
+		cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson -iShogiCoreTest -i*/qrc_resources.cpp --xml  * 2> ../report/cppcheck_result
+        cd ../build/debug
+
 		cmake --build ../debug --clean-first --
 
 		cd ../../sources
 		../build/debug/sources/ShogiCoreTest/func_test -xml -o ../report/func_test_results || true
 		../build/debug/sources/ShogiCoreTest/module_test -xml -o ../report/module_test_results || true
-
-		cppcheck --version
-		cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson -iShogiCoreTest --xml  * 2> ../report/cppcheck_result
 
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Shogi/workspace/report/tst_func_test.%p.result /opt/tomcat/.jenkins/jobs/Shogi/workspace/build/debug/sources/ShogiCoreTest/func_test || true
