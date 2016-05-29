@@ -58,6 +58,9 @@ namespace shogi
 		 */
         virtual bool checkDrop(Piece *piece, const Position &position) const noexcept = 0;
 
+        /**
+         * @Получить все возможоные ходы для данной фигуры.
+         */
         virtual std::vector<Position> getAllPositionToMove(const Piece *piece) const noexcept = 0;
         virtual ~AbstractGameLogic() { }
     };
