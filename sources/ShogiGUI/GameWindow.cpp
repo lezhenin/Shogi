@@ -6,6 +6,7 @@
 
 GameWindow::GameWindow(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint)
 {
+
     board = new GameGraphicFrame(this);
     connect(board, SIGNAL(sendMessage(const QString)), this, SLOT(showMessage(QString)));
 
@@ -37,6 +38,10 @@ GameWindow::GameWindow(QWidget *parent) : QWidget(parent, Qt::WindowMinimizeButt
     connect(menuButton, SIGNAL(clicked()), this, SLOT(menu()));
 
     this->setFixedSize(SCREEN_SIZE);
+    QPixmap background(":/game_background.jpg");
+    QPalette qPalette;
+    qPalette.setBrush(this->backgroundRole(),QBrush(background));
+    this->setPalette(qPalette);
 
     status = new QLabel(this);
     status->setWordWrap(true);
