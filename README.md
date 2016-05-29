@@ -126,9 +126,9 @@
  Консольное приложение, позволяющие вести игру в Сёги двум игрокам.
 
 ## Диаграмма прецедентов использования
-![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram1.1.png)
+![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram1.png)
 ![Диаграмма прецедентов использования](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/UseCaseDiagram2.png)
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
-![Диаграмма компонентов](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/ComponentDiagram1.1.png)
+![Диаграмма компонентов](https://github.com/lezhenin/Shogi/blob/master/report/diagrams/ComponentDiagram1.png)
