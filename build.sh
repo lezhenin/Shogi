@@ -26,6 +26,10 @@ build_release_version()
 build_debug_version()
 {
     cd sources
+
+    cppcheck --version
+	cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson -iShogiCoreTest -i*/qrc_resources.cpp --xml  * 2> ../report/cppcheck_result
+
     cloc --version
 	cloc --by-file --exclude-dir=ShogiCore/SaveAndLoad/JSON/rapidjson --xml --out=../report/cloc_result *
 
@@ -35,11 +39,6 @@ build_debug_version()
 	cmake -D CMAKE_BUILD_TYPE=Debug –G "Unix Makefiles" ../../../workspace
 
 	if [ -e "Makefile" ]; then
-
-        cd ../../sources
-        cppcheck --version
-		cppcheck --enable=all -v -iShogiCore/SaveAndLoad/JSON/rapidjson -iShogiCoreTest -i*/qrc_resources.cpp --xml  * 2> ../report/cppcheck_result
-        cd ../build/debug
 
 		cmake --build ../debug --clean-first --
 
